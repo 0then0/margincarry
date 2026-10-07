@@ -1,6 +1,6 @@
 # MarginCarry v0.1 engineering report
 
-Validation date: October 7, 2026. The local installable artifact is `dist/margincarry-0.1.0.xpi`, with a neighboring SHA-256 file. No GitHub release asset is published. Installation instructions do not depend on a release download.
+Validation date: October 7, 2026. The local installable artifact is `dist/margincarry-0.1.0.xpi`, with a neighboring SHA-256 file. Release packages are available on [GitHub Releases](https://github.com/0then0/margincarry/releases/tag/v0.1.0). Source builds remain available through the documented build command.
 
 ## Implemented behavior
 

@@ -118,3 +118,7 @@ Select `MarginCarry validation: page-insertion` or both of its attachments in th
 Verify both Language choices, including error text and confirmation prompts. While the first previews load, Cancel must discard the plan. Accept a proposal and change direction: the review count must become zero and Apply must be disabled.
 
 [Engineering report](engineering-report.md) distinguishes native API and UI evidence. API calls alone do not prove that a person could complete the interface workflow.
+
+## Release publication
+
+The `release` GitHub Actions workflow runs on `v*` tags. The tag must equal the version in both `package.json` and `manifest.json`. It installs the locked dependencies, runs `npm run check`, and publishes the XPI and SHA-256 file with the matching `docs/releases/<tag>.md` notes. Publication uses the workflow token with repository contents write access; no local browser or personal token is required.
