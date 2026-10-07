@@ -61,7 +61,7 @@ header p {
   display: flex;
   gap: 4px;
 }
-.language button[aria-pressed='true'] {
+.language button[aria-pressed="true"] {
   background: #176e68;
   border-color: #176e68;
   color: #fff;
@@ -150,6 +150,7 @@ aside {
 .annotation-row span {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -158,7 +159,7 @@ aside {
   margin-top: 8px;
   color: var(--muted);
 }
-.annotation-row[aria-current='true'] {
+.annotation-row[aria-current="true"] {
   border: 2px solid var(--accent);
 }
 .detail {
