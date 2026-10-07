@@ -24,7 +24,7 @@ Biome uses two spaces, single quotes in JavaScript/TypeScript, and the recommend
 
 ## Localization
 
-`src/l10n.ts` contains typed English and Russian UI resources, interpolation, project-owned diagnostic translations, and static DOM localization. The menu and initial dialog follow Zotero's locale; other locales fall back to English. The dialog's Language selector changes only its language and preserves accepted locations. Original PDF quotes, user comments, filenames, keys, and host-generated diagnostics are not rewritten.
+`src/l10n.ts` contains typed English and Russian UI resources, interpolation, project-owned diagnostic translations, and static DOM localization. The menu and initial dialog follow Zotero's locale; other locales fall back to English. The dialog's Language buttons changes only its language and preserves accepted locations. Original PDF quotes, user comments, filenames, keys, and host-generated diagnostics are not rewritten.
 
 Add every user-facing label in both dictionaries, including accessibility labels and confirmation prompts. Add translations for project-owned errors and outcomes. Tests verify placeholder parity, XHTML resource keys, both UI locales, dynamic diagnostics, and language changes with accepted proposals. Public documentation and screenshots use English.
 

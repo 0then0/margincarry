@@ -23,7 +23,7 @@ Node.js and Python are only needed to build the plugin. An installed XPI runs in
 ## Transfer annotations
 
 1. Add the new PDF revision beside the old attachment under the same item. Select both attachments or their bibliographic item.
-2. Open MarginCarry from **Tools**. Check **Old PDF** and **New PDF**; `⇄` swaps the direction. The **Language** selector provides English and Russian.
+2. Open MarginCarry from **Tools**. Check **Old PDF** and **New PDF**; `⇄` swaps the direction. The **Language** buttons provide English and Russian. [Language control](docs/images/language.png).
 3. Click **Find proposals**. Every source annotation receives an outcome. You can cancel before applying; cancelling while the initial previews load also discards the plan.
 4. Compare the actual PDF previews, quoted text, context, and pages. Reader buttons open the actual locations. Choose a candidate explicitly when a quote has several plausible occurrences.
 5. Click **Accept proposal** or **Skip**. **Select unique proposals** adds unique proposals to the set for your review.

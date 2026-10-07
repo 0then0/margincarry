@@ -127,6 +127,8 @@ test('cancel while first previews load leaves no applicable plan or stale image'
   el('analyze').onclick!();
   await started;
   assert.equal(el('cancel').disabled, false);
+  assert.equal(el('language-en').disabled, true);
+  assert.equal(el('language-ru').disabled, true);
   assert.equal(el('accept').disabled, true);
   el('cancel').onclick!();
   release();
@@ -170,8 +172,9 @@ test('switching language preserves accepted locations and translates dynamic and
   el('analyze').onclick!();
   await until(() => el('cancel').disabled);
   el('accept').onclick!();
-  el('language').value = 'ru';
-  el('language').onchange!();
+  assert.equal(el('language-en').getAttribute('aria-pressed'), 'true');
+  assert.equal(el('language-ru').getAttribute('aria-pressed'), 'false');
+  el('language-ru').onclick!();
   await until(() => el('status').textContent.startsWith('Учтено'));
   assert.equal(document.documentElement.lang, 'ru');
   assert.equal(el('selected-count').textContent, 'Выбрано для записи: 1');
@@ -181,10 +184,19 @@ test('switching language preserves accepted locations and translates dynamic and
     'Исходное выделение на реальной PDF-странице',
   );
   assert.equal(el('apply').disabled, false);
+  assert.equal(el('language-ru').getAttribute('aria-pressed'), 'true');
+  assert.equal(el('language-en').getAttribute('aria-pressed'), 'false');
+  el('language-en').onclick!();
+  await until(() => document.documentElement.lang === 'en' && el('cancel').disabled);
+  assert.equal(el('selected-count').textContent, 'Selected to write: 1');
+  assert.equal(el('language-en').getAttribute('aria-pressed'), 'true');
+  assert.equal(el('language-ru').getAttribute('aria-pressed'), 'false');
 });
 
 test('the initial Russian review count is localized before analysis', async () => {
   const { el } = await fixture('ru');
   assert.equal(el('selected-count').textContent, 'Выбрано для записи: 0');
   assert.equal(el('apply').disabled, true);
+  assert.equal(el('language-ru').getAttribute('aria-pressed'), 'true');
+  assert.equal(el('language-en').getAttribute('aria-pressed'), 'false');
 });

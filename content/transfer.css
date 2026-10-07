@@ -48,6 +48,24 @@ header p {
   margin: 4px 0 0;
   color: var(--muted);
 }
+.language {
+  flex-shrink: 0;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: 0;
+}
+.language legend {
+  padding: 0 0 6px;
+}
+.language div {
+  display: flex;
+  gap: 4px;
+}
+.language button[aria-pressed='true'] {
+  background: #176e68;
+  border-color: #176e68;
+  color: #fff;
+}
 h2 {
   font-size: 16px;
   margin: 0 0 10px;
@@ -140,7 +158,7 @@ aside {
   margin-top: 8px;
   color: var(--muted);
 }
-.annotation-row[aria-current="true"] {
+.annotation-row[aria-current='true'] {
   border: 2px solid var(--accent);
 }
 .detail {

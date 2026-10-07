@@ -46,20 +46,22 @@ export class TransferWindow {
   async init(ids: number[]): Promise<void> {
     this.l10n.apply(this.win.document);
     this.reviewSet();
-    const language = this.el<HTMLSelectElement>('language');
-    language.value = this.l10n.locale;
-    language.onchange = this.handle(async () => {
-      if (this.applying || this.controller) return;
-      this.l10n.locale = language.value === 'ru' ? 'ru' : 'en';
-      this.l10n.apply(this.win.document);
-      this.renderList();
-      await this.show();
-      this.status(
-        this.plan ? this.t('analyzed', { count: this.plan.proposals.length }) : this.t('ready'),
-      );
-      if (this.plan?.state === 'applied')
-        this.text('apply-result', this.t('applied', { count: this.accepted.size }));
-    });
+    this.languageState();
+    for (const locale of ['en', 'ru'] as const) {
+      this.el<HTMLButtonElement>(`language-${locale}`).onclick = this.handle(async () => {
+        if (this.applying || this.controller || this.l10n.locale === locale) return;
+        this.l10n.locale = locale;
+        this.languageState();
+        this.l10n.apply(this.win.document);
+        this.renderList();
+        await this.show();
+        this.status(
+          this.plan ? this.t('analyzed', { count: this.plan.proposals.length }) : this.t('ready'),
+        );
+        if (this.plan?.state === 'applied')
+          this.text('apply-result', this.t('applied', { count: this.accepted.size }));
+      });
+    }
     const choices = await this.adapter.choices(ids);
     for (const id of ['old', 'new']) {
       const select = this.el<HTMLSelectElement>(id);
@@ -123,10 +125,18 @@ export class TransferWindow {
     await this.service.journal();
     this.status(choices.length >= 2 ? this.t('ready') : this.t('choosePair'));
   }
+  private languageState(): void {
+    for (const locale of ['en', 'ru'] as const)
+      this.el(`language-${locale}`).setAttribute(
+        'aria-pressed',
+        String(this.l10n.locale === locale),
+      );
+  }
   private lock(value: boolean): void {
     this.applying = value;
     for (const id of [
-      'language',
+      'language-en',
+      'language-ru',
       'old',
       'new',
       'swap',

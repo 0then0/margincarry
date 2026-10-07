@@ -8,7 +8,7 @@ MarginCarry is a bootstrap Zotero Desktop plugin with a Tools menu command. User
 
 It creates native highlights and underlines with fresh keys, the actual target text, original comments, colors, and text tags. Source annotations, both PDF files, and pre-existing target annotations remain intact. Snapshots prevent applying a plan after files or annotations change. A shared service lock protects apply, undo, and journal recovery. A local write-ahead journal protects against repeats and records ownership for undo.
 
-English and Russian are available in the dialog. The menu and initial dialog follow Zotero's locale, with English fallback; the Language selector changes the dialog language without discarding accepted locations. Project-owned labels, prompts, progress, accessibility text, outcomes, and errors are localized. Original document text, comments, filenames, and host-generated diagnostic wording are preserved. Public documentation and workflow screenshots use English.
+English and Russian are available in the dialog. The menu and initial dialog follow Zotero's locale, with English fallback; the Language buttons changes the dialog language without discarding accepted locations. Project-owned labels, prompts, progress, accessibility text, outcomes, and errors are localized. Original document text, comments, filenames, and host-generated diagnostic wording are preserved. Public documentation and workflow screenshots use English.
 
 Undo validates every owned copy before deletion. Editing, moving, or deleting any copy stops the entire undo. Unchanged copies move to Trash. Only after database commit does the adapter remove those keys from initialized open readers: the verified Zotero reader handles hard deletion notifications but does not itself hide soft-deleted annotations. Transaction rollback leaves reader state untouched. Reader refresh failure explicitly reports that copies reached Trash and requires reopening, rather than claiming complete success.
 
@@ -94,7 +94,7 @@ The flagged IDs are `0:1691:1695`, `5:4305:4309`, `5:4332:4336`, and `7:2107:211
 
 ## UI evidence
 
-Native API tests and user interaction are separate evidence. The actual Zotero window workflow includes Tools → MarginCarry, direction, analysis, both actual previews, selecting two unique proposals, reviewing the set, confirming Apply, and opening the created highlight/underline in the native reader. Sidebar comments and tags are visible. The Language selector was also exercised in Russian and English; both selected proposals survived switching back to English. See [review](images/review.png) and [reader](images/reader.png).
+Native API tests and user interaction are separate evidence. The actual Zotero window workflow includes Tools → MarginCarry, direction, analysis, both actual previews, selecting two unique proposals, reviewing the set, confirming Apply, and opening the created highlight/underline in the native reader. Sidebar comments and tags are visible. The Language control was also exercised in Russian and English; both selected proposals survived switching back to English. See [review](images/review.png) and [reader](images/reader.png).
 
 [UI report](../validation/host-ui.json) records created keys, source/PDF preservation, restart fingerprints, and undo. After committed undo, the active reader's two operation keys disappear immediately, leaving no highlight/underline and an empty annotation sidebar. See [undo screenshot](images/undo.png).
 
@@ -107,3 +107,5 @@ This is a v0.1 candidate for the actually checked host. Other OSes/releases, ver
 Only local PDFs of one item in a personal library and native continuous, one-page highlight/underline are supported. OCR, fuzzy transfer of changed text, ink/images/notes, multi-page/discontinuous ranges, group libraries, library-wide processing, note-link rewriting, and custom sync are outside scope. Reader integration depends on internal APIs of the verified release.
 
 The journal contains user quotes, comments, geometry, and paths, stored only in Zotero's data directory. The plugin introduces no account, remote processing, telemetry, or external API. Zotero sync and plugin updates remain governed by Zotero's settings.
+
+The language dropdown was replaced with two native buttons to avoid overlapping popup labels. The active language is highlighted and exposed through `aria-pressed`; both buttons are disabled during analysis and writes. Both choices were checked in Zotero after restarting to refresh cached chrome styles. See [language control](images/language.png).
