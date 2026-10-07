@@ -1,0 +1,34 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="128"
+  height="128"
+  viewBox="0 0 128 128"
+  role="img"
+  aria-label="MarginCarry: a highlighted passage carried between PDF revisions"
+>
+<rect x="4" y="4" width="120" height="120" rx="24" fill="#e9f2f0" />
+<g stroke="#355b60" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<path d="M23 29h28l11 11v52H23z" fill="#fff" /><path d="M51 29v12h11" fill="none" />
+<path d="M70 36h26l11 11v52H70z" fill="#fff" /><path d="M96 36v12h11" fill="none" />
+<path
+      d="M31 48h22M31 74h19M31 82h16M78 56h20M78 84h20M78 92h16"
+      stroke="#92a8aa"
+      stroke-width="2"
+    />
+</g><rect x="29" y="56" width="27" height="11" rx="2" fill="#f0cc55" /><rect
+    x="76"
+    y="65"
+    width="26"
+    height="11"
+    rx="2"
+    fill="#f0cc55"
+  />
+<path
+    d="M49 62c17-20 19 14 35 8m-5-6 6 6-7 5"
+    fill="none"
+    stroke="#176e68"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

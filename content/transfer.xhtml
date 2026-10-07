@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title data-l10n="title">MarginCarry · PDF annotation transfer</title>
+  <link rel="stylesheet" href="transfer.css"/>
+</head>
+<body>
+<header>
+  <img src="icon.svg" alt=""/>
+  <div><h1>MarginCarry</h1><p data-l10n="subtitle">Your annotations on a new PDF revision. Review each position before writing.</p></div>
+  <label><span data-l10n="language">Language</span><select id="language"><option value="en">English</option><option value="ru">Русский</option></select></label>
+</header>
+<section class="direction" aria-label="Transfer direction" data-l10n-aria-label="direction">
+  <label><span data-l10n="old">Old PDF</span><select id="old"></select></label>
+  <button id="swap" title="Swap direction" data-l10n-title="swap">⇄</button>
+  <label><span data-l10n="new">New PDF</span><select id="new"></select></label>
+  <button id="analyze" class="primary" data-l10n="analyze">Find proposals</button>
+  <button id="cancel" disabled="disabled" data-l10n="cancel">Cancel analysis</button>
+</section>
+<p id="status" role="status" aria-live="polite" data-l10n="preparing">Preparing…</p>
+<main>
+  <aside>
+    <div class="aside-head"><h2 data-l10n="annotations">Annotations</h2><button id="accept-unique" disabled="disabled" data-l10n="unique">Select unique proposals</button></div>
+    <nav id="list" aria-label="Source annotations" data-l10n-aria-label="sourceList"></nav>
+  </aside>
+  <section class="detail" id="detail" hidden="hidden">
+    <h2 id="source-text"></h2><p id="metadata" class="muted"></p><blockquote id="comment"></blockquote><p id="outcome"></p>
+    <label><span data-l10n="proposal">Proposed location</span><select id="candidates"></select></label><p id="geometry" class="error"></p>
+    <div class="comparison">
+      <section><div class="preview-head"><h3 id="source-page"></h3><button id="open-source" data-l10n="openSource">Open source in reader</button></div><p class="context" id="source-context"></p><p id="source-preview-status"></p><div class="pdf-preview"><img id="source-preview" alt="Source selection on the actual PDF page" data-l10n-alt="sourceImage"/></div></section>
+      <section><div class="preview-head"><h3 id="target-page"></h3><button id="open-target" data-l10n="openTarget">Open target in reader</button></div><p class="context" id="target-context"></p><p id="target-preview-status"></p><div class="pdf-preview"><img id="target-preview" alt="Proposed selection on the actual PDF page" data-l10n-alt="targetImage"/></div></section>
+    </div>
+    <div class="decision"><button id="accept" class="primary" data-l10n="accept">Accept proposal</button><button id="skip" data-l10n="skip">Skip</button><span data-l10n="selectionOnly">Selecting does not write data.</span></div>
+  </section>
+</main>
+<footer>
+  <div class="review-header"><h2 id="selected-count">Selected to write: 0</h2><button id="apply" class="primary" disabled="disabled" data-l10n="apply">Apply selected</button><button id="undo" data-l10n="undo">Undo last transfer</button></div>
+  <ul id="review" aria-label="Specific selected transfers" data-l10n-aria-label="review"></ul><p id="apply-result"></p><button id="open-result" hidden="hidden" data-l10n="openResult">Open created annotation</button>
+  <p class="muted" data-l10n="links">Copies receive new IDs. Existing note links continue to open the original annotations.</p>
+</footer>
+</body></html>

@@ -1,0 +1,41 @@
+{
+  "lora": [
+    { "quote": "LoRA: Low-Rank Adaptation of", "page": 1 },
+    { "quote": "Microsoft Corporation", "page": 1 },
+    { "quote": "trainable rank decomposition matrices", "page": 1 },
+    { "quote": "by 10,000 times", "page": 1 },
+    { "quote": "computation hardware requirement", "page": 1 },
+    { "quote": "our implementation in GPT-2", "page": 1 },
+    { "quote": "space- and compute-efficient.", "page": 2 },
+    { "quote": "no inference latency", "page": 2 },
+    {
+      "quote": "maximization of conditional probabilities given a task-specific prompt.",
+      "page": 2
+    },
+    { "quote": "Practical Benefits and Limitations.", "page": 4 },
+    { "quote": "Prompt Engineering and Fine-Tuning.", "page": 4 },
+    { "quote": "Parameter-Efficient Adaptation.", "page": 4 },
+    { "quote": "On the other hand, LoRA has its limitations.", "page": 4 },
+    { "quote": "25% speedup during training", "page": 4 },
+    { "quote": "LoRA", "page": 1, "alternatives": true },
+    { "type": "image", "page": 1, "rects": [[72, 400, 150, 460]], "quote": "" }
+  ],
+  "attention": [
+    { "quote": "Attention Is All You Need", "page": 1 },
+    { "quote": "Google Brain", "page": 1, "alternatives": true },
+    { "quote": "University of Toronto", "page": 1 },
+    { "quote": "28.4 BLEU", "page": 1 },
+    { "quote": "BLEU score of 41.0", "page": 1 },
+    { "quote": "training for 3.5 days", "page": 1 },
+    { "quote": "constraint of sequential computation, however, remains.", "page": 2 },
+    { "quote": "twelve hours on eight P100 GPUs.", "page": 2 },
+    { "quote": "Model Architecture", "page": 2 },
+    { "quote": "Scaled Dot-Product Attention", "page": 3, "alternatives": true },
+    { "quote": "matrix multiplication code.", "page": 4 },
+    { "quote": "Multi-Head Attention", "page": 4, "alternatives": true },
+    { "quote": "three desiderata.", "page": 6 },
+    { "quote": "Label Smoothing", "page": 7 },
+    { "quote": "We plan to investigate this approach further in future work.", "page": 6 },
+    { "type": "image", "page": 3, "rects": [[72, 400, 150, 460]], "quote": "" }
+  ]
+}

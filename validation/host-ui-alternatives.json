@@ -1,0 +1,137 @@
+{
+  "hostVersion": "10.0.5",
+  "os": "Darwin",
+  "interaction": "Native CUA; DOM snapshots are read-only",
+  "installedSHA256": "99d5a7c2f7641636625f57975b6b750d4b289b486d008e39c87d8f3a8b7ecb35",
+  "states": {
+    "initial": {
+      "hostVersion": "10.0.5",
+      "sourceID": "166",
+      "targetID": "167",
+      "outcome": "Multiple candidates: Several occurrences require a human choice.",
+      "candidateID": "",
+      "options": [
+        {
+          "id": "",
+          "label": "Choose a candidate to review\u2026",
+          "disabled": true
+        },
+        {
+          "id": "0:0:16",
+          "label": "Candidate 1 \u00b7 Page 1 \u00b7 exact",
+          "disabled": false
+        },
+        {
+          "id": "0:31:47",
+          "label": "Candidate 2 \u00b7 Page 1 \u00b7 exact",
+          "disabled": false
+        }
+      ],
+      "acceptDisabled": true,
+      "applyDisabled": true,
+      "selection": "Selected to write: 0",
+      "review": "",
+      "targetPreviewAvailable": false
+    },
+    "second": {
+      "hostVersion": "10.0.5",
+      "sourceID": "166",
+      "targetID": "167",
+      "outcome": "Multiple candidates: Several occurrences require a human choice.",
+      "candidateID": "0:31:47",
+      "options": [
+        {
+          "id": "",
+          "label": "Choose a candidate to review\u2026",
+          "disabled": true
+        },
+        {
+          "id": "0:0:16",
+          "label": "Candidate 1 \u00b7 Page 1 \u00b7 exact",
+          "disabled": false
+        },
+        {
+          "id": "0:31:47",
+          "label": "Candidate 2 \u00b7 Page 1 \u00b7 exact",
+          "disabled": false
+        }
+      ],
+      "acceptDisabled": false,
+      "applyDisabled": true,
+      "selection": "Selected to write: 0",
+      "review": "",
+      "targetPreviewAvailable": true
+    },
+    "accepted": {
+      "hostVersion": "10.0.5",
+      "sourceID": "166",
+      "targetID": "167",
+      "outcome": "Multiple candidates: Several occurrences require a human choice.",
+      "candidateID": "0:31:47",
+      "options": [
+        {
+          "id": "",
+          "label": "Choose a candidate to review\u2026",
+          "disabled": true
+        },
+        {
+          "id": "0:0:16",
+          "label": "Candidate 1 \u00b7 Page 1 \u00b7 exact",
+          "disabled": false
+        },
+        {
+          "id": "0:31:47",
+          "label": "Candidate 2 \u00b7 Page 1 \u00b7 exact",
+          "disabled": false
+        }
+      ],
+      "acceptDisabled": false,
+      "applyDisabled": false,
+      "selection": "Selected to write: 1",
+      "review": "p. 1 \u2192 1 \u00b7 A repeated quoteRemove",
+      "targetPreviewAvailable": true
+    },
+    "changed": {
+      "hostVersion": "10.0.5",
+      "sourceID": "166",
+      "targetID": "167",
+      "outcome": "Multiple candidates: Several occurrences require a human choice.",
+      "candidateID": "0:0:16",
+      "options": [
+        {
+          "id": "",
+          "label": "Choose a candidate to review\u2026",
+          "disabled": true
+        },
+        {
+          "id": "0:0:16",
+          "label": "Candidate 1 \u00b7 Page 1 \u00b7 exact",
+          "disabled": false
+        },
+        {
+          "id": "0:31:47",
+          "label": "Candidate 2 \u00b7 Page 1 \u00b7 exact",
+          "disabled": false
+        }
+      ],
+      "acceptDisabled": false,
+      "applyDisabled": true,
+      "selection": "Selected to write: 0",
+      "review": "",
+      "targetPreviewAvailable": true
+    }
+  },
+  "notFound": {
+    "hostVersion": "10.0.5",
+    "sourceID": "136",
+    "targetID": "137",
+    "outcome": "Not found: The target PDF has no usable text layer. OCR is outside v0.1.",
+    "candidateID": "",
+    "options": [],
+    "acceptDisabled": true,
+    "applyDisabled": true,
+    "selection": "Selected to write: 0",
+    "review": "",
+    "targetPreviewAvailable": false
+  }
+}

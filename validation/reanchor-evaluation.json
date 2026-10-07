@@ -1,0 +1,1896 @@
+{
+  "version": "0.3.0",
+  "npmSHA1": "ef602f12dcdfc6d98e802d474ddb2cfa17e4e66e",
+  "protocol": "Each full target page is resolved separately using the same native UTF-16 page stream and source context. Unsupported types are excluded from text resolver evaluation only, not from MarginCarry corpus statistics.",
+  "rows": [
+    {
+      "id": "lora-01",
+      "expected": "not found",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 0,
+            "end": 28,
+            "text": "LORA: LOW-RANK ADAPTATION OF",
+            "method": "normalized-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 1,
+            "start": 668,
+            "end": 696,
+            "text": "posed\nLow-Rank Adaptation (L",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 8,
+            "start": 4088,
+            "end": 4116,
+            "text": "posed\nlow-rank adaptation up",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 9,
+            "start": 3040,
+            "end": 3067,
+            "text": "at a low-rank adaptation ma",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 0,
+            "start": 0,
+            "end": 28,
+            "text": "LORA: LOW-RANK ADAPTATION OF",
+            "method": "normalized-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": []
+      }
+    },
+    {
+      "id": "lora-02",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 150,
+            "end": 171,
+            "text": "Microsoft Corporation",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 0,
+            "start": 150,
+            "end": 171,
+            "text": "Microsoft Corporation",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 0,
+            "start": 150,
+            "end": 171,
+            "text": "Microsoft Corporation",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "lora-03",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 807,
+            "end": 844,
+            "text": "trainable rank decomposition matrices",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 1,
+            "start": 789,
+            "end": 825,
+            "text": "timizing rank decomposition matrices",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 5,
+            "start": 4015,
+            "end": 4052,
+            "text": " pairs of rank decomposition matrices",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 0,
+            "start": 807,
+            "end": 844,
+            "text": "trainable rank decomposition matrices",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 0,
+            "start": 807,
+            "end": 844,
+            "text": "trainable rank decomposition matrices",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "lora-04",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 1064,
+            "end": 1079,
+            "text": "by 10,000 times",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 0,
+            "start": 1064,
+            "end": 1079,
+            "text": "by 10,000 times",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 0,
+            "start": 1064,
+            "end": 1079,
+            "text": "by 10,000 times",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "lora-05",
+      "expected": "not found",
+      "results": {
+        "default": [],
+        "normalizedOnly": [],
+        "restricted": []
+      }
+    },
+    {
+      "id": "lora-06",
+      "expected": "not found",
+      "results": {
+        "default": [],
+        "normalizedOnly": [],
+        "restricted": []
+      }
+    },
+    {
+      "id": "lora-07",
+      "expected": "not found",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 1,
+            "start": 1134,
+            "end": 1163,
+            "text": "orage- and compute-efficient.",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 2,
+            "start": 1355,
+            "end": 1384,
+            "text": "meter- and compute-efficient.",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [],
+        "restricted": []
+      }
+    },
+    {
+      "id": "lora-08",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 1332,
+            "end": 1352,
+            "text": "al inference latency",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 1,
+            "start": 1908,
+            "end": 1928,
+            "text": "no inference latency",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 2,
+            "start": 1960,
+            "end": 1980,
+            "text": "ce Inference Latency",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 3285,
+            "end": 3305,
+            "text": "al Inference Latency",
+            "method": "approximate",
+            "rivals": 1,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 4,
+            "start": 2300,
+            "end": 2320,
+            "text": "al inference latency",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 11,
+            "start": 2431,
+            "end": 2451,
+            "text": "es inference latency",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 1,
+            "start": 1908,
+            "end": 1928,
+            "text": "no inference latency",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 1,
+            "start": 1908,
+            "end": 1928,
+            "text": "no inference latency",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "lora-09",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 1,
+            "start": 3066,
+            "end": 3137,
+            "text": "maximization of conditional probabilities given a task-specific prompt.",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 1,
+            "start": 3066,
+            "end": 3137,
+            "text": "maximization of conditional probabilities given a task-specific prompt.",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 1,
+            "start": 3066,
+            "end": 3137,
+            "text": "maximization of conditional probabilities given a task-specific prompt.",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "lora-10",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 4,
+            "start": 1000,
+            "end": 1035,
+            "text": "Practical Benefits and Limitations.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 4,
+            "start": 1000,
+            "end": 1035,
+            "text": "Practical Benefits and Limitations.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 4,
+            "start": 1000,
+            "end": 1035,
+            "text": "Practical Benefits and Limitations.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "lora-11",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 8,
+            "start": 449,
+            "end": 484,
+            "text": "Prompt Engineering and Fine-Tuning.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 8,
+            "start": 449,
+            "end": 484,
+            "text": "Prompt Engineering and Fine-Tuning.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 8,
+            "start": 449,
+            "end": 484,
+            "text": "Prompt Engineering and Fine-Tuning.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "lora-12",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 8,
+            "start": 1376,
+            "end": 1407,
+            "text": "Parameter-Efficient Adaptation.",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 8,
+            "start": 1376,
+            "end": 1407,
+            "text": "Parameter-Efficient Adaptation.",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 8,
+            "start": 1376,
+            "end": 1407,
+            "text": "Parameter-Efficient Adaptation.",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "lora-13",
+      "expected": "not found",
+      "results": {
+        "default": [],
+        "normalizedOnly": [],
+        "restricted": []
+      }
+    },
+    {
+      "id": "lora-14",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 4,
+            "start": 1927,
+            "end": 1954,
+            "text": "25% speedup\nduring training",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 4,
+            "start": 1927,
+            "end": 1954,
+            "text": "25% speedup\nduring training",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 4,
+            "start": 1927,
+            "end": 1954,
+            "text": "25% speedup\nduring training",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "lora-15",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 0,
+            "end": 4,
+            "text": "LORA",
+            "method": "normalized-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 1,
+            "start": 695,
+            "end": 699,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 76,
+            "end": 80,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 4,
+            "start": 185,
+            "end": 189,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 5,
+            "start": 413,
+            "end": 417,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 6,
+            "start": 414,
+            "end": 418,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 7,
+            "start": 378,
+            "end": 382,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 8,
+            "start": 2083,
+            "end": 2087,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 1,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 9,
+            "start": 590,
+            "end": 594,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 11,
+            "start": 2371,
+            "end": 2375,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 12,
+            "start": 81,
+            "end": 85,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 16,
+            "start": 356,
+            "end": 360,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 17,
+            "start": 2593,
+            "end": 2597,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 2,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 18,
+            "start": 123,
+            "end": 127,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 19,
+            "start": 1416,
+            "end": 1420,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 20,
+            "start": 60,
+            "end": 64,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 21,
+            "start": 330,
+            "end": 334,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 22,
+            "start": 568,
+            "end": 572,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 23,
+            "start": 303,
+            "end": 307,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 2,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 25,
+            "start": 1114,
+            "end": 1118,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 0,
+            "start": 0,
+            "end": 4,
+            "text": "LORA",
+            "method": "normalized-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 1,
+            "start": 695,
+            "end": 699,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 76,
+            "end": 80,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 4,
+            "start": 185,
+            "end": 189,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 5,
+            "start": 413,
+            "end": 417,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 6,
+            "start": 414,
+            "end": 418,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 7,
+            "start": 378,
+            "end": 382,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 8,
+            "start": 2083,
+            "end": 2087,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 1,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 9,
+            "start": 590,
+            "end": 594,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 11,
+            "start": 2371,
+            "end": 2375,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 12,
+            "start": 81,
+            "end": 85,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 16,
+            "start": 356,
+            "end": 360,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 17,
+            "start": 2593,
+            "end": 2597,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 2,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 18,
+            "start": 123,
+            "end": 127,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 19,
+            "start": 1416,
+            "end": 1420,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 20,
+            "start": 60,
+            "end": 64,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 21,
+            "start": 330,
+            "end": 334,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 22,
+            "start": 568,
+            "end": 572,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 23,
+            "start": 303,
+            "end": 307,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 2,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 25,
+            "start": 1114,
+            "end": 1118,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 0,
+            "start": 746,
+            "end": 750,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 5,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 1,
+            "start": 695,
+            "end": 699,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 7,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 76,
+            "end": 80,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 5,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 4,
+            "start": 185,
+            "end": 189,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 5,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 5,
+            "start": 413,
+            "end": 417,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 8,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 6,
+            "start": 414,
+            "end": 418,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 6,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 7,
+            "start": 378,
+            "end": 382,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 6,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 8,
+            "start": 2083,
+            "end": 2087,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 1,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 9,
+            "start": 590,
+            "end": 594,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 4,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 11,
+            "start": 2371,
+            "end": 2375,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 12,
+            "start": 81,
+            "end": 85,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 16,
+            "start": 356,
+            "end": 360,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 17,
+            "start": 2593,
+            "end": 2597,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 2,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 18,
+            "start": 123,
+            "end": 127,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 10,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 19,
+            "start": 1416,
+            "end": 1420,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 13,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 20,
+            "start": 60,
+            "end": 64,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 15,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 21,
+            "start": 330,
+            "end": 334,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 4,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 22,
+            "start": 568,
+            "end": 572,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 5,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 23,
+            "start": 303,
+            "end": 307,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 1,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 25,
+            "start": 1114,
+            "end": 1118,
+            "text": "LoRA",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-01",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 0,
+            "end": 25,
+            "text": "Attention Is All You Need",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 0,
+            "start": 0,
+            "end": 25,
+            "text": "Attention Is All You Need",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 0,
+            "start": 0,
+            "end": 25,
+            "text": "Attention Is All You Need",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-02",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 43,
+            "end": 55,
+            "text": "Google Brain",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 0,
+            "start": 43,
+            "end": 55,
+            "text": "Google Brain",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 0,
+            "start": 43,
+            "end": 55,
+            "text": "Google Brain",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-03",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 283,
+            "end": 304,
+            "text": "University of Toronto",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 0,
+            "start": 283,
+            "end": 304,
+            "text": "University of Toronto",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 0,
+            "start": 283,
+            "end": 304,
+            "text": "University of Toronto",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-04",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 1023,
+            "end": 1032,
+            "text": "28.4 BLEU",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 7,
+            "start": 1657,
+            "end": 1665,
+            "text": "2.0 BLEU",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 0,
+            "start": 1023,
+            "end": 1032,
+            "text": "28.4 BLEU",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 0,
+            "start": 1023,
+            "end": 1032,
+            "text": "28.4 BLEU",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-05",
+      "expected": "not found",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 1273,
+            "end": 1291,
+            "text": "BLEU score of 41.2",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 7,
+            "start": 2061,
+            "end": 2079,
+            "text": "BLEU score of\n41.1",
+            "method": "approximate",
+            "rivals": 1,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [],
+        "restricted": []
+      }
+    },
+    {
+      "id": "attention-06",
+      "expected": "not found",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 1298,
+            "end": 1319,
+            "text": "training for 4.5 days",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 7,
+            "start": 1796,
+            "end": 1818,
+            "text": "Training took 3.5 days",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [],
+        "restricted": []
+      }
+    },
+    {
+      "id": "attention-07",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 1,
+            "start": 296,
+            "end": 351,
+            "text": "constraint of sequential computation, however, remains.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 1,
+            "start": 296,
+            "end": 351,
+            "text": "constraint of sequential computation, however, remains.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 1,
+            "start": 296,
+            "end": 351,
+            "text": "constraint of sequential computation, however, remains.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-08",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 1,
+            "start": 1052,
+            "end": 1084,
+            "text": "twelve hours on eight P100 GPUs.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 1,
+            "start": 1052,
+            "end": 1084,
+            "text": "twelve hours on eight P100 GPUs.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 1,
+            "start": 1052,
+            "end": 1084,
+            "text": "twelve hours on eight P100 GPUs.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-09",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 0,
+            "start": 1978,
+            "end": 1996,
+            "text": "coder\narchitecture",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 1,
+            "start": 2683,
+            "end": 2701,
+            "text": "Model Architecture",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 2,
+            "start": 28,
+            "end": 46,
+            "text": "model architecture",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 7,
+            "start": 2937,
+            "end": 2955,
+            "text": "model\narchitecture",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 8,
+            "start": 35,
+            "end": 51,
+            "text": "mer architecture",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 9,
+            "start": 1737,
+            "end": 1755,
+            "text": "coder architecture",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 11,
+            "start": 1846,
+            "end": 1862,
+            "text": "ion architecture",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 1,
+            "start": 2683,
+            "end": 2701,
+            "text": "Model Architecture",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 2,
+            "start": 28,
+            "end": 46,
+            "text": "model architecture",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 7,
+            "start": 2937,
+            "end": 2955,
+            "text": "model\narchitecture",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 1,
+            "start": 2683,
+            "end": 2701,
+            "text": "Model Architecture",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-10",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 2,
+            "start": 1094,
+            "end": 1122,
+            "text": "Scaled Dot-Product Attention",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 0,
+            "end": 28,
+            "text": "Scaled Dot-Product Attention",
+            "method": "exact",
+            "rivals": 3,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 4,
+            "start": 1562,
+            "end": 1590,
+            "text": "scaled dot-product attention",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 15,
+            "start": 362,
+            "end": 389,
+            "text": "imple dot-product attention",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 2,
+            "start": 1094,
+            "end": 1122,
+            "text": "Scaled Dot-Product Attention",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 0,
+            "end": 28,
+            "text": "Scaled Dot-Product Attention",
+            "method": "exact",
+            "rivals": 1,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 4,
+            "start": 1562,
+            "end": 1590,
+            "text": "scaled dot-product attention",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 2,
+            "start": 1094,
+            "end": 1122,
+            "text": "Scaled Dot-Product Attention",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 0,
+            "end": 28,
+            "text": "Scaled Dot-Product Attention",
+            "method": "exact",
+            "rivals": 1,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-11",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 3,
+            "start": 962,
+            "end": 989,
+            "text": "matrix multiplication code.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 3,
+            "start": 962,
+            "end": 989,
+            "text": "matrix multiplication code.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 3,
+            "start": 962,
+            "end": 989,
+            "text": "matrix multiplication code.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-12",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 1,
+            "start": 1876,
+            "end": 1896,
+            "text": "Multi-Head Attention",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 2,
+            "start": 236,
+            "end": 256,
+            "text": "multi-head\nattention",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 29,
+            "end": 49,
+            "text": "Multi-Head Attention",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 4,
+            "start": 564,
+            "end": 584,
+            "text": "multi-head attention",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 8,
+            "start": 1425,
+            "end": 1444,
+            "text": "ngle-head\nattention",
+            "method": "approximate",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 15,
+            "start": 1012,
+            "end": 1032,
+            "text": "multi-head attention",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 1,
+            "start": 1876,
+            "end": 1896,
+            "text": "Multi-Head Attention",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 2,
+            "start": 236,
+            "end": 256,
+            "text": "multi-head\nattention",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 29,
+            "end": 49,
+            "text": "Multi-Head Attention",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 4,
+            "start": 564,
+            "end": 584,
+            "text": "multi-head attention",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 15,
+            "start": 1012,
+            "end": 1032,
+            "text": "multi-head attention",
+            "method": "normalized",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 1,
+            "start": 1876,
+            "end": 1896,
+            "text": "Multi-Head Attention",
+            "method": "exact",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          },
+          {
+            "pageIndex": 3,
+            "start": 29,
+            "end": 49,
+            "text": "Multi-Head Attention",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-13",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 5,
+            "start": 2142,
+            "end": 2159,
+            "text": "three desiderata.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 5,
+            "start": 2142,
+            "end": 2159,
+            "text": "three desiderata.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 5,
+            "start": 2142,
+            "end": 2159,
+            "text": "three desiderata.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-14",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 7,
+            "start": 1245,
+            "end": 1260,
+            "text": "Label Smoothing",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 7,
+            "start": 1245,
+            "end": 1260,
+            "text": "Label Smoothing",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 7,
+            "start": 1245,
+            "end": 1260,
+            "text": "Label Smoothing",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "attention-15",
+      "expected": "locations",
+      "results": {
+        "default": [
+          {
+            "pageIndex": 6,
+            "start": 122,
+            "end": 182,
+            "text": "We plan to investigate this approach further in future work.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "normalizedOnly": [
+          {
+            "pageIndex": 6,
+            "start": 122,
+            "end": 182,
+            "text": "We plan to investigate this approach further in future work.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ],
+        "restricted": [
+          {
+            "pageIndex": 6,
+            "start": 122,
+            "end": 182,
+            "text": "We plan to investigate this approach further in future work.",
+            "method": "exact-with-context",
+            "rivals": 0,
+            "offsetsRoundTrip": true
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "default": {
+      "positiveCasesFound": 23,
+      "negativeCasesWithMatch": [
+        "lora-01",
+        "lora-07",
+        "attention-05",
+        "attention-06"
+      ],
+      "offsetRoundTripFailures": 0
+    },
+    "normalizedOnly": {
+      "positiveCasesFound": 23,
+      "negativeCasesWithMatch": [
+        "lora-01"
+      ],
+      "offsetRoundTripFailures": 0
+    },
+    "restricted": {
+      "positiveCasesFound": 23,
+      "negativeCasesWithMatch": [],
+      "offsetRoundTripFailures": 0
+    }
+  }
+}

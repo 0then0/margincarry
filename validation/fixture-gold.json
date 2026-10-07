@@ -1,0 +1,52 @@
+{
+  "The selected passage moves to a new page.": {
+    "pageIndex": 0,
+    "rects": [
+      [
+        72.0,
+        677.516,
+        310.12800000000004,
+        689.516
+      ]
+    ]
+  },
+  "It keeps its comment, color and text tags.": {
+    "pageIndex": 0,
+    "rects": [
+      [
+        72.0,
+        657.516,
+        290.1,
+        669.516
+      ]
+    ]
+  },
+  "Column left line one continues below.": {
+    "pageIndex": 0,
+    "rects": [
+      [
+        72.0,
+        717.516,
+        178.04399999999998,
+        729.516
+      ],
+      [
+        72.0,
+        697.516,
+        161.376,
+        709.516
+      ]
+    ]
+  },
+  "A repeated quote": {
+    "pageIndex": 0,
+    "rects": [
+      [
+        72.0,
+        607.516,
+        164.064,
+        619.516
+      ]
+    ]
+  }
+}

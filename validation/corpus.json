@@ -1,0 +1,2738 @@
+{
+  "schema": 1,
+  "selectionProtocol": "Source selections.json frozen before running MarginCarry on these documents. Gold ranges computed independently from pdfplumber PDF character boxes; NFKC here only decodes PDF ligatures for the oracle, not the product matcher. All failures remain in results.",
+  "oracle": {
+    "name": "pdfplumber",
+    "version": "0.11.9"
+  },
+  "documents": [
+    {
+      "pair": "lora",
+      "version": 1,
+      "url": "https://arxiv.org/pdf/2106.09685v1",
+      "filename": "lora-v1.pdf",
+      "sha256": "38a259c1926b724363fcfbd8e5f80fcadf0dd8d9ab6944fea8c00e74fd7590b0"
+    },
+    {
+      "pair": "lora",
+      "version": 2,
+      "url": "https://arxiv.org/pdf/2106.09685v2",
+      "filename": "lora-v2.pdf",
+      "sha256": "e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a"
+    },
+    {
+      "pair": "attention",
+      "version": 1,
+      "url": "https://arxiv.org/pdf/1706.03762v1",
+      "filename": "attention-v1.pdf",
+      "sha256": "0a9bff1be3575cf9fe26a4a3d3a9175bc791ecec90de8b9deba4cff75d2b9476"
+    },
+    {
+      "pair": "attention",
+      "version": 2,
+      "url": "https://arxiv.org/pdf/1706.03762v2",
+      "filename": "attention-v2.pdf",
+      "sha256": "803b95695f178d1804b8cf66ab7ae3d7c8b94e044a045cbff8d9b37435ca4dd4"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "lora-01",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "LoRA: Low-Rank Adaptation of",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            186.293,
+            675.355,
+            425.708,
+            692.57
+          ]
+        ],
+        "charStart": 0,
+        "charEnd": 25
+      },
+      "expected": "not found",
+      "targets": [],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-02",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "Microsoft Corporation",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            261.034,
+            579.297,
+            350.966,
+            589.26
+          ]
+        ],
+        "charStart": 120,
+        "charEnd": 140
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              113.978,
+              623.355,
+              203.91,
+              633.318
+            ]
+          ],
+          "charStart": 127,
+          "charEnd": 147
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-03",
+      "pair": "lora",
+      "type": "underline",
+      "quote": "trainable rank decomposition matrices",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            313.379,
+            426.47,
+            468.134,
+            436.433
+          ]
+        ],
+        "charStart": 659,
+        "charEnd": 693
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              278.61,
+              449.227,
+              430.072,
+              459.19
+            ]
+          ],
+          "charStart": 697,
+          "charEnd": 731
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-04",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "by 10,000 times",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            275.066,
+            393.742,
+            340.975,
+            403.705
+          ]
+        ],
+        "charStart": 851,
+        "charEnd": 864
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              367.955,
+              416.351,
+              434.236,
+              426.314
+            ]
+          ],
+          "charStart": 918,
+          "charEnd": 931
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-05",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "computation hardware requirement",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            376.735,
+            393.742,
+            468.131,
+            403.705
+          ],
+          [
+            143.866,
+            382.833,
+            192.968,
+            392.796
+          ]
+        ],
+        "charStart": 870,
+        "charEnd": 900
+      },
+      "expected": "not found",
+      "targets": [],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-06",
+      "pair": "lora",
+      "type": "underline",
+      "quote": "our implementation in GPT-2",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            143.866,
+            328.288,
+            261.116,
+            338.251
+          ]
+        ],
+        "charStart": 1228,
+        "charEnd": 1252
+      },
+      "expected": "not found",
+      "targets": [],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-07",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "space- and compute-efficient.",
+      "source": {
+        "pageIndex": 1,
+        "rects": [
+          [
+            128.204,
+            604.224,
+            245.534,
+            614.187
+          ]
+        ],
+        "charStart": 749,
+        "charEnd": 775
+      },
+      "expected": "not found",
+      "targets": [],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-08",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "no inference latency",
+      "source": {
+        "pageIndex": 1,
+        "rects": [
+          [
+            222.526,
+            453.34,
+            303.154,
+            463.303
+          ]
+        ],
+        "charStart": 1443,
+        "charEnd": 1461
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              257.94,
+              419.299,
+              338.398,
+              429.262
+            ]
+          ],
+          "charStart": 1590,
+          "charEnd": 1608
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-09",
+      "pair": "lora",
+      "type": "underline",
+      "quote": "maximization of conditional probabilities given a task-specific prompt.",
+      "source": {
+        "pageIndex": 1,
+        "rects": [
+          [
+            122.665,
+            280.132,
+            405.075,
+            290.095
+          ]
+        ],
+        "charStart": 2130,
+        "charEnd": 2193
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              108.0,
+              153.635,
+              390.41,
+              163.598
+            ]
+          ],
+          "charStart": 2554,
+          "charEnd": 2617
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-10",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "Practical Benefits and Limitations.",
+      "source": {
+        "pageIndex": 3,
+        "rects": [
+          [
+            108.0,
+            707.955,
+            257.509,
+            717.917
+          ]
+        ],
+        "charStart": 0,
+        "charEnd": 31
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 4,
+          "rects": [
+            [
+              108.0,
+              530.038,
+              258.455,
+              540.0
+            ]
+          ],
+          "charStart": 834,
+          "charEnd": 865
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-11",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "Prompt Engineering and Fine-Tuning.",
+      "source": {
+        "pageIndex": 3,
+        "rects": [
+          [
+            108.0,
+            391.895,
+            270.629,
+            401.857
+          ]
+        ],
+        "charStart": 1876,
+        "charEnd": 1908
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 8,
+          "rects": [
+            [
+              108.0,
+              632.447,
+              273.578,
+              642.409
+            ]
+          ],
+          "charStart": 381,
+          "charEnd": 413
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-12",
+      "pair": "lora",
+      "type": "underline",
+      "quote": "Parameter-Efficient Adaptation.",
+      "source": {
+        "pageIndex": 3,
+        "rects": [
+          [
+            108.0,
+            288.234,
+            244.986,
+            298.196
+          ]
+        ],
+        "charStart": 2573,
+        "charEnd": 2602
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 8,
+          "rects": [
+            [
+              108.0,
+              512.007,
+              245.305,
+              521.969
+            ]
+          ],
+          "charStart": 1156,
+          "charEnd": 1185
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-13",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "On the other hand, LoRA has its limitations.",
+      "source": {
+        "pageIndex": 3,
+        "rects": [
+          [
+            108.0,
+            568.631,
+            283.127,
+            578.594
+          ]
+        ],
+        "charStart": 940,
+        "charEnd": 977
+      },
+      "expected": "not found",
+      "targets": [],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-14",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "25% speedup during training",
+      "source": {
+        "pageIndex": 3,
+        "rects": [
+          [
+            380.011,
+            595.929,
+            493.362,
+            605.892
+          ]
+        ],
+        "charStart": 847,
+        "charEnd": 871
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 4,
+          "rects": [
+            [
+              450.783,
+              431.338,
+              504.003,
+              441.301
+            ],
+            [
+              108.0,
+              420.379,
+              168.503,
+              430.342
+            ]
+          ],
+          "charStart": 1594,
+          "charEnd": 1618
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "lora-15",
+      "pair": "lora",
+      "type": "underline",
+      "quote": "LoRA",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            186.293,
+            675.355,
+            231.242,
+            692.57
+          ]
+        ],
+        "charStart": 0,
+        "charEnd": 4
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              348.226,
+              460.186,
+              373.132,
+              470.149
+            ]
+          ],
+          "charStart": 644,
+          "charEnd": 648
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              143.866,
+              416.351,
+              168.773,
+              426.314
+            ]
+          ],
+          "charStart": 875,
+          "charEnd": 879
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              299.821,
+              405.392,
+              324.727,
+              415.355
+            ]
+          ],
+          "charStart": 966,
+          "charEnd": 970
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              143.866,
+              350.597,
+              168.773,
+              360.56
+            ]
+          ],
+          "charStart": 1276,
+          "charEnd": 1280
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              387.681,
+              350.597,
+              412.587,
+              360.56
+            ]
+          ],
+          "charStart": 1329,
+          "charEnd": 1333
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              417.558,
+              329.366,
+              441.468,
+              339.329
+            ]
+          ],
+          "charStart": 1455,
+          "charEnd": 1459
+        },
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              205.778,
+              615.334,
+              230.685,
+              625.297
+            ]
+          ],
+          "charStart": 583,
+          "charEnd": 587
+        },
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              281.554,
+              615.334,
+              306.46,
+              625.297
+            ]
+          ],
+          "charStart": 597,
+          "charEnd": 601
+        },
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              330.464,
+              571.498,
+              355.37,
+              581.461
+            ]
+          ],
+          "charStart": 933,
+          "charEnd": 937
+        },
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              108.0,
+              554.562,
+              132.907,
+              564.525
+            ]
+          ],
+          "charStart": 969,
+          "charEnd": 973
+        },
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              410.096,
+              531.648,
+              435.002,
+              541.611
+            ]
+          ],
+          "charStart": 1055,
+          "charEnd": 1059
+        },
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              143.865,
+              480.838,
+              168.772,
+              490.801
+            ]
+          ],
+          "charStart": 1240,
+          "charEnd": 1244
+        },
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              143.865,
+              390.178,
+              168.772,
+              400.141
+            ]
+          ],
+          "charStart": 1655,
+          "charEnd": 1659
+        },
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              193.629,
+              281.248,
+              218.535,
+              291.211
+            ]
+          ],
+          "charStart": 2170,
+          "charEnd": 2174
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              177.665,
+              658.453,
+              202.572,
+              668.416
+            ]
+          ],
+          "charStart": 60,
+          "charEnd": 64
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              240.363,
+              504.334,
+              265.27,
+              514.297
+            ]
+          ],
+          "charStart": 633,
+          "charEnd": 637
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              264.542,
+              210.546,
+              289.449,
+              220.509
+            ]
+          ],
+          "charStart": 2202,
+          "charEnd": 2206
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              145.878,
+              188.628,
+              170.784,
+              198.591
+            ]
+          ],
+          "charStart": 2342,
+          "charEnd": 2346
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              256.353,
+              177.669,
+              281.26,
+              187.632
+            ]
+          ],
+          "charStart": 2449,
+          "charEnd": 2453
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              403.626,
+              166.71,
+              428.533,
+              176.673
+            ]
+          ],
+          "charStart": 2563,
+          "charEnd": 2567
+        },
+        {
+          "pageIndex": 4,
+          "rects": [
+            [
+              214.331,
+              640.935,
+              239.237,
+              650.898
+            ]
+          ],
+          "charStart": 155,
+          "charEnd": 159
+        },
+        {
+          "pageIndex": 4,
+          "rects": [
+            [
+              355.541,
+              453.256,
+              380.447,
+              463.219
+            ]
+          ],
+          "charStart": 1417,
+          "charEnd": 1421
+        },
+        {
+          "pageIndex": 4,
+          "rects": [
+            [
+              108.0,
+              392.483,
+              132.906,
+              402.446
+            ]
+          ],
+          "charStart": 1723,
+          "charEnd": 1727
+        },
+        {
+          "pageIndex": 4,
+          "rects": [
+            [
+              122.665,
+              359.607,
+              147.571,
+              369.57
+            ]
+          ],
+          "charStart": 1979,
+          "charEnd": 1983
+        },
+        {
+          "pageIndex": 4,
+          "rects": [
+            [
+              320.183,
+              306.367,
+              345.09,
+              316.33
+            ]
+          ],
+          "charStart": 2112,
+          "charEnd": 2116
+        },
+        {
+          "pageIndex": 4,
+          "rects": [
+            [
+              462.047,
+              60.201,
+              484.463,
+              69.168
+            ]
+          ],
+          "charStart": 3499,
+          "charEnd": 3503
+        },
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              145.963,
+              630.809,
+              168.379,
+              639.776
+            ]
+          ],
+          "charStart": 347,
+          "charEnd": 351
+        },
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              147.182,
+              605.882,
+              169.598,
+              614.849
+            ]
+          ],
+          "charStart": 481,
+          "charEnd": 485
+        },
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              147.182,
+              547.754,
+              169.598,
+              556.721
+            ]
+          ],
+          "charStart": 894,
+          "charEnd": 898
+        },
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              147.615,
+              522.827,
+              170.031,
+              531.794
+            ]
+          ],
+          "charStart": 1028,
+          "charEnd": 1032
+        },
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              108.0,
+              94.564,
+              134.012,
+              104.526
+            ]
+          ],
+          "charStart": 3351,
+          "charEnd": 3355
+        },
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              281.618,
+              83.535,
+              306.525,
+              93.498
+            ]
+          ],
+          "charStart": 3470,
+          "charEnd": 3474
+        },
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              157.313,
+              59.291,
+              178.739,
+              66.265
+            ]
+          ],
+          "charStart": 3606,
+          "charEnd": 3610
+        },
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              271.452,
+              59.291,
+              292.878,
+              66.265
+            ]
+          ],
+          "charStart": 3627,
+          "charEnd": 3631
+        },
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              466.526,
+              59.986,
+              491.432,
+              69.949
+            ]
+          ],
+          "charStart": 3665,
+          "charEnd": 3669
+        },
+        {
+          "pageIndex": 6,
+          "rects": [
+            [
+              162.266,
+              598.425,
+              187.173,
+              608.388
+            ]
+          ],
+          "charStart": 342,
+          "charEnd": 346
+        },
+        {
+          "pageIndex": 6,
+          "rects": [
+            [
+              159.497,
+              535.991,
+              184.403,
+              545.954
+            ]
+          ],
+          "charStart": 592,
+          "charEnd": 596
+        },
+        {
+          "pageIndex": 6,
+          "rects": [
+            [
+              287.048,
+              501.598,
+              311.954,
+              511.561
+            ]
+          ],
+          "charStart": 751,
+          "charEnd": 755
+        },
+        {
+          "pageIndex": 6,
+          "rects": [
+            [
+              454.689,
+              327.643,
+              479.595,
+              337.606
+            ]
+          ],
+          "charStart": 1638,
+          "charEnd": 1642
+        },
+        {
+          "pageIndex": 6,
+          "rects": [
+            [
+              302.669,
+              193.815,
+              327.576,
+              203.778
+            ]
+          ],
+          "charStart": 2251,
+          "charEnd": 2255
+        },
+        {
+          "pageIndex": 6,
+          "rects": [
+            [
+              186.904,
+              114.781,
+              211.81,
+              124.744
+            ]
+          ],
+          "charStart": 2449,
+          "charEnd": 2453
+        },
+        {
+          "pageIndex": 6,
+          "rects": [
+            [
+              149.046,
+              103.822,
+              173.952,
+              113.785
+            ]
+          ],
+          "charStart": 2519,
+          "charEnd": 2523
+        },
+        {
+          "pageIndex": 7,
+          "rects": [
+            [
+              184.561,
+              596.019,
+              209.467,
+              605.982
+            ]
+          ],
+          "charStart": 326,
+          "charEnd": 330
+        },
+        {
+          "pageIndex": 7,
+          "rects": [
+            [
+              184.561,
+              585.06,
+              209.467,
+              595.023
+            ]
+          ],
+          "charStart": 363,
+          "charEnd": 367
+        },
+        {
+          "pageIndex": 7,
+          "rects": [
+            [
+              157.076,
+              539.708,
+              181.982,
+              549.671
+            ]
+          ],
+          "charStart": 563,
+          "charEnd": 567
+        },
+        {
+          "pageIndex": 7,
+          "rects": [
+            [
+              205.265,
+              463.095,
+              230.171,
+              473.058
+            ]
+          ],
+          "charStart": 780,
+          "charEnd": 784
+        },
+        {
+          "pageIndex": 7,
+          "rects": [
+            [
+              195.143,
+              424.241,
+              220.049,
+              434.204
+            ]
+          ],
+          "charStart": 1020,
+          "charEnd": 1024
+        },
+        {
+          "pageIndex": 7,
+          "rects": [
+            [
+              263.527,
+              237.919,
+              278.827,
+              243.924
+            ]
+          ],
+          "charStart": 1780,
+          "charEnd": 1784
+        },
+        {
+          "pageIndex": 7,
+          "rects": [
+            [
+              284.308,
+              183.029,
+              309.215,
+              192.992
+            ]
+          ],
+          "charStart": 1972,
+          "charEnd": 1976
+        },
+        {
+          "pageIndex": 8,
+          "rects": [
+            [
+              236.069,
+              435.225,
+              260.976,
+              445.188
+            ]
+          ],
+          "charStart": 1756,
+          "charEnd": 1760
+        },
+        {
+          "pageIndex": 8,
+          "rects": [
+            [
+              244.587,
+              142.676,
+              269.494,
+              152.639
+            ]
+          ],
+          "charStart": 3569,
+          "charEnd": 3573
+        },
+        {
+          "pageIndex": 9,
+          "rects": [
+            [
+              439.745,
+              603.094,
+              464.651,
+              613.057
+            ]
+          ],
+          "charStart": 484,
+          "charEnd": 488
+        },
+        {
+          "pageIndex": 9,
+          "rects": [
+            [
+              396.905,
+              457.136,
+              421.812,
+              467.099
+            ]
+          ],
+          "charStart": 1017,
+          "charEnd": 1021
+        },
+        {
+          "pageIndex": 9,
+          "rects": [
+            [
+              242.007,
+              143.097,
+              266.913,
+              153.06
+            ]
+          ],
+          "charStart": 2133,
+          "charEnd": 2137
+        },
+        {
+          "pageIndex": 9,
+          "rects": [
+            [
+              207.868,
+              60.201,
+              230.284,
+              69.168
+            ]
+          ],
+          "charStart": 2700,
+          "charEnd": 2704
+        },
+        {
+          "pageIndex": 9,
+          "rects": [
+            [
+              396.231,
+              60.201,
+              418.647,
+              69.168
+            ]
+          ],
+          "charStart": 2741,
+          "charEnd": 2745
+        },
+        {
+          "pageIndex": 11,
+          "rects": [
+            [
+              108.0,
+              153.635,
+              132.906,
+              163.598
+            ]
+          ],
+          "charStart": 1904,
+          "charEnd": 1908
+        },
+        {
+          "pageIndex": 11,
+          "rects": [
+            [
+              297.758,
+              92.863,
+              322.664,
+              102.826
+            ]
+          ],
+          "charStart": 2302,
+          "charEnd": 2306
+        },
+        {
+          "pageIndex": 11,
+          "rects": [
+            [
+              119.766,
+              70.945,
+              144.672,
+              80.908
+            ]
+          ],
+          "charStart": 2429,
+          "charEnd": 2433
+        },
+        {
+          "pageIndex": 11,
+          "rects": [
+            [
+              265.429,
+              59.986,
+              290.336,
+              69.949
+            ]
+          ],
+          "charStart": 2537,
+          "charEnd": 2541
+        },
+        {
+          "pageIndex": 12,
+          "rects": [
+            [
+              444.706,
+              698.024,
+              469.612,
+              707.987
+            ]
+          ],
+          "charStart": 67,
+          "charEnd": 71
+        },
+        {
+          "pageIndex": 16,
+          "rects": [
+            [
+              164.976,
+              577.102,
+              189.883,
+              587.065
+            ]
+          ],
+          "charStart": 301,
+          "charEnd": 305
+        },
+        {
+          "pageIndex": 17,
+          "rects": [
+            [
+              263.377,
+              270.993,
+              288.283,
+              280.956
+            ]
+          ],
+          "charStart": 2184,
+          "charEnd": 2188
+        },
+        {
+          "pageIndex": 17,
+          "rects": [
+            [
+              479.097,
+              270.993,
+              504.003,
+              280.956
+            ]
+          ],
+          "charStart": 2228,
+          "charEnd": 2232
+        },
+        {
+          "pageIndex": 17,
+          "rects": [
+            [
+              175.357,
+              92.863,
+              200.264,
+              102.826
+            ]
+          ],
+          "charStart": 3067,
+          "charEnd": 3071
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              129.814,
+              622.483,
+              152.23,
+              631.45
+            ]
+          ],
+          "charStart": 101,
+          "charEnd": 105
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              182.196,
+              617.501,
+              204.612,
+              626.468
+            ]
+          ],
+          "charStart": 205,
+          "charEnd": 209
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              182.196,
+              607.539,
+              204.612,
+              616.506
+            ]
+          ],
+          "charStart": 222,
+          "charEnd": 226
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              130.729,
+              557.705,
+              153.145,
+              566.672
+            ]
+          ],
+          "charStart": 254,
+          "charEnd": 258
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              182.196,
+              552.723,
+              204.612,
+              561.69
+            ]
+          ],
+          "charStart": 350,
+          "charEnd": 354
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              182.196,
+              542.761,
+              204.612,
+              551.728
+            ]
+          ],
+          "charStart": 367,
+          "charEnd": 371
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              128.681,
+              492.927,
+              151.097,
+              501.894
+            ]
+          ],
+          "charStart": 421,
+          "charEnd": 425
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              182.196,
+              487.946,
+              204.612,
+              496.913
+            ]
+          ],
+          "charStart": 511,
+          "charEnd": 515
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              182.196,
+              477.983,
+              204.612,
+              486.95
+            ]
+          ],
+          "charStart": 528,
+          "charEnd": 532
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              421.643,
+              149.581,
+              446.549,
+              159.544
+            ]
+          ],
+          "charStart": 1383,
+          "charEnd": 1387
+        },
+        {
+          "pageIndex": 18,
+          "rects": [
+            [
+              143.507,
+              127.663,
+              168.413,
+              137.626
+            ]
+          ],
+          "charStart": 1488,
+          "charEnd": 1492
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              130.729,
+              622.483,
+              153.145,
+              631.45
+            ]
+          ],
+          "charStart": 99,
+          "charEnd": 103
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              182.524,
+              597.576,
+              204.94,
+              606.543
+            ]
+          ],
+          "charStart": 261,
+          "charEnd": 265
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              182.524,
+              587.613,
+              204.94,
+              596.58
+            ]
+          ],
+          "charStart": 278,
+          "charEnd": 282
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              198.982,
+              383.659,
+              223.888,
+              393.622
+            ]
+          ],
+          "charStart": 587,
+          "charEnd": 591
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              317.049,
+              306.386,
+              341.955,
+              316.349
+            ]
+          ],
+          "charStart": 687,
+          "charEnd": 691
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              247.207,
+              216.183,
+              272.114,
+              226.146
+            ]
+          ],
+          "charStart": 1138,
+          "charEnd": 1142
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              108.0,
+              137.695,
+              132.907,
+              147.658
+            ]
+          ],
+          "charStart": 1343,
+          "charEnd": 1347
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              192.304,
+              126.736,
+              217.21,
+              136.699
+            ]
+          ],
+          "charStart": 1444,
+          "charEnd": 1448
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              108.0,
+              109.869,
+              134.012,
+              119.831
+            ]
+          ],
+          "charStart": 1490,
+          "charEnd": 1494
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              200.931,
+              109.869,
+              226.943,
+              119.831
+            ]
+          ],
+          "charStart": 1506,
+          "charEnd": 1510
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              291.254,
+              109.799,
+              316.161,
+              119.762
+            ]
+          ],
+          "charStart": 1522,
+          "charEnd": 1526
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              108.0,
+              71.015,
+              134.012,
+              80.977
+            ]
+          ],
+          "charStart": 1675,
+          "charEnd": 1679
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              196.468,
+              71.015,
+              222.48,
+              80.977
+            ]
+          ],
+          "charStart": 1691,
+          "charEnd": 1695
+        },
+        {
+          "pageIndex": 19,
+          "rects": [
+            [
+              288.061,
+              70.945,
+              312.968,
+              80.908
+            ]
+          ],
+          "charStart": 1707,
+          "charEnd": 1711
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              458.315,
+              695.013,
+              483.221,
+              704.976
+            ]
+          ],
+          "charStart": 54,
+          "charEnd": 58
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              289.08,
+              506.97,
+              313.987,
+              516.933
+            ]
+          ],
+          "charStart": 565,
+          "charEnd": 569
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              349.713,
+              506.97,
+              374.619,
+              516.933
+            ]
+          ],
+          "charStart": 575,
+          "charEnd": 579
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              162.067,
+              496.011,
+              186.974,
+              505.974
+            ]
+          ],
+          "charStart": 614,
+          "charEnd": 618
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              339.172,
+              496.011,
+              364.079,
+              505.974
+            ]
+          ],
+          "charStart": 648,
+          "charEnd": 652
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              239.317,
+              485.052,
+              264.224,
+              495.015
+            ]
+          ],
+          "charStart": 704,
+          "charEnd": 708
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              227.591,
+              474.093,
+              252.498,
+              484.056
+            ]
+          ],
+          "charStart": 779,
+          "charEnd": 783
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              380.896,
+              474.093,
+              405.802,
+              484.056
+            ]
+          ],
+          "charStart": 810,
+          "charEnd": 814
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              479.097,
+              474.093,
+              504.003,
+              484.056
+            ]
+          ],
+          "charStart": 830,
+          "charEnd": 834
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              126.311,
+              452.176,
+              151.218,
+              462.139
+            ]
+          ],
+          "charStart": 918,
+          "charEnd": 922
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              291.999,
+              452.176,
+              316.906,
+              462.139
+            ]
+          ],
+          "charStart": 950,
+          "charEnd": 954
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              214.161,
+              430.258,
+              239.068,
+              440.221
+            ]
+          ],
+          "charStart": 1101,
+          "charEnd": 1105
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              342.041,
+              430.258,
+              366.948,
+              440.221
+            ]
+          ],
+          "charStart": 1126,
+          "charEnd": 1130
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              301.444,
+              322.075,
+              326.35,
+              332.038
+            ]
+          ],
+          "charStart": 1385,
+          "charEnd": 1389
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              198.309,
+              182.9,
+              223.215,
+              192.863
+            ]
+          ],
+          "charStart": 1661,
+          "charEnd": 1665
+        },
+        {
+          "pageIndex": 20,
+          "rects": [
+            [
+              198.309,
+              109.507,
+              223.215,
+              119.47
+            ]
+          ],
+          "charStart": 1800,
+          "charEnd": 1804
+        },
+        {
+          "pageIndex": 21,
+          "rects": [
+            [
+              133.168,
+              588.785,
+              158.075,
+              598.748
+            ]
+          ],
+          "charStart": 261,
+          "charEnd": 265
+        },
+        {
+          "pageIndex": 21,
+          "rects": [
+            [
+              133.168,
+              515.392,
+              158.075,
+              525.355
+            ]
+          ],
+          "charStart": 514,
+          "charEnd": 518
+        },
+        {
+          "pageIndex": 21,
+          "rects": [
+            [
+              435.939,
+              274.537,
+              460.845,
+              284.5
+            ]
+          ],
+          "charStart": 1463,
+          "charEnd": 1467
+        },
+        {
+          "pageIndex": 21,
+          "rects": [
+            [
+              319.606,
+              263.578,
+              344.512,
+              273.541
+            ]
+          ],
+          "charStart": 1515,
+          "charEnd": 1519
+        },
+        {
+          "pageIndex": 21,
+          "rects": [
+            [
+              261.952,
+              241.66,
+              286.859,
+              251.623
+            ]
+          ],
+          "charStart": 1666,
+          "charEnd": 1670
+        },
+        {
+          "pageIndex": 22,
+          "rects": [
+            [
+              114.942,
+              463.102,
+              139.849,
+              473.065
+            ]
+          ],
+          "charStart": 410,
+          "charEnd": 414
+        },
+        {
+          "pageIndex": 22,
+          "rects": [
+            [
+              114.942,
+              359.47,
+              139.849,
+              369.433
+            ]
+          ],
+          "charStart": 635,
+          "charEnd": 639
+        },
+        {
+          "pageIndex": 22,
+          "rects": [
+            [
+              114.942,
+              332.55,
+              139.849,
+              342.513
+            ]
+          ],
+          "charStart": 736,
+          "charEnd": 740
+        },
+        {
+          "pageIndex": 22,
+          "rects": [
+            [
+              314.017,
+              287.198,
+              338.923,
+              297.161
+            ]
+          ],
+          "charStart": 980,
+          "charEnd": 984
+        },
+        {
+          "pageIndex": 22,
+          "rects": [
+            [
+              152.915,
+              197.297,
+              177.821,
+              207.26
+            ]
+          ],
+          "charStart": 1204,
+          "charEnd": 1208
+        },
+        {
+          "pageIndex": 22,
+          "rects": [
+            [
+              479.096,
+              162.904,
+              504.002,
+              172.867
+            ]
+          ],
+          "charStart": 1378,
+          "charEnd": 1382
+        },
+        {
+          "pageIndex": 23,
+          "rects": [
+            [
+              220.272,
+              587.697,
+              245.179,
+              597.66
+            ]
+          ],
+          "charStart": 253,
+          "charEnd": 257
+        },
+        {
+          "pageIndex": 23,
+          "rects": [
+            [
+              220.272,
+              538.86,
+              245.179,
+              548.823
+            ]
+          ],
+          "charStart": 332,
+          "charEnd": 336
+        },
+        {
+          "pageIndex": 25,
+          "rects": [
+            [
+              457.468,
+              317.979,
+              482.375,
+              327.942
+            ]
+          ],
+          "charStart": 881,
+          "charEnd": 885
+        }
+      ],
+      "allowAlternatives": true
+    },
+    {
+      "id": "lora-16",
+      "pair": "lora",
+      "type": "image",
+      "quote": "",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            72,
+            400,
+            150,
+            460
+          ]
+        ]
+      },
+      "expected": "unsupported",
+      "targets": [],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-01",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "Attention Is All You Need",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            211.488,
+            675.355,
+            399.893,
+            692.57
+          ]
+        ],
+        "charStart": 0,
+        "charEnd": 21
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              211.488,
+              675.355,
+              399.893,
+              692.57
+            ]
+          ],
+          "charStart": 0,
+          "charEnd": 21
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-02",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "Google Brain",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            139.379,
+            585.24,
+            193.336,
+            595.203
+          ]
+        ],
+        "charStart": 35,
+        "charEnd": 46
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              139.379,
+              585.24,
+              193.336,
+              595.203
+            ]
+          ],
+          "charStart": 35,
+          "charEnd": 46
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              242.932,
+              585.24,
+              296.889,
+              595.203
+            ]
+          ],
+          "charStart": 77,
+          "charEnd": 88
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              398.005,
+              535.243,
+              451.962,
+              545.206
+            ]
+          ],
+          "charStart": 294,
+          "charEnd": 305
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              216.547,
+              91.184,
+              265.109,
+              100.151
+            ]
+          ],
+          "charStart": 2123,
+          "charEnd": 2134
+        }
+      ],
+      "allowAlternatives": true
+    },
+    {
+      "id": "attention-03",
+      "pair": "attention",
+      "type": "underline",
+      "quote": "University of Toronto",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            244.575,
+            535.243,
+            330.821,
+            545.206
+          ]
+        ],
+        "charStart": 242,
+        "charEnd": 261
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              244.575,
+              535.243,
+              330.821,
+              545.206
+            ]
+          ],
+          "charStart": 242,
+          "charEnd": 261
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-04",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "28.4 BLEU",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            305.043,
+            344.67,
+            352.397,
+            354.633
+          ]
+        ],
+        "charStart": 878,
+        "charEnd": 886
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              305.043,
+              344.424,
+              352.397,
+              354.387
+            ]
+          ],
+          "charStart": 879,
+          "charEnd": 887
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-05",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "BLEU score of 41.0",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            369.595,
+            311.942,
+            448.043,
+            321.905
+          ]
+        ],
+        "charStart": 1093,
+        "charEnd": 1108
+      },
+      "expected": "not found",
+      "targets": [],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-06",
+      "pair": "attention",
+      "type": "underline",
+      "quote": "training for 3.5 days",
+      "source": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            143.866,
+            301.033,
+            226.716,
+            310.996
+          ]
+        ],
+        "charStart": 1113,
+        "charEnd": 1131
+      },
+      "expected": "not found",
+      "targets": [],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-07",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "constraint of sequential computation, however, remains.",
+      "source": {
+        "pageIndex": 1,
+        "rects": [
+          [
+            108.0,
+            696.976,
+            330.525,
+            706.939
+          ]
+        ],
+        "charStart": 82,
+        "charEnd": 132
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              108.0,
+              675.158,
+              330.525,
+              685.121
+            ]
+          ],
+          "charStart": 256,
+          "charEnd": 306
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-08",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "twelve hours on eight P100 GPUs.",
+      "source": {
+        "pageIndex": 1,
+        "rects": [
+          [
+            314.694,
+            598.745,
+            452.357,
+            608.708
+          ]
+        ],
+        "charStart": 723,
+        "charEnd": 750
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              314.694,
+              576.926,
+              452.357,
+              586.889
+            ]
+          ],
+          "charStart": 897,
+          "charEnd": 924
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-09",
+      "pair": "attention",
+      "type": "underline",
+      "quote": "Model Architecture",
+      "source": {
+        "pageIndex": 1,
+        "rects": [
+          [
+            125.933,
+            331.268,
+            226.093,
+            343.224
+          ]
+        ],
+        "charStart": 2111,
+        "charEnd": 2128
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              125.933,
+              296.01,
+              226.093,
+              307.966
+            ]
+          ],
+          "charStart": 2285,
+          "charEnd": 2302
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-10",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "Scaled Dot-Product Attention",
+      "source": {
+        "pageIndex": 2,
+        "rects": [
+          [
+            137.888,
+            201.897,
+            263.885,
+            211.859
+          ]
+        ],
+        "charStart": 660,
+        "charEnd": 686
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 2,
+          "rects": [
+            [
+              137.888,
+              127.626,
+              263.885,
+              137.588
+            ]
+          ],
+          "charStart": 911,
+          "charEnd": 937
+        },
+        {
+          "pageIndex": 2,
+          "rects": [
+            [
+              241.892,
+              102.575,
+              363.285,
+              112.538
+            ]
+          ],
+          "charStart": 966,
+          "charEnd": 992
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              147.783,
+              711.093,
+              266.218,
+              721.056
+            ]
+          ],
+          "charStart": 0,
+          "charEnd": 26
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              174.702,
+              507.829,
+              297.356,
+              517.792
+            ]
+          ],
+          "charStart": 59,
+          "charEnd": 85
+        }
+      ],
+      "allowAlternatives": true
+    },
+    {
+      "id": "attention-11",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "matrix multiplication code.",
+      "source": {
+        "pageIndex": 3,
+        "rects": [
+          [
+            108.0,
+            435.842,
+            216.204,
+            445.805
+          ]
+        ],
+        "charStart": 593,
+        "charEnd": 618
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              108.0,
+              299.801,
+              216.204,
+              309.764
+            ]
+          ],
+          "charStart": 812,
+          "charEnd": 837
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-12",
+      "pair": "attention",
+      "type": "underline",
+      "quote": "Multi-Head Attention",
+      "source": {
+        "pageIndex": 3,
+        "rects": [
+          [
+            363.586,
+            711.093,
+            450.201,
+            721.056
+          ]
+        ],
+        "charStart": 26,
+        "charEnd": 45
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 1,
+          "rects": [
+            [
+              403.578,
+              439.724,
+              492.464,
+              449.687
+            ]
+          ],
+          "charStart": 1594,
+          "charEnd": 1613
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              363.586,
+              711.093,
+              450.201,
+              721.056
+            ]
+          ],
+          "charStart": 26,
+          "charEnd": 45
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              335.321,
+              507.829,
+              424.582,
+              517.792
+            ]
+          ],
+          "charStart": 93,
+          "charEnd": 112
+        },
+        {
+          "pageIndex": 3,
+          "rects": [
+            [
+              137.888,
+              217.547,
+              230.59,
+              227.509
+            ]
+          ],
+          "charStart": 1171,
+          "charEnd": 1190
+        }
+      ],
+      "allowAlternatives": true
+    },
+    {
+      "id": "attention-13",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "three desiderata.",
+      "source": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            144.244,
+            545.217,
+            209.529,
+            555.18
+          ]
+        ],
+        "charStart": 612,
+        "charEnd": 628
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 5,
+          "rects": [
+            [
+              144.244,
+              260.832,
+              209.529,
+              270.795
+            ]
+          ],
+          "charStart": 1789,
+          "charEnd": 1805
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-14",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "Label Smoothing",
+      "source": {
+        "pageIndex": 6,
+        "rects": [
+          [
+            108.0,
+            209.214,
+            181.145,
+            219.176
+          ]
+        ],
+        "charStart": 1785,
+        "charEnd": 1799
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 7,
+          "rects": [
+            [
+              108.0,
+              395.239,
+              181.145,
+              405.201
+            ]
+          ],
+          "charStart": 1031,
+          "charEnd": 1045
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-15",
+      "pair": "attention",
+      "type": "underline",
+      "quote": "We plan to investigate this approach further in future work.",
+      "source": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            202.221,
+            332.415,
+            437.568,
+            342.378
+          ]
+        ],
+        "charStart": 2005,
+        "charEnd": 2056
+      },
+      "expected": "locations",
+      "targets": [
+        {
+          "pageIndex": 6,
+          "rects": [
+            [
+              202.221,
+              696.976,
+              437.568,
+              706.939
+            ]
+          ],
+          "charStart": 104,
+          "charEnd": 155
+        }
+      ],
+      "allowAlternatives": false
+    },
+    {
+      "id": "attention-16",
+      "pair": "attention",
+      "type": "image",
+      "quote": "",
+      "source": {
+        "pageIndex": 2,
+        "rects": [
+          [
+            72,
+            400,
+            150,
+            460
+          ]
+        ]
+      },
+      "expected": "unsupported",
+      "targets": [],
+      "allowAlternatives": false
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "version": "10.0.5",
+  "os": "Darwin",
+  "operationID": "6985a19f-7d09-41db-8aab-93e43bff807d",
+  "createdCount": 2,
+  "sourceUnchanged": true,
+  "pdfHashesUnchanged": true,
+  "created": [
+    {
+      "key": "6B5EEQNW",
+      "sourceKey": "7DJZY9DL",
+      "fingerprint": "{\"key\":\"6B5EEQNW\",\"itemType\":\"annotation\",\"parentItem\":\"WJKBKK6K\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"The selected passage moves to a new page.\",\"annotationComment\":\"Review this passage in the new revision.\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"2\",\"annotationSortIndex\":\"00001|000029|00103\",\"annotationPosition\":\"{\\\"pageIndex\\\":1,\\\"rects\\\":[[72,677.516,310.1280000000002,688.616]]}\",\"tags\":[{\"tag\":\"MarginCarry validation\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T13:02:57Z\",\"dateModified\":\"2026-10-07T13:02:57Z\"}"
+    },
+    {
+      "key": "QVVJ3BE6",
+      "sourceKey": "BZ9GHS5L",
+      "fingerprint": "{\"key\":\"QVVJ3BE6\",\"itemType\":\"annotation\",\"parentItem\":\"WJKBKK6K\",\"annotationType\":\"underline\",\"annotationAuthorName\":\"\",\"annotationText\":\"It keeps its comment, color and text tags.\",\"annotationComment\":\"Review this passage in the new revision.\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"2\",\"annotationSortIndex\":\"00001|000063|00123\",\"annotationPosition\":\"{\\\"pageIndex\\\":1,\\\"rects\\\":[[72,657.516,290.10000000000014,668.616]]}\",\"tags\":[{\"tag\":\"MarginCarry validation\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T13:02:57Z\",\"dateModified\":\"2026-10-07T13:02:57Z\"}"
+    }
+  ],
+  "interaction": "CUA native clicks: Tools menu, direction swap, Analyze, inspect two real previews, Select unique, Apply, explicit OK, Open created annotation; reader page 2 shows native highlight and underline, comment and tags.",
+  "screenshots": [
+    "docs/images/review.png",
+    "docs/images/reader.png"
+  ],
+  "restart": {
+    "version": "10.0.5",
+    "createdCount": 2,
+    "persistedUnchanged": true,
+    "journalStatus": "committed"
+  },
+  "readerKeysBeforeUndo": [
+    "6B5EEQNW",
+    "QVVJ3BE6"
+  ],
+  "undo": {
+    "journalStatus": "undone",
+    "onlyOwnedCopiesTrashed": true,
+    "sourceUnchanged": true,
+    "targetRestored": true,
+    "readerAnnotationKeys": []
+  },
+  "installedSHA256": "99d5a7c2f7641636625f57975b6b750d4b289b486d008e39c87d8f3a8b7ecb35",
+  "localization": {
+    "interaction": "Native CUA Language selector: English to Russian, select two proposals, then switch back to English",
+    "englishAndRussianObserved": true,
+    "acceptedLocationsPreserved": true,
+    "selectedCountAfterSwitch": "Selected to write: 2"
+  }
+}

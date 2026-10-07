@@ -1,0 +1,256 @@
+:root {
+  color-scheme: light dark;
+  font:
+    14px system-ui,
+    sans-serif;
+  --bg: #f4f6f8;
+  --panel: #fff;
+  --ink: #202c35;
+  --muted: #596773;
+  --line: #d8e0e5;
+  --accent: #176e68;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #182129;
+    --panel: #222f39;
+    --ink: #edf2f5;
+    --muted: #b1c1cb;
+    --line: #46545f;
+    --accent: #51c5b6;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+header img {
+  width: 48px;
+  height: 48px;
+}
+h1 {
+  margin: 0;
+  font-size: 23px;
+}
+header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+h2 {
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+h3 {
+  font-size: 13px;
+  margin: 0;
+}
+button,
+select {
+  font: inherit;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 7px 10px;
+}
+button {
+  cursor: pointer;
+}
+button:hover:enabled {
+  border-color: var(--accent);
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+button.primary {
+  background: #176e68;
+  color: #fff;
+  border-color: #176e68;
+}
+:focus-visible {
+  outline: 3px solid #51c5b6;
+  outline-offset: 2px;
+}
+.direction {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+  padding: 16px 24px 8px;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.direction select {
+  min-width: 220px;
+  max-width: 350px;
+}
+#status {
+  margin: 0;
+  padding: 12px 24px;
+  min-height: 43px;
+  border-bottom: 1px solid var(--line);
+}
+main {
+  display: grid;
+  grid-template-columns: 255px minmax(0, 1fr);
+  min-height: 350px;
+}
+aside {
+  border-right: 1px solid var(--line);
+  padding: 14px;
+}
+.aside-head {
+  padding-bottom: 10px;
+}
+#list {
+  max-height: 550px;
+  overflow: auto;
+}
+.annotation-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 6px 0;
+  padding: 10px;
+}
+.annotation-row span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.annotation-row small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+}
+.annotation-row[aria-current="true"] {
+  border: 2px solid var(--accent);
+}
+.detail {
+  padding: 20px;
+  min-width: 0;
+}
+blockquote {
+  margin: 12px 0;
+  padding: 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--panel);
+  white-space: pre-wrap;
+}
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+}
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+.comparison section {
+  min-width: 0;
+}
+.preview-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  justify-content: space-between;
+}
+.preview-head button {
+  font-size: 12px;
+}
+.context {
+  white-space: pre-wrap;
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 45px;
+  max-height: 100px;
+  overflow: auto;
+}
+.pdf-preview {
+  background: #dce3e7;
+  border: 1px solid var(--line);
+  max-height: 520px;
+  overflow: auto;
+  min-height: 100px;
+}
+.pdf-preview img {
+  width: 100%;
+  display: block;
+  color: #253540;
+}
+.pdf-preview img:not([src]) {
+  display: none;
+}
+.decision {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.decision span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.error {
+  color: #bb4c38;
+}
+footer {
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  padding: 16px 24px;
+}
+.review-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.review-header h2 {
+  margin: 0;
+  margin-right: auto;
+}
+#review {
+  margin: 10px 0;
+  padding-left: 20px;
+  max-height: 130px;
+  overflow: auto;
+}
+#review li {
+  padding: 3px 0;
+}
+.remove {
+  margin-left: 8px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+[hidden] {
+  /* biome-ignore lint/complexity/noImportantStyles: HTML hidden must override preview grid display rules. */
+  display: none !important;
+}
+@media (max-width: 850px) {
+  main {
+    grid-template-columns: 205px minmax(0, 1fr);
+  }
+  .comparison {
+    grid-template-columns: 1fr;
+  }
+}

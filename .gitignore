@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Local Zotero, isolated profiles, research downloads and caches
+.local/
