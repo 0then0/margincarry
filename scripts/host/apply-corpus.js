@@ -3,7 +3,7 @@ export async function run() {
   const api = Zotero.MarginCarryTest,
     plans = Zotero.MarginCarryCorpusPlans;
   const corpus = await IOUtils.readJSON(`${hostRoot}/validation/corpus.json`);
-  const ids = await IOUtils.readJSON(`${hostRoot}/.local/corpus-ids.json`);
+  const ids = await IOUtils.readJSON(`${hostValidationRoot}/corpus-ids.json`);
   function matches(c, t) {
     return (
       c.position &&
@@ -110,8 +110,8 @@ export async function run() {
     };
     await api.adapter.navigate(record.targetID, record.copies[0].position, record.created[0].key);
   }
-  await IOUtils.writeJSON(`${hostRoot}/.local/corpus-plans.json`, plans);
-  await IOUtils.writeJSON(`${hostRoot}/validation/host-corpus-apply.json`, report);
+  await IOUtils.writeJSON(`${hostValidationRoot}/corpus-plans.json`, plans);
+  await IOUtils.writeJSON(`${hostValidationReportRoot}/host-corpus-apply.json`, report);
   return {
     checks: report.checks,
     pairs: Object.fromEntries(

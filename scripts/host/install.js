@@ -8,7 +8,7 @@ export async function run() {
   await install.install();
   const addon = await AddonManager.getAddonByID('margincarry@0then0.github.io');
   const bytes = await IOUtils.read(
-    `${hostRoot}/.local/profile/extensions/margincarry@0then0.github.io.xpi`,
+    `${hostValidationRoot}/profile/extensions/margincarry@0then0.github.io.xpi`,
   );
   const digest = await Zotero.getMainWindow().crypto.subtle.digest('SHA-256', bytes);
   const hash = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
@@ -20,6 +20,6 @@ export async function run() {
     installedSHA256: hash,
     menuPresent: !!Zotero.getMainWindow().document.getElementById('margincarry-menu'),
   };
-  await IOUtils.writeJSON(`${hostRoot}/validation/host-install.json`, report);
+  await IOUtils.writeJSON(`${hostValidationReportRoot}/host-install.json`, report);
   return report;
 }

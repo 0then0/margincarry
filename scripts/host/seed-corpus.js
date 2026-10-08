@@ -48,6 +48,6 @@ export async function run() {
     });
   }
   const ids = { pairs, sources };
-  await IOUtils.writeJSON(`${hostRoot}/.local/corpus-ids.json`, ids);
+  await IOUtils.writeJSON(`${hostValidationRoot}/corpus-ids.json`, ids);
   return { pairs, sourceCount: Object.keys(sources).length };
 }

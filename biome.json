@@ -72,7 +72,10 @@
           "Cu",
           "Cc",
           "Ci",
-          "hostRoot"
+          "hostRoot",
+          "hostValidationRoot",
+          "hostValidationAction",
+          "hostValidationReportRoot"
         ]
       }
     }

@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-08",
+  "decision": "PASS WITH RISKS on Zotero 10.0.6/macOS arm64; strict geometry failures retained",
+  "installedSHA256": "2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7",
+  "publicExport": "Absolute workspace prefix replaced with <workspace>; raw reports and exploration kept in ignored .local/native-v010/followup. Original root validation artifacts/scorer/oracle byte-identical to HEAD.",
+  "files": {
+    "checks.txt": "81048cca13eb45376094d8f75c5390831d6c4e1c3a93ad91d5bd7cd3d7ffe41f",
+    "corpus-apply.json": "274f24f31478455318c97e7504ee3430aedea295a7899557e72635596ee8a500",
+    "corpus-restart.json": "ac7fa6101650602a8c79ce6219f342bfdc6a5d8e0cff9c29a5db0a3f8685a7a9",
+    "corpus-undo.json": "dc0ecd72ca950bd51826712bfa9ce50b4d5b05fdfdc634f8b63fb69766c0bccf",
+    "live-0-highlight.png": "87f70e0d35bab54c9942403eed2407b1eb4420d2ca5d818717b213457720b348",
+    "live-0-underline.png": "ec8ad9be9e3440a25b1b4e2a5bda496751452145d45a747d6790f61a9a7e167e",
+    "live-1-highlight.png": "9b56842a0ea232671368d89c878c76417fc7232ba8730a275661898039e39fef",
+    "live-1-underline.png": "3cd204e9e1cc836f71065be05f7c41bf9abab9b3788ae5e2b4fad3968b507e8a",
+    "live-2-highlight.png": "2e90b560a292377494c7846cb6ceb1627eb95c2399431a70cf08f70ade57f365",
+    "live-2-underline.png": "d4efeafc425d7cbda873072456ca8e4cbf025515e70d3da383b83117579ac124",
+    "live-3-highlight.png": "d93d094f85595b46f5bdaa1dd2c5c85ee126c2e0ecd7cb32c145b606d4d6223b",
+    "live-3-underline.png": "839043df05267d329c962c67fcf034956ef5b194da661369fb7d7714ff7eb3c6",
+    "live-operations.json": "10333c6b776ff68d941d519c27fa14599e490abb56e9df82d0a5c6e16702055d",
+    "mouse-analysis-failed.json": "341ba79458d5caf388c3b0234f135f25e7bd0648f252bb261bdef0b5478ddfe6",
+    "mouse-positive-lifecycle.json": "5c221516fa1b385ee38bd2cc6a17cf283eb1fd2dc9595f446d9d8d69537d56ea",
+    "mouse-sources.png": "b788505a081bc58f1faf1cffd92aaf06bc54f539cd67170f8f9f2e32910bbc2c",
+    "native-apply.json": "c7e89469d0cd3b33865748b1d617cb6813969d490cfa7ec4d40c041ea051880a",
+    "native-restart.json": "5afa8723233d27b2ac5a1e29fe2a4db77bc9552e7838f0c33600ac2aec3c4d0f",
+    "native-undo.json": "3142da5b1cc5ddf06f6457d61e38a034b75be0c6609ed9e79539d604796f4126"
+  }
+}

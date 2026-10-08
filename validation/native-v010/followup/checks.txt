@@ -1,0 +1,100 @@
+
+> margincarry@0.1.0 check
+> biome check --error-on-warnings . && npm run typecheck && npm test && npm run build
+
+Checked 47 files in 58ms. No fixes applied.
+
+> margincarry@0.1.0 typecheck
+> tsc --noEmit
+
+
+> margincarry@0.1.0 test
+> node --test tests/*.test.ts
+
+✔ analysis cancellation never produces an applicable plan (0.860625ms)
+✔ extraction failure gives an outcome for each source without a false unique candidate (4.1335ms)
+✔ PDF change during analysis invalidates every proposal (0.444917ms)
+✔ the documented build works in a path containing spaces and non-ASCII characters (440.990416ms)
+✔ reader lastRead, sync version and unordered tags do not invalidate a document (0.875709ms)
+✔ changed content, geometry, tags or dateModified still invalidate undo (0.147ms)
+✔ corpus stream export uses the selected fixture root despite stale default IDs (7.158958ms)
+✔ UI repeat accepts unchanged snapshots and journal (20.200375ms)
+✔ UI repeat rejects extra copy with all old fingerprints intact (22.27025ms)
+✔ UI repeat rejects extra journal operation without target change (9.247334ms)
+✔ bridge rejects concurrent requests before replacing another command or result (74.614ms)
+✔ bridge releases its request lock after a failed script read (45.465791ms)
+✔ native metadata checks independent sources when journal and copy preserve multiline text (6.698042ms)
+✔ native metadata checks independent sources when journal and copy both lose a comment (4.581791ms)
+✔ English is the fallback and Russian host locales select Russian (1.222584ms)
+✔ both locales contain the same interpolation parameters (0.770541ms)
+✔ every static XHTML localization key exists in both locales (22.240875ms)
+✔ project-owned static and dynamic diagnostics are translated without changing quoted data (1.338958ms)
+✔ identical document gives the independent complete rectangle (22.384625ms)
+✔ inserting several pages never uses the old page as identity evidence (0.389125ms)
+✔ reflow preserves full multi-line selection and maps whitespace back (0.2865ms)
+✔ moving a paragraph changes coordinates while retaining the quote (0.237542ms)
+✔ indistinguishable repeats remain multiple candidates (0.293167ms)
+✔ full prefix and suffix distinguish repeats but retain alternatives (0.479125ms)
+✔ a short frequent quote includes every occurrence up to the disclosed limit (0.210667ms)
+✔ exact occurrence does not hide normalized alternatives elsewhere (0.264625ms)
+✔ deleted quote is not found (0.174167ms)
+✔ numbers, punctuation, negation, case and accents are significant (1.0965ms)
+✔ canonical combining forms and surrogate pairs preserve UTF-16 source offsets (0.256084ms)
+✔ a partial ligature must not silently highlight a whole glyph (0.246334ms)
+✔ multi-page and discontinuous highlights are explicitly unsupported (0.8945ms)
+✔ source quote/geometry mismatch cannot transfer a partial source (0.581083ms)
+✔ unsupported type is reported before extraction (0.219834ms)
+✔ missing source extraction and missing target geometry are processing errors (0.611584ms)
+✔ no text layer is not found, not a fabricated match (0.595583ms)
+✔ two columns keep separate line boxes (0.09525ms)
+✔ PDF coordinates preserve a non-zero crop box; viewport rotation is outside matching (0.103209ms)
+✔ rotated or isolated glyphs and partial extraction cannot produce ready geometry (0.147041ms)
+✔ the page stream does not split UTF-16 surrogate pairs when assigning glyph offsets (0.865958ms)
+✔ a normalized substring cannot expand into extra combining marks or a ZWJ sequence (0.65725ms)
+✔ invalid grapheme matches do not consume the valid-candidate limit (1.076958ms)
+✔ soft undo hides only owned keys in matching readers after database commit (1.153042ms)
+✔ failed undo transaction leaves reader annotations visible (0.5585ms)
+✔ reader refresh failure reports committed Trash state instead of complete success (0.214292ms)
+✔ extraction reloads a reader holding the previous revision of a replaced file (9.986291ms)
+✔ a file change during reload invalidates extraction (5.026542ms)
+✔ preview refuses a replacement with unchanged size and mtime (2.722416ms)
+✔ a reader reloaded outside MarginCarry cannot reuse the previous analysis geometry (1.003667ms)
+✔ cancelled extraction does not reload the reader (0.813583ms)
+✔ copy retains comment, color and tags and uses actual new text and a fresh key (5.020125ms)
+✔ changed file invalidates the analyzed plan (0.476125ms)
+✔ changed original annotation invalidates the plan (0.357625ms)
+✔ concurrent clicks and repeated application create one set of copies (0.884542ms)
+✔ a write error rolls back the whole set and recovers a failed journal (1.114833ms)
+✔ different source keys with identical quotes remain independent (0.891125ms)
+✔ journal blocks reapplication after restart or recalculation (0.414667ms)
+✔ one source cannot silently combine multiple quote occurrences (0.202375ms)
+✔ a candidate with no reliable geometry cannot be written (0.387709ms)
+✔ undo trashes only the operation copies (0.481917ms)
+✔ edited copy stops undo before anything is removed (0.2165ms)
+✔ prepared journal with durable saved fingerprints recovers committed copies (0.199041ms)
+✔ a final journal failure after commit recovers without allowing duplicate application (0.198292ms)
+✔ a failed final undo journal update recovers the already trashed copies (0.274875ms)
+✔ journal failure inside undo rolls back deletion and recovers committed state (0.672625ms)
+✔ a file changed while writing rolls back every newly created annotation (0.910459ms)
+✔ window initialization cannot recover the journal of an active apply (0.767625ms)
+✔ window initialization cannot recover an active undo (0.474417ms)
+✔ public recovery locks out apply and releases its lock after a read error (0.704458ms)
+✔ cancel while first previews load leaves no applicable plan or stale image (23.78875ms)
+✔ direction change clears the visible review count (en) (3.004791ms)
+✔ direction change clears the visible review count (ru) (2.60425ms)
+✔ switching language preserves accepted locations and translates dynamic and accessible text (4.651875ms)
+✔ the initial Russian review count is localized before analysis (0.951458ms)
+ℹ tests 73
+ℹ suites 0
+ℹ pass 73
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 584.685666
+
+> margincarry@0.1.0 build
+> node scripts/build.mjs
+
+dist/margincarry-0.1.0.xpi
+SHA-256 2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7

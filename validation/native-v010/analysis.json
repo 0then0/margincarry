@@ -1,0 +1,509 @@
+{
+  "date": "2026-10-07T20:22:41.286Z",
+  "version": "10.0.6",
+  "os": "Darwin",
+  "architecture": "aarch64-gcc3",
+  "addonVersion": "0.1.0",
+  "installedSHA256": "2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7",
+  "profile": "<workspace>/.local/native-v010/profile",
+  "dataDirectory": "<workspace>/.local/native-v010/data",
+  "action": "analyze",
+  "rows": [
+    {
+      "id": "native-03",
+      "status": "unique candidate",
+      "sourceKey": "T7W3LFT2",
+      "reason": "One text occurrence; verify the PDF position.",
+      "recommendedID": "0:711:750",
+      "candidates": [
+        {
+          "id": "0:711:750",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 711,
+          "end": 750,
+          "text": "We propose Low-Rank Adaptation, or LoRA",
+          "prefix": " independent instances of fine-tuned models, each with 175B parameters, is prohibitively\nexpensive. ",
+          "suffix": ", which freezes the pretrained model weights and injects trainable rank decomposition matrices into ",
+          "method": "exact",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                190.07253880000007,
+                460.18607840000027,
+                373.13231559999974,
+                469.21219400000024
+              ]
+            ]
+          },
+          "geometryError": null
+        }
+      ],
+      "correspondingCandidateID": "0:711:750",
+      "expected": "locations"
+    },
+    {
+      "id": "native-06",
+      "status": "unique candidate",
+      "sourceKey": "KMP93CJU",
+      "reason": "One text occurrence; verify the PDF position.",
+      "recommendedID": "0:807:844",
+      "candidates": [
+        {
+          "id": "0:807:844",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 807,
+          "end": 844,
+          "text": "trainable rank decomposition matrices",
+          "prefix": "ve. We propose Low-Rank Adaptation, or LoRA, which freezes the pretrained model weights and injects ",
+          "suffix": " into each\nlayer of the Transformer architecture, greatly reducing the number of trainable parameter",
+          "method": "exact",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                278.610165,
+                449.22707840000027,
+                430.0715727999995,
+                457.8646526000002
+              ]
+            ]
+          },
+          "geometryError": null
+        }
+      ],
+      "correspondingCandidateID": "0:807:844",
+      "expected": "locations"
+    },
+    {
+      "id": "native-01",
+      "status": "unique candidate",
+      "sourceKey": "86IC6EWW",
+      "reason": "One text occurrence; verify the PDF position.",
+      "recommendedID": "0:1023:1032",
+      "candidates": [
+        {
+          "id": "0:1023:1032",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 1023,
+          "end": 1032,
+          "text": "28.4 BLEU",
+          "prefix": " while being more parallelizable and requiring significantly\nless time to train. Our model achieves ",
+          "suffix": " on the WMT 2014 Englishto-German translation task, improving over the existing best results, includ",
+          "method": "exact",
+          "contextMatches": true,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                305.04313457199976,
+                344.42407840000004,
+                352.39736489199976,
+                353.0616526
+              ]
+            ]
+          },
+          "geometryError": null
+        }
+      ],
+      "correspondingCandidateID": "0:1023:1032",
+      "expected": "locations"
+    },
+    {
+      "id": "native-02",
+      "status": "not found",
+      "sourceKey": "7MYCDP6D",
+      "reason": "No exact or conservatively normalized quote on a single target page.",
+      "recommendedID": null,
+      "candidates": [],
+      "correspondingCandidateID": null,
+      "expected": "not found"
+    },
+    {
+      "id": "native-04",
+      "status": "unique candidate",
+      "sourceKey": "UIUV7A3K",
+      "reason": "One text occurrence; verify the PDF position.",
+      "recommendedID": "0:2465:2502",
+      "candidates": [
+        {
+          "id": "0:2465:2502",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 2465,
+          "end": 2502,
+          "text": "Work performed while at Google Brain.",
+          "prefix": "training examples, which becomes critical at longer\n\n∗Equal contribution. Listing order is random.\n†",
+          "suffix": "\n‡Work performed while at Google Research.\n\nCode available at https://github.com/tensorflow/tensor2t",
+          "method": "exact",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                124.13900000000001,
+                91.18425760000001,
+                267.35034080000014,
+                101.0127008
+              ]
+            ]
+          },
+          "geometryError": null
+        }
+      ],
+      "correspondingCandidateID": "0:2465:2502",
+      "expected": "locations"
+    },
+    {
+      "id": "native-05",
+      "status": "unique candidate",
+      "sourceKey": "XWBBCMAQ",
+      "reason": "One occurrence matches the complete available context; alternatives are retained.",
+      "recommendedID": "0:43:55",
+      "candidates": [
+        {
+          "id": "0:43:55",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 43,
+          "end": 55,
+          "text": "Google Brain",
+          "prefix": "Attention Is All You Need\n\nAshish Vaswani∗\n",
+          "suffix": "\n\navaswani@google.com\n\nNoam Shazeer∗\nGoogle Brain\n\nnoam@google.com\n\nNiki Parmar∗\nGoogle Research\nnik",
+          "method": "exact",
+          "contextMatches": true,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                139.379,
+                585.2400784,
+                193.33644160000003,
+                593.8776526
+              ]
+            ]
+          },
+          "geometryError": null
+        },
+        {
+          "id": "0:92:104",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 92,
+          "end": 104,
+          "text": "Google Brain",
+          "prefix": "Attention Is All You Need\n\nAshish Vaswani∗\nGoogle Brain\n\navaswani@google.com\n\nNoam Shazeer∗\n",
+          "suffix": "\n\nnoam@google.com\n\nNiki Parmar∗\nGoogle Research\nnikip@google.com\n\nJakob Uszkoreit∗\nGoogle Research\nu",
+          "method": "exact",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                242.932,
+                585.2400784,
+                296.88944159999994,
+                593.8776526
+              ]
+            ]
+          },
+          "geometryError": null
+        },
+        {
+          "id": "0:342:354",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 342,
+          "end": 354,
+          "text": "Google Brain",
+          "prefix": "earch\nllion@google.com\n\nAidan N. Gomez∗†\nUniversity of Toronto\naidan@cs.toronto.edu\n\nŁukasz Kaiser∗\n",
+          "suffix": "\n\nlukaszkaiser@google.com\n\nIllia Polosukhin∗‡\n\nillia.polosukhin@gmail.com\n\nAbstract\n\nThe dominant se",
+          "method": "exact",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                398.005,
+                535.2430784000001,
+                451.96244159999986,
+                543.8806526000001
+              ]
+            ]
+          },
+          "geometryError": null
+        },
+        {
+          "id": "0:2489:2501",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 2489,
+          "end": 2501,
+          "text": "Google Brain",
+          "prefix": " becomes critical at longer\n\n∗Equal contribution. Listing order is random.\n†Work performed while at ",
+          "suffix": ".\n‡Work performed while at Google Research.\n\nCode available at https://github.com/tensorflow/tensor2",
+          "method": "exact",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                216.54671840000012,
+                91.18425760000001,
+                265.10874080000013,
+                101.0127008
+              ]
+            ]
+          },
+          "geometryError": null
+        }
+      ],
+      "correspondingCandidateID": "0:43:55",
+      "expected": "locations"
+    },
+    {
+      "id": "native-07",
+      "status": "unique candidate",
+      "sourceKey": "2CDHDTXS",
+      "reason": "One text occurrence; verify the PDF position.",
+      "recommendedID": "0:584:679",
+      "candidates": [
+        {
+          "id": "0:584:679",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 584,
+          "end": 679,
+          "text": "The best\nperforming models also connect the encoder and decoder through an attention\nmechanism.",
+          "prefix": " based on complex recurrent or\nconvolutional neural networks that include an encoder and a decoder. ",
+          "suffix": " We propose a new simple network architecture, the Transformer,\nbased solely on attention mechanisms",
+          "method": "normalized",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                433.0113368079993,
+                409.8790784,
+                468.13069731999923,
+                418.5166526
+              ],
+              [
+                143.866,
+                398.97007840000003,
+                468.1306973199993,
+                407.6076526
+              ],
+              [
+                143.866,
+                388.06107840000004,
+                192.69369886,
+                396.6986526
+              ]
+            ]
+          },
+          "geometryError": null
+        }
+      ],
+      "correspondingCandidateID": "0:584:679",
+      "expected": "locations"
+    }
+  ],
+  "previews": [
+    {
+      "id": "native-03",
+      "side": "source",
+      "bytes": 248888
+    },
+    {
+      "id": "native-03",
+      "side": "target",
+      "bytes": 271080
+    },
+    {
+      "id": "native-06",
+      "side": "source",
+      "bytes": 247610
+    },
+    {
+      "id": "native-06",
+      "side": "target",
+      "bytes": 269625
+    },
+    {
+      "id": "native-01",
+      "side": "source",
+      "bytes": 224192
+    },
+    {
+      "id": "native-01",
+      "side": "target",
+      "bytes": 220452
+    },
+    {
+      "id": "native-04",
+      "side": "source",
+      "bytes": 223924
+    },
+    {
+      "id": "native-04",
+      "side": "target",
+      "bytes": 220233
+    },
+    {
+      "id": "native-05",
+      "side": "source",
+      "bytes": 224983
+    },
+    {
+      "id": "native-05",
+      "side": "target",
+      "bytes": 220881
+    },
+    {
+      "id": "native-07",
+      "side": "source",
+      "bytes": 225529
+    },
+    {
+      "id": "native-07",
+      "side": "target",
+      "bytes": 221339
+    }
+  ],
+  "extraProposals": [
+    {
+      "source": {
+        "key": "6IR83CZV",
+        "type": "highlight",
+        "text": "Google Brain",
+        "comment": "",
+        "color": "#ffd400",
+        "tags": [],
+        "position": {
+          "pageIndex": 0,
+          "rects": [
+            [
+              242.932,
+              585.24,
+              296.889,
+              593.878
+            ]
+          ]
+        },
+        "pageLabel": "1",
+        "external": false,
+        "fingerprint": "{\"key\":\"6IR83CZV\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"Google Brain\",\"annotationComment\":\"\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000077|00198\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[242.932,585.24,296.889,593.878]]}\",\"tags\":[],\"relations\":{},\"dateAdded\":\"2026-10-07T20:11:33Z\",\"dateModified\":\"2026-10-07T20:11:33Z\"}"
+      },
+      "status": "unique candidate",
+      "reason": "One occurrence matches the complete available context; alternatives are retained.",
+      "candidates": [
+        {
+          "id": "0:43:55",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 43,
+          "end": 55,
+          "text": "Google Brain",
+          "prefix": "Attention Is All You Need\n\nAshish Vaswani∗\n",
+          "suffix": "\n\navaswani@google.com\n\nNoam Shazeer∗\nGoogle Brain\n\nnoam@google.com\n\nNiki Parmar∗\nGoogle Research\nnik",
+          "method": "exact",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                139.379,
+                585.2400784,
+                193.33644160000003,
+                593.8776526
+              ]
+            ]
+          },
+          "geometryError": null
+        },
+        {
+          "id": "0:92:104",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 92,
+          "end": 104,
+          "text": "Google Brain",
+          "prefix": "Attention Is All You Need\n\nAshish Vaswani∗\nGoogle Brain\n\navaswani@google.com\n\nNoam Shazeer∗\n",
+          "suffix": "\n\nnoam@google.com\n\nNiki Parmar∗\nGoogle Research\nnikip@google.com\n\nJakob Uszkoreit∗\nGoogle Research\nu",
+          "method": "exact",
+          "contextMatches": true,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                242.932,
+                585.2400784,
+                296.88944159999994,
+                593.8776526
+              ]
+            ]
+          },
+          "geometryError": null
+        },
+        {
+          "id": "0:342:354",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 342,
+          "end": 354,
+          "text": "Google Brain",
+          "prefix": "earch\nllion@google.com\n\nAidan N. Gomez∗†\nUniversity of Toronto\naidan@cs.toronto.edu\n\nŁukasz Kaiser∗\n",
+          "suffix": "\n\nlukaszkaiser@google.com\n\nIllia Polosukhin∗‡\n\nillia.polosukhin@gmail.com\n\nAbstract\n\nThe dominant se",
+          "method": "exact",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                398.005,
+                535.2430784000001,
+                451.96244159999986,
+                543.8806526000001
+              ]
+            ]
+          },
+          "geometryError": null
+        },
+        {
+          "id": "0:2489:2501",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "start": 2489,
+          "end": 2501,
+          "text": "Google Brain",
+          "prefix": " becomes critical at longer\n\n∗Equal contribution. Listing order is random.\n†Work performed while at ",
+          "suffix": ".\n‡Work performed while at Google Research.\n\nCode available at https://github.com/tensorflow/tensor2",
+          "method": "exact",
+          "contextMatches": false,
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                216.54671840000012,
+                91.18425760000001,
+                265.10874080000013,
+                101.0127008
+              ]
+            ]
+          },
+          "geometryError": null
+        }
+      ],
+      "sourcePrefix": " All You Need\n\nAshish Vaswani∗\nGoogle Brain\n\navaswani@google.com\n\nNoam Shazeer∗\n",
+      "sourceSuffix": "\n\nnoam@google.com\n\nNiki Parmar∗\nGoogle Research\nnikip@google.com\n\nJakob Uszkorei",
+      "truncated": false,
+      "recommendedID": "0:92:104"
+    }
+  ]
+}

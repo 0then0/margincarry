@@ -1,0 +1,3376 @@
+{
+  "version": "10.0.6",
+  "os": "Darwin",
+  "date": "2026-10-07T20:31:31.976Z",
+  "results": [
+    {
+      "id": "lora-01",
+      "pair": "lora",
+      "sourceKey": "MSA8SK3F",
+      "status": "not found",
+      "reason": "No exact or conservatively normalized quote on a single target page.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": []
+    },
+    {
+      "id": "lora-02",
+      "pair": "lora",
+      "sourceKey": "A2D3PIGL",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "0:150:171",
+      "candidates": [
+        {
+          "id": "0:150:171",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                113.97800000000004,
+                623.3550784,
+                203.9103902000001,
+                631.9926526
+              ]
+            ]
+          },
+          "text": "Microsoft Corporation",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-03",
+      "pair": "lora",
+      "sourceKey": "YIJ8792D",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "0:807:844",
+      "candidates": [
+        {
+          "id": "0:807:844",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                278.610165,
+                449.22707840000027,
+                430.0715727999995,
+                457.8646526000002
+              ]
+            ]
+          },
+          "text": "trainable rank decomposition matrices",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-04",
+      "pair": "lora",
+      "sourceKey": "UFH492DM",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "0:1064:1079",
+      "candidates": [
+        {
+          "id": "0:1064:1079",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                367.95476179999986,
+                416.35107840000023,
+                434.2359395999996,
+                424.9886526000002
+              ]
+            ]
+          },
+          "text": "by 10,000 times",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-05",
+      "pair": "lora",
+      "sourceKey": "CEJ6LBL8",
+      "status": "not found",
+      "reason": "No exact or conservatively normalized quote on a single target page.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": []
+    },
+    {
+      "id": "lora-06",
+      "pair": "lora",
+      "sourceKey": "QLGFPDA5",
+      "status": "not found",
+      "reason": "No exact or conservatively normalized quote on a single target page.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": []
+    },
+    {
+      "id": "lora-07",
+      "pair": "lora",
+      "sourceKey": "KAQYHFCF",
+      "status": "not found",
+      "reason": "No exact or conservatively normalized quote on a single target page.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": []
+    },
+    {
+      "id": "lora-08",
+      "pair": "lora",
+      "sourceKey": "NN83SDFY",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "1:1908:1928",
+      "candidates": [
+        {
+          "id": "1:1908:1928",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                257.93971239999996,
+                419.07007840000057,
+                338.3976699999997,
+                427.88697940000054
+              ]
+            ]
+          },
+          "text": "no inference latency",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-09",
+      "pair": "lora",
+      "sourceKey": "U86L96CK",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "1:3066:3137",
+      "candidates": [
+        {
+          "id": "1:3066:3137",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                107.99999999999983,
+                153.6350784000005,
+                390.40982219999967,
+                162.27265260000053
+              ]
+            ]
+          },
+          "text": "maximization of conditional probabilities given a task-specific prompt.",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-10",
+      "pair": "lora",
+      "sourceKey": "Y6LARGZP",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "4:1000:1035",
+      "candidates": [
+        {
+          "id": "4:1000:1035",
+          "pageIndex": 4,
+          "pageLabel": "5",
+          "position": {
+            "pageIndex": 4,
+            "rects": [
+              [
+                108.00000000000006,
+                529.9680784000005,
+                258.4551852000002,
+                538.9941940000006
+              ]
+            ]
+          },
+          "text": "Practical Benefits and Limitations.",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-11",
+      "pair": "lora",
+      "sourceKey": "F6PC674G",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "8:449:484",
+      "candidates": [
+        {
+          "id": "8:449:484",
+          "pageIndex": 8,
+          "pageLabel": "9",
+          "position": {
+            "pageIndex": 8,
+            "rects": [
+              [
+                108,
+                632.3770784000002,
+                273.57841200000007,
+                641.4031940000002
+              ]
+            ]
+          },
+          "text": "Prompt Engineering and Fine-Tuning.",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-12",
+      "pair": "lora",
+      "sourceKey": "2SLG5UND",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "8:1376:1407",
+      "candidates": [
+        {
+          "id": "8:1376:1407",
+          "pageIndex": 8,
+          "pageLabel": "9",
+          "position": {
+            "pageIndex": 8,
+            "rects": [
+              [
+                108,
+                511.93707840000076,
+                245.30455320000013,
+                520.9631940000007
+              ]
+            ]
+          },
+          "text": "Parameter-Efficient Adaptation.",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-13",
+      "pair": "lora",
+      "sourceKey": "NGQ83PLD",
+      "status": "not found",
+      "reason": "No exact or conservatively normalized quote on a single target page.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": []
+    },
+    {
+      "id": "lora-14",
+      "pair": "lora",
+      "sourceKey": "BJKRF2WT",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "4:1927:1954",
+      "candidates": [
+        {
+          "id": "4:1927:1954",
+          "pageIndex": 4,
+          "pageLabel": "5",
+          "position": {
+            "pageIndex": 4,
+            "rects": [
+              [
+                450.7831781999998,
+                431.3380784000006,
+                504.0033873999996,
+                439.97565260000056
+              ],
+              [
+                108,
+                420.3790784000006,
+                168.50286980000004,
+                430.6859438000006
+              ]
+            ]
+          },
+          "text": "25% speedup\nduring training",
+          "method": "normalized",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-15",
+      "pair": "lora",
+      "sourceKey": "T6ZADEB5",
+      "status": "multiple candidates",
+      "reason": "Several occurrences require a human choice.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": [
+        {
+          "id": "0:746:750",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                348.2258155999998,
+                460.18607840000027,
+                373.13231559999974,
+                469.21219400000024
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "0:1013:1017",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                143.86599999999999,
+                416.35107840000023,
+                168.7725,
+                424.9886526000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "0:1123:1127",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                299.8205404,
+                405.39207840000023,
+                324.72704039999996,
+                414.0296526000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "0:1485:1489",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                143.86599999999999,
+                350.5970784000002,
+                168.7725,
+                359.2346526000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "0:1548:1552",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                387.68070979999953,
+                350.5970784000002,
+                412.58720979999947,
+                359.2346526000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "0:1691:1695",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                417.55823999999956,
+                328.6790784000002,
+                441.4684799999995,
+                337.31665260000017
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "1:695:699",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                205.77818800000006,
+                615.3340784000003,
+                230.68468800000008,
+                624.3601940000003
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "1:711:715",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                281.5537236000001,
+                615.3340784000003,
+                306.46022360000006,
+                624.3601940000003
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "1:1122:1126",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                330.46394439999983,
+                571.4980784000005,
+                355.37044439999977,
+                580.3149794000005
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "1:1164:1168",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                108.00000000000001,
+                554.5620784000005,
+                132.90650000000002,
+                563.1996526000005
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "1:1269:1273",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                410.09576979999986,
+                531.6480784000005,
+                435.0022697999998,
+                540.2856526000005
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "1:1489:1493",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                143.86520999999996,
+                480.8380784000006,
+                168.77170999999998,
+                489.47565260000056
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "1:1987:1991",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                143.86520999999996,
+                390.1780784000006,
+                168.77170999999998,
+                398.81565260000053
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "1:2603:2607",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                193.6285469999998,
+                281.24807840000057,
+                218.53504699999982,
+                289.8856526000005
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:76:80",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                177.66547740000004,
+                658.4530784,
+                202.57197740000007,
+                667.4094558
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:751:755",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                240.36310360000002,
+                504.33407840000024,
+                265.2696036,
+                512.9716526000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:2665:2669",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                264.5423338000003,
+                210.54607839999997,
+                289.4488338000002,
+                219.1836526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:2830:2834",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                145.87780520000015,
+                188.62807839999996,
+                170.78430520000018,
+                198.93494379999999
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:2957:2961",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                256.35307660000024,
+                177.66907839999996,
+                281.2595766000002,
+                186.62545579999997
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:3095:3099",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                403.62615960000005,
+                166.71007839999996,
+                428.5326596,
+                177.01694379999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "4:185:189",
+          "pageIndex": 4,
+          "pageLabel": "5",
+          "position": {
+            "pageIndex": 4,
+            "rects": [
+              [
+                214.33082980000012,
+                640.9350784000001,
+                239.23732980000014,
+                649.5726526000001
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "4:1709:1713",
+          "pageIndex": 4,
+          "pageLabel": "5",
+          "position": {
+            "pageIndex": 4,
+            "rects": [
+              [
+                355.5407221999997,
+                453.2560784000006,
+                380.44722219999966,
+                461.89365260000056
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "4:2085:2089",
+          "pageIndex": 4,
+          "pageLabel": "5",
+          "position": {
+            "pageIndex": 4,
+            "rects": [
+              [
+                108,
+                392.4830784000006,
+                132.90650000000002,
+                401.12065260000054
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "4:2396:2400",
+          "pageIndex": 4,
+          "pageLabel": "5",
+          "position": {
+            "pageIndex": 4,
+            "rects": [
+              [
+                122.66494720000007,
+                359.60707840000055,
+                147.57144720000008,
+                368.2446526000005
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "4:2556:2560",
+          "pageIndex": 4,
+          "pageLabel": "5",
+          "position": {
+            "pageIndex": 4,
+            "rects": [
+              [
+                320.18345480000005,
+                306.36707840000054,
+                345.0899548,
+                315.0046526000005
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "4:4225:4229",
+          "pageIndex": 4,
+          "pageLabel": "5",
+          "position": {
+            "pageIndex": 4,
+            "rects": [
+              [
+                462.04727040000006,
+                60.20125760000001,
+                484.46327040000006,
+                67.97512640000001
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "5:413:417",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                145.96281119999986,
+                630.4588384,
+                168.37881119999986,
+                638.932816
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "5:572:576",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                147.18181120000003,
+                605.5318384,
+                169.59781120000002,
+                614.005816
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "5:1046:1050",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                147.18181119999986,
+                547.4038384,
+                169.59781119999985,
+                555.877816
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "5:1205:1209",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                147.6148112,
+                522.4768384,
+                170.0308112,
+                530.950816
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "5:3996:4000",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                108,
+                94.4940783999998,
+                134.0123486,
+                103.52019399999979
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "5:4137:4141",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                281.6182302,
+                82.84008279999979,
+                306.52473019999996,
+                92.49145579999978
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "5:4305:4309",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                157.3129999999999,
+                59.291082799999785,
+                178.73860573999988,
+                71.46145579999978
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "5:4332:4336",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                271.4519999999998,
+                59.291082799999785,
+                292.87760573999986,
+                71.46145579999978
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "5:4379:4383",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                466.5257395999993,
+                59.291082799999785,
+                491.43223959999926,
+                71.46145579999978
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "6:414:418",
+          "pageIndex": 6,
+          "pageLabel": "7",
+          "position": {
+            "pageIndex": 6,
+            "rects": [
+              [
+                162.2662352,
+                597.6244758,
+                187.17273520000003,
+                607.451194
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "6:710:714",
+          "pageIndex": 6,
+          "pageLabel": "7",
+          "position": {
+            "pageIndex": 6,
+            "rects": [
+              [
+                159.4966324,
+                535.1416592,
+                184.40313240000003,
+                545.017194
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "6:900:904",
+          "pageIndex": 6,
+          "pageLabel": "7",
+          "position": {
+            "pageIndex": 6,
+            "rects": [
+              [
+                287.0478472000001,
+                501.59807839999996,
+                311.95434720000003,
+                510.2356525999999
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "6:1949:1953",
+          "pageIndex": 6,
+          "pageLabel": "7",
+          "position": {
+            "pageIndex": 6,
+            "rects": [
+              [
+                454.6885173999998,
+                327.64307839999987,
+                479.59501739999973,
+                336.2806525999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "6:2694:2698",
+          "pageIndex": 6,
+          "pageLabel": "7",
+          "position": {
+            "pageIndex": 6,
+            "rects": [
+              [
+                302.66920400000004,
+                193.81507839999983,
+                327.575704,
+                202.45265259999985
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "6:2933:2937",
+          "pageIndex": 6,
+          "pageLabel": "7",
+          "position": {
+            "pageIndex": 6,
+            "rects": [
+              [
+                186.903792,
+                114.78107839999986,
+                211.81029200000003,
+                123.41865259999985
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "6:3020:3024",
+          "pageIndex": 6,
+          "pageLabel": "7",
+          "position": {
+            "pageIndex": 6,
+            "rects": [
+              [
+                149.04591200000002,
+                103.82207839999985,
+                173.95241200000004,
+                112.45965259999984
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "7:378:382",
+          "pageIndex": 7,
+          "pageLabel": "8",
+          "position": {
+            "pageIndex": 7,
+            "rects": [
+              [
+                184.5608338,
+                596.0190784,
+                209.46733380000003,
+                605.045194
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "7:421:425",
+          "pageIndex": 7,
+          "pageLabel": "8",
+          "position": {
+            "pageIndex": 7,
+            "rects": [
+              [
+                184.5608338,
+                585.0600784,
+                209.46733380000003,
+                594.086194
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "7:654:658",
+          "pageIndex": 7,
+          "pageLabel": "8",
+          "position": {
+            "pageIndex": 7,
+            "rects": [
+              [
+                157.07576759999998,
+                539.7080784000001,
+                181.9822676,
+                548.3456526000001
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "7:916:920",
+          "pageIndex": 7,
+          "pageLabel": "8",
+          "position": {
+            "pageIndex": 7,
+            "rects": [
+              [
+                205.26486380000006,
+                463.09507840000026,
+                230.17136380000008,
+                471.7326526000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "7:1209:1213",
+          "pageIndex": 7,
+          "pageLabel": "8",
+          "position": {
+            "pageIndex": 7,
+            "rects": [
+              [
+                195.1428622,
+                424.2410784000002,
+                220.04936220000002,
+                432.8786526000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "7:2107:2111",
+          "pageIndex": 7,
+          "pageLabel": "8",
+          "position": {
+            "pageIndex": 7,
+            "rects": [
+              [
+                263.52650506875,
+                239.28212242125,
+                278.82727054875,
+                246.27795907125
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "7:2337:2341",
+          "pageIndex": 7,
+          "pageLabel": "8",
+          "position": {
+            "pageIndex": 7,
+            "rects": [
+              [
+                284.30813220000005,
+                183.02907839999997,
+                309.2146322,
+                191.6666526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "8:2083:2087",
+          "pageIndex": 8,
+          "pageLabel": "9",
+          "position": {
+            "pageIndex": 8,
+            "rects": [
+              [
+                236.06922300000008,
+                435.2250784000007,
+                260.9757230000001,
+                443.8626526000007
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "8:4230:4234",
+          "pageIndex": 8,
+          "pageLabel": "9",
+          "position": {
+            "pageIndex": 8,
+            "rects": [
+              [
+                244.58724599999996,
+                142.67607840000062,
+                269.49374599999993,
+                151.31365260000064
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "9:590:594",
+          "pageIndex": 9,
+          "pageLabel": "10",
+          "position": {
+            "pageIndex": 9,
+            "rects": [
+              [
+                439.74461739999936,
+                603.0940784000002,
+                464.6511173999993,
+                611.7316526000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "9:1257:1261",
+          "pageIndex": 9,
+          "pageLabel": "10",
+          "position": {
+            "pageIndex": 9,
+            "rects": [
+              [
+                396.90543739999964,
+                457.13607840000003,
+                421.8119373999996,
+                465.7736526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "9:2646:2650",
+          "pageIndex": 9,
+          "pageLabel": "10",
+          "position": {
+            "pageIndex": 9,
+            "rects": [
+              [
+                242.0069326000001,
+                143.0970784,
+                266.9134326000001,
+                152.0534558
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "9:3331:3335",
+          "pageIndex": 9,
+          "pageLabel": "10",
+          "position": {
+            "pageIndex": 9,
+            "rects": [
+              [
+                207.86776320000004,
+                59.916345600000014,
+                230.28376320000004,
+                68.26205120000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "9:3380:3384",
+          "pageIndex": 9,
+          "pageLabel": "10",
+          "position": {
+            "pageIndex": 9,
+            "rects": [
+              [
+                396.2308191999999,
+                59.916345600000014,
+                418.6468191999999,
+                68.26205120000002
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "11:2371:2375",
+          "pageIndex": 11,
+          "pageLabel": "12",
+          "position": {
+            "pageIndex": 11,
+            "rects": [
+              [
+                107.99999999999994,
+                153.6350783999999,
+                132.90649999999997,
+                162.27265259999993
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "11:2839:2843",
+          "pageIndex": 11,
+          "pageLabel": "12",
+          "position": {
+            "pageIndex": 11,
+            "rects": [
+              [
+                297.7576422000001,
+                92.8630783999999,
+                322.6641422,
+                101.5006525999999
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "11:2986:2990",
+          "pageIndex": 11,
+          "pageLabel": "12",
+          "position": {
+            "pageIndex": 11,
+            "rects": [
+              [
+                119.76583059999996,
+                70.9450783999999,
+                144.67233059999998,
+                79.58265259999989
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "11:3116:3120",
+          "pageIndex": 11,
+          "pageLabel": "12",
+          "position": {
+            "pageIndex": 11,
+            "rects": [
+              [
+                265.4290052,
+                59.98607839999989,
+                290.33550519999994,
+                68.62365259999989
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "12:81:85",
+          "pageIndex": 12,
+          "pageLabel": "13",
+          "position": {
+            "pageIndex": 12,
+            "rects": [
+              [
+                444.70599219999957,
+                698.0240784,
+                469.6124921999995,
+                706.6616526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "16:356:360",
+          "pageIndex": 16,
+          "pageLabel": "17",
+          "position": {
+            "pageIndex": 16,
+            "rects": [
+              [
+                164.97610939999998,
+                577.1020784,
+                189.8826094,
+                585.7396526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "17:2593:2597",
+          "pageIndex": 17,
+          "pageLabel": "18",
+          "position": {
+            "pageIndex": 17,
+            "rects": [
+              [
+                263.37670960000037,
+                270.9930784000006,
+                288.2832096000003,
+                279.6306526000006
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "17:2646:2650",
+          "pageIndex": 17,
+          "pageLabel": "18",
+          "position": {
+            "pageIndex": 17,
+            "rects": [
+              [
+                479.09688739999973,
+                270.9930784000006,
+                504.00338739999967,
+                279.6306526000006
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "17:3667:3671",
+          "pageIndex": 17,
+          "pageLabel": "18",
+          "position": {
+            "pageIndex": 17,
+            "rects": [
+              [
+                175.35713860000038,
+                92.86307840000056,
+                200.2636386000004,
+                101.50065260000055
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:123:127",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                129.814,
+                622.4832576,
+                152.23,
+                630.2571264
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:259:263",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                182.196,
+                617.2823456,
+                204.612,
+                625.5620512
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:284:288",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                182.196,
+                607.5392576,
+                204.612,
+                615.6000512
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:326:330",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                130.72899999999998,
+                557.7052576000001,
+                153.14499999999998,
+                565.4791264
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:454:458",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                182.196,
+                552.5043456,
+                204.612,
+                560.7840512
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:479:483",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                182.196,
+                542.7612576,
+                204.612,
+                550.8220512
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:550:554",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                128.681,
+                492.9272576,
+                151.097,
+                500.98805120000003
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:665:669",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                182.196,
+                487.72634559999995,
+                204.612,
+                496.0070512
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:690:694",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                182.196,
+                477.98325759999994,
+                204.612,
+                486.04405119999996
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:1759:1763",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                421.6425732,
+                149.5810784,
+                446.54907319999995,
+                158.2186526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "18:1888:1892",
+          "pageIndex": 18,
+          "pageLabel": "19",
+          "position": {
+            "pageIndex": 18,
+            "rects": [
+              [
+                143.50670640000007,
+                127.6630784,
+                168.4132064000001,
+                136.3006526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:121:125",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                130.729,
+                622.4832576,
+                153.145,
+                630.2571264
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:335:339",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                182.524,
+                597.3573456,
+                204.94,
+                605.6370512000001
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:360:364",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                182.52400000000003,
+                587.6132576,
+                204.94000000000003,
+                595.6740512000001
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:744:748",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                198.982,
+                383.6590784,
+                223.88850000000002,
+                392.6154558
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:869:873",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                317.048517,
+                306.38607840000003,
+                341.95501699999994,
+                315.0236526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:1416:1420",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                247.20740980000008,
+                215.48808279999997,
+                272.11390980000004,
+                225.13945579999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:1678:1682",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                108.00000000000009,
+                137.69507839999997,
+                132.9065000000001,
+                146.3326526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:1797:1801",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                192.30352120000012,
+                126.73607839999998,
+                217.21002120000014,
+                135.37365259999999
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:1854:1858",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                108.00000000000009,
+                109.79907839999998,
+                134.01234860000008,
+                118.82519399999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:1872:1876",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                200.93113280000014,
+                109.79907839999998,
+                226.94348140000017,
+                118.82519399999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:1890:1894",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                291.2543804,
+                109.79907839999998,
+                316.16088039999994,
+                118.82519399999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:2072:2076",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                108.00000000000011,
+                70.25008279999999,
+                134.0123486000001,
+                79.97119399999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:2090:2094",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                196.46788800000016,
+                70.25008279999999,
+                222.48023660000018,
+                79.97119399999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "19:2108:2112",
+          "pageIndex": 19,
+          "pageLabel": "20",
+          "position": {
+            "pageIndex": 19,
+            "rects": [
+              [
+                288.0610242,
+                70.25008279999999,
+                312.96752419999996,
+                79.97119399999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:60:64",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                458.315,
+                695.0130783999999,
+                483.22149999999993,
+                706.0359437999999
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:666:670",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                289.0802175999999,
+                506.9700784000001,
+                313.98671759999985,
+                515.6076526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:678:682",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                349.71260119999977,
+                506.9700784000001,
+                374.6191011999997,
+                515.6076526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:725:729",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                162.06703020000003,
+                496.0110784000001,
+                186.97353020000006,
+                504.64865260000005
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:764:768",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                339.17217039999986,
+                496.0110784000001,
+                364.0786703999998,
+                504.64865260000005
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:830:834",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                239.31703060000004,
+                485.0520784000001,
+                264.2235306,
+                493.68965260000004
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:918:922",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                227.59105040000009,
+                474.0930784000001,
+                252.4975504000001,
+                482.73065260000004
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:954:958",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                380.8955391999998,
+                474.0930784000001,
+                405.80203919999974,
+                482.73065260000004
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:977:981",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                479.0968873999995,
+                474.0930784000001,
+                504.00338739999944,
+                482.73065260000004
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:1081:1085",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                126.31125880000002,
+                452.17607840000005,
+                151.21775880000004,
+                460.8136526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:1118:1122",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                291.99925939999997,
+                452.17607840000005,
+                316.9057593999999,
+                460.8136526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:1299:1303",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                214.16146560000004,
+                430.25807840000004,
+                239.06796560000006,
+                438.8956526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:1330:1334",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                342.0413991999999,
+                430.25807840000004,
+                366.9478991999998,
+                438.8956526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:1644:1648",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                301.44380420000005,
+                322.07507840000005,
+                326.3503042,
+                330.7126526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:1977:1981",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                198.30899999999997,
+                182.05065919999998,
+                223.2155,
+                191.92619399999998
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "20:2144:2148",
+          "pageIndex": 20,
+          "pageLabel": "21",
+          "position": {
+            "pageIndex": 20,
+            "rects": [
+              [
+                198.30899999999997,
+                108.6576592,
+                223.2155,
+                118.53319400000001
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "21:330:334",
+          "pageIndex": 21,
+          "pageLabel": "22",
+          "position": {
+            "pageIndex": 21,
+            "rects": [
+              [
+                133.168,
+                587.9356592,
+                158.07450000000003,
+                597.811194
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "21:642:646",
+          "pageIndex": 21,
+          "pageLabel": "22",
+          "position": {
+            "pageIndex": 21,
+            "rects": [
+              [
+                133.168,
+                514.5426592,
+                158.07450000000003,
+                524.418194
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "21:1774:1778",
+          "pageIndex": 21,
+          "pageLabel": "22",
+          "position": {
+            "pageIndex": 21,
+            "rects": [
+              [
+                435.9389041999995,
+                274.5370783999999,
+                460.84540419999945,
+                283.1746525999999
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "21:1835:1839",
+          "pageIndex": 21,
+          "pageLabel": "22",
+          "position": {
+            "pageIndex": 21,
+            "rects": [
+              [
+                319.60562400000003,
+                263.5780783999999,
+                344.512124,
+                272.2156525999999
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "21:2011:2015",
+          "pageIndex": 21,
+          "pageLabel": "22",
+          "position": {
+            "pageIndex": 21,
+            "rects": [
+              [
+                261.9520578000001,
+                241.6600783999999,
+                286.8585578,
+                250.2976525999999
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "22:568:572",
+          "pageIndex": 22,
+          "pageLabel": "23",
+          "position": {
+            "pageIndex": 22,
+            "rects": [
+              [
+                114.942,
+                463.10207840000004,
+                139.8485,
+                471.7396526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "22:903:907",
+          "pageIndex": 22,
+          "pageLabel": "23",
+          "position": {
+            "pageIndex": 22,
+            "rects": [
+              [
+                114.942,
+                359.47007840000003,
+                139.8485,
+                368.1076526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "22:1052:1056",
+          "pageIndex": 22,
+          "pageLabel": "23",
+          "position": {
+            "pageIndex": 22,
+            "rects": [
+              [
+                114.942,
+                331.8550828,
+                139.8485,
+                341.5064558
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "22:1348:1352",
+          "pageIndex": 22,
+          "pageLabel": "23",
+          "position": {
+            "pageIndex": 22,
+            "rects": [
+              [
+                314.0166054,
+                287.1980784,
+                338.92310539999994,
+                295.83565259999995
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "22:1609:1613",
+          "pageIndex": 22,
+          "pageLabel": "23",
+          "position": {
+            "pageIndex": 22,
+            "rects": [
+              [
+                152.9148338,
+                197.29707839999998,
+                177.82133380000002,
+                206.323194
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "22:1817:1821",
+          "pageIndex": 22,
+          "pageLabel": "23",
+          "position": {
+            "pageIndex": 22,
+            "rects": [
+              [
+                479.09578799999974,
+                162.9040784,
+                504.0022879999997,
+                171.8604558
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "23:303:307",
+          "pageIndex": 23,
+          "pageLabel": "24",
+          "position": {
+            "pageIndex": 23,
+            "rects": [
+              [
+                220.272,
+                587.6970784,
+                245.1785,
+                596.3346526
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "23:407:411",
+          "pageIndex": 23,
+          "pageLabel": "24",
+          "position": {
+            "pageIndex": 23,
+            "rects": [
+              [
+                220.272,
+                538.1640828,
+                245.1785,
+                547.8164558
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "25:1114:1118",
+          "pageIndex": 25,
+          "pageLabel": "26",
+          "position": {
+            "pageIndex": 25,
+            "rects": [
+              [
+                457.4680827999998,
+                317.9790784,
+                482.37458279999976,
+                326.61665259999995
+              ]
+            ]
+          },
+          "text": "LoRA",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "lora-16",
+      "pair": "lora",
+      "sourceKey": "9STD6HQT",
+      "status": "unsupported",
+      "reason": "Only native highlights and underlines are supported.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": []
+    },
+    {
+      "id": "attention-01",
+      "pair": "attention",
+      "sourceKey": "AAH4GVH5",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "0:0:25",
+      "candidates": [
+        {
+          "id": "0:0:25",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                211.488,
+                675.3549813999999,
+                399.89333760000005,
+                690.831626
+              ]
+            ]
+          },
+          "text": "Attention Is All You Need",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-02",
+      "pair": "attention",
+      "sourceKey": "HTWUM24Z",
+      "status": "unique candidate",
+      "reason": "One occurrence matches the complete available context; alternatives are retained.",
+      "truncated": false,
+      "recommendedID": "0:43:55",
+      "candidates": [
+        {
+          "id": "0:43:55",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                139.379,
+                585.2400784,
+                193.33644160000003,
+                593.8776526
+              ]
+            ]
+          },
+          "text": "Google Brain",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        },
+        {
+          "id": "0:92:104",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                242.932,
+                585.2400784,
+                296.88944159999994,
+                593.8776526
+              ]
+            ]
+          },
+          "text": "Google Brain",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "0:342:354",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                398.005,
+                535.2430784000001,
+                451.96244159999986,
+                543.8806526000001
+              ]
+            ]
+          },
+          "text": "Google Brain",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "0:2489:2501",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                216.54671840000012,
+                91.18425760000001,
+                265.10874080000013,
+                101.0127008
+              ]
+            ]
+          },
+          "text": "Google Brain",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-03",
+      "pair": "attention",
+      "sourceKey": "ZUN7VL95",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "0:283:304",
+      "candidates": [
+        {
+          "id": "0:283:304",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                244.575,
+                535.2430784000001,
+                330.8212281999998,
+                543.8806526000001
+              ]
+            ]
+          },
+          "text": "University of Toronto",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-04",
+      "pair": "attention",
+      "sourceKey": "MMTH2AJB",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "0:1023:1032",
+      "candidates": [
+        {
+          "id": "0:1023:1032",
+          "pageIndex": 0,
+          "pageLabel": "1",
+          "position": {
+            "pageIndex": 0,
+            "rects": [
+              [
+                305.04313457199976,
+                344.42407840000004,
+                352.39736489199976,
+                353.0616526
+              ]
+            ]
+          },
+          "text": "28.4 BLEU",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-05",
+      "pair": "attention",
+      "sourceKey": "CEEIDR8F",
+      "status": "not found",
+      "reason": "No exact or conservatively normalized quote on a single target page.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": []
+    },
+    {
+      "id": "attention-06",
+      "pair": "attention",
+      "sourceKey": "VQAD96RF",
+      "status": "not found",
+      "reason": "No exact or conservatively normalized quote on a single target page.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": []
+    },
+    {
+      "id": "attention-07",
+      "pair": "attention",
+      "sourceKey": "UK8EWEQE",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "1:296:351",
+      "candidates": [
+        {
+          "id": "1:296:351",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                108,
+                675.1580783999999,
+                330.5246336000001,
+                683.7956525999999
+              ]
+            ]
+          },
+          "text": "constraint of sequential computation, however, remains.",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-08",
+      "pair": "attention",
+      "sourceKey": "H95M7A8J",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "1:1052:1084",
+      "candidates": [
+        {
+          "id": "1:1052:1084",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                314.69406219999996,
+                576.9260784,
+                452.35726899999963,
+                585.5636526000001
+              ]
+            ]
+          },
+          "text": "twelve hours on eight P100 GPUs.",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-09",
+      "pair": "attention",
+      "sourceKey": "GQH64759",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "1:2683:2701",
+      "candidates": [
+        {
+          "id": "1:2683:2701",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                125.9328,
+                296.01036320000003,
+                226.0934656,
+                306.758088
+              ]
+            ]
+          },
+          "text": "Model Architecture",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-10",
+      "pair": "attention",
+      "sourceKey": "IS8M7UFL",
+      "status": "unique candidate",
+      "reason": "One occurrence matches the complete available context; alternatives are retained.",
+      "truncated": false,
+      "recommendedID": "2:1094:1122",
+      "candidates": [
+        {
+          "id": "2:1094:1122",
+          "pageIndex": 2,
+          "pageLabel": "3",
+          "position": {
+            "pageIndex": 2,
+            "rects": [
+              [
+                137.88780000000003,
+                127.6258166,
+                263.8848022000001,
+                136.582194
+              ]
+            ]
+          },
+          "text": "Scaled Dot-Product Attention",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        },
+        {
+          "id": "2:1158:1186",
+          "pageIndex": 2,
+          "pageLabel": "3",
+          "position": {
+            "pageIndex": 2,
+            "rects": [
+              [
+                241.892007144,
+                102.57507840000001,
+                363.2854911359996,
+                111.2126526
+              ]
+            ]
+          },
+          "text": "Scaled Dot-Product Attention",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:0:28",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                147.783,
+                711.0930784,
+                266.2183888,
+                719.7306526
+              ]
+            ]
+          },
+          "text": "Scaled Dot-Product Attention",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:68:96",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                174.70239652800004,
+                507.8290784,
+                297.35595016799994,
+                516.4666526
+              ]
+            ]
+          },
+          "text": "Scaled Dot-Product Attention",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-11",
+      "pair": "attention",
+      "sourceKey": "NYVHASCK",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "3:962:989",
+      "candidates": [
+        {
+          "id": "3:962:989",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                108,
+                299.8010784,
+                216.20379860000006,
+                308.43865259999995
+              ]
+            ]
+          },
+          "text": "matrix multiplication code.",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-12",
+      "pair": "attention",
+      "sourceKey": "N6HNRL46",
+      "status": "unique candidate",
+      "reason": "One occurrence matches the complete available context; alternatives are retained.",
+      "truncated": false,
+      "recommendedID": "3:29:49",
+      "candidates": [
+        {
+          "id": "1:1876:1896",
+          "pageIndex": 1,
+          "pageLabel": "2",
+          "position": {
+            "pageIndex": 1,
+            "rects": [
+              [
+                403.57778912399954,
+                439.7240784,
+                492.4635085679993,
+                448.36165259999996
+              ]
+            ]
+          },
+          "text": "Multi-Head Attention",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:29:49",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                363.586,
+                711.0930784,
+                450.2008443999997,
+                719.7306526
+              ]
+            ]
+          },
+          "text": "Multi-Head Attention",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        },
+        {
+          "id": "3:106:126",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                335.3206292399998,
+                507.8290784,
+                424.58233720799956,
+                516.4666526
+              ]
+            ]
+          },
+          "text": "Multi-Head Attention",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        },
+        {
+          "id": "3:1392:1412",
+          "pageIndex": 3,
+          "pageLabel": "4",
+          "position": {
+            "pageIndex": 3,
+            "rects": [
+              [
+                137.88780000000003,
+                217.54681660000003,
+                230.5897930000001,
+                226.503194
+              ]
+            ]
+          },
+          "text": "Multi-Head Attention",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-13",
+      "pair": "attention",
+      "sourceKey": "6FEYWPFD",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "5:2142:2159",
+      "candidates": [
+        {
+          "id": "5:2142:2159",
+          "pageIndex": 5,
+          "pageLabel": "6",
+          "position": {
+            "pageIndex": 5,
+            "rects": [
+              [
+                144.24393880000002,
+                260.8320784,
+                209.52885660000007,
+                269.46965259999996
+              ]
+            ]
+          },
+          "text": "three desiderata.",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-14",
+      "pair": "attention",
+      "sourceKey": "8YHRBLC3",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "7:1245:1260",
+      "candidates": [
+        {
+          "id": "7:1245:1260",
+          "pageIndex": 7,
+          "pageLabel": "8",
+          "position": {
+            "pageIndex": 7,
+            "rects": [
+              [
+                108,
+                394.4740828,
+                181.14540920000005,
+                404.195194
+              ]
+            ]
+          },
+          "text": "Label Smoothing",
+          "method": "exact",
+          "contextMatches": false,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-15",
+      "pair": "attention",
+      "sourceKey": "KVIT3QJB",
+      "status": "unique candidate",
+      "reason": "One text occurrence; verify the PDF position.",
+      "truncated": false,
+      "recommendedID": "6:122:182",
+      "candidates": [
+        {
+          "id": "6:122:182",
+          "pageIndex": 6,
+          "pageLabel": "7",
+          "position": {
+            "pageIndex": 6,
+            "rects": [
+              [
+                202.22105599999998,
+                696.9760784,
+                437.56755579999964,
+                705.9324558000001
+              ]
+            ]
+          },
+          "text": "We plan to investigate this approach further in future work.",
+          "method": "exact",
+          "contextMatches": true,
+          "geometryError": null
+        }
+      ]
+    },
+    {
+      "id": "attention-16",
+      "pair": "attention",
+      "sourceKey": "K7K3GNW3",
+      "status": "unsupported",
+      "reason": "Only native highlights and underlines are supported.",
+      "truncated": false,
+      "recommendedID": null,
+      "candidates": []
+    }
+  ]
+}

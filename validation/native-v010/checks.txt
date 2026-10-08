@@ -1,0 +1,92 @@
+
+> margincarry@0.1.0 check
+> biome check --error-on-warnings . && npm run typecheck && npm test && npm run build
+
+Checked 46 files in 63ms. No fixes applied.
+
+> margincarry@0.1.0 typecheck
+> tsc --noEmit
+
+
+> margincarry@0.1.0 test
+> node --test tests/*.test.ts
+
+✔ analysis cancellation never produces an applicable plan (0.799042ms)
+✔ extraction failure gives an outcome for each source without a false unique candidate (2.89325ms)
+✔ PDF change during analysis invalidates every proposal (0.183666ms)
+✔ the documented build works in a path containing spaces and non-ASCII characters (265.687167ms)
+✔ reader lastRead, sync version and unordered tags do not invalidate a document (2.609208ms)
+✔ changed content, geometry, tags or dateModified still invalidate undo (0.150125ms)
+✔ English is the fallback and Russian host locales select Russian (1.565167ms)
+✔ both locales contain the same interpolation parameters (0.808041ms)
+✔ every static XHTML localization key exists in both locales (7.996834ms)
+✔ project-owned static and dynamic diagnostics are translated without changing quoted data (0.707708ms)
+✔ identical document gives the independent complete rectangle (18.101333ms)
+✔ inserting several pages never uses the old page as identity evidence (0.367292ms)
+✔ reflow preserves full multi-line selection and maps whitespace back (0.250083ms)
+✔ moving a paragraph changes coordinates while retaining the quote (0.241208ms)
+✔ indistinguishable repeats remain multiple candidates (0.298375ms)
+✔ full prefix and suffix distinguish repeats but retain alternatives (2.2835ms)
+✔ a short frequent quote includes every occurrence up to the disclosed limit (0.711542ms)
+✔ exact occurrence does not hide normalized alternatives elsewhere (0.397208ms)
+✔ deleted quote is not found (0.193584ms)
+✔ numbers, punctuation, negation, case and accents are significant (1.398417ms)
+✔ canonical combining forms and surrogate pairs preserve UTF-16 source offsets (0.260083ms)
+✔ a partial ligature must not silently highlight a whole glyph (0.247333ms)
+✔ multi-page and discontinuous highlights are explicitly unsupported (0.68125ms)
+✔ source quote/geometry mismatch cannot transfer a partial source (0.155625ms)
+✔ unsupported type is reported before extraction (0.062875ms)
+✔ missing source extraction and missing target geometry are processing errors (0.205167ms)
+✔ no text layer is not found, not a fabricated match (0.133833ms)
+✔ two columns keep separate line boxes (0.073041ms)
+✔ PDF coordinates preserve a non-zero crop box; viewport rotation is outside matching (0.081709ms)
+✔ rotated or isolated glyphs and partial extraction cannot produce ready geometry (0.137917ms)
+✔ the page stream does not split UTF-16 surrogate pairs when assigning glyph offsets (0.038334ms)
+✔ a normalized substring cannot expand into extra combining marks or a ZWJ sequence (0.329167ms)
+✔ invalid grapheme matches do not consume the valid-candidate limit (0.282709ms)
+✔ soft undo hides only owned keys in matching readers after database commit (4.247583ms)
+✔ failed undo transaction leaves reader annotations visible (0.356083ms)
+✔ reader refresh failure reports committed Trash state instead of complete success (3.240166ms)
+✔ extraction reloads a reader holding the previous revision of a replaced file (19.690584ms)
+✔ a file change during reload invalidates extraction (3.314291ms)
+✔ preview refuses a replacement with unchanged size and mtime (3.333875ms)
+✔ a reader reloaded outside MarginCarry cannot reuse the previous analysis geometry (1.502458ms)
+✔ cancelled extraction does not reload the reader (1.217875ms)
+✔ copy retains comment, color and tags and uses actual new text and a fresh key (4.873958ms)
+✔ changed file invalidates the analyzed plan (0.426625ms)
+✔ changed original annotation invalidates the plan (0.483458ms)
+✔ concurrent clicks and repeated application create one set of copies (0.382542ms)
+✔ a write error rolls back the whole set and recovers a failed journal (0.466708ms)
+✔ different source keys with identical quotes remain independent (0.948458ms)
+✔ journal blocks reapplication after restart or recalculation (0.802708ms)
+✔ one source cannot silently combine multiple quote occurrences (0.163209ms)
+✔ a candidate with no reliable geometry cannot be written (0.158667ms)
+✔ undo trashes only the operation copies (0.984292ms)
+✔ edited copy stops undo before anything is removed (0.224083ms)
+✔ prepared journal with durable saved fingerprints recovers committed copies (0.205667ms)
+✔ a final journal failure after commit recovers without allowing duplicate application (0.208166ms)
+✔ a failed final undo journal update recovers the already trashed copies (0.26625ms)
+✔ journal failure inside undo rolls back deletion and recovers committed state (0.250583ms)
+✔ a file changed while writing rolls back every newly created annotation (0.195292ms)
+✔ window initialization cannot recover the journal of an active apply (0.313875ms)
+✔ window initialization cannot recover an active undo (0.674542ms)
+✔ public recovery locks out apply and releases its lock after a read error (0.244416ms)
+✔ cancel while first previews load leaves no applicable plan or stale image (15.388667ms)
+✔ direction change clears the visible review count (en) (0.926458ms)
+✔ direction change clears the visible review count (ru) (1.217208ms)
+✔ switching language preserves accepted locations and translates dynamic and accessible text (2.179291ms)
+✔ the initial Russian review count is localized before analysis (0.173375ms)
+ℹ tests 65
+ℹ suites 0
+ℹ pass 65
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 413.405541
+
+> margincarry@0.1.0 build
+> node scripts/build.mjs
+
+dist/margincarry-0.1.0.xpi
+SHA-256 2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7

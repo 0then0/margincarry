@@ -1,0 +1,245 @@
+{
+  "method": "Installed product native API applies and Undo, actual CUA live desktop screenshots; seeded corpus source type temporarily switched for underline, then restored.",
+  "operations": [
+    {
+      "id": "0:1691:1695",
+      "type": "highlight",
+      "position": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            417.55823999999956,
+            328.6790784000002,
+            441.4684799999995,
+            337.31665260000017
+          ]
+        ]
+      },
+      "sourceKey": "T6ZADEB5",
+      "created": [
+        {
+          "key": "EWDC2XBA",
+          "sourceKey": "T6ZADEB5",
+          "fingerprint": "{\"key\":\"EWDC2XBA\",\"itemType\":\"annotation\",\"parentItem\":\"357SMABY\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"LoRA\",\"annotationComment\":\"Corpus case lora-15\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|001454|00454\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[417.55823999999956,328.6790784000002,441.4684799999995,337.31665260000017]]}\",\"tags\":[{\"tag\":\"MarginCarry corpus\"},{\"tag\":\"lora-15\"}],\"relations\":{},\"dateAdded\":\"2026-10-08T05:58:28Z\",\"dateModified\":\"2026-10-08T05:58:28Z\"}"
+        }
+      ],
+      "undo": {
+        "id": "8f110cfa-21f3-438f-9d7d-d3df037c63ea",
+        "count": 1
+      },
+      "targetRestored": true,
+      "sourceTypeRestoredTo": "underline",
+      "sourceDateModifiedRestoredTo": "2026-10-07 20:31:16"
+    },
+    {
+      "id": "0:1691:1695",
+      "type": "underline",
+      "position": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            417.55823999999956,
+            328.6790784000002,
+            441.4684799999995,
+            337.31665260000017
+          ]
+        ]
+      },
+      "sourceKey": "T6ZADEB5",
+      "created": [
+        {
+          "key": "24ZX9F8D",
+          "sourceKey": "T6ZADEB5",
+          "fingerprint": "{\"key\":\"24ZX9F8D\",\"itemType\":\"annotation\",\"parentItem\":\"357SMABY\",\"annotationType\":\"underline\",\"annotationAuthorName\":\"\",\"annotationText\":\"LoRA\",\"annotationComment\":\"Corpus case lora-15\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|001454|00454\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[417.55823999999956,328.6790784000002,441.4684799999995,337.31665260000017]]}\",\"tags\":[{\"tag\":\"MarginCarry corpus\"},{\"tag\":\"lora-15\"}],\"relations\":{},\"dateAdded\":\"2026-10-08T05:58:59Z\",\"dateModified\":\"2026-10-08T05:58:59Z\"}"
+        }
+      ],
+      "undo": {
+        "id": "084ee5d0-cb7c-484c-97a0-a699712ea245",
+        "count": 1
+      },
+      "targetRestored": true,
+      "sourceTypeRestoredTo": "underline",
+      "sourceDateModifiedRestoredTo": "2026-10-07 20:31:16"
+    },
+    {
+      "id": "5:4305:4309",
+      "type": "highlight",
+      "position": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            157.3129999999999,
+            59.291082799999785,
+            178.73860573999988,
+            71.46145579999978
+          ]
+        ]
+      },
+      "sourceKey": "T6ZADEB5",
+      "created": [
+        {
+          "key": "8SHVGJ36",
+          "sourceKey": "T6ZADEB5",
+          "fingerprint": "{\"key\":\"8SHVGJ36\",\"itemType\":\"annotation\",\"parentItem\":\"357SMABY\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"LoRA\",\"annotationComment\":\"Corpus case lora-15\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"6\",\"annotationSortIndex\":\"00005|003604|00720\",\"annotationPosition\":\"{\\\"pageIndex\\\":5,\\\"rects\\\":[[157.3129999999999,59.291082799999785,178.73860573999988,71.46145579999978]]}\",\"tags\":[{\"tag\":\"MarginCarry corpus\"},{\"tag\":\"lora-15\"}],\"relations\":{},\"dateAdded\":\"2026-10-08T05:59:25Z\",\"dateModified\":\"2026-10-08T05:59:25Z\"}"
+        }
+      ],
+      "undo": {
+        "id": "f9b5f9bb-d9dd-4315-899c-83c846051330",
+        "count": 1
+      },
+      "targetRestored": true,
+      "sourceTypeRestoredTo": "underline",
+      "sourceDateModifiedRestoredTo": "2026-10-07 20:31:16"
+    },
+    {
+      "id": "5:4305:4309",
+      "type": "underline",
+      "position": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            157.3129999999999,
+            59.291082799999785,
+            178.73860573999988,
+            71.46145579999978
+          ]
+        ]
+      },
+      "sourceKey": "T6ZADEB5",
+      "created": [
+        {
+          "key": "CRS4T39D",
+          "sourceKey": "T6ZADEB5",
+          "fingerprint": "{\"key\":\"CRS4T39D\",\"itemType\":\"annotation\",\"parentItem\":\"357SMABY\",\"annotationType\":\"underline\",\"annotationAuthorName\":\"\",\"annotationText\":\"LoRA\",\"annotationComment\":\"Corpus case lora-15\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"6\",\"annotationSortIndex\":\"00005|003604|00720\",\"annotationPosition\":\"{\\\"pageIndex\\\":5,\\\"rects\\\":[[157.3129999999999,59.291082799999785,178.73860573999988,71.46145579999978]]}\",\"tags\":[{\"tag\":\"MarginCarry corpus\"},{\"tag\":\"lora-15\"}],\"relations\":{},\"dateAdded\":\"2026-10-08T05:59:59Z\",\"dateModified\":\"2026-10-08T05:59:59Z\"}"
+        }
+      ],
+      "undo": {
+        "id": "ff8fad89-e0b2-42ea-90c3-dd981c005525",
+        "count": 1
+      },
+      "targetRestored": true,
+      "sourceTypeRestoredTo": "underline",
+      "sourceDateModifiedRestoredTo": "2026-10-07 20:31:16"
+    },
+    {
+      "id": "5:4332:4336",
+      "type": "highlight",
+      "position": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            271.4519999999998,
+            59.291082799999785,
+            292.87760573999986,
+            71.46145579999978
+          ]
+        ]
+      },
+      "sourceKey": "T6ZADEB5",
+      "created": [
+        {
+          "key": "P5F3QAUW",
+          "sourceKey": "T6ZADEB5",
+          "fingerprint": "{\"key\":\"P5F3QAUW\",\"itemType\":\"annotation\",\"parentItem\":\"357SMABY\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"LoRA\",\"annotationComment\":\"Corpus case lora-15\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"6\",\"annotationSortIndex\":\"00005|003625|00720\",\"annotationPosition\":\"{\\\"pageIndex\\\":5,\\\"rects\\\":[[271.4519999999998,59.291082799999785,292.87760573999986,71.46145579999978]]}\",\"tags\":[{\"tag\":\"MarginCarry corpus\"},{\"tag\":\"lora-15\"}],\"relations\":{},\"dateAdded\":\"2026-10-08T06:00:31Z\",\"dateModified\":\"2026-10-08T06:00:31Z\"}"
+        }
+      ],
+      "undo": {
+        "id": "6a76a4c7-186b-457b-9853-408dcbef1e82",
+        "count": 1
+      },
+      "targetRestored": true,
+      "sourceTypeRestoredTo": "underline",
+      "sourceDateModifiedRestoredTo": "2026-10-07 20:31:16"
+    },
+    {
+      "id": "5:4332:4336",
+      "type": "underline",
+      "position": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            271.4519999999998,
+            59.291082799999785,
+            292.87760573999986,
+            71.46145579999978
+          ]
+        ]
+      },
+      "sourceKey": "T6ZADEB5",
+      "created": [
+        {
+          "key": "GUEEZ2YR",
+          "sourceKey": "T6ZADEB5",
+          "fingerprint": "{\"key\":\"GUEEZ2YR\",\"itemType\":\"annotation\",\"parentItem\":\"357SMABY\",\"annotationType\":\"underline\",\"annotationAuthorName\":\"\",\"annotationText\":\"LoRA\",\"annotationComment\":\"Corpus case lora-15\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"6\",\"annotationSortIndex\":\"00005|003625|00720\",\"annotationPosition\":\"{\\\"pageIndex\\\":5,\\\"rects\\\":[[271.4519999999998,59.291082799999785,292.87760573999986,71.46145579999978]]}\",\"tags\":[{\"tag\":\"MarginCarry corpus\"},{\"tag\":\"lora-15\"}],\"relations\":{},\"dateAdded\":\"2026-10-08T06:01:05Z\",\"dateModified\":\"2026-10-08T06:01:05Z\"}"
+        }
+      ],
+      "undo": {
+        "id": "a7a55edd-1e7f-4d59-9d28-e14eb7c47b59",
+        "count": 1
+      },
+      "targetRestored": true,
+      "sourceTypeRestoredTo": "underline",
+      "sourceDateModifiedRestoredTo": "2026-10-07 20:31:16"
+    },
+    {
+      "id": "7:2107:2111",
+      "type": "highlight",
+      "position": {
+        "pageIndex": 7,
+        "rects": [
+          [
+            263.52650506875,
+            239.28212242125,
+            278.82727054875,
+            246.27795907125
+          ]
+        ]
+      },
+      "sourceKey": "T6ZADEB5",
+      "created": [
+        {
+          "key": "UPSEAM78",
+          "sourceKey": "T6ZADEB5",
+          "fingerprint": "{\"key\":\"UPSEAM78\",\"itemType\":\"annotation\",\"parentItem\":\"357SMABY\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"LoRA\",\"annotationComment\":\"Corpus case lora-15\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"8\",\"annotationSortIndex\":\"00007|001776|00545\",\"annotationPosition\":\"{\\\"pageIndex\\\":7,\\\"rects\\\":[[263.52650506875,239.28212242125,278.82727054875,246.27795907125]]}\",\"tags\":[{\"tag\":\"MarginCarry corpus\"},{\"tag\":\"lora-15\"}],\"relations\":{},\"dateAdded\":\"2026-10-08T06:01:32Z\",\"dateModified\":\"2026-10-08T06:01:32Z\"}"
+        }
+      ],
+      "undo": {
+        "id": "8ad34d5b-847a-4f28-92ae-592947de4150",
+        "count": 1
+      },
+      "targetRestored": true,
+      "sourceTypeRestoredTo": "underline",
+      "sourceDateModifiedRestoredTo": "2026-10-07 20:31:16"
+    },
+    {
+      "id": "7:2107:2111",
+      "type": "underline",
+      "position": {
+        "pageIndex": 7,
+        "rects": [
+          [
+            263.52650506875,
+            239.28212242125,
+            278.82727054875,
+            246.27795907125
+          ]
+        ]
+      },
+      "sourceKey": "T6ZADEB5",
+      "created": [
+        {
+          "key": "GLPIEJR7",
+          "sourceKey": "T6ZADEB5",
+          "fingerprint": "{\"key\":\"GLPIEJR7\",\"itemType\":\"annotation\",\"parentItem\":\"357SMABY\",\"annotationType\":\"underline\",\"annotationAuthorName\":\"\",\"annotationText\":\"LoRA\",\"annotationComment\":\"Corpus case lora-15\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"8\",\"annotationSortIndex\":\"00007|001776|00545\",\"annotationPosition\":\"{\\\"pageIndex\\\":7,\\\"rects\\\":[[263.52650506875,239.28212242125,278.82727054875,246.27795907125]]}\",\"tags\":[{\"tag\":\"MarginCarry corpus\"},{\"tag\":\"lora-15\"}],\"relations\":{},\"dateAdded\":\"2026-10-08T06:02:07Z\",\"dateModified\":\"2026-10-08T06:02:07Z\"}"
+        }
+      ],
+      "undo": {
+        "id": "ddb0ff60-dd42-46f1-9e26-583754cfa30f",
+        "count": 1
+      },
+      "targetRestored": true,
+      "sourceTypeRestoredTo": "underline",
+      "sourceDateModifiedRestoredTo": "2026-10-07 20:31:16"
+    }
+  ]
+}

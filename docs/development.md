@@ -44,6 +44,8 @@ Native checks modify disposable test data only. Never run the harness in a norma
 4. Check that this profile's data directory is `.local/data`. The harness starts only when both paths match exactly. If local developer registration does not load it, install `.local/harness.xpi` through **Tools → Plugins** in this profile and restart Zotero. Do not change signature or security settings.
 5. After startup, `.local/harness-ready.json` contains the verified profile path. `scripts/host-request.mjs` refuses a different profile. Run host checks only after this file appears.
 
+Requests to one profile must run sequentially. The bridge refuses a concurrent request; if it times out, quit the isolated host before removing its retained `request.lock`.
+
 The harness polls a local command file and runs developer scripts in Zotero's privileged environment. It is restricted to the isolated profile and is never included in the product XPI. `scripts/host/*.js` export `run()` for this bridge; they are validation tools, not a standalone MarginCarry CLI.
 
 ## Real revision corpus
@@ -56,7 +58,7 @@ node scripts/host-request.mjs scripts/host/install.js
 node scripts/host-request.mjs scripts/host/load.js
 node scripts/host-request.mjs scripts/host/seed-corpus.js
 node scripts/host-request.mjs scripts/host/run-corpus.js
-python3 scripts/score-corpus.py
+python3 scripts/score-isolated-corpus.py "${MARGINCARRY_REPORT_ROOT:-${MARGINCARRY_HOST_ROOT:-.local}/reports}"
 node scripts/host-request.mjs scripts/host/apply-corpus.js
 ```
 
@@ -74,7 +76,7 @@ node scripts/host-request.mjs scripts/host/undo-corpus.js
 
 `verify-restart` checks copy fingerprints and repeat protection. `undo-corpus` edits one disposable copy and checks that the conflict removes nothing. It then restores only that fixture copy, including `dateModified`, to test successful undo separately. The product never restores or discards user edits this way.
 
-Reports go to `validation/host-*.json`. The base CI neither downloads the corpus nor launches Zotero. Without a running host, these checks must not be reported as executed.
+Reports go to `${MARGINCARRY_HOST_ROOT:-.local}/reports` by default. Set `MARGINCARRY_REPORT_ROOT` to choose a separate output directory. Corpus IDs/plans and stream exports use `MARGINCARRY_HOST_ROOT`; PDF downloads remain shared, hash-verified inputs under `.local/corpus`. Frozen public reports are never the default destination. The base CI neither downloads the corpus nor launches Zotero. Without a running host, these checks must not be reported as executed.
 
 ## Independent oracle and geometry fixtures
 
@@ -109,7 +111,7 @@ node scripts/host-request.mjs scripts/host/export-streams.js
 node scripts/evaluate-reanchor.mjs
 ```
 
-This requires an existing `.local/corpus-plans.json` with original context. Full native text streams remain in ignored `.local/native-corpus.json`; only selected-case evaluation results enter the repository. See [related work](related-work.md).
+This requires an existing `corpus-plans.json` with original context in the selected host root. `evaluate-reanchor.mjs` uses the same host/report roots as the bridge. Full text streams and fresh evaluation reports remain in ignored `.local/`; only deliberately frozen selected-case evidence belongs in `validation/`. See [related work](related-work.md).
 
 ## UI verification
 
@@ -118,6 +120,57 @@ Select `MarginCarry validation: page-insertion` or both of its attachments in th
 Verify both Language choices, including error text and confirmation prompts. While the first previews load, Cancel must discard the plan. Accept a proposal and change direction: the review count must become zero and Apply must be disabled.
 
 [Engineering report](engineering-report.md) distinguishes native API and UI evidence. API calls alone do not prove that a person could complete the interface workflow.
+
+## Published v0.1.0 reader validation
+
+The [October 7 report](native-v010-validation.md) identifies the published XPI by hash and separates reader UI, native API, and print-renderer evidence. Its artifacts are in `validation/native-v010/`; do not overwrite them during reproduction. No dependency installation is needed with the existing project environment.
+
+Create fresh isolated directories and copy the frozen case plan:
+
+```sh
+export MARGINCARRY_HOST_ROOT=.local/native-reproduction
+export MARGINCARRY_REPORT_ROOT=.local/native-reproduction/reports
+node scripts/prepare-host.mjs
+mkdir -p "$MARGINCARRY_REPORT_ROOT"
+cp validation/native-v010/cases.json "$MARGINCARRY_REPORT_ROOT/cases.json"
+```
+
+Launch official Zotero 10.0.6 with `-no-remote -profile "$PWD/$MARGINCARRY_HOST_ROOT/profile"`. Install or enable the generated harness and install the **downloaded published** v0.1.0 XPI through this profile's normal Plugins UI. Preserve signature and security settings. Verify the environment, then import only PDFs and existing target notes:
+
+```sh
+node scripts/host-request.mjs scripts/host/native-validation.js environment
+node scripts/host-request.mjs scripts/host/seed-native.js
+```
+
+The environment action refuses a non-isolated profile/data directory or a different/inactive published XPI. `seed-native.js` refuses an existing fixture ID file. It creates no source annotation items. In the actual reader, create every source from the frozen plan before analysis. The recorded run used Find in Document and Control-Alt-1/2; exercise actual mouse selections as well to address its remaining limitation. For `Google Brain`, select the first author's affiliation, not an arbitrary matching occurrence. Keep unsupported or unsuccessful selections in the report.
+
+Capture actual sources, retain their undecorated snapshot, and add preservation metadata only after UI creation:
+
+```sh
+node scripts/host-request.mjs scripts/host/native-validation.js capture
+cp "$MARGINCARRY_REPORT_ROOT/sources.json" "$MARGINCARRY_REPORT_ROOT/sources-ui.json"
+node scripts/host-request.mjs scripts/host/native-validation.js decorate
+node scripts/host-request.mjs scripts/host/native-validation.js capture
+node scripts/host-request.mjs scripts/host/native-validation.js analyze
+node scripts/host-request.mjs scripts/host/native-validation.js apply
+```
+
+The six positive cases use the independently frozen corresponding locations; the changed abstract remains not found. Quit and relaunch the same profile, then run `native-validation.js restart` and `native-validation.js undo` through the bridge. The latter tests an edited-copy conflict, verifies no partial mutation, restores only that disposable fixture, and separately tests successful Undo. These are native API stages; they do not substitute for actual dialog actions.
+
+For a separate UI operation, run `native-validation.js ui-before` after the API Undo, then use Tools → MarginCarry to analyze Attention, review `native-07` and Candidate 1 of `native-05`, accept them, and explicitly confirm two copies. Run `ui-after`; quit/relaunch, run `ui-restart`; perform a new UI analysis and attempted repeat, run `ui-repeat`; then confirm UI Undo and run `ui-undo`. The `ui-*` stages only read snapshots/journal. Record actual UI observations separately.
+
+For the programmatically seeded 32-case supplement and native geometry measurement:
+
+```sh
+node scripts/host-request.mjs scripts/host/seed-corpus.js
+node scripts/host-request.mjs scripts/host/run-corpus.js native-v010
+python3 scripts/score-isolated-corpus.py "$MARGINCARRY_REPORT_ROOT"
+node scripts/host-request.mjs scripts/host/native-validation.js geometry
+```
+
+The corpus fixture IDs/plans use the selected host root. All corpus stages, including the default `run-corpus.js` action, use the selected report root. `score-isolated-corpus.py` runs an exact copy of the unchanged scorer and gold in a temporary directory, keeping the original 2-point tolerance and historical reports intact. Native geometry uses the installed reader's pure range and print-renderer methods; it is a supplementary measurement, not a source UI selection or live desktop overlay test. Verify those four overlays separately in the real reader.
+
+`capture` records snapshots only; describe the actual source-creation method in separate UI observations. `ui-after` must be captured with the current harness before `ui-repeat`: repeat compares the complete target snapshot and journal and fails on any added copy or operation. Its fixed published SHA intentionally makes the stages unsuitable for claiming validation of a different product build.
 
 ## Release publication
 

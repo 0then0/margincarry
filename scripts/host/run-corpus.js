@@ -22,7 +22,7 @@ export async function run() {
     { target: api, ignoreCache: true },
   );
   Zotero.MarginCarryTest = api.MarginCarry;
-  const ids = await IOUtils.readJSON(`${hostRoot}/.local/corpus-ids.json`);
+  const ids = await IOUtils.readJSON(`${hostValidationRoot}/corpus-ids.json`);
   const corpus = await IOUtils.readJSON(`${hostRoot}/validation/corpus.json`);
   const AC = Zotero.getMainWindow().AbortController,
     plans = {},
@@ -62,8 +62,9 @@ export async function run() {
     Zotero.debug(`MarginCarry corpus ${pair} completed in ${Date.now() - started}ms`);
   }
   Zotero.MarginCarryCorpusPlans = plans;
-  await IOUtils.writeJSON(`${hostRoot}/.local/corpus-plans.json`, plans);
-  await IOUtils.writeJSON(`${hostRoot}/validation/corpus-results.json`, {
+  await IOUtils.writeJSON(`${hostValidationRoot}/corpus-plans.json`, plans);
+  const reportRoot = hostValidationReportRoot;
+  await IOUtils.writeJSON(`${reportRoot}/corpus-results.json`, {
     version: Zotero.version,
     os: Services.appinfo.OS,
     date: new Date().toISOString(),

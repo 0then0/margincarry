@@ -1,6 +1,8 @@
 # MarginCarry v0.1 engineering report
 
-Validation date: October 7, 2026. The local installable artifact is `dist/margincarry-0.1.0.xpi`, with a neighboring SHA-256 file. Release packages are available on [GitHub Releases](https://github.com/0then0/margincarry/releases/tag/v0.1.0). Source builds remain available through the documented build command.
+Latest validation: October 8, 2026, **PASS WITH RISKS for published v0.1.0 on Zotero 10.0.6**. Ordinary mouse-created annotations and all four live highlight/underline outliers were checked. Corpus and native lifecycle checks passed again; strict geometry discrepancies remain recorded. Harness fixes prevent mixed fixture roots, incomplete repeat checks, self-consistent metadata checks, and simultaneous requests. Product code/version are unchanged. See the [follow-up](native-v010-followup.md) and [October 7 evidence](native-v010-validation.md).
+
+The integration, corpus, and UI reports below describe the **historical Zotero 10.0.5 work** unless explicitly stated otherwise. Historical host XPI hashes differ from the published package; reports without a hash cannot establish its identity. They remain useful earlier evidence, not results of this new run. The final local `dist/margincarry-0.1.0.xpi` build is byte-identical to the published package; the harness remains excluded. Release packages are on [GitHub Releases](https://github.com/0then0/margincarry/releases/tag/v0.1.0).
 
 ## Implemented behavior
 
@@ -43,7 +45,7 @@ In this reader, basic page data's `partial: true` means unprocessed additional o
 
 Journal writes use a temporary file and flush. A prepared record precedes native changes; saved fingerprints become durable before database commit; a final status follows commit. Recovery distinguishes failed, committed, and interrupted undo. Ambiguous partial states stop further writes. Recovery cannot run concurrently with an active operation, including when a review window is closed and reopened. SQLite is never edited directly.
 
-## Verification environment and commands
+## Historical verification environment and commands
 
 The verified native host is **Zotero 10.0.5**, **macOS 15.7.9**, **Darwin 24.6**, **Apple Silicon**. Independent checks use **Node.js 24.21.0** and **npm 11.19.0**. Native validation uses separate `.local/profile` and `.local/data`; the ordinary user library is excluded. Other OSes and Zotero versions are not declared verified.
 
@@ -92,7 +94,7 @@ Overall: **23 positive cases with a correct proposal, 9 untransferred source cas
 
 The flagged IDs are `0:1691:1695`, `5:4305:4309`, `5:4332:4336`, and `7:2107:2111`. Horizontal boundaries identify the intended occurrences; vertical font-metric boundaries differ by more than two PDF points. Reviewing previews does not turn the strict corner test into a pass. None is recommended automatically. Gold and tolerance remain unchanged.
 
-## UI evidence
+## Historical UI evidence
 
 Native API tests and user interaction are separate evidence. The actual Zotero window workflow includes Tools → MarginCarry, direction, analysis, both actual previews, selecting two unique proposals, reviewing the set, confirming Apply, and opening the created highlight/underline in the native reader. Sidebar comments and tags are visible. The Language control was also exercised in Russian and English; both selected proposals survived switching back to English. See [review](images/review.png) and [reader](images/reader.png).
 
@@ -109,3 +111,5 @@ Only local PDFs of one item in a personal library and native continuous, one-pag
 The journal contains user quotes, comments, geometry, and paths, stored only in Zotero's data directory. The plugin introduces no account, remote processing, telemetry, or external API. Zotero sync and plugin updates remain governed by Zotero's settings.
 
 The language dropdown was replaced with two native buttons to avoid overlapping popup labels. The active language is highlighted and exposed through `aria-pressed`; both buttons are disabled during analysis and writes. Both choices were checked in Zotero after restarting to refresh cached chrome styles. See [language control](images/language.png).
+
+Current decision for the published artifact: **PASS WITH RISKS on the tested host**. The [October 8 follow-up](native-v010-followup.md) closes the previously blocked mouse-selection and live-overlay checks, while retaining the strict scorer failures and a supplementary line-end-hyphen discrepancy. The [new 10.0.6 report](native-v010-validation.md) records the successful keyboard-source and transfer lifecycle checks, explains native print geometry, and preserves all strict scorer failures. No confirmed product defect currently justifies v0.1.1; product code and version remain unchanged.

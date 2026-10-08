@@ -150,3 +150,6 @@ vite.config.ts.timestamp-*
 
 # Local Zotero, isolated profiles, research downloads and caches
 .local/
+
+# macOS Finder metadata
+.DS_Store

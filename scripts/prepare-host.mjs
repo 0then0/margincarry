@@ -4,9 +4,9 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const project = resolve('.');
-const root = resolve('.local'),
-  profile = resolve('.local/profile'),
-  data = resolve('.local/data');
+const root = resolve(process.env.MARGINCARRY_HOST_ROOT || '.local'),
+  profile = resolve(root, 'profile'),
+  data = resolve(root, 'data');
 try {
   await readFile(`${profile}/user.js`);
   throw new Error('Existing profile: refuse to overwrite its configuration.');

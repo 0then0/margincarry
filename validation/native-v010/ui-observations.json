@@ -1,0 +1,43 @@
+{
+  "method": "CUA accessibility observations during actual UI actions; persisted item evidence is in the ui-*.json snapshots. No recreated screenshots are presented as native desktop captures.",
+  "stages": [
+    {
+      "action": "Tools -> MarginCarry, swap Attention v1 -> v2, Find proposals",
+      "observed": "Annotations accounted for: 6. Review the PDF before accepting proposals."
+    },
+    {
+      "action": "Select native-07 and native-05; open four alternatives and explicitly choose Candidate 1 for native-05",
+      "observed": "Ashish Vaswani / Google Brain context; Selected to write: 2"
+    },
+    {
+      "action": "Apply selected",
+      "observed": "Apply 2 selected transfers to “attention-v2 · attention-v2.pdf”? Original annotations remain available. New copies receive new links."
+    },
+    {
+      "action": "Confirm OK",
+      "observed": "Created 2 native annotations. Transfer saved in the local journal."
+    },
+    {
+      "action": "Open created annotation",
+      "observed": "Native reader screenshot showed Google Brain highlighted below first author Ashish Vaswani."
+    },
+    {
+      "action": "Quit, relaunch same isolated profile, new UI analysis, accept native-07, confirm repeat",
+      "observed": "Source annotation 2CDHDTXS was already transferred. Undo that operation before copying it again."
+    },
+    {
+      "action": "Undo last transfer, confirm OK",
+      "observed": "Transfer undone: 2 copies moved to Trash."
+    }
+  ],
+  "failedUIActions": {
+    "operation": "Native mouse drag text selection",
+    "attempts": "Repeated exact-path app binding, direct launch and LaunchServices launch, window restore; no successful drag",
+    "error": "Computer Use server error -10005: noWindowsAvailable"
+  },
+  "exploratoryHarnessFailure": {
+    "operation": "Analyze both PDF pairs, then preview the first pair after loading the second",
+    "error": "Error: The loaded PDF changed. Run analysis again before reviewing or applying.",
+    "resolution": "Analyze and preview each pair before loading the next pair. Actual single-pair UI workflow passed. The exploratory cause was not established as a product defect."
+  }
+}

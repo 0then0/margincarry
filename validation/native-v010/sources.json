@@ -1,0 +1,610 @@
+{
+  "date": "2026-10-07T20:19:12.219Z",
+  "version": "10.0.6",
+  "os": "Darwin",
+  "architecture": "aarch64-gcc3",
+  "addonVersion": "0.1.0",
+  "installedSHA256": "2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7",
+  "profile": "<workspace>/.local/native-v010/profile",
+  "dataDirectory": "<workspace>/.local/native-v010/data",
+  "action": "capture",
+  "rows": [
+    {
+      "id": "native-01",
+      "pair": "attention",
+      "creationMethod": "Zotero reader UI: Find in Document, then Control-Alt-1/2; source item and geometry were not seeded",
+      "source": {
+        "key": "86IC6EWW",
+        "type": "highlight",
+        "text": "28.4 BLEU",
+        "comment": "Native UI case native-01: комментарий",
+        "color": "#ffd400",
+        "tags": [
+          "native-01",
+          "native-reader",
+          "текстовый тег"
+        ],
+        "position": {
+          "pageIndex": 0,
+          "rects": [
+            [
+              305.043,
+              344.67,
+              352.397,
+              353.308
+            ]
+          ]
+        },
+        "pageLabel": "1",
+        "external": false,
+        "fingerprint": "{\"key\":\"86IC6EWW\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"28.4 BLEU\",\"annotationComment\":\"Native UI case native-01: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000878|00438\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[305.043,344.67,352.397,353.308]]}\",\"tags\":[{\"tag\":\"native-01\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T19:51:55Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+      }
+    },
+    {
+      "id": "native-02",
+      "pair": "attention",
+      "creationMethod": "Zotero reader UI: Find in Document, then Control-Alt-1/2; source item and geometry were not seeded",
+      "source": {
+        "key": "7MYCDP6D",
+        "type": "highlight",
+        "text": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration.",
+        "comment": "Native UI case native-02: комментарий",
+        "color": "#ffd400",
+        "tags": [
+          "native-02",
+          "native-reader",
+          "текстовый тег"
+        ],
+        "position": {
+          "pageIndex": 0,
+          "rects": [
+            [
+              143.866,
+              421.033,
+              468.303,
+              429.671
+            ],
+            [
+              143.866,
+              410.124,
+              425.583,
+              418.762
+            ]
+          ]
+        },
+        "pageLabel": "1",
+        "external": false,
+        "fingerprint": "{\"key\":\"7MYCDP6D\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration.\",\"annotationComment\":\"Native UI case native-02: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000378|00362\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[143.866,421.033,468.303,429.671],[143.866,410.124,425.583,418.762]]}\",\"tags\":[{\"tag\":\"native-02\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:09:30Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+      }
+    },
+    {
+      "id": "native-03",
+      "pair": "lora",
+      "creationMethod": "Zotero reader UI: Find in Document, then Control-Alt-1/2; source item and geometry were not seeded",
+      "source": {
+        "key": "T7W3LFT2",
+        "type": "highlight",
+        "text": "We propose Low-Rank Adaptation, or LoRA",
+        "comment": "Native UI case native-03: комментарий",
+        "color": "#ffd400",
+        "tags": [
+          "native-03",
+          "native-reader",
+          "текстовый тег"
+        ],
+        "position": {
+          "pageIndex": 0,
+          "rects": [
+            [
+              229.896,
+              437.379,
+              408.803,
+              446.405
+            ]
+          ]
+        },
+        "pageLabel": "1",
+        "external": false,
+        "fingerprint": "{\"key\":\"T7W3LFT2\",\"itemType\":\"annotation\",\"parentItem\":\"P7LNWJVT\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"We propose Low-Rank Adaptation, or LoRA\",\"annotationComment\":\"Native UI case native-03: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000576|00345\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[229.896,437.379,408.803,446.405]]}\",\"tags\":[{\"tag\":\"native-03\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:14:36Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+      }
+    },
+    {
+      "id": "native-04",
+      "pair": "attention",
+      "creationMethod": "Zotero reader UI: Find in Document, then Control-Alt-1/2; source item and geometry were not seeded",
+      "source": {
+        "key": "UIUV7A3K",
+        "type": "highlight",
+        "text": "Work performed while at Google Brain.",
+        "comment": "Native UI case native-04: комментарий",
+        "color": "#ffd400",
+        "tags": [
+          "native-04",
+          "native-reader",
+          "текстовый тег"
+        ],
+        "position": {
+          "pageIndex": 0,
+          "rects": [
+            [
+              124.139,
+              70.229,
+              267.35,
+              80.058
+            ]
+          ]
+        },
+        "pageLabel": "1",
+        "external": false,
+        "fingerprint": "{\"key\":\"UIUV7A3K\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"Work performed while at Google Brain.\",\"annotationComment\":\"Native UI case native-04: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|002275|00711\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[124.139,70.229,267.35,80.058]]}\",\"tags\":[{\"tag\":\"native-04\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:10:43Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+      }
+    },
+    {
+      "id": "native-05",
+      "pair": "attention",
+      "creationMethod": "Zotero reader UI: Find in Document, then Control-Alt-1/2; source item and geometry were not seeded",
+      "source": {
+        "key": "XWBBCMAQ",
+        "type": "highlight",
+        "text": "Google Brain",
+        "comment": "Native UI case native-05: комментарий",
+        "color": "#ffd400",
+        "tags": [
+          "native-05",
+          "native-reader",
+          "текстовый тег"
+        ],
+        "position": {
+          "pageIndex": 0,
+          "rects": [
+            [
+              139.379,
+              585.24,
+              193.336,
+              593.878
+            ]
+          ]
+        },
+        "pageLabel": "1",
+        "external": false,
+        "fingerprint": "{\"key\":\"XWBBCMAQ\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"Google Brain\",\"annotationComment\":\"Native UI case native-05: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000035|00198\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[139.379,585.24,193.336,593.878]]}\",\"tags\":[{\"tag\":\"native-05\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:17:03Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+      }
+    },
+    {
+      "id": "native-07",
+      "pair": "attention",
+      "creationMethod": "Zotero reader UI: Find in Document, then Control-Alt-1/2; source item and geometry were not seeded",
+      "source": {
+        "key": "2CDHDTXS",
+        "type": "highlight",
+        "text": "The best performing models also connect the encoder and decoder through an attention mechanism.",
+        "comment": "Native UI case native-07: комментарий",
+        "color": "#ffd400",
+        "tags": [
+          "native-07",
+          "native-reader",
+          "текстовый тег"
+        ],
+        "position": {
+          "pageIndex": 0,
+          "rects": [
+            [
+              432.27,
+              410.124,
+              468.131,
+              418.762
+            ],
+            [
+              143.866,
+              399.215,
+              468.131,
+              407.853
+            ],
+            [
+              143.866,
+              388.306,
+              192.694,
+              396.944
+            ]
+          ]
+        },
+        "pageLabel": "1",
+        "external": false,
+        "fingerprint": "{\"key\":\"2CDHDTXS\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"The best performing models also connect the encoder and decoder through an attention mechanism.\",\"annotationComment\":\"Native UI case native-07: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000509|00384\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[432.27,410.124,468.131,418.762],[143.866,399.215,468.131,407.853],[143.866,388.306,192.694,396.944]]}\",\"tags\":[{\"tag\":\"native-07\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:16:18Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+      }
+    },
+    {
+      "id": "native-06",
+      "pair": "lora",
+      "creationMethod": "Zotero reader UI: Find in Document, then Control-Alt-1/2; source item and geometry were not seeded",
+      "source": {
+        "key": "KMP93CJU",
+        "type": "underline",
+        "text": "trainable rank decomposition matrices",
+        "comment": "Native UI case native-06: комментарий",
+        "color": "#2ea8e5",
+        "tags": [
+          "native-06",
+          "native-reader",
+          "текстовый тег"
+        ],
+        "position": {
+          "pageIndex": 0,
+          "rects": [
+            [
+              313.379,
+              426.47,
+              468.134,
+              435.108
+            ]
+          ]
+        },
+        "pageLabel": "1",
+        "external": false,
+        "fingerprint": "{\"key\":\"KMP93CJU\",\"itemType\":\"annotation\",\"parentItem\":\"P7LNWJVT\",\"annotationType\":\"underline\",\"annotationAuthorName\":\"\",\"annotationText\":\"trainable rank decomposition matrices\",\"annotationComment\":\"Native UI case native-06: комментарий\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000659|00356\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[313.379,426.47,468.134,435.108]]}\",\"tags\":[{\"tag\":\"native-06\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:15:30Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+      }
+    }
+  ],
+  "extraSources": [
+    {
+      "key": "6IR83CZV",
+      "type": "highlight",
+      "text": "Google Brain",
+      "comment": "",
+      "color": "#ffd400",
+      "tags": [],
+      "position": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            242.932,
+            585.24,
+            296.889,
+            593.878
+          ]
+        ]
+      },
+      "pageLabel": "1",
+      "external": false,
+      "fingerprint": "{\"key\":\"6IR83CZV\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"Google Brain\",\"annotationComment\":\"\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000077|00198\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[242.932,585.24,296.889,593.878]]}\",\"tags\":[],\"relations\":{},\"dateAdded\":\"2026-10-07T20:11:33Z\",\"dateModified\":\"2026-10-07T20:11:33Z\"}"
+    }
+  ],
+  "snapshots": {
+    "lora": {
+      "source": {
+        "id": 2,
+        "key": "P7LNWJVT",
+        "libraryID": 1,
+        "parentID": 1,
+        "title": "lora-v1.pdf",
+        "itemFingerprint": "{\"key\":\"P7LNWJVT\",\"itemType\":\"attachment\",\"title\":\"PDF\",\"parentItem\":\"KQPV95N9\",\"linkMode\":\"imported_file\",\"contentType\":\"application/pdf\",\"charset\":\"\",\"filename\":\"lora-v1.pdf\",\"tags\":[],\"relations\":{},\"dateAdded\":\"2026-10-07T19:48:39Z\",\"dateModified\":\"2026-10-07T19:48:39Z\"}",
+        "file": {
+          "path": "<workspace>/.local/native-v010/data/storage/P7LNWJVT/lora-v1.pdf",
+          "hash": "38a259c1926b724363fcfbd8e5f80fcadf0dd8d9ab6944fea8c00e74fd7590b0",
+          "size": 1502998,
+          "modified": 1791402519615
+        },
+        "annotations": [
+          {
+            "key": "KMP93CJU",
+            "type": "underline",
+            "text": "trainable rank decomposition matrices",
+            "comment": "Native UI case native-06: комментарий",
+            "color": "#2ea8e5",
+            "tags": [
+              "native-06",
+              "native-reader",
+              "текстовый тег"
+            ],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  313.379,
+                  426.47,
+                  468.134,
+                  435.108
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"KMP93CJU\",\"itemType\":\"annotation\",\"parentItem\":\"P7LNWJVT\",\"annotationType\":\"underline\",\"annotationAuthorName\":\"\",\"annotationText\":\"trainable rank decomposition matrices\",\"annotationComment\":\"Native UI case native-06: комментарий\",\"annotationColor\":\"#2ea8e5\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000659|00356\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[313.379,426.47,468.134,435.108]]}\",\"tags\":[{\"tag\":\"native-06\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:15:30Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+          },
+          {
+            "key": "T7W3LFT2",
+            "type": "highlight",
+            "text": "We propose Low-Rank Adaptation, or LoRA",
+            "comment": "Native UI case native-03: комментарий",
+            "color": "#ffd400",
+            "tags": [
+              "native-03",
+              "native-reader",
+              "текстовый тег"
+            ],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  229.896,
+                  437.379,
+                  408.803,
+                  446.405
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"T7W3LFT2\",\"itemType\":\"annotation\",\"parentItem\":\"P7LNWJVT\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"We propose Low-Rank Adaptation, or LoRA\",\"annotationComment\":\"Native UI case native-03: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000576|00345\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[229.896,437.379,408.803,446.405]]}\",\"tags\":[{\"tag\":\"native-03\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:14:36Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+          }
+        ]
+      },
+      "target": {
+        "id": 3,
+        "key": "UYTQGIUC",
+        "libraryID": 1,
+        "parentID": 1,
+        "title": "lora-v2 · lora-v2.pdf",
+        "itemFingerprint": "{\"key\":\"UYTQGIUC\",\"itemType\":\"attachment\",\"title\":\"lora-v2\",\"parentItem\":\"KQPV95N9\",\"linkMode\":\"imported_file\",\"contentType\":\"application/pdf\",\"charset\":\"\",\"filename\":\"lora-v2.pdf\",\"tags\":[],\"relations\":{},\"dateAdded\":\"2026-10-07T19:48:40Z\",\"dateModified\":\"2026-10-07T19:48:40Z\"}",
+        "file": {
+          "path": "<workspace>/.local/native-v010/data/storage/UYTQGIUC/lora-v2.pdf",
+          "hash": "e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a",
+          "size": 1609513,
+          "modified": 1791402520462
+        },
+        "annotations": [
+          {
+            "key": "YA79KUMV",
+            "type": "note",
+            "text": "",
+            "comment": "Existing target: preserve",
+            "color": "#ffd400",
+            "tags": [],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  72,
+                  700,
+                  90,
+                  720
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"YA79KUMV\",\"itemType\":\"annotation\",\"parentItem\":\"UYTQGIUC\",\"annotationType\":\"note\",\"annotationAuthorName\":\"\",\"annotationComment\":\"Existing target: preserve\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000000|00000\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[72,700,90,720]]}\",\"tags\":[],\"relations\":{},\"dateAdded\":\"2026-10-07T19:48:41Z\",\"dateModified\":\"2026-10-07T19:48:41Z\"}"
+          }
+        ]
+      }
+    },
+    "attention": {
+      "source": {
+        "id": 6,
+        "key": "IQKHGBSQ",
+        "libraryID": 1,
+        "parentID": 5,
+        "title": "attention-v1.pdf",
+        "itemFingerprint": "{\"key\":\"IQKHGBSQ\",\"itemType\":\"attachment\",\"title\":\"PDF\",\"parentItem\":\"GS2K8IK7\",\"linkMode\":\"imported_file\",\"contentType\":\"application/pdf\",\"charset\":\"\",\"filename\":\"attention-v1.pdf\",\"tags\":[],\"relations\":{},\"dateAdded\":\"2026-10-07T19:48:41Z\",\"dateModified\":\"2026-10-07T19:48:41Z\"}",
+        "file": {
+          "path": "<workspace>/.local/native-v010/data/storage/IQKHGBSQ/attention-v1.pdf",
+          "hash": "0a9bff1be3575cf9fe26a4a3d3a9175bc791ecec90de8b9deba4cff75d2b9476",
+          "size": 2128686,
+          "modified": 1791402521132
+        },
+        "annotations": [
+          {
+            "key": "2CDHDTXS",
+            "type": "highlight",
+            "text": "The best performing models also connect the encoder and decoder through an attention mechanism.",
+            "comment": "Native UI case native-07: комментарий",
+            "color": "#ffd400",
+            "tags": [
+              "native-07",
+              "native-reader",
+              "текстовый тег"
+            ],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  432.27,
+                  410.124,
+                  468.131,
+                  418.762
+                ],
+                [
+                  143.866,
+                  399.215,
+                  468.131,
+                  407.853
+                ],
+                [
+                  143.866,
+                  388.306,
+                  192.694,
+                  396.944
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"2CDHDTXS\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"The best performing models also connect the encoder and decoder through an attention mechanism.\",\"annotationComment\":\"Native UI case native-07: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000509|00384\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[432.27,410.124,468.131,418.762],[143.866,399.215,468.131,407.853],[143.866,388.306,192.694,396.944]]}\",\"tags\":[{\"tag\":\"native-07\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:16:18Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+          },
+          {
+            "key": "6IR83CZV",
+            "type": "highlight",
+            "text": "Google Brain",
+            "comment": "",
+            "color": "#ffd400",
+            "tags": [],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  242.932,
+                  585.24,
+                  296.889,
+                  593.878
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"6IR83CZV\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"Google Brain\",\"annotationComment\":\"\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000077|00198\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[242.932,585.24,296.889,593.878]]}\",\"tags\":[],\"relations\":{},\"dateAdded\":\"2026-10-07T20:11:33Z\",\"dateModified\":\"2026-10-07T20:11:33Z\"}"
+          },
+          {
+            "key": "7MYCDP6D",
+            "type": "highlight",
+            "text": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration.",
+            "comment": "Native UI case native-02: комментарий",
+            "color": "#ffd400",
+            "tags": [
+              "native-02",
+              "native-reader",
+              "текстовый тег"
+            ],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  143.866,
+                  421.033,
+                  468.303,
+                  429.671
+                ],
+                [
+                  143.866,
+                  410.124,
+                  425.583,
+                  418.762
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"7MYCDP6D\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration.\",\"annotationComment\":\"Native UI case native-02: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000378|00362\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[143.866,421.033,468.303,429.671],[143.866,410.124,425.583,418.762]]}\",\"tags\":[{\"tag\":\"native-02\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:09:30Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+          },
+          {
+            "key": "86IC6EWW",
+            "type": "highlight",
+            "text": "28.4 BLEU",
+            "comment": "Native UI case native-01: комментарий",
+            "color": "#ffd400",
+            "tags": [
+              "native-01",
+              "native-reader",
+              "текстовый тег"
+            ],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  305.043,
+                  344.67,
+                  352.397,
+                  353.308
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"86IC6EWW\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"28.4 BLEU\",\"annotationComment\":\"Native UI case native-01: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000878|00438\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[305.043,344.67,352.397,353.308]]}\",\"tags\":[{\"tag\":\"native-01\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T19:51:55Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+          },
+          {
+            "key": "UIUV7A3K",
+            "type": "highlight",
+            "text": "Work performed while at Google Brain.",
+            "comment": "Native UI case native-04: комментарий",
+            "color": "#ffd400",
+            "tags": [
+              "native-04",
+              "native-reader",
+              "текстовый тег"
+            ],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  124.139,
+                  70.229,
+                  267.35,
+                  80.058
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"UIUV7A3K\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"Work performed while at Google Brain.\",\"annotationComment\":\"Native UI case native-04: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|002275|00711\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[124.139,70.229,267.35,80.058]]}\",\"tags\":[{\"tag\":\"native-04\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:10:43Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+          },
+          {
+            "key": "XWBBCMAQ",
+            "type": "highlight",
+            "text": "Google Brain",
+            "comment": "Native UI case native-05: комментарий",
+            "color": "#ffd400",
+            "tags": [
+              "native-05",
+              "native-reader",
+              "текстовый тег"
+            ],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  139.379,
+                  585.24,
+                  193.336,
+                  593.878
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"XWBBCMAQ\",\"itemType\":\"annotation\",\"parentItem\":\"IQKHGBSQ\",\"annotationType\":\"highlight\",\"annotationAuthorName\":\"\",\"annotationText\":\"Google Brain\",\"annotationComment\":\"Native UI case native-05: комментарий\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000035|00198\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[139.379,585.24,193.336,593.878]]}\",\"tags\":[{\"tag\":\"native-05\"},{\"tag\":\"native-reader\"},{\"tag\":\"текстовый тег\"}],\"relations\":{},\"dateAdded\":\"2026-10-07T20:17:03Z\",\"dateModified\":\"2026-10-07T20:19:11Z\"}"
+          }
+        ]
+      },
+      "target": {
+        "id": 7,
+        "key": "T7SUEMG6",
+        "libraryID": 1,
+        "parentID": 5,
+        "title": "attention-v2 · attention-v2.pdf",
+        "itemFingerprint": "{\"key\":\"T7SUEMG6\",\"itemType\":\"attachment\",\"title\":\"attention-v2\",\"parentItem\":\"GS2K8IK7\",\"linkMode\":\"imported_file\",\"contentType\":\"application/pdf\",\"charset\":\"\",\"filename\":\"attention-v2.pdf\",\"tags\":[],\"relations\":{},\"dateAdded\":\"2026-10-07T19:48:41Z\",\"dateModified\":\"2026-10-07T19:48:41Z\"}",
+        "file": {
+          "path": "<workspace>/.local/native-v010/data/storage/T7SUEMG6/attention-v2.pdf",
+          "hash": "803b95695f178d1804b8cf66ab7ae3d7c8b94e044a045cbff8d9b37435ca4dd4",
+          "size": 2233055,
+          "modified": 1791402521393
+        },
+        "annotations": [
+          {
+            "key": "TQ3CJDWM",
+            "type": "note",
+            "text": "",
+            "comment": "Existing target: preserve",
+            "color": "#ffd400",
+            "tags": [],
+            "position": {
+              "pageIndex": 0,
+              "rects": [
+                [
+                  72,
+                  700,
+                  90,
+                  720
+                ]
+              ]
+            },
+            "pageLabel": "1",
+            "external": false,
+            "fingerprint": "{\"key\":\"TQ3CJDWM\",\"itemType\":\"annotation\",\"parentItem\":\"T7SUEMG6\",\"annotationType\":\"note\",\"annotationAuthorName\":\"\",\"annotationComment\":\"Existing target: preserve\",\"annotationColor\":\"#ffd400\",\"annotationPageLabel\":\"1\",\"annotationSortIndex\":\"00000|000000|00000\",\"annotationPosition\":\"{\\\"pageIndex\\\":0,\\\"rects\\\":[[72,700,90,720]]}\",\"tags\":[],\"relations\":{},\"dateAdded\":\"2026-10-07T19:48:41Z\",\"dateModified\":\"2026-10-07T19:48:41Z\"}"
+          }
+        ]
+      }
+    }
+  },
+  "dragSelectionVerified": false,
+  "dragBlocker": "CUA drag consistently failed: Computer Use server error -10005: noWindowsAvailable"
+}

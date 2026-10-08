@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-07T20:24:31.068Z",
+  "version": "10.0.6",
+  "os": "Darwin",
+  "architecture": "aarch64-gcc3",
+  "addonVersion": "0.1.0",
+  "installedSHA256": "2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7",
+  "profile": "<workspace>/.local/native-v010/profile",
+  "dataDirectory": "<workspace>/.local/native-v010/data",
+  "action": "undo",
+  "conflict": "Error: Undo conflict: T8WPFUK2 was edited, moved or deleted. No copies were removed.",
+  "noneDeletedOnConflict": true,
+  "noPartialMutation": true,
+  "restoredDisposableCopyOnly": true,
+  "pairs": {
+    "attention": {
+      "id": "173cf25f-6ef8-463d-a8d3-16558fc92019",
+      "count": 4,
+      "onlyOperationCopiesTrashed": true,
+      "sourceUnchanged": true,
+      "pdfHashesUnchanged": true,
+      "existingTargetsUnchanged": true
+    },
+    "lora": {
+      "id": "aab408db-edde-47fe-be65-ffa5b1a5eadc",
+      "count": 2,
+      "onlyOperationCopiesTrashed": true,
+      "sourceUnchanged": true,
+      "pdfHashesUnchanged": true,
+      "existingTargetsUnchanged": true
+    }
+  }
+}

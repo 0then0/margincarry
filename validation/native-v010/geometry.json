@@ -1,0 +1,654 @@
+{
+  "date": "2026-10-07T20:35:53.140Z",
+  "version": "10.0.6",
+  "os": "Darwin",
+  "architecture": "aarch64-gcc3",
+  "addonVersion": "0.1.0",
+  "installedSHA256": "2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7",
+  "profile": "<workspace>/.local/native-v010/profile",
+  "dataDirectory": "<workspace>/.local/native-v010/data",
+  "action": "geometry",
+  "method": "Installed Zotero reader getMatchPositions (pure native range geometry) and renderPageAnnotationsOnCanvas (native print renderer); supplementary API measurement, not a mouse selection or desktop overlay capture.",
+  "rows": [
+    {
+      "id": "0:1691:1695",
+      "expected": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            417.558,
+            329.366,
+            441.468,
+            339.329
+          ]
+        ],
+        "charStart": 1455,
+        "charEnd": 1459
+      },
+      "margincarry": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            417.55823999999956,
+            328.6790784000002,
+            441.4684799999995,
+            337.31665260000017
+          ]
+        ]
+      },
+      "reader": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            417.55823999999956,
+            328.6790784000002,
+            441.4684799999995,
+            337.31665260000017
+          ]
+        ]
+      },
+      "nativeText": "LoRA",
+      "glyphs": [
+        {
+          "c": "L",
+          "u": "L",
+          "rect": [
+            417.55823999999956,
+            329.36649780000016,
+            423.53579999999954,
+            336.3801682000002
+          ],
+          "fontSize": 9.962600000000009,
+          "fontName": "XJGHJT+NimbusMonL-Regu",
+          "glyphWidth": 600,
+          "baseline": 330.8310000000002,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            417.55823999999956,
+            328.6790784000002,
+            423.53579999999954,
+            337.31665260000017
+          ],
+          "offset": 1455,
+          "pageIndex": 0
+        },
+        {
+          "c": "o",
+          "u": "o",
+          "rect": [
+            423.53579999999954,
+            329.36649780000016,
+            429.5133599999995,
+            336.3801682000002
+          ],
+          "fontSize": 9.962600000000009,
+          "fontName": "XJGHJT+NimbusMonL-Regu",
+          "glyphWidth": 600,
+          "baseline": 330.8310000000002,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            423.53579999999954,
+            328.6790784000002,
+            429.5133599999995,
+            337.31665260000017
+          ],
+          "offset": 1456,
+          "pageIndex": 0
+        },
+        {
+          "c": "R",
+          "u": "R",
+          "rect": [
+            429.5133599999995,
+            329.36649780000016,
+            435.4909199999995,
+            336.3801682000002
+          ],
+          "fontSize": 9.962600000000009,
+          "fontName": "XJGHJT+NimbusMonL-Regu",
+          "glyphWidth": 600,
+          "baseline": 330.8310000000002,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            429.5133599999995,
+            328.6790784000002,
+            435.4909199999995,
+            337.31665260000017
+          ],
+          "offset": 1457,
+          "pageIndex": 0
+        },
+        {
+          "c": "A",
+          "u": "A",
+          "rect": [
+            435.4909199999995,
+            329.36649780000016,
+            441.4684799999995,
+            336.3801682000002
+          ],
+          "fontSize": 9.962600000000009,
+          "fontName": "XJGHJT+NimbusMonL-Regu",
+          "glyphWidth": 600,
+          "baseline": 330.8310000000002,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            435.4909199999995,
+            328.6790784000002,
+            441.4684799999995,
+            337.31665260000017
+          ],
+          "wordBreakAfter": true,
+          "offset": 1458,
+          "pageIndex": 0
+        }
+      ],
+      "nativeMatchesOnPage": 6,
+      "cornerDeltaFromGold": [
+        0.0002399999995645885,
+        -0.6869215999997778,
+        0.0004799999994702375,
+        -2.0123473999998396
+      ],
+      "cornerDeltaFromReader": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "images": [
+        "0-1691-1695-reader-highlight.png",
+        "0-1691-1695-reader-underline.png",
+        "0-1691-1695-margincarry-highlight.png",
+        "0-1691-1695-margincarry-underline.png",
+        "0-1691-1695-pdfplumber-highlight.png",
+        "0-1691-1695-pdfplumber-underline.png"
+      ]
+    },
+    {
+      "id": "5:4305:4309",
+      "expected": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            157.313,
+            59.291,
+            178.739,
+            66.265
+          ]
+        ],
+        "charStart": 3606,
+        "charEnd": 3610
+      },
+      "margincarry": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            157.3129999999999,
+            59.291082799999785,
+            178.73860573999988,
+            71.46145579999978
+          ]
+        ]
+      },
+      "reader": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            157.3129999999999,
+            59.291082799999785,
+            178.73860573999988,
+            71.46145579999978
+          ]
+        ]
+      },
+      "nativeText": "LoRA",
+      "glyphs": [
+        {
+          "c": "L",
+          "u": "L",
+          "rect": [
+            157.3129999999999,
+            59.291082799999785,
+            162.7783670599999,
+            65.40710539999978
+          ],
+          "fontSize": 6.973800000000004,
+          "fontName": "ZUZVRH+CMMI7",
+          "glyphWidth": 783.7,
+          "baseline": 60.643999999999785,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            157.3129999999999,
+            59.291082799999785,
+            162.7783670599999,
+            71.46145579999978
+          ],
+          "offset": 3606,
+          "pageIndex": 5
+        },
+        {
+          "c": "o",
+          "u": "o",
+          "rect": [
+            162.7783670599999,
+            59.291082799999785,
+            166.7108928799999,
+            65.40710539999978
+          ],
+          "fontSize": 6.973800000000004,
+          "fontName": "ZUZVRH+CMMI7",
+          "glyphWidth": 563.9,
+          "baseline": 60.643999999999785,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            162.7783670599999,
+            59.291082799999785,
+            166.7108928799999,
+            71.46145579999978
+          ],
+          "offset": 3607,
+          "pageIndex": 5
+        },
+        {
+          "c": "R",
+          "u": "R",
+          "rect": [
+            166.7108928799999,
+            59.291082799999785,
+            172.7125451599999,
+            65.40710539999978
+          ],
+          "fontSize": 6.973800000000004,
+          "fontName": "ZUZVRH+CMMI7",
+          "glyphWidth": 860.6,
+          "baseline": 60.643999999999785,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            166.7108928799999,
+            59.291082799999785,
+            172.7125451599999,
+            71.46145579999978
+          ],
+          "offset": 3608,
+          "pageIndex": 5
+        },
+        {
+          "c": "A",
+          "u": "A",
+          "rect": [
+            172.7474141599999,
+            59.291082799999785,
+            178.73860573999988,
+            65.40710539999978
+          ],
+          "fontSize": 6.973800000000004,
+          "fontName": "ZUZVRH+CMMI7",
+          "glyphWidth": 859.1,
+          "baseline": 60.643999999999785,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            172.7474141599999,
+            59.291082799999785,
+            178.73860573999988,
+            71.46145579999978
+          ],
+          "wordBreakAfter": true,
+          "spaceAfter": true,
+          "offset": 3609,
+          "pageIndex": 5
+        }
+      ],
+      "nativeMatchesOnPage": 9,
+      "cornerDeltaFromGold": [
+        -8.526512829121202e-14,
+        8.279999978810793e-05,
+        -0.00039426000012099394,
+        5.196455799999782
+      ],
+      "cornerDeltaFromReader": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "images": [
+        "5-4305-4309-reader-highlight.png",
+        "5-4305-4309-reader-underline.png",
+        "5-4305-4309-margincarry-highlight.png",
+        "5-4305-4309-margincarry-underline.png",
+        "5-4305-4309-pdfplumber-highlight.png",
+        "5-4305-4309-pdfplumber-underline.png"
+      ]
+    },
+    {
+      "id": "5:4332:4336",
+      "expected": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            271.452,
+            59.291,
+            292.878,
+            66.265
+          ]
+        ],
+        "charStart": 3627,
+        "charEnd": 3631
+      },
+      "margincarry": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            271.4519999999998,
+            59.291082799999785,
+            292.87760573999986,
+            71.46145579999978
+          ]
+        ]
+      },
+      "reader": {
+        "pageIndex": 5,
+        "rects": [
+          [
+            271.4519999999998,
+            59.291082799999785,
+            292.87760573999986,
+            71.46145579999978
+          ]
+        ]
+      },
+      "nativeText": "LoRA",
+      "glyphs": [
+        {
+          "c": "L",
+          "u": "L",
+          "rect": [
+            271.4519999999998,
+            59.291082799999785,
+            276.91736705999983,
+            65.40710539999978
+          ],
+          "fontSize": 6.973800000000004,
+          "fontName": "ZUZVRH+CMMI7",
+          "glyphWidth": 783.7,
+          "baseline": 60.643999999999785,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            271.4519999999998,
+            59.291082799999785,
+            276.91736705999983,
+            71.46145579999978
+          ],
+          "offset": 3627,
+          "pageIndex": 5
+        },
+        {
+          "c": "o",
+          "u": "o",
+          "rect": [
+            276.91736705999983,
+            59.291082799999785,
+            280.84989287999986,
+            65.40710539999978
+          ],
+          "fontSize": 6.973800000000004,
+          "fontName": "ZUZVRH+CMMI7",
+          "glyphWidth": 563.9,
+          "baseline": 60.643999999999785,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            276.91736705999983,
+            59.291082799999785,
+            280.84989287999986,
+            71.46145579999978
+          ],
+          "offset": 3628,
+          "pageIndex": 5
+        },
+        {
+          "c": "R",
+          "u": "R",
+          "rect": [
+            280.84989287999986,
+            59.291082799999785,
+            286.85154515999983,
+            65.40710539999978
+          ],
+          "fontSize": 6.973800000000004,
+          "fontName": "ZUZVRH+CMMI7",
+          "glyphWidth": 860.6,
+          "baseline": 60.643999999999785,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            280.84989287999986,
+            59.291082799999785,
+            286.85154515999983,
+            71.46145579999978
+          ],
+          "offset": 3629,
+          "pageIndex": 5
+        },
+        {
+          "c": "A",
+          "u": "A",
+          "rect": [
+            286.88641415999984,
+            59.291082799999785,
+            292.87760573999986,
+            65.40710539999978
+          ],
+          "fontSize": 6.973800000000004,
+          "fontName": "ZUZVRH+CMMI7",
+          "glyphWidth": 859.1,
+          "baseline": 60.643999999999785,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            286.88641415999984,
+            59.291082799999785,
+            292.87760573999986,
+            71.46145579999978
+          ],
+          "wordBreakAfter": true,
+          "spaceAfter": true,
+          "offset": 3630,
+          "pageIndex": 5
+        }
+      ],
+      "nativeMatchesOnPage": 9,
+      "cornerDeltaFromGold": [
+        -1.7053025658242404e-13,
+        8.279999978810793e-05,
+        -0.00039426000012099394,
+        5.196455799999782
+      ],
+      "cornerDeltaFromReader": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "images": [
+        "5-4332-4336-reader-highlight.png",
+        "5-4332-4336-reader-underline.png",
+        "5-4332-4336-margincarry-highlight.png",
+        "5-4332-4336-margincarry-underline.png",
+        "5-4332-4336-pdfplumber-highlight.png",
+        "5-4332-4336-pdfplumber-underline.png"
+      ]
+    },
+    {
+      "id": "7:2107:2111",
+      "expected": {
+        "pageIndex": 7,
+        "rects": [
+          [
+            263.527,
+            237.919,
+            278.827,
+            243.924
+          ]
+        ],
+        "charStart": 1780,
+        "charEnd": 1784
+      },
+      "margincarry": {
+        "pageIndex": 7,
+        "rects": [
+          [
+            263.52650506875,
+            239.28212242125,
+            278.82727054875,
+            246.27795907125
+          ]
+        ]
+      },
+      "reader": {
+        "pageIndex": 7,
+        "rects": [
+          [
+            263.52650506875,
+            239.28212242125,
+            278.82727054875,
+            246.27795907125
+          ]
+        ]
+      },
+      "nativeText": "LoRA",
+      "glyphs": [
+        {
+          "c": "L",
+          "u": "L",
+          "rect": [
+            263.52650506875,
+            239.28212242125,
+            266.87129563875,
+            246.27795907125
+          ],
+          "fontSize": 6.005009999999999,
+          "fontName": "DejaVuSans",
+          "glyphWidth": 557,
+          "baseline": 240.69930478125,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            263.52650506875,
+            239.28212242125,
+            266.87129563875,
+            246.27795907125
+          ],
+          "offset": 1776,
+          "pageIndex": 7
+        },
+        {
+          "c": "o",
+          "u": "o",
+          "rect": [
+            266.87129563875,
+            239.28212242125,
+            270.54636175875,
+            246.27795907125
+          ],
+          "fontSize": 6.005009999999999,
+          "fontName": "DejaVuSans",
+          "glyphWidth": 612,
+          "baseline": 240.69930478125,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            266.87129563875,
+            239.28212242125,
+            270.54636175875,
+            246.27795907125
+          ],
+          "offset": 1777,
+          "pageIndex": 7
+        },
+        {
+          "c": "R",
+          "u": "R",
+          "rect": [
+            270.54636175875,
+            239.28212242125,
+            274.71984370875,
+            246.27795907125
+          ],
+          "fontSize": 6.005009999999999,
+          "fontName": "DejaVuSans",
+          "glyphWidth": 695,
+          "baseline": 240.69930478125,
+          "rotation": 0,
+          "diagonal": false,
+          "inlineRect": [
+            270.54636175875,
+            239.28212242125,
+            274.71984370875,
+            246.27795907125
+          ],
+          "offset": 1778,
+          "pageIndex": 7
+        },
+        {
+          "c": "A",
+          "u": "A",
+          "rect": [
+            274.71984370875,
+            239.28212242125,
+            278.82727054875,
+            246.27795907125
+          ],
+          "fontSize": 6.005009999999999,
+          "fontName": "DejaVuSans",
+          "glyphWidth": 684,
+          "baseline": 240.69930478125,
+          "rotation": 0,
+          "diagonal": false,
+          "paragraphBreakAfter": true,
+          "lineBreakAfter": true,
+          "inlineRect": [
+            274.71984370875,
+            239.28212242125,
+            278.82727054875,
+            246.27795907125
+          ],
+          "wordBreakAfter": true,
+          "offset": 1779,
+          "pageIndex": 7
+        }
+      ],
+      "nativeMatchesOnPage": 7,
+      "cornerDeltaFromGold": [
+        -0.0004949312499888947,
+        1.363122421249983,
+        0.00027054874999521417,
+        2.3539590712499887
+      ],
+      "cornerDeltaFromReader": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "images": [
+        "7-2107-2111-reader-highlight.png",
+        "7-2107-2111-reader-underline.png",
+        "7-2107-2111-margincarry-highlight.png",
+        "7-2107-2111-margincarry-underline.png",
+        "7-2107-2111-pdfplumber-highlight.png",
+        "7-2107-2111-pdfplumber-underline.png"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,487 @@
+{
+  "schema": 1,
+  "selectionProtocol": "Frozen before first new matcher run. Independent pdfplumber 0.11.9 text and boxes. First affiliation belongs to first author in both revisions; other repeated quotes are alternatives, not semantic gold.",
+  "documents": [
+    {
+      "pair": "lora",
+      "version": 1,
+      "url": "https://arxiv.org/pdf/2106.09685v1",
+      "filename": "lora-v1.pdf",
+      "sha256": "38a259c1926b724363fcfbd8e5f80fcadf0dd8d9ab6944fea8c00e74fd7590b0"
+    },
+    {
+      "pair": "lora",
+      "version": 2,
+      "url": "https://arxiv.org/pdf/2106.09685v2",
+      "filename": "lora-v2.pdf",
+      "sha256": "e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a"
+    },
+    {
+      "pair": "attention",
+      "version": 1,
+      "url": "https://arxiv.org/pdf/1706.03762v1",
+      "filename": "attention-v1.pdf",
+      "sha256": "0a9bff1be3575cf9fe26a4a3d3a9175bc791ecec90de8b9deba4cff75d2b9476"
+    },
+    {
+      "pair": "attention",
+      "version": 2,
+      "url": "https://arxiv.org/pdf/1706.03762v2",
+      "filename": "attention-v2.pdf",
+      "sha256": "803b95695f178d1804b8cf66ab7ae3d7c8b94e044a045cbff8d9b37435ca4dd4"
+    }
+  ],
+  "cases": [
+    {
+      "id": "native-01",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "28.4 BLEU",
+      "coverage": "ordinary single line",
+      "expectedSource": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            305.043,
+            344.67,
+            352.397,
+            354.633
+          ]
+        ],
+        "charStart": 878,
+        "charEnd": 886
+      },
+      "expectedCorrespondingTarget": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            305.043,
+            344.424,
+            352.397,
+            354.387
+          ]
+        ],
+        "charStart": 879,
+        "charEnd": 887
+      },
+      "allQuoteTargets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              305.043,
+              344.424,
+              352.397,
+              354.387
+            ]
+          ],
+          "charStart": 879,
+          "charEnd": 887
+        }
+      ],
+      "sourceFonts": [
+        [
+          "BVZQFF+NimbusRomNo9L-Regu",
+          9.963
+        ]
+      ],
+      "creationMethod": "pending: actual Zotero reader UI drag; no annotation item seeding",
+      "status": "planned"
+    },
+    {
+      "id": "native-02",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration.",
+      "coverage": "multiline abstract",
+      "expectedSource": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            143.866,
+            421.033,
+            468.303,
+            430.996
+          ],
+          [
+            143.866,
+            410.124,
+            425.583,
+            420.087
+          ]
+        ],
+        "charStart": 378,
+        "charEnd": 502
+      },
+      "expectedCorrespondingTarget": null,
+      "allQuoteTargets": [],
+      "sourceFonts": [
+        [
+          "BVZQFF+NimbusRomNo9L-Regu",
+          9.963
+        ]
+      ],
+      "creationMethod": "pending: actual Zotero reader UI drag; no annotation item seeding",
+      "status": "planned"
+    },
+    {
+      "id": "native-03",
+      "pair": "lora",
+      "type": "highlight",
+      "quote": "We propose Low-Rank Adaptation, or LoRA",
+      "coverage": "mixed font styles in abstract",
+      "expectedSource": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            229.896,
+            437.379,
+            408.803,
+            447.411
+          ]
+        ],
+        "charStart": 576,
+        "charEnd": 610
+      },
+      "expectedCorrespondingTarget": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            190.073,
+            460.186,
+            373.132,
+            470.218
+          ]
+        ],
+        "charStart": 614,
+        "charEnd": 648
+      },
+      "allQuoteTargets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              190.073,
+              460.186,
+              373.132,
+              470.218
+            ]
+          ],
+          "charStart": 614,
+          "charEnd": 648
+        }
+      ],
+      "sourceFonts": [
+        [
+          "GDFNQY+NimbusRomNo9L-Medi",
+          9.963
+        ],
+        [
+          "QBHXGT+NimbusRomNo9L-Regu",
+          9.963
+        ]
+      ],
+      "creationMethod": "pending: actual Zotero reader UI drag; no annotation item seeding",
+      "status": "planned"
+    },
+    {
+      "id": "native-04",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "Work performed while at Google Brain.",
+      "coverage": "small footnote",
+      "expectedSource": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            124.139,
+            70.229,
+            267.35,
+            79.196
+          ]
+        ],
+        "charStart": 2275,
+        "charEnd": 2307
+      },
+      "expectedCorrespondingTarget": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            124.139,
+            91.184,
+            267.35,
+            100.151
+          ]
+        ],
+        "charStart": 2103,
+        "charEnd": 2135
+      },
+      "allQuoteTargets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              124.139,
+              91.184,
+              267.35,
+              100.151
+            ]
+          ],
+          "charStart": 2103,
+          "charEnd": 2135
+        }
+      ],
+      "sourceFonts": [
+        [
+          "BVZQFF+NimbusRomNo9L-Regu",
+          8.966
+        ]
+      ],
+      "creationMethod": "pending: actual Zotero reader UI drag; no annotation item seeding",
+      "status": "planned"
+    },
+    {
+      "id": "native-05",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "Google Brain",
+      "coverage": "repeated author affiliation; first author, not any occurrence",
+      "expectedSource": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            139.379,
+            585.24,
+            193.336,
+            595.203
+          ]
+        ],
+        "charStart": 35,
+        "charEnd": 46
+      },
+      "expectedCorrespondingTarget": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            139.379,
+            585.24,
+            193.336,
+            595.203
+          ]
+        ],
+        "charStart": 35,
+        "charEnd": 46
+      },
+      "allQuoteTargets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              139.379,
+              585.24,
+              193.336,
+              595.203
+            ]
+          ],
+          "charStart": 35,
+          "charEnd": 46
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              242.932,
+              585.24,
+              296.889,
+              595.203
+            ]
+          ],
+          "charStart": 77,
+          "charEnd": 88
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              398.005,
+              535.243,
+              451.962,
+              545.206
+            ]
+          ],
+          "charStart": 294,
+          "charEnd": 305
+        },
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              216.547,
+              91.184,
+              265.109,
+              100.151
+            ]
+          ],
+          "charStart": 2123,
+          "charEnd": 2134
+        }
+      ],
+      "sourceFonts": [
+        [
+          "BVZQFF+NimbusRomNo9L-Regu",
+          9.963
+        ]
+      ],
+      "creationMethod": "pending: actual Zotero reader UI drag; no annotation item seeding",
+      "status": "planned"
+    },
+    {
+      "id": "native-07",
+      "pair": "attention",
+      "type": "highlight",
+      "quote": "The best performing models also connect the encoder and decoder through an attention mechanism.",
+      "coverage": "unchanged multiline abstract",
+      "expectedSource": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            432.27,
+            410.124,
+            468.131,
+            420.087
+          ],
+          [
+            143.866,
+            399.215,
+            468.131,
+            409.178
+          ],
+          [
+            143.866,
+            388.306,
+            192.694,
+            398.269
+          ]
+        ],
+        "charStart": 502,
+        "charEnd": 584
+      },
+      "expectedCorrespondingTarget": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            433.011,
+            409.879,
+            468.131,
+            419.842
+          ],
+          [
+            143.866,
+            398.97,
+            468.131,
+            408.933
+          ],
+          [
+            143.866,
+            388.061,
+            192.694,
+            398.024
+          ]
+        ],
+        "charStart": 503,
+        "charEnd": 585
+      },
+      "allQuoteTargets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              433.011,
+              409.879,
+              468.131,
+              419.842
+            ],
+            [
+              143.866,
+              398.97,
+              468.131,
+              408.933
+            ],
+            [
+              143.866,
+              388.061,
+              192.694,
+              398.024
+            ]
+          ],
+          "charStart": 503,
+          "charEnd": 585
+        }
+      ],
+      "sourceFonts": [
+        [
+          "BVZQFF+NimbusRomNo9L-Regu",
+          9.963
+        ]
+      ],
+      "creationMethod": "pending: actual Zotero reader UI drag; no annotation item seeding",
+      "status": "planned"
+    },
+    {
+      "id": "native-06",
+      "pair": "lora",
+      "type": "underline",
+      "quote": "trainable rank decomposition matrices",
+      "coverage": "underline baseline",
+      "expectedSource": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            313.379,
+            426.47,
+            468.134,
+            436.433
+          ]
+        ],
+        "charStart": 659,
+        "charEnd": 693
+      },
+      "expectedCorrespondingTarget": {
+        "pageIndex": 0,
+        "rects": [
+          [
+            278.61,
+            449.227,
+            430.072,
+            459.19
+          ]
+        ],
+        "charStart": 697,
+        "charEnd": 731
+      },
+      "allQuoteTargets": [
+        {
+          "pageIndex": 0,
+          "rects": [
+            [
+              278.61,
+              449.227,
+              430.072,
+              459.19
+            ]
+          ],
+          "charStart": 697,
+          "charEnd": 731
+        }
+      ],
+      "sourceFonts": [
+        [
+          "QBHXGT+NimbusRomNo9L-Regu",
+          9.963
+        ]
+      ],
+      "creationMethod": "pending: actual Zotero reader UI drag; no annotation item seeding",
+      "status": "planned"
+    }
+  ]
+}

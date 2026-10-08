@@ -1,11 +1,14 @@
 // Optional comparison, not a product dependency. See docs/development.md.
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolveQuote } from '../.local/research/reanchor-npm/package/dist/index.js';
 
+const hostRoot = process.env.MARGINCARRY_HOST_ROOT || '.local';
+const reportRoot = process.env.MARGINCARRY_REPORT_ROOT || `${hostRoot}/reports`;
+
 const gold = JSON.parse(await readFile('validation/corpus.json', 'utf8'));
-const plans = JSON.parse(await readFile('.local/corpus-plans.json', 'utf8'));
-const streams = JSON.parse(await readFile('.local/native-corpus.json', 'utf8'));
-const ids = JSON.parse(await readFile('.local/corpus-ids.json', 'utf8'));
+const plans = JSON.parse(await readFile(`${hostRoot}/corpus-plans.json`, 'utf8'));
+const streams = JSON.parse(await readFile(`${hostRoot}/native-corpus.json`, 'utf8'));
+const ids = JSON.parse(await readFile(`${hostRoot}/corpus-ids.json`, 'utf8'));
 const pkg = JSON.parse(await readFile('.local/research/reanchor-npm/package/package.json', 'utf8'));
 if (pkg.version !== '0.3.0') throw new Error('This evaluation requires reanchor 0.3.0.');
 const rows = [];
@@ -68,5 +71,6 @@ for (const mode of ['default', 'normalizedOnly', 'restricted'])
     offsetRoundTripFailures: rows.flatMap((r) => r.results[mode]).filter((r) => !r.offsetsRoundTrip)
       .length,
   };
-await writeFile('validation/reanchor-evaluation.json', `${JSON.stringify(report, null, 2)}\n`);
+await mkdir(reportRoot, { recursive: true });
+await writeFile(`${reportRoot}/reanchor-evaluation.json`, `${JSON.stringify(report, null, 2)}\n`);
 console.log(JSON.stringify(report.summary, null, 2));

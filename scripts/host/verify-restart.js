@@ -1,8 +1,8 @@
 export async function run() {
   // Run only through scripts/host-request.mjs in the isolated development profile.
   const api = Zotero.MarginCarryTest;
-  const apply = await IOUtils.readJSON(`${hostRoot}/validation/host-corpus-apply.json`);
-  const plans = await IOUtils.readJSON(`${hostRoot}/.local/corpus-plans.json`);
+  const apply = await IOUtils.readJSON(`${hostValidationReportRoot}/host-corpus-apply.json`);
+  const plans = await IOUtils.readJSON(`${hostValidationRoot}/corpus-plans.json`);
   const records = await api.service.journal();
   const result = { version: Zotero.version, os: Services.appinfo.OS, pairs: {} };
   for (const [pair, applied] of Object.entries(apply.pairs)) {
@@ -31,6 +31,6 @@ export async function run() {
       replayBlocked: replay,
     };
   }
-  await IOUtils.writeJSON(`${hostRoot}/validation/host-restart.json`, result);
+  await IOUtils.writeJSON(`${hostValidationReportRoot}/host-restart.json`, result);
   return result;
 }

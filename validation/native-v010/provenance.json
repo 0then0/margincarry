@@ -1,0 +1,134 @@
+{
+  "validationDate": "2026-10-07",
+  "decision": "validation incomplete",
+  "productChanges": false,
+  "patchReleasePrepared": false,
+  "releaseTag": "v0.1.0",
+  "releaseCommit": "df0fb98de6cb9452044acce389c2158dfce9d7d5",
+  "workspaceHEAD": "a22d918356e522fa2aa2da2deab05de2b2990890",
+  "releaseURL": "https://github.com/0then0/margincarry/releases/tag/v0.1.0",
+  "assetURL": "https://github.com/0then0/margincarry/releases/download/v0.1.0/margincarry-0.1.0.xpi",
+  "installedSHA256": "2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7",
+  "addonVersion": "0.1.0",
+  "zoteroVersion": "10.0.6",
+  "officialChangelog": "https://www.zotero.org/support/changelog",
+  "officialHostURL": "https://download.zotero.org/client/release/10.0.6/Zotero-10.0.6.dmg",
+  "macOS": "15.7.9",
+  "macOSBuild": "24G830",
+  "architecture": "arm64",
+  "XPCOMABI": "aarch64-gcc3",
+  "node": "24.21.0",
+  "npm": "11.19.0",
+  "oraclePDFPlumber": "0.11.9",
+  "profile": "<workspace>/.local/native-v010/profile",
+  "dataDirectory": "<workspace>/.local/native-v010/data",
+  "frozenCasesSHA256": "67b630d58849a27c3fc307504dc7fcb9d8e82051ac2f6bb388322bca4e5ecf0d",
+  "originalScorerSHA256": "250cfa69d7e13b9d7925d9355e7bac3577f51203d338d6bcd64545f82183e017",
+  "historicalReports": [
+    {
+      "file": "validation/host-apply.json",
+      "zoteroVersion": null,
+      "installedSHA256": null,
+      "reportSHA256": "837db9719d7f3f29d7ea16759cf6258e399d8c341ffebd1bbe603a77cb950ad9",
+      "isEvidenceForThisPublishedXPI": false
+    },
+    {
+      "file": "validation/host-corpus-apply.json",
+      "zoteroVersion": "10.0.5",
+      "installedSHA256": null,
+      "reportSHA256": "6277a4b909967ae6fb07f70b73eb8165c6be17bd9916a5aa8e3ae8761ef69fd5",
+      "isEvidenceForThisPublishedXPI": false
+    },
+    {
+      "file": "validation/host-corpus-undo.json",
+      "zoteroVersion": "10.0.5",
+      "installedSHA256": null,
+      "reportSHA256": "6e64455b85a328083cdd4070a7f946aea8db1ca47365a0bb9a5c35fca4e1d58f",
+      "isEvidenceForThisPublishedXPI": false
+    },
+    {
+      "file": "validation/host-geometry.json",
+      "zoteroVersion": "10.0.5",
+      "installedSHA256": null,
+      "reportSHA256": "d32f22abebac5c8cafe4da247acbb083f36a1fe56f8c82c218ce2891e9a06e34",
+      "isEvidenceForThisPublishedXPI": false
+    },
+    {
+      "file": "validation/host-install.json",
+      "zoteroVersion": "10.0.5",
+      "installedSHA256": "4aa8a64d085c1a388aaa5df304747cc7023655eb7dbcb20420bfeb036725af52",
+      "reportSHA256": "de2c76ba6726c17785b7db692d8f4f7e8740b9c11c0942b1bfe20e1e29cb8383",
+      "isEvidenceForThisPublishedXPI": false
+    },
+    {
+      "file": "validation/host-restart.json",
+      "zoteroVersion": "10.0.5",
+      "installedSHA256": null,
+      "reportSHA256": "d50684c6052db4e3a4531a07f693289cf87912b0962215d8a41f7c178d947d96",
+      "isEvidenceForThisPublishedXPI": false
+    },
+    {
+      "file": "validation/host-revision-regression.json",
+      "zoteroVersion": "10.0.5",
+      "installedSHA256": null,
+      "reportSHA256": "6691ca694dc21b9ba7c45629870465ae2a3b22edff6175388b2fbc5ca7a7ef8e",
+      "isEvidenceForThisPublishedXPI": false
+    },
+    {
+      "file": "validation/host-ui-alternatives.json",
+      "zoteroVersion": null,
+      "installedSHA256": "99d5a7c2f7641636625f57975b6b750d4b289b486d008e39c87d8f3a8b7ecb35",
+      "reportSHA256": "7c650873b26cb31cbd392485597b0c1e9c32b389f7d67d1ba54fb820ffcc0d71",
+      "isEvidenceForThisPublishedXPI": false
+    },
+    {
+      "file": "validation/host-ui.json",
+      "zoteroVersion": "10.0.5",
+      "installedSHA256": "99d5a7c2f7641636625f57975b6b750d4b289b486d008e39c87d8f3a8b7ecb35",
+      "reportSHA256": "587a0bae71ec8d781d83b9dad3eb8c0a7260a68d65955f5ef449743d3e9cb818",
+      "isEvidenceForThisPublishedXPI": false
+    },
+    {
+      "file": "validation/host-undo.json",
+      "zoteroVersion": null,
+      "installedSHA256": null,
+      "reportSHA256": "6ef85002645cd2dfb1bc8b0721028dc5376504a9c9947337fbeb4751487ba591",
+      "isEvidenceForThisPublishedXPI": false
+    }
+  ],
+  "hostInstall": {
+    "version": "10.0.6",
+    "os": "Darwin",
+    "addonVersion": "0.1.0",
+    "active": true,
+    "installedSHA256": "2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7",
+    "menuPresent": true
+  },
+  "checks": {
+    "command": "npm run check",
+    "passedTests": 65,
+    "failures": 0,
+    "builtSHA256": "2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7",
+    "harnessInProductXPI": false,
+    "finalTargetedCommands": [
+      "biome check --error-on-warnings on all seven changed JS/config files",
+      "node --check on all six changed/new JS files",
+      "python3 -m py_compile scripts/score-isolated-corpus.py",
+      "git diff --check",
+      "local Markdown link checks",
+      "byte comparison of historical reports/scorer/oracle against HEAD",
+      "ZIP entry inventory and new JSON parsing",
+      "native environment request with an alternate report directory"
+    ],
+    "finalTargetedChecksPassed": true
+  },
+  "limitations": [
+    "All seven sources were created by the reader Find-in-Document UI and Control-Alt-1/2. Mouse drag text selection was not verified: CUA returned -10005 noWindowsAvailable repeatedly.",
+    "Four outliers have exact native range geometry and reviewed native print overlays; their live desktop highlight/underline overlays and mouse-selected positions were not checked.",
+    "No other OS or Zotero version was rerun."
+  ],
+  "publicExport": {
+    "redaction": "Absolute workspace prefix replaced with <workspace>; original raw reports retained locally. Annotation content, positions, fingerprints, PDF/artifact hashes and scorer results are unchanged.",
+    "rawReports": "ignored .local/native-v010/raw-public-evidence"
+  }
+}

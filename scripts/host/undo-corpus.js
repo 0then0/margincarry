@@ -2,7 +2,7 @@ export async function run() {
   // Run only through scripts/host-request.mjs in the isolated development profile.
   const api = Zotero.MarginCarryTest;
   const records = await api.service.journal();
-  const apply = await IOUtils.readJSON(`${hostRoot}/validation/host-corpus-apply.json`);
+  const apply = await IOUtils.readJSON(`${hostValidationReportRoot}/host-corpus-apply.json`);
   const record = records.find((r) => r.id === apply.pairs.attention.operationID);
   const item = Zotero.Items.getByLibraryAndKey(record.libraryID, record.created[0].key);
   const savedComment = item.annotationComment,
@@ -58,6 +58,6 @@ export async function run() {
     restoredTestCopy: restored,
     results,
   };
-  await IOUtils.writeJSON(`${hostRoot}/validation/host-corpus-undo.json`, report);
+  await IOUtils.writeJSON(`${hostValidationReportRoot}/host-corpus-undo.json`, report);
   return report;
 }

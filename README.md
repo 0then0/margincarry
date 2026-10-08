@@ -3,7 +3,7 @@
 # MarginCarry
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
-[![Checked host](https://img.shields.io/badge/checked-Zotero%2010.0.5%20%7C%20macOS%2015.7.9-17615b)](docs/engineering-report.md)
+[![Checked host](https://img.shields.io/badge/checked-Zotero%2010.0.6%20%7C%20macOS%2015.7.9-17615b)](docs/engineering-report.md)
 [![CI](https://img.shields.io/github/actions/workflow/status/0then0/margincarry/check.yml?branch=main&label=checks)](https://github.com/0then0/margincarry/actions/workflows/check.yml)
 
 An open Zotero Desktop plugin for carrying highlights and underlines to a new PDF revision. Compare the original and proposed locations, select proposals, and confirm the write. The result is an ordinary Zotero annotation with its comment, color, and text tags.
@@ -12,7 +12,7 @@ PDF annotation transfer already exists in other tools. MarginCarry provides a sm
 
 ## Install
 
-You need **Zotero 10.0.5**, two locally available PDF attachments of the same bibliographic item in your personal library, and a usable text layer. The verified platform is macOS 15.7.9 on Apple Silicon. Windows, Linux, and other Zotero versions have not been verified; manifest compatibility ranges are not evidence of testing.
+You need **Zotero 10.0.5 or a later 10.0.x release**, two locally available PDF attachments of the same bibliographic item in your personal library, and a usable text layer. Historical native checks used 10.0.5; the published v0.1.0 XPI was also exercised on **10.0.6**, macOS 15.7.9, Apple Silicon. The October 8 follow-up also checked ordinary mouse-created annotations and live highlight/underline overlays for all four geometry outliers. Strict geometry discrepancies remain recorded; see the [published-artifact validation](docs/native-v010-validation.md) and [follow-up](docs/native-v010-followup.md). Windows, Linux, and other host versions have not been verified; manifest ranges alone are not testing evidence.
 
 1. Download `margincarry-0.1.0.xpi` and its SHA-256 file from [release v0.1.0](https://github.com/0then0/margincarry/releases/tag/v0.1.0). To build from source instead, run `npm ci && npm run build` with Node.js 24 and Python 3; output is placed in `dist/`.
 2. In Zotero, open **Tools → Plugins**, then the gear menu → **Install Plugin From File…**, and select the XPI.
@@ -62,7 +62,7 @@ v0.1 supports native highlight/underline and continuous selections on one page, 
 
 The adapter uses internal Zotero reader APIs, so a host update can break integration. Before extraction it reloads the selected PDFs from disk and checks their revision. A file replacement or reader reload after analysis requires new analysis; stale coordinates are not reused. Very large pages may require inspection in the reader instead of a preview.
 
-This remains a v0.1 candidate: the independent LoRA geometry comparison retains four rectangle-boundary discrepancies greater than two PDF points for a short ambiguous quote. [Engineering report](docs/engineering-report.md) contains the full results and remaining validation limits.
+Validation remains incomplete. The independent LoRA comparison retains four corner discrepancies greater than two PDF points for a short ambiguous quote. All four agree exactly with native reader range geometry; independent text and native print-overlay review support different vertical metrics, without changing the strict scorer failures. Ordinary mouse selections and those four live desktop overlays still need verification. No confirmed defect currently justifies v0.1.1. The [engineering report](docs/engineering-report.md) separates new published-XPI evidence from historical checks.
 
 ## Development and checks
 
