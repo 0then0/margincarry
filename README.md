@@ -14,7 +14,7 @@ PDF annotation transfer already exists in other tools. MarginCarry provides a sm
 
 You need **Zotero 10.0.5 or a later 10.0.x release**, two locally available PDF attachments of the same bibliographic item in your personal library, and a usable text layer. Historical native checks used 10.0.5; the published v0.1.0 XPI was also exercised on **10.0.6**, macOS 15.7.9, Apple Silicon. The October 8 follow-up also checked ordinary mouse-created annotations and live highlight/underline overlays for all four geometry outliers. Strict geometry discrepancies remain recorded; see the [published-artifact validation](docs/native-v010-validation.md) and [follow-up](docs/native-v010-followup.md). Windows, Linux, and other host versions have not been verified; manifest ranges alone are not testing evidence.
 
-1. Download `margincarry-0.1.0.xpi` and its SHA-256 file from [release v0.1.0](https://github.com/0then0/margincarry/releases/tag/v0.1.0). To build from source instead, run `npm ci && npm run build` with Node.js 24 and Python 3; output is placed in `dist/`.
+1. Download `margincarry-0.1.1.xpi` and its SHA-256 file from [release v0.1.1](https://github.com/0then0/margincarry/releases/tag/v0.1.1). To build from source instead, run `npm ci && npm run build` with Node.js 24 and Python 3; output is placed in `dist/`.
 2. In Zotero, open **Tools → Plugins**, then the gear menu → **Install Plugin From File…**, and select the XPI.
 3. **MarginCarry: transfer PDF annotations…** appears in **Tools**. Its language follows Zotero; unsupported locales fall back to English.
 

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { cp, mkdtemp, readFile, rm, symlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -27,10 +28,12 @@ test('the documented build works in a path containing spaces and non-ASCII chara
     process.platform === 'win32' ? 'junction' : 'dir',
   );
   execFileSync(process.execPath, ['scripts/build.mjs'], { cwd: project, encoding: 'utf8' });
-  const bytes = await readFile(join(project, 'dist/margincarry-0.1.0.xpi'));
+  const { version } = JSON.parse(await readFile(join(project, 'package.json'), 'utf8'));
+  const filename = `margincarry-${version}.xpi`;
+  const bytes = await readFile(join(project, 'dist', filename));
   assert.equal(bytes.subarray(0, 2).toString(), 'PK');
-  assert.match(
-    await readFile(join(project, 'dist/margincarry-0.1.0.xpi.sha256'), 'utf8'),
-    /^[a-f0-9]{64} {2}margincarry-0\.1\.0\.xpi\n$/,
+  assert.equal(
+    await readFile(join(project, 'dist', `${filename}.sha256`), 'utf8'),
+    `${createHash('sha256').update(bytes).digest('hex')}  ${filename}\n`,
   );
 });

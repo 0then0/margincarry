@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "MarginCarry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Review and transfer native text annotations between two local PDF revisions in Zotero.",
   "author": "MarginCarry contributors",
   "homepage_url": "https://github.com/0then0/margincarry",

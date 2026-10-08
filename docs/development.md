@@ -16,7 +16,7 @@ npm run build
 npm run check
 ```
 
-The build bundles `src/index.ts` with esbuild into a Firefox 140 IIFE and packages a ZIP/XPI using Python 3's standard library. Entries are sorted and ZIP timestamps are fixed. Output is `dist/margincarry-0.1.0.xpi` and its `.sha256` file. Tests, the developer harness, corpus, npm packages, and Python dependencies are excluded. The build has a regression test for paths containing spaces and non-ASCII characters.
+The build bundles `src/index.ts` with esbuild into a Firefox 140 IIFE and packages a ZIP/XPI using Python 3's standard library. Entries are sorted and ZIP timestamps are fixed. Output is `dist/margincarry-<version>.xpi` and its `.sha256` file, using the version from `package.json`. Tests, the developer harness, corpus, npm packages, and Python dependencies are excluded. The build has a regression test for paths containing spaces and non-ASCII characters.
 
 Biome uses two spaces, single quotes in JavaScript/TypeScript, and the recommended lint preset. Warnings fail `npm run lint`. It does not parse Python, SVG, XHTML, or YAML. These require their appropriate syntax, packaging, host, or workflow checks. Frozen `validation/` artifacts and npm-owned `package-lock.json` are excluded from formatting.
 

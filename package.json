@@ -1,6 +1,6 @@
 {
   "name": "margincarry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Review and transfer native annotations between PDF revisions in Zotero Desktop",
   "license": "Apache-2.0",

@@ -2,8 +2,9 @@ export async function run() {
   const { AddonManager } = ChromeUtils.importESModule(
     'resource://gre/modules/AddonManager.sys.mjs',
   );
+  const { version } = await IOUtils.readJSON(`${hostRoot}/manifest.json`);
   const install = await AddonManager.getInstallForFile(
-    Zotero.File.pathToFile(`${hostRoot}/dist/margincarry-0.1.0.xpi`),
+    Zotero.File.pathToFile(`${hostRoot}/dist/margincarry-${version}.xpi`),
   );
   await install.install();
   const addon = await AddonManager.getAddonByID('margincarry@0then0.github.io');
