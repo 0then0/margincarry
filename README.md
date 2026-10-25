@@ -80,4 +80,6 @@ Biome checks TypeScript, JavaScript, JSON, and CSS. Python, SVG, XHTML, and YAML
 
 [Development guide](docs/development.md) provides isolated host setup and reproducible corpus checks. [Engineering report](docs/engineering-report.md) separates automated tests, actual native API checks, UI checks, and unverified platforms. GitHub Actions runs independent checks and packaging, not the native Zotero workflow.
 
+For contributions, see [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). Report vulnerabilities using the [security policy](SECURITY.md). Release history and unreleased maintenance changes are in the [changelog](CHANGELOG.md).
+
 Project source and the original SVG icon are Apache-2.0 licensed. See [dependencies and licenses](THIRD_PARTY.md).

@@ -1,0 +1,17 @@
+# Normalize text in the index; use LF on every platform.
+* text=auto eol=lf
+
+# Preserve binary assets and archives byte for byte.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.xpi binary
+*.zip binary
+*.gz binary
+*.tgz binary
+
+# SVG is source text, not a binary image.
+*.svg text eol=lf

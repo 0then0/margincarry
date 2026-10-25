@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a focused improvement to MarginCarry.
+title: '[Feature]: '
+body:
+  - type: markdown
+    attributes:
+      value: Read the README for supported scope and limitations before proposing a change. Do not include private research data.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or workflow
+      description: Describe who encounters the problem and a concrete example.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the user-visible result and any effect on matching, library data, or undo.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and scope
+      description: Describe workarounds, simpler options, and what can stay outside this change.
