@@ -48,6 +48,14 @@ The dialog was opened in an isolated profile with a small synthetic item (two PD
 
 A second script then drove the real dialog through the whole lifecycle on the same item: **Select unique proposals** took the two unique proposals and skipped every doubtful one, a doubtful candidate was preselected for nobody and could be chosen by hand, and applying three selections created three highlights with the original comments, colors, and tags. The source annotations and both PDF files were unchanged. A repeat attempt after a new analysis was refused, and **Undo last transfer** moved the three copies to the Trash. The record is [`validation/v0.1.2/ui-lifecycle.json`](../validation/v0.1.2/ui-lifecycle.json). The restart and edited-copy conflict cases were not repeated for v0.1.2; the v0.1.0 evidence covers them with identical transfer code.
 
+### v0.1.2: text in the supported languages
+
+The matcher was also run on real PDFs written in Russian, Spanish, German, French, Japanese, and Brazilian Portuguese. For each language, an old and a new revision were printed to PDF with Chrome, so the fonts are embedded and Zotero extracts the text as it would from any PDF. The new revision has a different column width and an extra first paragraph, so lines re-wrap and a paragraph moves. In an isolated Zotero profile, one source highlight per quote was created from the plugin's own glyph rectangles, the plugin's analysis ran, and every outcome was compared with the expectation written down beforehand: a moved paragraph, a re-wrapped passage, a number that grows (`41,0` into `41,03`), a word that becomes part of a longer word, a removed sentence, an accent or letter that changed, and a word broken across lines at a soft hyphen. All 45 cases gave the expected outcome ([`validation/v0.1.2/languages.json`](../validation/v0.1.2/languages.json)).
+
+Two real extraction behaviors came out of this check. Chrome's text layer delivered some Cyrillic and Japanese text in decomposed form, which the NFC normalization handles. Soft-hyphen breaks left no hyphen in the text layer, so those words matched normally.
+
+The generator is one tool, so the check does not speak for every PDF producer. LaTeX output, for example, can keep break hyphens and put accents in separate glyphs. The same cases also run as unit tests (`tests/languages.test.ts`) with synthetic pages, including decomposed accents, which real PDFs from other producers will contain.
+
 ## Real revision corpus
 
 Two genuine revision pairs were chosen independently of the matcher: [LoRA v1](https://arxiv.org/pdf/2106.09685v1) to [v2](https://arxiv.org/pdf/2106.09685v2) (20 to 26 pages) and [Attention v1](https://arxiv.org/pdf/1706.03762v1) to [v2](https://arxiv.org/pdf/1706.03762v2) (15 to 16 pages), with 16 source cases each. The URLs and SHA-256 values are in [`validation/corpus.json`](../validation/corpus.json), the PDFs are not stored in the repository, and a download is verified against its hash.

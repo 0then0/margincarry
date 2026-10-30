@@ -1,0 +1,746 @@
+{
+  "schema": 1,
+  "version": "0.1.2",
+  "date": "2026-10-31",
+  "artifact": {
+    "file": "dist/margincarry-0.1.2.xpi",
+    "sha256": "0357e693127028183c4ee113e8c761a996274df0f3b279a387c41c8574366a93"
+  },
+  "host": {
+    "zotero": "10.0.7",
+    "os": "macOS (Darwin 24.6.0), Apple Silicon",
+    "profile": "isolated .local/profile and .local/data; the personal library was not opened"
+  },
+  "method": "python3 scripts/make-language-fixtures.py prints old and new HTML pages in each language to PDF with Google Chrome (embedded fonts). scripts/host/check-languages.js imports each pair into the isolated library, creates one source highlight per quote from the plugin's own glyph rectangles in the old PDF, runs the plugin's analysis, and compares each proposal's status with the expected outcome. Recommended candidates were also checked for the exact quote text (after NFC) and for geometry.",
+  "summary": {
+    "cases": 45,
+    "matchedExpectation": 45,
+    "perLanguage": {
+      "ru": {
+        "cases": 6,
+        "matchedExpectation": 6
+      },
+      "es": {
+        "cases": 8,
+        "matchedExpectation": 8
+      },
+      "de": {
+        "cases": 8,
+        "matchedExpectation": 8
+      },
+      "fr": {
+        "cases": 8,
+        "matchedExpectation": 8
+      },
+      "ja": {
+        "cases": 7,
+        "matchedExpectation": 7
+      },
+      "pt-BR": {
+        "cases": 8,
+        "matchedExpectation": 8
+      }
+    }
+  },
+  "observations": [
+    "Chrome's text layer returned some Cyrillic and Japanese text in decomposed form (a base letter plus a combining mark); the matcher's NFC normalization handled it.",
+    "Soft-hyphen line breaks in German, Spanish, French and Portuguese did not put a hyphen into the text layer, so the broken words still matched with one rectangle per line.",
+    "Japanese quotes inside runs of ideographs and kana were recommended with the 'word boundaries cannot be checked' reason, as designed."
+  ],
+  "limits": "The PDFs are small synthetic documents produced by one generator. They do not cover other PDF producers, such as LaTeX, whose text layers can keep break hyphens or split accents into separate glyphs.",
+  "cases": [
+    {
+      "lang": "ru",
+      "quote": "Результаты были тщательно проверены и подтверждены повторным анализом.",
+      "note": "moved paragraph",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "ru",
+      "quote": "41,0",
+      "note": "decimal comma extended",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "ru",
+      "quote": "кот",
+      "note": "word inside a longer word",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "ru",
+      "quote": "Это предложение полностью исчезнет в новой редакции.",
+      "note": "removed sentence",
+      "expected": "not found",
+      "status": "not found",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 0,
+      "recommendedRects": null,
+      "boundary": null,
+      "reason": "No exact or conservatively normalized quote on a single target page."
+    },
+    {
+      "lang": "ru",
+      "quote": "через мост и дальше по долине до города на севере",
+      "note": "re-wrapped passage",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "ru",
+      "quote": "Всё это",
+      "note": "ё changed to е",
+      "expected": "not found",
+      "status": "not found",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 0,
+      "recommendedRects": null,
+      "boundary": null,
+      "reason": "No exact or conservatively normalized quote on a single target page."
+    },
+    {
+      "lang": "es",
+      "quote": "Los resultados se comprobaron con cuidado y se confirmaron con un segundo análisis.",
+      "note": "moved paragraph",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "es",
+      "quote": "41,0",
+      "note": "decimal comma extended",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "es",
+      "quote": "casa",
+      "note": "singular inside plural",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "es",
+      "quote": "Esta frase desaparecerá por completo en la edición nueva.",
+      "note": "removed sentence",
+      "expected": "not found",
+      "status": "not found",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 0,
+      "recommendedRects": null,
+      "boundary": null,
+      "reason": "No exact or conservatively normalized quote on a single target page."
+    },
+    {
+      "lang": "es",
+      "quote": "cruza el puente y sigue por el valle hasta la ciudad del norte",
+      "note": "re-wrapped passage",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "es",
+      "quote": "¿Qué hora es?",
+      "note": "inverted question mark",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "es",
+      "quote": "También",
+      "note": "accent dropped",
+      "expected": "not found",
+      "status": "not found",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 0,
+      "recommendedRects": null,
+      "boundary": null,
+      "reason": "No exact or conservatively normalized quote on a single target page."
+    },
+    {
+      "lang": "es",
+      "quote": "electroencefalografista",
+      "note": "word broken across lines; the break hyphen is not in the text layer",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "de",
+      "quote": "Die Ergebnisse wurden sorgfältig geprüft und durch eine zweite Analyse bestätigt.",
+      "note": "moved paragraph",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "de",
+      "quote": "41,0",
+      "note": "decimal comma extended",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "de",
+      "quote": "Haus",
+      "note": "word inside a compound",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "de",
+      "quote": "Dieser Satz entfällt in der neuen Fassung vollständig.",
+      "note": "removed sentence",
+      "expected": "not found",
+      "status": "not found",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 0,
+      "recommendedRects": null,
+      "boundary": null,
+      "reason": "No exact or conservatively normalized quote on a single target page."
+    },
+    {
+      "lang": "de",
+      "quote": "über die Brücke und weiter durch das Tal bis zur Stadt",
+      "note": "re-wrapped passage",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "de",
+      "quote": "dampf",
+      "note": "deliberate partial selection of a compound, unchanged",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "de",
+      "quote": "Straßenverkehrsordnung",
+      "note": "long compound, unchanged",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "de",
+      "quote": "Geschwindigkeitsbegrenzung",
+      "note": "word broken across lines; the break hyphen is not in the text layer",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "fr",
+      "quote": "Les résultats ont été vérifiés avec soin et confirmés par une seconde analyse.",
+      "note": "moved paragraph",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "fr",
+      "quote": "41,0",
+      "note": "decimal comma extended",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "fr",
+      "quote": "homme",
+      "note": "singular inside plural",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "fr",
+      "quote": "Cette phrase disparaît complètement dans la nouvelle édition.",
+      "note": "removed sentence",
+      "expected": "not found",
+      "status": "not found",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 0,
+      "recommendedRects": null,
+      "boundary": null,
+      "reason": "No exact or conservatively normalized quote on a single target page."
+    },
+    {
+      "lang": "fr",
+      "quote": "traverse le pont et continue dans la vallée jusqu’à la ville du nord",
+      "note": "re-wrapped passage",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "fr",
+      "quote": "histoire",
+      "note": "elision with typographic apostrophe, unchanged",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "fr",
+      "quote": "bonjour",
+      "note": "guillemets",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "fr",
+      "quote": "anticonstitutionnellement",
+      "note": "word broken across lines; the break hyphen is not in the text layer",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 3,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "ja",
+      "quote": "結果は慎重に確認され、二度目の分析でも裏付けられました。",
+      "note": "moved paragraph",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "ja",
+      "quote": "41.0",
+      "note": "decimal extended",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "ja",
+      "quote": "猫",
+      "note": "no word delimiters: not guessed, disclosed",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "unverifiable",
+        "right": "unverifiable"
+      },
+      "reason": "One text occurrence; word boundaries cannot be checked for this script. Verify the PDF position."
+    },
+    {
+      "lang": "ja",
+      "quote": "この文は新しい版では完全に削除されます。",
+      "note": "removed sentence",
+      "expected": "not found",
+      "status": "not found",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 0,
+      "recommendedRects": null,
+      "boundary": null,
+      "reason": "No exact or conservatively normalized quote on a single target page."
+    },
+    {
+      "lang": "ja",
+      "quote": "橋を渡り、谷を抜けて、国の北にある静かな町",
+      "note": "re-wrapped passage",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "unverifiable",
+        "right": "unverifiable"
+      },
+      "reason": "One text occurrence; word boundaries cannot be checked for this script. Verify the PDF position."
+    },
+    {
+      "lang": "ja",
+      "quote": "コンピューター",
+      "note": "katakana long vowel mark",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "kept",
+        "right": "unverifiable"
+      },
+      "reason": "One text occurrence; word boundaries cannot be checked for this script. Verify the PDF position."
+    },
+    {
+      "lang": "ja",
+      "quote": "Python",
+      "note": "Latin word between kana",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "pt-BR",
+      "quote": "Os resultados foram verificados com cuidado e confirmados por uma segunda análise.",
+      "note": "moved paragraph",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "pt-BR",
+      "quote": "41,0",
+      "note": "decimal comma extended",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "pt-BR",
+      "quote": "livro",
+      "note": "singular inside plural",
+      "expected": "doubtful candidate",
+      "status": "doubtful candidate",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 1,
+      "recommendedRects": null,
+      "boundary": {
+        "left": "kept",
+        "right": "expanded"
+      },
+      "reason": "The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually."
+    },
+    {
+      "lang": "pt-BR",
+      "quote": "Esta frase desaparece por completo na edição nova.",
+      "note": "removed sentence",
+      "expected": "not found",
+      "status": "not found",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 0,
+      "recommendedRects": null,
+      "boundary": null,
+      "reason": "No exact or conservatively normalized quote on a single target page."
+    },
+    {
+      "lang": "pt-BR",
+      "quote": "atravessa a ponte e segue pelo vale até a cidade ao norte",
+      "note": "re-wrapped passage",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 2,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "pt-BR",
+      "quote": "ação",
+      "note": "inflected form differs",
+      "expected": "not found",
+      "status": "not found",
+      "ok": true,
+      "massSelectable": false,
+      "candidates": 0,
+      "recommendedRects": null,
+      "boundary": null,
+      "reason": "No exact or conservatively normalized quote on a single target page."
+    },
+    {
+      "lang": "pt-BR",
+      "quote": "guarda-chuva",
+      "note": "hyphenated compound",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 1,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    },
+    {
+      "lang": "pt-BR",
+      "quote": "inconstitucionalissimamente",
+      "note": "word broken across lines; the break hyphen is not in the text layer",
+      "expected": "unique candidate",
+      "status": "unique candidate",
+      "ok": true,
+      "massSelectable": true,
+      "candidates": 1,
+      "recommendedRects": 3,
+      "boundary": {
+        "left": "kept",
+        "right": "kept"
+      },
+      "reason": "One text occurrence; verify the PDF position."
+    }
+  ]
+}

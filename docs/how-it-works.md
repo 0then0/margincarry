@@ -59,11 +59,22 @@ Han, Hiragana, Katakana, Thai, Lao, Khmer, Myanmar, and Tibetan text is written 
 
 - A word added before or after an unchanged quote (`valid` becoming `not valid`), or a number changed elsewhere in the sentence.
 - Scientific notation, units, percentages, fractions, and numbers grouped with spaces.
-- Words split across lines or pages by hyphenation, such as `pa- / rameters`.
+- Words split across lines or pages by hyphenation. If the PDF's text layer leaves the break hyphen out, which is common, the word matches like any other, and this was checked in German, Spanish, French, and Portuguese. If the text layer keeps the hyphen, as in the recorded `pa- / rameters` case, the hyphen belongs to the text and the rectangle can differ from an independent measurement.
 - Inflection. In languages such as Russian or German, `кот` followed by an ending (`кота`) is a different word, so it is reported as doubtful by design.
 - Glued superscripts. A footnote marker attached directly to a word can make that word doubtful when the marker changes.
 
 These checks lower the number of wrong recommendations. They do not replace looking at the preview.
+
+## Languages
+
+MarginCarry matches text in any language, and it has been checked on real PDFs in English, Russian, Spanish, German, French, Japanese, and Brazilian Portuguese (see [Validation](validation.md)). What that means in practice:
+
+- Accents and umlauts match whether the PDF stores them as one character or as a letter followed by a combining mark. Different letters never match: `ё` and `е`, `ß` and `ss`, `ñ` and `n`, or `ação` and `ações`.
+- Decimal commas and thousands separators are part of a number, so `41,0` inside `41,03` and `1.000` inside `1.0005` are doubtful.
+- Typographic apostrophes and quotation marks (`’`, `« »`, `„ “`, `「 」`) and the no-break spaces that French typography puts before `:` and inside guillemets are handled like ordinary punctuation and spaces.
+- An apostrophe between letters joins them into one word, as in `can't` and `l’histoire`. A quote that was highlighted whole in the old PDF and appears only after an elided article in the new one is therefore doubtful.
+- Inflected and compound words are compared as written. `casa` inside `casas`, `Haus` inside `Hausaufgabenheft`, and `кот` inside `котёл` are doubtful.
+- Japanese is written without spaces between words. Boundaries between ideographs and kana are not guessed. Latin letters and digits next to them are separate words, and full-width digits and letters count as digits and letters.
 
 ## What gets written
 

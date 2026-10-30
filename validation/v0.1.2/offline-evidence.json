@@ -10,7 +10,7 @@
   "environment": "macOS (Darwin 24.6.0), Node.js v26.13.0 (the project declares >=24 <25), Python 3.9.6",
   "automatedChecks": {
     "command": "npm run check",
-    "result": "Biome, strict TypeScript, 113/113 tests and XPI packaging passed"
+    "result": "Biome, strict TypeScript, 121/121 tests and XPI packaging passed"
   },
   "frozenCorpusRescoring": {
     "method": "scripts/score-isolated-corpus.py applied to a copy of the unchanged validation/corpus-results.json (recorded by the earlier host run), written outside validation/",

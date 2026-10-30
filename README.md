@@ -20,7 +20,7 @@ Nothing is written until you confirm. Your original annotations and PDF files ar
 - Flags quotes that survive only inside a different word or number, such as `cat` in `concatenate` or `41.0` in `41.03`, and keeps them out of bulk selection.
 - Records every transfer in a local journal, blocks accidental repeats, and undoes a transfer in one step.
 - Works entirely offline on your computer. There is no account, server, or telemetry.
-- Available in English, Russian, Spanish, German, French, Japanese, and Brazilian Portuguese.
+- Available in English, Russian, Spanish, German, French, Japanese, and Brazilian Portuguese, and checked on PDFs written in each of those languages. Accents, decimal commas, typographic punctuation, and Japanese text without word spaces are handled; see [How matching works](docs/how-it-works.md#languages).
 
 ## Requirements
 

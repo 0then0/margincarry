@@ -110,6 +110,19 @@ node scripts/host-request.mjs scripts/host/capture-ui.js
 
 To exercise the whole transfer through the real dialog on the same fixture, run `node scripts/host-request.mjs scripts/host/ui-lifecycle.js`. It uses mass selection, picks a doubtful candidate by hand, applies, checks that the copies keep their comment, color, and tags and that the sources and PDFs are unchanged, confirms that a repeat is refused, and undoes the transfer. It leaves one undone record in the isolated journal.
 
+## Checking the matcher on text in each language
+
+`scripts/make-language-fixtures.py` writes an old and a new PDF for each of Russian, Spanish, German, French, Japanese, and Brazilian Portuguese into `.local/language-fixtures/`, with a `cases.json` that lists each quote and its expected outcome. It prints HTML to PDF with Google Chrome (set `CHROME` to use another Chromium binary) and otherwise needs only the standard library. With the isolated host running and the XPI installed:
+
+```sh
+python3 scripts/make-language-fixtures.py
+node scripts/host-request.mjs scripts/host/install.js
+node scripts/host-request.mjs scripts/host/load.js
+node scripts/host-request.mjs scripts/host/check-languages.js
+```
+
+`check-languages.js` imports each pair, creates the source highlights from the plugin's glyph rectangles, runs the analysis, and returns every case whose status differs from the expectation. It writes the complete results to `<report root>/languages.json`. When you change matching rules, update the expectations in the generator and the table in `tests/languages.test.ts` together.
+
 ## Independent oracle and geometry fixtures
 
 Regenerating the oracle requires pdfplumber 0.11.9 and its dependencies. Scoring frozen gold requires only Python's standard library. Original fixture PDF generation uses ReportLab 4.4.9 and pypdf 6.10.0; they are not plugin dependencies. Use an existing suitable environment rather than installing them automatically into a user's environment.

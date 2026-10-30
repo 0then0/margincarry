@@ -7,6 +7,7 @@ Notable changes to MarginCarry are recorded here. Released entries describe the 
 ### Added
 
 - Interface languages: Spanish, German, French, Japanese, and Brazilian Portuguese join English and Russian. The dialog has a button for each language, annotation types are named in the selected language, and every project-owned message is translated. The language follows Zotero's locale; any Portuguese locale uses the Brazilian translation.
+- Matching was checked on real PDFs in Russian, Spanish, German, French, Japanese, and Brazilian Portuguese (45 cases in Zotero 10.0.7) and covered by new unit tests. Generator and host scripts for that check are included.
 - Developer tooling to check the dialog in every language: a stdlib-only fixture generator and host scripts that screenshot the real dialog and report clipped text (see the development guide).
 
 ### Fixed
