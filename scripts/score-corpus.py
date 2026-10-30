@@ -55,6 +55,7 @@ for pair in ["lora", "attention"]:
         "sourceAnnotations": len(rows),
         "unique": sum(r["actual"] == "unique candidate" for r in rows),
         "multiple": sum(r["actual"] == "multiple candidates" for r in rows),
+        "doubtful": sum(r["actual"] == "doubtful candidate" for r in rows),
         "notFound": sum(r["actual"] == "not found" for r in rows),
         "unsupported": sum(r["actual"] == "unsupported" for r in rows),
         "processingErrors": sum(r["actual"] == "processing error" for r in rows),

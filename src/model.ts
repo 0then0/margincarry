@@ -51,6 +51,7 @@ export interface Snapshot {
   file: FileStamp;
   annotations: Annotation[];
 }
+export type EdgeVerdict = 'kept' | 'unverifiable' | 'expanded' | 'changed';
 export interface Candidate {
   id: string;
   pageIndex: number;
@@ -62,12 +63,15 @@ export interface Candidate {
   suffix: string;
   method: 'exact' | 'normalized';
   contextMatches: boolean;
+  /** Whether each end of the quote keeps the word or number boundary of the source selection. */
+  boundary: { left: EdgeVerdict; right: EdgeVerdict };
   position: Position | null;
   geometryError: string | null;
 }
 export type Outcome =
   | 'unique candidate'
   | 'multiple candidates'
+  | 'doubtful candidate'
   | 'not found'
   | 'unsupported'
   | 'processing error';

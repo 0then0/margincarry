@@ -1,5 +1,6 @@
 import { analyze } from './analysis.ts';
-import { type en, Localization } from './l10n.ts';
+import { Localization, localeNames, locales, type UiKey } from './l10n.ts';
+import { doubtful } from './matching.ts';
 import type { Candidate, Plan, Position, Proposal, Selection } from './model.ts';
 import type { TransferService } from './transfer.ts';
 import type { ZoteroAdapter } from './zotero.ts';
@@ -23,8 +24,21 @@ export class TransferWindow {
     this.service = service;
     this.l10n = new Localization(adapter.locale());
   }
-  private t(key: keyof typeof en, params: Record<string, string | number> = {}): string {
+  private t(key: UiKey, params: Record<string, string | number> = {}): string {
     return this.l10n.t(key, params);
+  }
+  /** The annotation type as a person would name it; an unknown type is shown as Zotero reports it. */
+  private typeName(type: string): string {
+    const keys: Record<string, UiKey> = {
+      highlight: 'typeHighlight',
+      underline: 'typeUnderline',
+      note: 'typeNote',
+      image: 'typeImage',
+      ink: 'typeInk',
+      text: 'typeText',
+    };
+    const key = keys[type];
+    return key ? this.t(key) : type;
   }
   private el<T extends HTMLElement>(id: string): T {
     return this.win.document.getElementById(id) as T;
@@ -44,10 +58,18 @@ export class TransferWindow {
     };
   }
   async init(ids: number[]): Promise<void> {
+    for (const locale of locales) {
+      const button = this.win.document.createElement('button');
+      button.id = `language-${locale}`;
+      button.type = 'button';
+      button.lang = locale;
+      button.textContent = localeNames[locale];
+      this.el('language-options').append(button);
+    }
     this.l10n.apply(this.win.document);
     this.reviewSet();
     this.languageState();
-    for (const locale of ['en', 'ru'] as const) {
+    for (const locale of locales) {
       this.el<HTMLButtonElement>(`language-${locale}`).onclick = this.handle(async () => {
         if (this.applying || this.controller || this.l10n.locale === locale) return;
         this.l10n.locale = locale;
@@ -126,7 +148,7 @@ export class TransferWindow {
     this.status(choices.length >= 2 ? this.t('ready') : this.t('choosePair'));
   }
   private languageState(): void {
-    for (const locale of ['en', 'ru'] as const)
+    for (const locale of locales)
       this.el(`language-${locale}`).setAttribute(
         'aria-pressed',
         String(this.l10n.locale === locale),
@@ -135,8 +157,7 @@ export class TransferWindow {
   private lock(value: boolean): void {
     this.applying = value;
     for (const id of [
-      'language-en',
-      'language-ru',
+      ...locales.map((locale) => `language-${locale}`),
       'old',
       'new',
       'swap',
@@ -229,7 +250,7 @@ export class TransferWindow {
       button.className = 'annotation-row';
       button.setAttribute('aria-current', String(index === this.activeIndex));
       const title = this.win.document.createElement('span');
-      title.textContent = p.source.text || this.t('type', { type: p.source.type });
+      title.textContent = p.source.text || this.t('type', { type: this.typeName(p.source.type) });
       const state = this.win.document.createElement('small');
       state.textContent = `${this.accepted.has(p.source.key) ? this.t('accepted') : this.skipped.has(p.source.key) ? this.t('skipped') : ''}${this.t(p.status)}`;
       button.append(title, state);
@@ -282,7 +303,7 @@ export class TransferWindow {
     this.text(
       'metadata',
       this.t('metadata', {
-        type: p.source.type,
+        type: this.typeName(p.source.type),
         color: p.source.color,
         tags: p.source.tags.join(', ') || this.t('noTags'),
       }),
@@ -292,10 +313,18 @@ export class TransferWindow {
       'source-page',
       this.t('sourcePage', { page: p.source.pageLabel ?? p.source.position.pageIndex + 1 }),
     );
-    this.text('outcome', `${this.t(p.status)}: ${this.l10n.message(p.reason)}`);
+    this.text(
+      'outcome',
+      this.t('outcome', { status: this.t(p.status), reason: this.l10n.message(p.reason) }),
+    );
     const select = this.el<HTMLSelectElement>('candidates');
     select.replaceChildren();
-    if (p.status === 'multiple candidates' && !this.accepted.has(p.source.key)) {
+    // Nothing doubtful or ambiguous is ever preselected.
+    const mustChoose =
+      p.status === 'multiple candidates' ||
+      p.status === 'doubtful candidate' ||
+      (p.recommendedID === null && p.candidates.some(doubtful));
+    if (mustChoose && !this.accepted.has(p.source.key)) {
       const placeholder = this.win.document.createElement('option');
       placeholder.value = '';
       placeholder.textContent = this.t('chooseCandidate');
@@ -305,13 +334,13 @@ export class TransferWindow {
     for (const [index, c] of p.candidates.entries()) {
       const option = this.win.document.createElement('option');
       option.value = c.id;
-      option.textContent = `${p.candidates.length > 1 ? this.t('variant', { index: index + 1 }) : ''}${this.t('candidate', { page: c.pageLabel, method: this.t(c.method) })}${c.contextMatches ? this.t('contextMatch') : ''}${c.geometryError ? this.t('noGeometry') : ''}`;
+      option.textContent = `${p.candidates.length > 1 ? this.t('variant', { index: index + 1 }) : ''}${this.t('candidate', { page: c.pageLabel, method: this.t(c.method) })}${c.contextMatches ? this.t('contextMatch') : ''}${doubtful(c) ? this.t('boundaryDiffers') : ''}${c.geometryError ? this.t('noGeometry') : ''}`;
       select.append(option);
     }
     select.value =
       this.accepted.get(p.source.key) ??
       p.recommendedID ??
-      (p.status === 'multiple candidates' ? '' : (p.candidates[0]?.id ?? ''));
+      (mustChoose ? '' : (p.candidates[0]?.id ?? ''));
     select.onchange = this.handle(async () => {
       // Changing an alternative revokes the old confirmation until Accept is clicked again.
       this.accepted.delete(p.source.key);

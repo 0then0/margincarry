@@ -59,6 +59,7 @@ function fixture() {
             suffix: '',
             method: 'normalized',
             contextMatches: false,
+            boundary: { left: 'kept', right: 'kept' },
             position: { pageIndex: 3, rects: [[10, 20, 100, 30]] },
             geometryError: null,
           },
@@ -341,4 +342,19 @@ test('public recovery locks out apply and releases its lock after a read error',
   store.readJournal = read;
   await service.apply(plan, selected);
   assert.equal(store.records[0]!.status, 'committed');
+});
+
+test('a deliberately selected doubtful candidate is written as a copy and undone like any other', async () => {
+  const { store, plan, service, selected } = fixture();
+  const proposal = plan.proposals[0]!;
+  proposal.status = 'doubtful candidate';
+  proposal.recommendedID = null;
+  proposal.candidates[0]!.boundary = { left: 'expanded', right: 'kept' };
+  const record = await service.apply(plan, selected);
+  assert.equal(record.status, 'committed');
+  assert.equal(record.copies.length, 1);
+  assert.deepEqual(record.copies[0]!.position, proposal.candidates[0]!.position);
+  assert.equal(store.source.annotations[0]!.key, 'OLDKEY01');
+  assert.equal((await service.undoLast()).count, 1);
+  assert.equal(store.source.annotations[0]!.key, 'OLDKEY01');
 });

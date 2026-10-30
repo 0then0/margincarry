@@ -76,7 +76,7 @@ export function sourceRange(
   position: Position,
   quote: string,
 ): { start: number; end: number } {
-  if (position.nextPageRects?.length) throw new Error('Multi-page annotations are outside v0.1.');
+  if (position.nextPageRects?.length) throw new Error('Multi-page annotations are not supported.');
   if (!position.rects?.length || !position.rects.every(validRect))
     throw new Error('Invalid source rectangles.');
   const stream = pageText(page),

@@ -139,7 +139,7 @@ export class ZoteroAdapter implements Store {
     const a = await this.snapshot(oldID),
       b = await this.snapshot(newID);
     if (a.parentID !== b.parentID)
-      throw new Error('v0.1 requires two attachments of the same bibliographic item.');
+      throw new Error('Two attachments of the same bibliographic item are required.');
     return [a, b];
   }
   private async ready(promise: Promise<unknown>): Promise<void> {
