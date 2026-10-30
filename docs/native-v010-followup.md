@@ -1,12 +1,14 @@
 # Published v0.1.0 follow-up, October 8, 2026
 
+> Archived report for the published v0.1.0 artifact, kept as recorded. For the current state of validation, read [Validation](validation.md).
+
 **PASS WITH RISKS on the tested host.** The earlier mouse-selection and live-overlay tooling gaps are closed. The published v0.1.0 XPI remains unchanged. Strict independent geometry discrepancies remain visible in the evidence; they were not removed or converted into scorer passes. No confirmed product defect justifies a patch release.
 
 This supplements the [October 7 report](native-v010-validation.md), rather than replacing its observations. The same official Zotero 10.0.6, macOS 15.7.9, arm64, isolated profile/data directory, research PDF hashes, and installed XPI SHA-256 `2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7` were used. Environment identity is recorded in the new native stage exports. No ordinary library, security settings, dependencies, product source, version, Git index, or history were changed.
 
 ## Ordinary text selection
 
-Native CUA dragging now succeeds without the earlier `noWindowsAvailable` error. The exact isolated application path was used. Actual reader mouse gestures and annotation controls created:
+Desktop-automation dragging now succeeds without the earlier `noWindowsAvailable` error. The exact isolated application path was used. Actual reader mouse gestures and annotation controls created:
 
 - Underline `trainable parameters for downstream tasks.`, key `ZCREECES`.
 - A two-line highlight of the opening LoRA abstract, beginning `The dominant paradigm...`. This exploratory changed-text case remains in the new analysis's extra proposals and source snapshots; it is not counted as a new frozen positive case.

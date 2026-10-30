@@ -1,6 +1,8 @@
 # Published v0.1.0 native validation, October 7, 2026
 
-**Historical October 7 decision: validation remained incomplete.** The published XPI passed the reader keyboard-annotation workflow, native API lifecycle checks, and a separate UI transfer/restart/repeat/Undo cycle on Zotero 10.0.6. Ordinary mouse text selections could not be exercised because native CUA dragging repeatedly returned `Computer Use server error -10005: noWindowsAvailable`. The four geometry outliers have native range measurements and reviewed native print overlays, but their live desktop overlays and mouse-selected positions were not checked. No product defect was established, no product code or version changed, and there is no demonstrated reason to prepare v0.1.1.
+> Archived report for the published v0.1.0 artifact, kept as recorded. For the current state of validation, read [Validation](validation.md).
+
+**Historical October 7 decision: validation remained incomplete.** The published XPI passed the reader keyboard-annotation workflow, native API lifecycle checks, and a separate UI transfer/restart/repeat/Undo cycle on Zotero 10.0.6. Ordinary mouse text selections could not be exercised because desktop-automation dragging repeatedly returned `Computer Use server error -10005: noWindowsAvailable`. The four geometry outliers have native range measurements and reviewed native print overlays, but their live desktop overlays and mouse-selected positions were not checked. No product defect was established, no product code or version changed, and there is no demonstrated reason to prepare v0.1.1.
 
 The [October 8 follow-up](native-v010-followup.md) closes the mouse-selection and live-overlay tooling gaps and records harness repairs, new regressions, and remaining strict geometry risks. The observations and staged reports below retain their October 7 meaning. Public JSON exports replace the absolute workspace prefix with `<workspace>`; raw originals are retained locally.
 
@@ -35,7 +37,7 @@ All seven sources were created by **Find in Document followed by Control-Alt-1 o
 
 All six positive corresponding positions pass the unchanged 2-point comparison against the independent oracle. Actual PDF previews and native navigation completed for both sides of all six. Preview PNGs remain in ignored `.local/native-v010/native-*-source.png` and `native-*-target.png`.
 
-An extra second-author `Google Brain` source, `6IR83CZV`, was created during UI troubleshooting. It remains in the snapshots and `extraProposals`; it was excluded from the six-case transfer set and was not counted as the first-author case. Its context resolves to the second author.
+An extra second-author `Google Brain` source, `6IR83CZV`, was created during UI testing. It remains in the snapshots and `extraProposals`; it was excluded from the six-case transfer set and was not counted as the first-author case. Its context resolves to the second author.
 
 After UI creation, only comments, colors, and text tags were edited through native item APIs to provide meaningful preservation checks. [metadata.json](../validation/native-v010/metadata.json) records this supplement. Source quote and geometry remained unchanged; both undecorated and decorated snapshots remain.
 
@@ -49,7 +51,7 @@ After a full quit and relaunch, [restart.json](../validation/native-v010/restart
 
 [undo.json](../validation/native-v010/undo.json) records editing one Attention copy and attempting Undo. The conflict deleted nothing and left every edited fingerprint unchanged. Only that disposable fixture's comment and `dateModified` were restored to test successful Undo separately; the product never discarded edits. Undo then moved exactly four Attention and two LoRA operation copies to Trash, preserving sources, PDF hashes, and earlier target annotations.
 
-A separate operation used actual **Tools → MarginCarry** UI controls through native CUA:
+A separate operation used actual **Tools → MarginCarry** UI controls through desktop automation:
 
 1. Attention v1 → v2, **Find proposals**, actual previews, accept `native-07`, explicitly choose Candidate 1 for `native-05` from all four alternatives.
 2. **Apply selected**, inspect the confirmation naming two copies and the target PDF, **OK**. The dialog reported `Created 2 native annotations`; the native reader displayed `Google Brain` highlighted below the first author.
@@ -75,7 +77,7 @@ This supports differences between vertical-metric models rather than wrong offse
 
 ## Commands, reproduction, and historical evidence
 
-Executed: `node scripts/fetch-corpus.mjs`; `MARGINCARRY_HOST_ROOT=.local/native-v010 node scripts/prepare-host.mjs`; staged `scripts/host/native-validation.js` actions `capture`, `decorate`, `analyze`, `apply`, `restart`, `undo`, `ui-before`, `ui-after`, `ui-restart`, `ui-repeat`, `ui-undo`, and `geometry`; `seed-corpus.js`; `run-corpus.js native-v010`; `python3 scripts/score-isolated-corpus.py validation/native-v010`. The native PDF import script remains at `.local/native-v010/seed-ui.js`; its guarded reproduction equivalent is now `scripts/host/seed-native.js`. Source creation and UI confirmation used native CUA.
+Executed: `node scripts/fetch-corpus.mjs`; `MARGINCARRY_HOST_ROOT=.local/native-v010 node scripts/prepare-host.mjs`; staged `scripts/host/native-validation.js` actions `capture`, `decorate`, `analyze`, `apply`, `restart`, `undo`, `ui-before`, `ui-after`, `ui-restart`, `ui-repeat`, `ui-undo`, and `geometry`; `seed-corpus.js`; `run-corpus.js native-v010`; `python3 scripts/score-isolated-corpus.py validation/native-v010`. The native PDF import script remains at `.local/native-v010/seed-ui.js`; its guarded reproduction equivalent is now `scripts/host/seed-native.js`. Source creation and UI confirmation used desktop automation.
 
 Successful macOS launch:
 
@@ -92,4 +94,4 @@ Root `validation/host-*.json`, `corpus.json`, `corpus-results.json`, and `corpus
 
 Only documentation, development harness configuration/scripts, and validation materials changed. Product source, version, release metadata, and update mechanism remain unchanged. No commit, push, tag, or release was performed.
 
-**Validation remains incomplete because ordinary UI text selection by mouse was blocked by CUA and the four live desktop geometry overlays were not checked. No confirmed product defect currently justifies v0.1.1.**
+**Validation remains incomplete because ordinary UI text selection by mouse was blocked by the desktop-automation tool and the four live desktop geometry overlays were not checked. No confirmed product defect currently justifies v0.1.1.**

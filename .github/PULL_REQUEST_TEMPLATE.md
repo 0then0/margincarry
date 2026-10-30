@@ -15,5 +15,5 @@ Describe effects on matching, library data, repeat protection, or undo. Link new
 - [ ] Changes are focused and follow CONTRIBUTING.md.
 - [ ] Relevant automated checks passed, or failures and blockers are explained above.
 - [ ] Behavior changes have appropriate regression coverage.
-- [ ] Documentation, English/Russian strings, and the Unreleased changelog are updated where applicable.
+- [ ] Documentation, every language file in `src/locales/`, and the Unreleased changelog are updated where applicable.
 - [ ] No secrets, private library data, generated packages, or local profiles are included.

@@ -1,6 +1,6 @@
 # Contributing to MarginCarry
 
-MarginCarry transfers native PDF highlights and underlines between two revisions of the same Zotero item. Read the [README](README.md) for supported behavior and current limits, and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+MarginCarry transfers native PDF highlights and underlines between two revisions of the same Zotero item. Read the [README](README.md) for supported behavior and current limits, [How MarginCarry works](docs/how-it-works.md) for the matching rules, and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Reports and proposals
 
@@ -27,7 +27,7 @@ Native validation requires a disposable Zotero profile and data directory. Follo
 
 - Preserve source annotations, PDFs, pre-existing target annotations, transactional writes, repeat protection, and conflict-aware undo.
 - Keep matching conservative. Do not relax the two-PDF-point scorer or edit frozen gold and historical reports to make a new result pass. Store new evidence separately and explain how it was obtained.
-- Add focused regression tests for behavior changes. Update English and Russian interface strings together when needed.
+- Add focused regression tests for behavior changes. Add or change interface text in every file under `src/locales/` together; see [Adding or changing a language](docs/development.md#adding-or-changing-a-language). Translation fixes from native speakers are especially welcome.
 - Keep dependencies pinned and update the lockfile with npm when a dependency change is agreed.
 - Describe the problem, resulting behavior, checks performed, and remaining limits in the pull request. Link the relevant issue and update documentation or the Unreleased changelog when appropriate.
 

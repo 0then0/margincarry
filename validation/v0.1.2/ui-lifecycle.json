@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "version": "0.1.2",
+  "date": "2026-10-31",
+  "artifact": {
+    "sha256": "0357e693127028183c4ee113e8c761a996274df0f3b279a387c41c8574366a93"
+  },
+  "method": "scripts/host/ui-lifecycle.js drives the real dialog in the isolated profile on the interface fixture: mass selection, a manually chosen doubtful candidate, apply, a repeat attempt after re-analysis, and Undo.",
+  "result": {
+    "massSelected": 2,
+    "massSelectedStatuses": [
+      "the quick brown fox jumps",
+      "A longer passage that is highlighted to show how a long source quote wraps in the list"
+    ],
+    "doubtfulPreselected": false,
+    "doubtfulAcceptEnabledBeforeChoice": false,
+    "selectedAfterManual": 3,
+    "copiesCreated": 3,
+    "copies": [
+      {
+        "type": "highlight",
+        "text": "the quick brown fox jumps",
+        "comment": "A short comment.",
+        "color": "#ffd400",
+        "tags": [
+          "interface check"
+        ]
+      },
+      {
+        "type": "highlight",
+        "text": "41.0",
+        "comment": "The number changes from 41.0 to 41.03.",
+        "color": "#ff6666",
+        "tags": [
+          "interface check"
+        ]
+      },
+      {
+        "type": "highlight",
+        "text": "A longer passage that is highlighted to show how a long source quote wraps in the list",
+        "comment": "A long comment shows how several lines of explanatory text are laid out in the detail panel next to the quote and its metadata.",
+        "color": "#e56eee",
+        "tags": [
+          "interface check"
+        ]
+      }
+    ],
+    "sourcesUnchangedAfterApply": true,
+    "repeatRefusal": "Source annotation EJYCEENQ was already transferred. Undo that operation before copying it again.",
+    "copiesAfterRepeat": 3,
+    "undoStatus": "Transfer undone: 3 copies moved to Trash.",
+    "copiesAfterUndo": 0,
+    "sourcesUnchangedAfterUndo": true,
+    "pdfsUnchanged": true,
+    "journalStatuses": [
+      "undone"
+    ],
+    "zotero": "10.0.7"
+  }
+}

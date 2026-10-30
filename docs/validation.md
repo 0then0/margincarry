@@ -1,117 +1,77 @@
-# MarginCarry v0.1 engineering report
+# Validation
 
-Latest native validation: October 8, 2026, **PASS WITH RISKS for published v0.1.0 on Zotero 10.0.6**. Ordinary mouse-created annotations and all four live highlight/underline outliers were checked. Corpus and native lifecycle checks passed again; strict geometry discrepancies remain recorded. Harness fixes prevent mixed fixture roots, incomplete repeat checks, self-consistent metadata checks, and simultaneous requests. See the [follow-up](native-v010-followup.md) and [October 7 evidence](native-v010-validation.md).
+This page states what has been verified, how, and what has not. It separates three kinds of evidence, because they answer different questions:
 
-Current release: **v0.1.1**, which publishes the completed validation evidence and repaired development harness. The published `margincarry-0.1.1.xpi` was verified against the local `dist/margincarry-0.1.1.xpi` build. Its runtime bundle is byte-identical to published v0.1.0; the only changed XPI entry is the manifest version. The harness remains excluded from the XPI. All 73 automated tests, TypeScript, Biome, packaging, and release CI passed; v0.1.1 has not been separately installed for native testing. See the [v0.1.1 release](https://github.com/0then0/margincarry/releases/tag/v0.1.1).
+- **Automated tests** run in CI and on every contributor's machine, against fakes of the Zotero boundary.
+- **Native checks** run the built plugin inside a real Zotero, in an isolated profile with a disposable library.
+- **Corpus checks** compare the matcher with an independent oracle on two real pairs of paper revisions.
 
-The integration, corpus, and UI reports below describe the **historical Zotero 10.0.5 work** unless explicitly stated otherwise. Historical host XPI hashes differ from published v0.1.0; reports without a hash cannot establish its identity. They remain useful earlier evidence, not results of the October 7–8 runs. The local `dist/margincarry-0.1.0.xpi` build used for comparison was byte-identical to the published v0.1.0 package.
+CI does not start Zotero. Nothing on this page was run against a personal library.
 
-## Implemented behavior
+## Current status
 
-MarginCarry is a bootstrap Zotero Desktop plugin with a Tools menu command. Users choose two local PDF attachments of one bibliographic item, receive an outcome for each native annotation, compare actual PDF previews, navigate both positions in the native reader, accept or skip proposals, and explicitly confirm a concrete selected set before writing.
+- **Automated tests, strict TypeScript, Biome, XPI packaging:** pass for v0.1.2 (`npm run check`).
+- **All seven interface languages in the real dialog:** checked for v0.1.2 on Zotero 10.0.7, macOS. No clipped text, overlap, or horizontal scrolling at 1180 and 900 px.
+- **Native lifecycle (apply, repeat protection, Undo):** run through the real dialog for v0.1.2 on Zotero 10.0.7, macOS. Restart persistence and the edited-copy conflict were verified for the published v0.1.0 package on Zotero 10.0.6; the transfer code is the same.
+- **Real revision corpus (32 cases):** recorded for the v0.1.0 matcher; not re-run for the v0.1.2 boundary check.
+- **Windows, Linux, other Zotero releases:** not verified.
 
-It creates native highlights and underlines with fresh keys, the actual target text, original comments, colors, and text tags. Source annotations, both PDF files, and pre-existing target annotations remain intact. Snapshots prevent applying a plan after files or annotations change. A shared service lock protects apply, undo, and journal recovery. A local write-ahead journal protects against repeats and records ownership for undo.
+## Automated tests
 
-English and Russian are available in the dialog. The menu and initial dialog follow Zotero's locale, with English fallback; the Language buttons changes the dialog language without discarding accepted locations. Project-owned labels, prompts, progress, accessibility text, outcomes, and errors are localized. Original document text, comments, filenames, and host-generated diagnostic wording are preserved. Public documentation and workflow screenshots use English.
+`npm run check` runs Biome (formatting, imports, lint, warnings as errors), strict TypeScript, the `node:test` suite, and the XPI build. The tests cover:
 
-Undo validates every owned copy before deletion. Editing, moving, or deleting any copy stops the entire undo. Unchanged copies move to Trash. Only after database commit does the adapter remove those keys from initialized open readers: the verified Zotero reader handles hard deletion notifications but does not itself hide soft-deleted annotations. Transaction rollback leaves reader state untouched. Reader refresh failure explicitly reports that copies reached Trash and requires reopening, rather than claiming complete success.
+- matching: exact and normalized quotes, repeats and context, the candidate limit, grapheme and glyph boundaries, geometry, and the word and number boundary model with Latin, Cyrillic, Chinese, and Japanese examples;
+- transfer: transactional writes, rollback, the journal and its recovery, repeat protection, and conflict-aware Undo;
+- the dialog: cancellation, selection state, mass selection, manual choice of a doubtful candidate, and language switching with accepted proposals;
+- localization: key and placeholder parity in every language, that every project-owned message in the code is translated, and the language selection from Zotero's locale;
+- packaging: a build from a path with spaces and non-ASCII characters.
 
-## Architecture and dependencies
+## Native checks
 
-`src/text.ts`, `geometry.ts`, `matching.ts`, `analysis.ts`, and `transfer.ts` separate normalization, geometry, proposal selection, cancellable analysis, and transactional transfer. `src/zotero.ts` contains the complete host boundary and necessary internals. `src/ui.ts` uses DOM in a native chrome window. `src/l10n.ts` owns locale resources and message presentation; `bootstrap.js` owns lifecycle and chrome registration.
+Native checks use a separate Zotero profile and data directory under `.local/`, driven by the developer harness described in the [development guide](development.md#isolated-zotero-profile). The harness is never part of the XPI.
 
-Normalization permits only Unicode NFC and whitespace folding, with UTF-16 mappings. A recovered raw range must normalize to the complete quote; this rejects substring matches that expand into additional combining marks or ZWJ symbols. Rejected raw matches do not consume the valid-candidate limit. Geometry uses actual glyph rectangles and checks whole glyph boundaries, crop box, line/column order, discontinuities, and native position limits.
+### Published v0.1.0, Zotero 10.0.6, macOS
 
-Search accounts for exact and normalized occurrences together, up to 200 valid candidates with an explicit truncation flag. Complete available context may distinguish repeats, but alternatives are retained. The old page number does not establish identity. There is no fuzzy score or automatic application.
+The [October 7 report](native-v010-validation.md) and the [October 8 follow-up](native-v010-followup.md) record checks of the published v0.1.0 package, identified by its SHA-256:
 
-There are no runtime dependencies, second PDF engine, backend, React, Electron, or external database. Exact development versions are TypeScript 5.9.3, esbuild 0.28.2, and Biome 2.5.15. Tests use `node:test`; ZIP packaging uses Python's standard library. See [licenses and versions](../THIRD_PARTY.md).
+- the Tools menu item and the dialog, with the original and proposed locations rendered from the real PDFs;
+- creating copies through the dialog, their comments, colors, and tags, and the unchanged source annotations, PDFs, and pre-existing target annotations;
+- repeat blocking, including after a restart;
+- Undo, including the refusal when a copy was edited, and the reader refresh after Undo;
+- ordinary mouse-created annotations, and live highlight and underline overlays for the four known geometry outliers.
 
-reanchor 0.3.0 was separately evaluated on all 30 text cases. All three configurations found at least one occurrence in each of 23 positive cases. Defaults matched four negative cases, normalized-only one, and explicitly restricted normalization none. Offset round-trip checks found no inconsistencies, without claiming independently correct positions for every result. The library is potentially usable with configuration; the small internal matcher provides NFC, complete alternative accounting, disclosed truncation, and complete PDF glyph checks. See [related work](related-work.md).
+Result: **pass with risks**. The risks are the geometry discrepancies listed below. The earlier [Zotero 10.0.5 development reports](../validation/README.md) describe a different build and are retained as history only.
 
-## Zotero integration
+### v0.1.2, Zotero 10.0.7, macOS
 
-The implementation was checked against the installed release's sources and [bootstrap plugin guidance](https://www.zotero.org/support/dev/zotero_7_for_developers). Source revisions are pinned in THIRD_PARTY. It does not rely on invented API methods.
+The dialog was opened in an isolated profile with a small synthetic item (two PDF revisions, eight source annotations, one for each outcome plus a long quote and a long comment). In each of the seven languages, at widths of 1180 and 900 px, the check selected the unique, doubtful, ambiguous, and long cases and recorded screenshots and layout metrics. No element had text wider than its box, no page scrolled horizontally, and no button wrapped onto more than two lines. The screenshots were also read for natural wording and visual balance. The method is [in the development guide](development.md#checking-the-dialog-in-every-language), and the result is recorded in [`validation/v0.1.2/ui-languages.json`](../validation/v0.1.2/ui-languages.json).
 
-Native APIs include `Zotero.Items.getAsync`, `getByLibraryAndKey`, `Item.getAnnotations`, `getFilePathAsync`, annotation properties, `setTags`, `Zotero.DataObjectUtilities.generateKey`, `Zotero.Reader.open`, `Zotero.DB.executeTransaction`, `Item.save`, and local `IOUtils` file operations. `Zotero.Annotations.saveFromJSON` seeds disposable fixtures. Product writes use a new `Zotero.Item('annotation')` and `save()` inside one outer transaction, because this release's `saveFromJSON()` always calls `saveTx()` and cannot nest there.
+A second script then drove the real dialog through the whole lifecycle on the same item: **Select unique proposals** took the two unique proposals and skipped every doubtful one, a doubtful candidate was preselected for nobody and could be chosen by hand, and applying three selections created three highlights with the original comments, colors, and tags. The source annotations and both PDF files were unchanged. A repeat attempt after a new analysis was refused, and **Undo last transfer** moved the three copies to the Trash. The record is [`validation/v0.1.2/ui-lifecycle.json`](../validation/v0.1.2/ui-lifecycle.json). The restart and edited-copy conflict cases were not repeated for v0.1.2; the v0.1.0 evidence covers them with identical transfer code.
 
-Necessary internal integration points:
+## Real revision corpus
 
-- `Zotero.Reader._readers`, `_initPromise`, `_internalReader._primaryView`, and `initializedPromise` identify a ready PDF view.
-- Native `ReaderInstance.reload()` reads current disk bytes and creates a fresh primary view before extraction. File stamps are checked around loading; subsequent previews and creates require the same view and file revision.
-- `_ensureBasicPageData`, `_pdfPages`, `getPageLabels2`, and `getAnnotationMeta` provide complete glyph data, page labels, and sort order.
-- `_iframeWindow.PDFViewerApplication.pdfDocument`, `getPage`, `getViewport`, `render`, and `convertToViewportRectangle` provide actual previews with crop box and page rotation.
-- `ReaderInstance.navigate` opens annotation keys or positions; `unsetAnnotations` refreshes views after committed undo.
-- `Cu.waiveXrays` and `Cu.cloneInto` cross privileged and reader realms.
+Two genuine revision pairs were chosen independently of the matcher: [LoRA v1](https://arxiv.org/pdf/2106.09685v1) to [v2](https://arxiv.org/pdf/2106.09685v2) (20 to 26 pages) and [Attention v1](https://arxiv.org/pdf/1706.03762v1) to [v2](https://arxiv.org/pdf/1706.03762v2) (15 to 16 pages), with 16 source cases each. The URLs and SHA-256 values are in [`validation/corpus.json`](../validation/corpus.json), the PDFs are not stored in the repository, and a download is verified against its hash.
 
-In this reader, basic page data's `partial: true` means unprocessed additional overlays, not a truncated glyph array. This was checked against the bundled worker and actual pages. Core geometry still validates every range. Preview uses print intent to avoid paused background-frame animation and cancels a render task on timeout. Oversized preview canvases are refused.
+The selections were frozen before the first matcher run. The expected ranges and rectangles come from an independent oracle (pdfplumber 0.11.9), and the comparison tolerance of two PDF points was never adjusted.
 
-Journal writes use a temporary file and flush. A prepared record precedes native changes; saved fingerprints become durable before database commit; a final status follows commit. Recovery distinguishes failed, committed, and interrupted undo. Ambiguous partial states stop further writes. Recovery cannot run concurrently with an active operation, including when a review window is closed and reopened. SQLite is never edited directly.
+For the v0.1.0 matcher:
 
-## Historical verification environment and commands
+- **LoRA, 16 annotations:** 9 unique, 1 multiple, 5 not found, 1 unsupported. Each of the 10 positive cases has a correct candidate. The short quote `lora-15` has 120 candidates and no recommendation.
+- **Attention, 16 annotations:** 13 unique, 2 not found, 1 unsupported. Each of the 13 positive cases has a correct candidate. Changed numbers are not matched to the old quote.
+- **Overall:** 23 positive cases with a correct proposal, 9 untransferred cases, and 0 wrong recommended locations.
 
-The verified native host is **Zotero 10.0.5**, **macOS 15.7.9**, **Darwin 24.6**, **Apple Silicon**. Independent checks use **Node.js 24.21.0** and **npm 11.19.0**. Native validation uses separate `.local/profile` and `.local/data`; the ordinary user library is excluded. Other OSes and Zotero versions are not declared verified.
+The v0.1.2 boundary check can only turn a recommendation into a doubtful candidate; it cannot add a recommendation. The corpus has not been re-run with it, because that needs the Zotero host to extract the PDFs, so how many of the 23 positive cases remain recommended is unmeasured. Recorded v0.1.0 candidates, replayed through the new check, show no expansion on any of the 9 candidates whose context was recorded ([`validation/v0.1.2/offline-evidence.json`](../validation/v0.1.2/offline-evidence.json)). That is partial, indirect evidence and not a corpus run.
 
-```sh
-npm run format
-npm run lint
-npm run check
-```
+## Known discrepancies
 
-All 65 automated tests pass. The current check output is retained in [checks.txt](../validation/checks.txt). Biome checks formatting, imports, and lint with warnings treated as failures; TypeScript uses strict checks; tests cover substantive matching, data, and UI behavior; the build produces the XPI. A packaging test uses a path containing spaces and non-ASCII characters. CI pins official GitHub Action revisions and runs the same independent checks; it does not launch Zotero.
+- **Geometry.** The independent comparison flags 4 of the 120 `lora-15` candidates (`0:1691:1695`, `5:4305:4309`, `5:4332:4336`, `7:2107:2111`). Their horizontal boundaries identify the intended occurrence, but their vertical font-metric boundaries differ from the oracle by more than two PDF points. Native reader geometry agrees with the plugin, and live overlays show the intended four letters. None of them is recommended automatically. The scorer and its tolerance are unchanged.
+- **Hyphenation.** A quote split by a line-end hyphen (`pa-` and `rameters`) is found, but the independent range includes the hyphen and ends 3.3 points away from the plugin's first rectangle.
+- **Reader internals.** The integration uses internal Zotero reader APIs. A different Zotero release may need changes, which is why the manifest accepts only 10.0.x.
 
-Regression tests added after review cover journal recovery overlapping active apply/undo, lock release after recovery failure, same-path PDF replacement and reader-view changes, Unicode ranges with extra combining marks or ZWJ sequences, valid-candidate limits after rejected matches, cancellation during first preview loading, review count reset, English/Russian resources and accessibility labels, and preserving selected locations during a language change.
+## Not verified
 
-Native checks are reproducible through the isolated harness:
+Windows and Linux, Zotero versions other than 10.0.5 to 10.0.7, very large or encrypted PDFs, unusual fonts, difficult reading order, and group libraries. Text matches, including unique ones, still require a look at the preview.
 
-```sh
-node scripts/host-request.mjs scripts/host/install.js
-node scripts/host-request.mjs scripts/host/load.js
-node scripts/host-request.mjs scripts/host/revision-regression.js
-node scripts/host-request.mjs scripts/host/run-corpus.js
-python3 scripts/score-corpus.py
-node scripts/host-request.mjs scripts/host/apply-corpus.js
-# Quit and relaunch the same isolated Zotero profile.
-node scripts/host-request.mjs scripts/host/load.js
-node scripts/host-request.mjs scripts/host/verify-restart.js
-node scripts/host-request.mjs scripts/host/undo-corpus.js
-```
+## Evidence index
 
-[Installation](../validation/host-install.json) records active version, Tools menu, host, and installed XPI hash. [Same-path revision regression](../validation/host-revision-regression.json) confirms that an already-open one-page target, replaced on disk by a two-page revision, yields and creates the selection on page index 1. Undo removes only that copy; source remains unchanged. A later replacement rejects both stale preview and apply.
-
-[Native apply](../validation/host-corpus-apply.json) records fresh keys and property preservation for 23 selected copies, unchanged sources/PDFs/pre-existing target annotations, repeat blocking, cancellation, and rollback after an injected second-write failure. [Restart](../validation/host-restart.json) records copy fingerprints after process restart and repeat blocking. [Undo](../validation/host-corpus-undo.json) records conflict without deletion, then successful undo of 13 and 10 copies with preserved sources, files, and existing target annotations. The restoration of an edited disposable fixture is test-only; the product does not discard edits.
-
-[Native geometry](../validation/host-geometry.json) records page 1 → 2, separate lines in a column, crop box `[40, 40, 500, 750]` on a 90°-rotated page, and explicit not found for a PDF without text. The actual rotated preview shows the highlight on the intended vertical line. Individually rotated glyphs remain unsupported.
-
-## Real corpus: all 32 cases
-
-Two genuine revision pairs were selected independently: [LoRA v1](https://arxiv.org/pdf/2106.09685v1) → [v2](https://arxiv.org/pdf/2106.09685v2), 20 → 26 pages, and [Attention v1](https://arxiv.org/pdf/1706.03762v1) → [v2](https://arxiv.org/pdf/1706.03762v2), 15 → 16 pages. URLs and SHA-256 values are in [corpus.json](../validation/corpus.json). PDFs are excluded from the repository, and downloads verify exact hashes.
-
-Selections were frozen before the first matcher output. Expected ranges and rectangles were obtained independently with pdfplumber 0.11.9. NFKC is used only in the oracle to decode PDF ligatures and does not broaden product normalization. The two-PDF-point geometry tolerance was not adjusted to fit results.
-
-**LoRA, 16 annotations:** 9 unique, 1 multiple, 5 not found, 1 unsupported, 0 processing errors. Each of 10 positive cases has a correct candidate. The short `lora-15` quote has 120 candidates and no recommended ID. Ten explicitly selected copies are transferred; six source cases are left untransferred.
-
-**Attention, 16 annotations:** 13 unique, 0 multiple, 2 not found, 1 unsupported, 0 processing errors. Each of 13 positive cases has a correct candidate. Three unique cases retain four alternatives each, with only one matching complete context. Thirteen copies are transferred; three cases remain untransferred. Changed numbers are not matched to the old quote.
-
-Overall: **23 positive cases with a correct proposal, 9 untransferred source cases, 0 wrong recommended locations**. This is not a claim of zero wrong candidates: the independent corner comparison flags **4 of 120** `lora-15` variants. The other 116 are within tolerance; Attention has no geometry discrepancies. All 32 cases remain in [results](../validation/corpus-results.json) and [score](../validation/corpus-score.json).
-
-The flagged IDs are `0:1691:1695`, `5:4305:4309`, `5:4332:4336`, and `7:2107:2111`. Horizontal boundaries identify the intended occurrences; vertical font-metric boundaries differ by more than two PDF points. Reviewing previews does not turn the strict corner test into a pass. None is recommended automatically. Gold and tolerance remain unchanged.
-
-## Historical UI evidence
-
-Native API tests and user interaction are separate evidence. The actual Zotero window workflow includes Tools → MarginCarry, direction, analysis, both actual previews, selecting two unique proposals, reviewing the set, confirming Apply, and opening the created highlight/underline in the native reader. Sidebar comments and tags are visible. The Language control was also exercised in Russian and English; both selected proposals survived switching back to English. See [review](images/review.png) and [reader](images/reader.png).
-
-[UI report](../validation/host-ui.json) records created keys, source/PDF preservation, restart fingerprints, and undo. After committed undo, the active reader's two operation keys disappear immediately, leaving no highlight/underline and an empty annotation sidebar. See [undo screenshot](images/undo.png).
-
-For two identical quotes on the same page, analysis starts with an unselected placeholder and disabled acceptance. Selecting candidate 2 previews the second occurrence; accepting adds one transfer; switching to candidate 1 revokes that acceptance. The no-text PDF shows a specific reason and disables acceptance and application. See [ambiguity](images/ambiguous.png), [not found](images/not-found.png), and [read-only UI snapshots](../validation/host-ui-alternatives.json). Interactions use native CUA; snapshot scripts only read DOM.
-
-## Remaining validation limits
-
-Native validation covers published v0.1.0 on the actually checked hosts; v0.1.1 retains the same runtime. Other OSes/host releases, very large or encrypted PDFs, unusual fonts, and difficult reading order are outside the small validation corpus. Four strict geometry discrepancies and the supplementary line-end-hyphen discrepancy remain recorded. Text matches, including unique outcomes, require visual review.
-
-Only local PDFs of one item in a personal library and native continuous, one-page highlight/underline are supported. OCR, fuzzy transfer of changed text, ink/images/notes, multi-page/discontinuous ranges, group libraries, library-wide processing, note-link rewriting, and custom sync are outside scope. Reader integration depends on internal APIs of the verified release.
-
-The journal contains user quotes, comments, geometry, and paths, stored only in Zotero's data directory. The plugin introduces no account, remote processing, telemetry, or external API. Zotero sync and plugin updates remain governed by Zotero's settings.
-
-The language dropdown was replaced with two native buttons to avoid overlapping popup labels. The active language is highlighted and exposed through `aria-pressed`; both buttons are disabled during analysis and writes. Both choices were checked in Zotero after restarting to refresh cached chrome styles. See [language control](images/language.png).
-
-Native validation decision for published v0.1.0: **PASS WITH RISKS on the tested host**. The [October 8 follow-up](native-v010-followup.md) closes the previously blocked mouse-selection and live-overlay checks, while retaining the strict scorer failures and a supplementary line-end-hyphen discrepancy. The [October 7 report](native-v010-validation.md) records the successful keyboard-source and transfer lifecycle checks, explains native print geometry, and preserves all strict scorer failures. Published v0.1.1 delivers this evidence and the harness repairs without changing annotation matching or transfer behavior. Its identical runtime does not constitute a separate native installation test of v0.1.1.
+The [`validation/`](../validation/README.md) directory holds the frozen selections, oracle, recorded results, and native reports. Frozen files are never edited to make a result pass; new evidence goes into a separate file with its version and package hash. Fresh run output stays in the ignored `.local/` directory until it is deliberately promoted.

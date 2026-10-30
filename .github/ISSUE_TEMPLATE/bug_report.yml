@@ -11,7 +11,7 @@ body:
     attributes:
       label: Versions
       description: Include MarginCarry, Zotero, operating system version, and CPU architecture.
-      placeholder: MarginCarry 0.1.1; Zotero 10.0.6; macOS 15.7.9; Apple Silicon
+      placeholder: MarginCarry 0.1.2; Zotero 10.0.7; macOS 15.7.9; Apple Silicon
     validations:
       required: true
   - type: textarea

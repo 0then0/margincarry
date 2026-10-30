@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "version": "0.1.2",
+  "date": "2026-10-31",
+  "state": "working tree on base commit 021a93e1ae1234ed8329941379ac81b12b3a7741, before the v0.1.2 commits",
+  "xpi": {
+    "file": "dist/margincarry-0.1.2.xpi",
+    "sha256": "0357e693127028183c4ee113e8c761a996274df0f3b279a387c41c8574366a93"
+  },
+  "environment": "macOS (Darwin 24.6.0), Node.js v26.13.0 (the project declares >=24 <25), Python 3.9.6",
+  "automatedChecks": {
+    "command": "npm run check",
+    "result": "Biome, strict TypeScript, 113/113 tests and XPI packaging passed"
+  },
+  "frozenCorpusRescoring": {
+    "method": "scripts/score-isolated-corpus.py applied to a copy of the unchanged validation/corpus-results.json (recorded by the earlier host run), written outside validation/",
+    "result": "Identical to validation/corpus-score.json apart from the new zero 'doubtful' counter: LoRA 16 annotations, Attention 16 annotations, wrongRecommendations 0 in both, four recorded LoRA wrongProposedLocations retained, tolerance unchanged at 2 PDF points",
+    "limit": "This only proves the scorer is unchanged. It is not a run of the v0.1.2 matcher on the corpus."
+  },
+  "recordedCandidateReplay": {
+    "method": "The v0.1.2 boundary classifier was applied to the 9 target candidates in validation/native-v010/analysis.json, using their recorded 100-character prefix and suffix.",
+    "result": "All 9 candidates have free (ordinary) boundaries on both sides, so none can be classified as expanded by the new rule.",
+    "limit": "Source-side context was not recorded, so a partially selected source word could not be ruled out; the 32 corpus cases lack target context altogether. This is partial indirect evidence, not a corpus result."
+  },
+  "blocked": {
+    "corpusRun": "Requires the Zotero host to extract PDF.js glyph streams from the hash-verified LoRA and Attention PDFs, which were not downloaded. The corpus was therefore not re-run for v0.1.2.",
+    "note": "A Zotero 10.0.7 application is now available on this machine and was used, in an isolated profile only, for validation/v0.1.2/ui-languages.json and ui-lifecycle.json."
+  }
+}

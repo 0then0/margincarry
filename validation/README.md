@@ -4,8 +4,10 @@ This directory is intentionally public. It contains small frozen inputs and evid
 
 - `selections.json`, `corpus.json`, and `fixture-gold.json`: independent source selections and PDF-coordinate oracle. Corpus download URLs and exact PDF hashes are recorded here; PDFs themselves are downloaded into ignored `.local/`.
 - `corpus-results.json`, `corpus-score.json`, and `reanchor-evaluation.json`: historical matcher and independent scoring results. Keep failures, alternatives, and the original two-point tolerance.
-- Root `host-*.json`, `integration-spike.json`, and `checks.txt`: historical development evidence. They do not establish validation of the published v0.1.0 artifact. See [engineering report](../docs/engineering-report.md) for artifact attribution and limitations.
+- Root `host-*.json`, `integration-spike.json`, and `checks.txt`: historical development evidence. They do not establish validation of the published v0.1.0 artifact. See [validation report](../docs/validation.md) for artifact attribution and limitations.
 - `native-v010/`: published v0.1.0 evidence on Zotero 10.0.6, including its frozen case plan, lifecycle snapshots, native geometry measurements, and comparison images. See [validation report](../docs/native-v010-validation.md).
+
+- `v0.1.2/`: evidence for v0.1.2 with the XPI SHA-256: `ui-languages.json` (the dialog in every language on Zotero 10.0.7), `ui-lifecycle.json` (apply, repeat protection, and Undo through the real dialog), and `offline-evidence.json` (checks that need no host, and the corpus step that was not run). None replaces or restates a historical report.
 
 Recorded annotation keys, fingerprints, comments, and library records belong exclusively to disposable research-paper fixtures. They are retained to make preservation, repeat, and Undo checks auditable. Images contain limited validation excerpts of the referenced papers, not redistributed full PDFs. New native reports replace the absolute workstation prefix with `<workspace>`; raw exports remain local. Historical files are preserved as recorded.
 

@@ -1,4 +1,6 @@
-# Development and reproducible validation
+# Development guide
+
+This guide covers building MarginCarry, running its checks, working on translations, and reproducing the native validation in an isolated Zotero profile. See also [CONTRIBUTING.md](../CONTRIBUTING.md) and the [architecture notes](architecture.md).
 
 ## Local checks
 
@@ -22,22 +24,31 @@ Biome uses two spaces, single quotes in JavaScript/TypeScript, and the recommend
 
 `noExplicitAny` is disabled only in `src/zotero.ts` and `src/host.d.ts` at the privileged dynamic host boundary. Bootstrap disables `noUnusedVariables` because Zotero calls lifecycle functions by name. Test fixture assertions may use non-null assertions. One `noImportantStyles` suppression makes the HTML `[hidden]` attribute override layout rules. Matching, geometry, and transaction logic use the normal lint rules.
 
-## Localization
+## Adding or changing a language
 
-`src/l10n.ts` contains typed English and Russian UI resources, interpolation, project-owned diagnostic translations, and static DOM localization. The menu and initial dialog follow Zotero's locale; other locales fall back to English. The dialog's Language buttons changes only its language and preserves accepted locations. Original PDF quotes, user comments, filenames, keys, and host-generated diagnostics are not rewritten.
+Interface text lives in `src/locales/`, one file per language: `en.ts` (the source of every key), `ru.ts`, `es.ts`, `de.ts`, `fr.ts`, `ja.ts`, and `pt-br.ts`. Each non-English file exports two objects, and TypeScript refuses to compile if either has a missing or extra key:
 
-Add every user-facing label in both dictionaries, including accessibility labels and confirmation prompts. Add translations for project-owned errors and outcomes. Tests verify placeholder parity, XHTML resource keys, both UI locales, dynamic diagnostics, and language changes with accepted proposals. Public documentation and screenshots use English.
+- `ui` holds labels, prompts, accessibility text, and interpolated strings such as `Selected to write: {count}`. Keep the `{placeholders}` exactly as in English; a test compares them.
+- `messages` translates the project-owned diagnostics that appear in the status line and in proposal reasons. The English text in `en.ts` is the lookup key and also the text used in the code, so changing a message means changing it in both places. A test checks that every message in the source is listed and every listed message is used.
+
+To add a language:
+
+1. Create `src/locales/<tag>.ts` with both objects, then import it in `src/l10n.ts`, add the tag to `locales`, give it a native name in `localeNames`, and extend `selectLocale` if its Zotero locale codes need mapping.
+2. Run `npm test`. The tests check key and placeholder parity, that nothing is left as English, the language buttons, and language switching with accepted proposals.
+3. Run the interface check below and read each screenshot. Texts must not be clipped, overlap, or force horizontal scrolling at the default window size and at 900 px.
+
+`selectLocale` maps Zotero's locale to a language by its primary subtag. Every Portuguese locale uses the Brazilian translation, and an unsupported locale falls back to English. The menu and the first view of the dialog follow Zotero's locale; the language buttons switch the dialog afterwards without discarding accepted proposals. Quoted PDF text, user comments, file names, annotation keys, and diagnostics produced by Zotero are never translated. Documentation and screenshots are English only.
 
 ## Isolated Zotero profile
 
 Native checks modify disposable test data only. Never run the harness in a normal user profile. Scripts use Zotero APIs and do not edit SQLite directly.
 
-1. Download official Zotero 10.0.5 from [Zotero](https://www.zotero.org/download/). The recorded host checks use macOS 15.7.9 on Apple Silicon and the [official 10.0.5 DMG](https://download.zotero.org/client/release/10.0.5/Zotero-10.0.5.dmg).
+1. Install official Zotero 10.0.x from [zotero.org](https://www.zotero.org/download/). Any copy works, including the one in `/Applications`, because the isolated profile never uses your normal data directory.
 2. From the repository root, run `node scripts/prepare-host.mjs`. It creates `.local/profile`, `.local/data`, and a separate test-only harness. It refuses to overwrite an already configured profile.
-3. Launch a separate Zotero copy with `-no-remote -profile` and the absolute `.local/profile` path. On macOS, with the copy in `.local/Zotero.app`:
+3. Launch a separate Zotero copy with `-no-remote -profile` and the absolute `.local/profile` path. On macOS:
 
    ```sh
-   "$PWD/.local/Zotero.app/Contents/MacOS/zotero" \
+   /Applications/Zotero.app/Contents/MacOS/zotero \
      -no-remote -profile "$PWD/.local/profile" -ZoteroDebugText
    ```
 
@@ -78,6 +89,27 @@ node scripts/host-request.mjs scripts/host/undo-corpus.js
 
 Reports go to `${MARGINCARRY_HOST_ROOT:-.local}/reports` by default. Set `MARGINCARRY_REPORT_ROOT` to choose a separate output directory. Corpus IDs/plans and stream exports use `MARGINCARRY_HOST_ROOT`; PDF downloads remain shared, hash-verified inputs under `.local/corpus`. Frozen public reports are never the default destination. The base CI neither downloads the corpus nor launches Zotero. Without a running host, these checks must not be reported as executed.
 
+### Re-running the corpus for a later version
+
+The frozen `validation/corpus-results.json` and `corpus-score.json` describe the matcher that produced them. After a matching change, run the commands above against a freshly packaged XPI, keep the outputs in `MARGINCARRY_REPORT_ROOT`, and record the package version, commit or working-tree description, and the XPI SHA-256 with them. Score with `scripts/score-isolated-corpus.py`, which leaves frozen files untouched. The unchanged strict scorer now also counts `doubtful` proposals; compare `wrongRecommendations`, `positiveCasesWithoutCorrectProposal`, and the status counts with the historical numbers and explain every difference. A positive case that became `doubtful` is not lost (its candidate and geometry remain), but it is no longer recommended and must be reported.
+
+## Checking the dialog in every language
+
+With the isolated host running and the built XPI installed, generate a small fixture with one quote for each outcome and capture the dialog in every language:
+
+```sh
+npm run build
+python3 scripts/make-ui-fixture.py
+node scripts/host-request.mjs scripts/host/install.js
+node scripts/host-request.mjs scripts/host/load.js
+node scripts/host-request.mjs scripts/host/seed-ui.js
+node scripts/host-request.mjs scripts/host/capture-ui.js
+```
+
+`make-ui-fixture.py` writes two PDFs to `.local/ui-fixture/` using only the standard library. `seed-ui.js` imports them into the isolated library with source annotations for a unique, doubtful, ambiguous, missing, and unsupported case, plus a long quote and a long comment. `capture-ui.js` opens the real dialog, runs the analysis, and for each language and for window widths of 1180 and 900 px selects the main outcomes, takes PNG screenshots, and records any element whose text is wider than its box, any horizontal page scroll, and any button that wraps onto more than two lines. The PNG files and `metrics.json` are written to `<report root>/ui-languages/`. Screenshots are for reading; the metrics are the pass or fail signal.
+
+To exercise the whole transfer through the real dialog on the same fixture, run `node scripts/host-request.mjs scripts/host/ui-lifecycle.js`. It uses mass selection, picks a doubtful candidate by hand, applies, checks that the copies keep their comment, color, and tags and that the sources and PDFs are unchanged, confirms that a repeat is refused, and undoes the transfer. It leaves one undone record in the isolated journal.
+
 ## Independent oracle and geometry fixtures
 
 Regenerating the oracle requires pdfplumber 0.11.9 and its dependencies. Scoring frozen gold requires only Python's standard library. Original fixture PDF generation uses ReportLab 4.4.9 and pypdf 6.10.0; they are not plugin dependencies. Use an existing suitable environment rather than installing them automatically into a user's environment.
@@ -87,9 +119,9 @@ python3 scripts/make-fixtures.py
 node scripts/host-request.mjs scripts/host/geometry.js
 ```
 
-`validation/fixture-gold.json` contains source coordinates obtained independently through pdfplumber. Native checks cover page insertion, a multiline selection in two columns, 90° page rotation with crop box `[40, 40, 500, 750]`, and a PDF without text. `docs/images/fixture-*.png` are actual bundled PDF.js renders; other documented workflow images are native Zotero screenshots.
+`validation/fixture-gold.json` contains source coordinates obtained independently through pdfplumber. The fixtures are shown in [old](images/fixture-old.png), [new](images/fixture-new.png), and [rotated](images/fixture-rotated.png) form. Native checks cover page insertion, a multiline selection in two columns, 90° page rotation with crop box `[40, 40, 500, 750]`, and a PDF without text. `docs/images/fixture-*.png` are actual bundled PDF.js renders; other documented workflow images are native Zotero screenshots.
 
-`python3 scripts/build-gold.py` regenerates oracle ranges from the frozen selections. It changes the reference artifact and is not a routine response to a failed test. Do not modify gold or tolerance to fit matcher output. The original evaluation retains four LoRA geometry discrepancies. `sorted({t["pageIndex"] + 1 for t in targets})` uses the direct set comprehension recommended by Ruff C401. Ruff is not a project dependency; Biome does not lint Python.
+`python3 scripts/build-gold.py` regenerates oracle ranges from the frozen selections. It changes the reference artifact and is not a routine response to a failed test. Do not modify gold or tolerance to fit matcher output. The original evaluation retains four LoRA geometry discrepancies.
 
 ## File replacement and recovery regressions
 
@@ -119,9 +151,9 @@ Select `MarginCarry validation: page-insertion` or both of its attachments in th
 
 Verify both Language choices, including error text and confirmation prompts. While the first previews load, Cancel must discard the plan. Accept a proposal and change direction: the review count must become zero and Apply must be disabled.
 
-[Engineering report](engineering-report.md) distinguishes native API and UI evidence. API calls alone do not prove that a person could complete the interface workflow.
+[Validation](validation.md) distinguishes native API and UI evidence. API calls alone do not prove that a person could complete the interface workflow.
 
-## Published v0.1.0 reader validation
+## Reproducing the published v0.1.0 native validation
 
 The [October 7 report](native-v010-validation.md) identifies the published XPI by hash and separates reader UI, native API, and print-renderer evidence. Its artifacts are in `validation/native-v010/`; do not overwrite them during reproduction. No dependency installation is needed with the existing project environment.
 

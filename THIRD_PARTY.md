@@ -12,9 +12,9 @@ Versions are exact in `package.json` and resolved with integrity hashes in `pack
 
 ## Host software
 
-The plugin runs in **Zotero 10.0.5**, whose source is AGPL-3.0. It calls Zotero's native annotation, transaction and reader facilities. The existing Zotero installation provides its reader and PDF.js; their source is not redistributed in MarginCarry's XPI.
+The plugin runs in **Zotero 10.0.x**, whose source is AGPL-3.0. It calls Zotero's native annotation, transaction and reader facilities. The existing Zotero installation provides its reader and PDF.js; their source is not redistributed in MarginCarry's XPI.
 
-The integration was inspected against Zotero commit `ca61760225d25191d0c65acbfd0c4f12a172d263`, reader submodule `9d821fa2c1941bdfdd7bee3199936401b45be852`, and PDF.js submodule `6cb4c4722f228464e78aea59fe919fc896fa2ea9`.
+The integration was inspected against Zotero 10.0.5, commit `ca61760225d25191d0c65acbfd0c4f12a172d263`, reader submodule `9d821fa2c1941bdfdd7bee3199936401b45be852`, and PDF.js submodule `6cb4c4722f228464e78aea59fe919fc896fa2ea9`.
 
 - [Zotero source and license](https://github.com/zotero/zotero)
 - [Zotero reader source and license](https://github.com/zotero/reader)

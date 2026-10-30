@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "version": "0.1.2",
+  "date": "2026-10-31",
+  "artifact": {
+    "file": "dist/margincarry-0.1.2.xpi",
+    "sha256": "0357e693127028183c4ee113e8c761a996274df0f3b279a387c41c8574366a93",
+    "installedAndChecked": "the installed XPI hash reported by scripts/host/install.js equals this value"
+  },
+  "host": {
+    "zotero": "10.0.7",
+    "os": "macOS (Darwin 24.6.0), Apple Silicon",
+    "profile": "isolated .local/profile with .local/data; the personal library was not opened"
+  },
+  "method": "python3 scripts/make-ui-fixture.py; scripts/host/install.js, load.js, seed-ui.js, capture-ui.js. For each language and each width the real dialog was analysed and the unique, doubtful and long-quote cases were selected (plus ambiguous and not-found at 1180 px). Layout metrics were collected from the live DOM and PNG screenshots were read for wording and balance.",
+  "languages": [
+    "en",
+    "ru",
+    "es",
+    "de",
+    "fr",
+    "ja",
+    "pt-BR"
+  ],
+  "widths": [
+    1180,
+    900
+  ],
+  "states": [
+    "doubtful",
+    "long",
+    "multiple",
+    "not-found",
+    "unique"
+  ],
+  "measurements": 49,
+  "findings": {
+    "elementsWithTextWiderThanTheirBox": 0,
+    "selectsWithOptionWiderThanTheSelect": 0,
+    "horizontalPageScroll": 0,
+    "buttonsWrappedOnMoreThanTwoLines": 0
+  },
+  "notes": "Screenshots were read for every language. The annotation list intentionally clamps a long quote to two lines and scrolls when there are more rows than fit. Fixes made after the first runs: annotation types and the outcome line are now localized, and the Japanese and Russian status wording was revised."
+}

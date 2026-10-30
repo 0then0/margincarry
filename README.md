@@ -3,83 +3,97 @@
 # MarginCarry
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
-[![Checked host](https://img.shields.io/badge/checked-Zotero%2010.0.6%20%7C%20macOS%2015.7.9-17615b)](docs/engineering-report.md)
 [![CI](https://img.shields.io/github/actions/workflow/status/0then0/margincarry/check.yml?branch=main&label=checks)](https://github.com/0then0/margincarry/actions/workflows/check.yml)
+[![Zotero](https://img.shields.io/badge/Zotero-10.0.x-cc2936)](#requirements)
 
-An open Zotero Desktop plugin for carrying highlights and underlines to a new PDF revision. Compare the original and proposed locations, select proposals, and confirm the write. The result is an ordinary Zotero annotation with its comment, color, and text tags.
+MarginCarry is a Zotero plugin that carries your highlights and underlines from one PDF revision to the next. When a paper gets a second version, you compare each original passage with its proposed new location, choose what to keep, and confirm the write. The result is an ordinary Zotero annotation that keeps its comment, color, and tags.
 
-PDF annotation transfer already exists in other tools. MarginCarry provides a small local workflow directly between two Zotero attachments. [Related work](docs/related-work.md) explains the implementation choices.
+Nothing is written until you confirm. Your original annotations and PDF files are never changed, and every transfer can be undone.
+
+![The MarginCarry transfer window comparing an original highlight with its proposed location in a new PDF revision](docs/images/review.png)
+
+## Features
+
+- Transfers native highlights and underlines between two PDF attachments of the same Zotero item.
+- Shows the original and the proposed location on the actual PDF pages, and opens either in the Zotero reader.
+- Matches text exactly: only Unicode normalization and whitespace differences are tolerated, so a changed number or a negated sentence is never moved silently.
+- Flags quotes that survive only inside a different word or number, such as `cat` in `concatenate` or `41.0` in `41.03`, and keeps them out of bulk selection.
+- Records every transfer in a local journal, blocks accidental repeats, and undoes a transfer in one step.
+- Works entirely offline on your computer. There is no account, server, or telemetry.
+- Available in English, Russian, Spanish, German, French, Japanese, and Brazilian Portuguese.
+
+## Requirements
+
+- Zotero **10.0.5 or a later 10.0.x release** on desktop.
+- Two PDF attachments of the same bibliographic item in your personal library, both available locally.
+- A text layer in the new PDF. Scanned PDFs without text are reported as such; there is no OCR.
+
+MarginCarry has been tested on macOS only. Windows and Linux have not been verified. See [Validation](docs/validation.md) for exactly what has been checked.
 
 ## Install
 
-You need **Zotero 10.0.5 or a later 10.0.x release**, two locally available PDF attachments of the same bibliographic item in your personal library, and a usable text layer. Historical native checks used 10.0.5; the published v0.1.0 XPI was also exercised on **10.0.6**, macOS 15.7.9, Apple Silicon. The October 8 follow-up also checked ordinary mouse-created annotations and live highlight/underline overlays for all four geometry outliers. Strict geometry discrepancies remain recorded; see the [published-artifact validation](docs/native-v010-validation.md) and [follow-up](docs/native-v010-followup.md). Windows, Linux, and other host versions have not been verified; manifest ranges alone are not testing evidence.
+1. Download `margincarry-0.1.2.xpi` and its SHA-256 file from the [latest release](https://github.com/0then0/margincarry/releases/latest), or build it yourself (see [Development](docs/development.md)).
+2. In Zotero, open **Tools → Plugins**, click the gear menu, choose **Install Plugin From File…**, and select the XPI.
+3. Restart Zotero if asked. **MarginCarry: transfer PDF annotations…** now appears in the **Tools** menu.
 
-1. Download `margincarry-0.1.1.xpi` and its SHA-256 file from [release v0.1.1](https://github.com/0then0/margincarry/releases/tag/v0.1.1). To build from source instead, run `npm ci && npm run build` with Node.js 24 and Python 3; output is placed in `dist/`.
-2. In Zotero, open **Tools → Plugins**, then the gear menu → **Install Plugin From File…**, and select the XPI.
-3. **MarginCarry: transfer PDF annotations…** appears in **Tools**. Its language follows Zotero; unsupported locales fall back to English.
+The menu and the window follow Zotero's language. Other languages fall back to English, and the window has language buttons for switching at any time.
 
-Node.js and Python are only needed to build the plugin. An installed XPI runs inside Zotero. Installing the release package does not require development tools.
+![The language buttons at the top of the window](docs/images/language.png)
 
 ## Transfer annotations
 
-1. Add the new PDF revision beside the old attachment under the same item. Select both attachments or their bibliographic item.
-2. Open MarginCarry from **Tools**. Check **Old PDF** and **New PDF**; `⇄` swaps the direction. The **Language** buttons provide English and Russian. [Language control](docs/images/language.png).
-3. Click **Find proposals**. Every source annotation receives an outcome. You can cancel before applying; cancelling while the initial previews load also discards the plan.
-4. Compare the actual PDF previews, quoted text, context, and pages. Reader buttons open the actual locations. Choose a candidate explicitly when a quote has several plausible occurrences.
-5. Click **Accept proposal** or **Skip**. **Select unique proposals** adds unique proposals to the set for your review.
-6. Inspect **Selected to write**, click **Apply selected**, and confirm the number of copies and target file. Analysis and selection never write annotations automatically.
-7. Click **Open created annotation**. The target PDF shows native highlights or underlines, comments, colors, and tags.
+1. Add the new PDF revision to the same item as the old one, then select both attachments (or the item).
+2. Open **Tools → MarginCarry: transfer PDF annotations…**. Check **Old PDF** and **New PDF**; the swap button reverses the direction.
+3. Click **Find proposals**. Every annotation of the old PDF gets an outcome. You can cancel at any time before writing.
+4. Select an annotation in the list and compare the two previews, the quoted text, and the surrounding context. Use the reader buttons to look at either location in context.
+5. Click **Accept proposal** to add it to the set, or **Skip**. When a quote has several possible locations you must choose one yourself.
+6. **Select unique proposals** accepts every proposal that has exactly one well-founded location. Review the set it builds before you continue.
+7. Check the list under **Selected to write**, click **Apply selected**, and confirm. MarginCarry creates new annotations in the new PDF.
+8. **Undo last transfer** moves only that transfer's copies to the Zotero Trash. The copies also disappear from an open reader. [Screenshot after Undo](docs/images/undo.png).
 
-![The actual Zotero transfer window with original and proposed PDF locations](docs/images/review.png)
+Copies receive new annotation keys. Existing links in Zotero notes keep opening the original annotations.
 
-![Transferred highlight and underline in the native Zotero reader](docs/images/reader.png)
+![A transferred highlight and underline in the Zotero reader](docs/images/reader.png)
 
-Screenshots use Zotero 10.0.5 in an isolated profile and documents created by this project. They show the working plugin and native reader, not mockups.
+## Understanding the outcomes
 
-**Undo last transfer** moves only that operation's copies to Zotero Trash. If any copy has been edited, moved, or deleted, the entire undo stops with a conflict. Source annotations and pre-existing target annotations remain intact. The journal blocks reapplying the same plan and copying an already transferred source annotation to the same PDF revision.
+- **Unique candidate**: the quote was found once, or one occurrence matches the complete available context. Look at the preview before accepting.
+- **Multiple candidates**: the quote occurs several times and the context does not decide. Nothing is preselected; choose the right occurrence. Changing your choice cancels the earlier acceptance. [Example](docs/images/ambiguous.png).
+- **Doubtful candidate**: the quote exists only as part of a longer word or number, or inside a different word than in the old PDF. It is listed with a warning, never recommended, and skipped by **Select unique proposals**. You can still select it by hand after checking the preview.
+- **Not found**: the quote no longer exists. If a number changed from `41.0` to `41.2`, the highlight is not moved onto the new number. [Example](docs/images/not-found.png).
+- **Unsupported**: another annotation type, a selection that spans pages or is not continuous, or text that does not agree with its position.
+- **Processing error**: the text was found but the PDF page data does not allow a reliable position, or extraction failed.
 
-Closing the review window does not cancel an active write. Wait for it to finish before opening MarginCarry again; journal recovery is blocked while a write or undo is active.
+[How matching works](docs/how-it-works.md) describes the rules in detail, including word and number boundaries and what is deliberately not guessed.
 
-Copies receive new annotation keys. Existing Zotero note links continue to open the original annotations; MarginCarry does not rewrite those links.
+## Privacy and data
 
-## Read the outcomes
+Documents, previews, and annotations are processed locally. MarginCarry does not contact any server; Zotero's own network features, such as sync and plugin update checks, follow your Zotero settings.
 
-- **Unique candidate:** one occurrence, or one occurrence matching the complete available context. Other candidates remain available when context resolves ambiguity. You must still review the PDF position.
-- **Multiple candidates:** human choice is required. In the corpus, the short quote `LoRA` occurs 120 times in the target revision. Acceptance is disabled until you choose a numbered candidate; changing it revokes the previous acceptance. [Example: selecting the second occurrence](docs/images/ambiguous.png).
-- **Not found:** the quote is absent after the permitted normalization. In Attention, a BLEU result changes from `41.0` to `41.2`; the original annotation is not moved onto the changed number. PDFs without a usable text layer show a specific reason and cannot be accepted. [Example: no text layer](docs/images/not-found.png).
-- **Unsupported:** another annotation type, a multi-page or discontinuous selection, or source text that does not agree with its geometry.
-- **Processing error:** extraction or geometry cannot produce a reliable proposal. A text match without verified coordinates is not ready to write.
+The plugin stores one file, `margincarry/transfers.json`, in Zotero's data directory. It lists the keys of source and copied annotations, quotes, comments, positions, file paths and hashes, and fingerprints that make Undo and repeat protection possible. It can contain private text, so treat it like the rest of your library. Deleting it removes the undo history and the duplicate-transfer protection.
 
-Search preserves case, numbers, punctuation, negation, and diacritics. Only Unicode NFC and whitespace folding are allowed. Restored ranges must match the quote under the same normalization and align with complete PDF glyphs. A partial grapheme cannot silently expand into additional meaningful symbols. There is no fuzzy matching or OCR. The old page number is not identity evidence. The limit is 200 candidates per annotation; a truncated search cannot be declared unique.
+## Limitations
 
-## Data and limits
+- Only native highlights and underlines that continue on one page are transferred. Ink, image, note, and multi-page annotations are not.
+- Only personal libraries, and only two attachments of one item. There is no group-library, EPUB, or library-wide support.
+- Matching is exact. There is no fuzzy matching, no translation, and no OCR. A rewritten sentence is reported as not found rather than guessed.
+- The plugin uses internal Zotero reader APIs, so a future Zotero release can require an update. The manifest accepts Zotero 10.0.x only.
+- Very large pages may not preview; open the location in the reader instead.
+- Always review the proposed location. A text match is evidence, not proof, that a passage is the same one.
 
-Documents, preview images, text, and annotations are processed locally. There is no MarginCarry account, telemetry, cloud API, backend, or required paid service. Zotero's own network features, including sync and plugin update checks, follow Zotero's settings.
+## Documentation
 
-The plugin stores `margincarry/transfers.json` in Zotero's data directory: attachment and copy keys, original quotes and annotation properties, geometry, paths and file hashes, and fingerprints for verification and undo. This journal can contain private comments and local paths. Previews stay in memory; the full PDF text is not saved to a separate index. Deleting the journal removes undo history and duplicate-transfer protection.
+- [How matching works](docs/how-it-works.md)
+- [Validation and known limits](docs/validation.md)
+- [Architecture](docs/architecture.md)
+- [Development guide](docs/development.md)
+- [Related work](docs/related-work.md)
+- [Changelog](CHANGELOG.md)
 
-v0.1 supports native highlight/underline and continuous selections on one page, between two PDFs of one item in a personal library. Individually rotated, diagonal, isolated, or out-of-crop-box glyphs are excluded. Rotation of the whole page has been checked. Library-wide processing, group libraries, EPUB, HTML, ink, images, sticky notes, custom sync, translation, and AI are outside scope.
+## Contributing
 
-The adapter uses internal Zotero reader APIs, so a host update can break integration. Before extraction it reloads the selected PDFs from disk and checks their revision. A file replacement or reader reload after analysis requires new analysis; stale coordinates are not reused. Very large pages may require inspection in the reader instead of a preview.
+Bug reports, translation fixes, and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first, follow the [Code of Conduct](CODE_OF_CONDUCT.md), and report security issues as described in [SECURITY.md](SECURITY.md).
 
-The independent LoRA comparison retains four corner discrepancies greater than two PDF points for a short ambiguous quote. All four agree exactly with native reader range geometry. The [October 8 follow-up](docs/native-v010-followup.md) verified ordinary mouse-created annotations and live highlight/underline overlays for all four outliers, while retaining the strict scorer failures and the supplementary `pa- / rameters` boundary discrepancy. Published v0.1.1 includes this evidence and the repaired validation harness; its runtime is identical to v0.1.0 apart from the manifest version. Native checks exercised the published v0.1.0 XPI, not a separate v0.1.1 installation. The [engineering report](docs/engineering-report.md) distinguishes the current release from historical checks.
+## License
 
-## Development and checks
-
-Use Node.js 24, npm, and Python 3 with its standard library. The XPI has no runtime dependencies; development tool versions are pinned in the lockfile.
-
-```sh
-npm ci
-npm run format       # apply Biome formatting
-npm run format:check # check formatting without edits
-npm run lint         # warnings fail the check
-npm run check        # Biome, strict TypeScript, node:test, XPI build
-```
-
-Biome checks TypeScript, JavaScript, JSON, and CSS. Python, SVG, XHTML, and YAML are outside its parser coverage. Frozen fixtures and reports in `validation/` are not reformatted. `any` is permitted only at the dynamic Zotero API boundary; limited test and bootstrap exceptions are documented in the [development guide](docs/development.md).
-
-[Development guide](docs/development.md) provides isolated host setup and reproducible corpus checks. [Engineering report](docs/engineering-report.md) separates automated tests, actual native API checks, UI checks, and unverified platforms. GitHub Actions runs independent checks and packaging, not the native Zotero workflow.
-
-For contributions, see [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). Report vulnerabilities using the [security policy](SECURITY.md). Release history and unreleased maintenance changes are in the [changelog](CHANGELOG.md).
-
-Project source and the original SVG icon are Apache-2.0 licensed. See [dependencies and licenses](THIRD_PARTY.md).
+MarginCarry is released under the [Apache License 2.0](LICENSE). Third-party material is listed in [THIRD_PARTY.md](THIRD_PARTY.md).
