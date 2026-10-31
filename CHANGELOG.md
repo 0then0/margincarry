@@ -2,7 +2,7 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
-## [0.1.2] - Unreleased
+## [0.2.0] - 2026-10-31
 
 ### Added
 
@@ -27,7 +27,7 @@ Notable changes to MarginCarry are recorded here. Released entries describe the 
 ### Validation and limits
 
 - Biome, strict TypeScript, the automated tests, and packaging pass. The dialog was checked in all seven languages on Zotero 10.0.7 (macOS) at two window widths, and the apply, repeat-protection, and Undo cycle was run through the real dialog.
-- The frozen v0.1.0 corpus was not re-run for this version. See the [release notes](docs/releases/v0.1.2.md).
+- The frozen v0.1.0 corpus was not re-run for this version. See the [release notes](docs/releases/v0.2.0.md).
 - Word and number boundaries are judged from characters only, not meaning. See [How MarginCarry works](docs/how-it-works.md).
 
 ### Maintenance
@@ -70,6 +70,6 @@ See the [release notes](docs/releases/v0.1.1.md) and [native follow-up](docs/nat
 
 See the [release notes](docs/releases/v0.1.0.md). Later v0.1.0 native testing is documented separately in the validation reports.
 
-[0.1.2]: https://github.com/0then0/margincarry/releases/tag/v0.1.2
+[0.2.0]: https://github.com/0then0/margincarry/releases/tag/v0.2.0
 [0.1.1]: https://github.com/0then0/margincarry/releases/tag/v0.1.1
 [0.1.0]: https://github.com/0then0/margincarry/releases/tag/v0.1.0

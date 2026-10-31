@@ -32,7 +32,7 @@ MarginCarry has been tested on macOS only. Windows and Linux have not been verif
 
 ## Install
 
-1. Download `margincarry-0.1.2.xpi` and its SHA-256 file from the [latest release](https://github.com/0then0/margincarry/releases/latest), or build it yourself (see [Development](docs/development.md)).
+1. Download `margincarry-0.2.0.xpi` and its SHA-256 file from the [latest release](https://github.com/0then0/margincarry/releases/latest), or build it yourself (see [Development](docs/development.md)).
 2. In Zotero, open **Tools → Plugins**, click the gear menu, choose **Install Plugin From File…**, and select the XPI.
 3. Restart Zotero if asked. **MarginCarry: transfer PDF annotations…** now appears in the **Tools** menu.
 
