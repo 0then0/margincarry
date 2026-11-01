@@ -20,7 +20,7 @@ npm run check
 
 The build bundles `src/index.ts` with esbuild into a Firefox 140 IIFE and packages a ZIP/XPI using Python 3's standard library. Entries are sorted and ZIP timestamps are fixed. Output is `dist/margincarry-<version>.xpi` and its `.sha256` file, using the version from `package.json`. Tests, the developer harness, corpus, npm packages, and Python dependencies are excluded. The build has a regression test for paths containing spaces and non-ASCII characters.
 
-Biome uses two spaces, single quotes in JavaScript/TypeScript, and the recommended lint preset. Warnings fail `npm run lint`. It does not parse Python, SVG, XHTML, or YAML. These require their appropriate syntax, packaging, host, or workflow checks. Frozen `validation/` artifacts and npm-owned `package-lock.json` are excluded from formatting.
+Biome uses two spaces, single quotes in JavaScript/TypeScript, and the recommended lint preset. Warnings fail `npm run lint`. It formats YAML workflow files but does not parse Python, SVG, or XHTML. These require their appropriate syntax, packaging, host, or workflow checks. Frozen `validation/` artifacts and npm-owned `package-lock.json` are excluded from formatting.
 
 `noExplicitAny` is disabled only in `src/zotero.ts` and `src/host.d.ts` at the privileged dynamic host boundary. Bootstrap disables `noUnusedVariables` because Zotero calls lifecycle functions by name. Test fixture assertions may use non-null assertions. One `noImportantStyles` suppression makes the HTML `[hidden]` attribute override layout rules. Matching, geometry, and transaction logic use the normal lint rules.
 

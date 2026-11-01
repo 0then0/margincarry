@@ -19,7 +19,7 @@ npm ci
 npm run check
 ```
 
-`npm run check` runs Biome, strict TypeScript, the automated tests, and XPI packaging. Use `npm run format` when editing supported source formats. Biome does not check Markdown, YAML, Python, SVG, or XHTML. Follow `.editorconfig`; keep changes scoped and avoid reformatting unrelated files. Do not commit `node_modules/`, `dist/`, or `.local/`.
+`npm run check` runs Biome, strict TypeScript, the automated tests, and XPI packaging. Use `npm run format` when editing supported source formats. Biome checks YAML formatting but not Markdown, Python, SVG, or XHTML. Follow `.editorconfig`; keep changes scoped and avoid reformatting unrelated files. Do not commit `node_modules/`, `dist/`, or `.local/`.
 
 Native validation requires a disposable Zotero profile and data directory. Follow the [development guide](docs/development.md); never run the privileged developer harness against your ordinary library. CI does not launch Zotero. State exactly which automated and native checks you performed, including the tested host and artifact version. Do not claim UI or platform coverage from unit tests.
 

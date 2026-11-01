@@ -1,6 +1,6 @@
 name: Bug report
 description: Report reproducible behavior in MarginCarry.
-title: '[Bug]: '
+title: "[Bug]: "
 body:
   - type: markdown
     attributes:

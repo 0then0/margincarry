@@ -4,16 +4,16 @@ updates:
     directory: /
     schedule:
       interval: monthly
-      time: '10:00'
+      time: "10:00"
       timezone: Europe/Moscow
     open-pull-requests-limit: 1
     groups:
       npm-dependencies:
         patterns:
-          - '*'
+          - "*"
     # Major upgrades require a separate, deliberate review.
     ignore:
-      - dependency-name: '*'
+      - dependency-name: "*"
         update-types:
           - version-update:semver-major
     commit-message:
@@ -22,15 +22,15 @@ updates:
     directory: /
     schedule:
       interval: monthly
-      time: '10:00'
+      time: "10:00"
       timezone: Europe/Moscow
     open-pull-requests-limit: 1
     groups:
       github-actions:
         patterns:
-          - '*'
+          - "*"
     ignore:
-      - dependency-name: '*'
+      - dependency-name: "*"
         update-types:
           - version-update:semver-major
     commit-message:
