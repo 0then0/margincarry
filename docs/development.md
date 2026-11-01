@@ -219,4 +219,4 @@ The corpus fixture IDs/plans use the selected host root. All corpus stages, incl
 
 ## Release publication
 
-The `release` GitHub Actions workflow runs on `v*` tags. The tag must equal the version in both `package.json` and `manifest.json`. It installs the locked dependencies, runs `npm run check`, and publishes the XPI and SHA-256 file with the matching `docs/releases/<tag>.md` notes. Publication uses the workflow token with repository contents write access; no local browser or personal token is required.
+The `release` GitHub Actions workflow runs on `v*` tags. The tag must equal the version in both `package.json` and `manifest.json`. It installs the locked dependencies, runs `npm run check`, and publishes the XPI and SHA-256 file with the matching `docs/releases/<tag>.md` notes. Publication uses the workflow token with repository contents write access; no local browser or personal token is required. The `update-manifest` workflow then proposes the matching `updates.json` entry as a pull request; see [Releasing and updates](releasing.md).

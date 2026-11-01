@@ -35,6 +35,6 @@ Use English Conventional Commit subjects, for example `fix: reject a changed PDF
 
 ## Releases and licensing
 
-Only maintainers publish releases. Package and manifest versions must agree with the `v<version>` tag, and `docs/releases/<tag>.md` must exist. The existing release workflow runs checks and publishes the XPI and checksum. Do not bump versions or move published tags for routine documentation changes.
+Only maintainers publish releases. Package and manifest versions must agree with the `v<version>` tag, and `docs/releases/<tag>.md` must exist. The release workflow runs checks and publishes the XPI and checksum, and the update-manifest workflow then opens a pull request that adds the version to `updates.json`; see [Releasing and updates](docs/releasing.md). Do not bump versions or move published tags for routine documentation changes.
 
 Contributions are provided under [Apache-2.0](LICENSE). Preserve attribution and document third-party material in [THIRD_PARTY.md](THIRD_PARTY.md). Do not contribute PDFs or screenshots without the right to publish them.

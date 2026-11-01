@@ -1,1 +1,41 @@
-{ "addons": { "margincarry@0then0.github.io": { "updates": [] } } }
+{
+  "addons": {
+    "margincarry@0then0.github.io": {
+      "updates": [
+        {
+          "version": "0.1.0",
+          "update_link": "https://github.com/0then0/margincarry/releases/download/v0.1.0/margincarry-0.1.0.xpi",
+          "update_hash": "sha256:2c0e849b219f34406b6a6987c2292e0ecf3704db15651b4f33a361c9472124a7",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "10.0.5",
+              "strict_max_version": "10.0.*"
+            }
+          }
+        },
+        {
+          "version": "0.1.1",
+          "update_link": "https://github.com/0then0/margincarry/releases/download/v0.1.1/margincarry-0.1.1.xpi",
+          "update_hash": "sha256:3d54e9afe3474810a3ad586cc762baff4bd92808538e12f8b267ff2f58229802",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "10.0.5",
+              "strict_max_version": "10.0.*"
+            }
+          }
+        },
+        {
+          "version": "0.2.0",
+          "update_link": "https://github.com/0then0/margincarry/releases/download/v0.2.0/margincarry-0.2.0.xpi",
+          "update_hash": "sha256:be3becf91962354e4b05c0da20d807c6ae198fde9e910901ecaf654d55e3b633",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "10.0.5",
+              "strict_max_version": "10.0.*"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

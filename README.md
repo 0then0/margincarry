@@ -30,11 +30,15 @@ Nothing is written until you confirm. Your original annotations and PDF files ar
 
 MarginCarry has been tested on macOS only. Windows and Linux have not been verified. See [Validation](docs/validation.md) for exactly what has been checked.
 
-## Install
+## Install and update
 
 1. Download `margincarry-0.2.0.xpi` and its SHA-256 file from the [latest release](https://github.com/0then0/margincarry/releases/latest), or build it yourself (see [Development](docs/development.md)).
 2. In Zotero, open **Tools → Plugins**, click the gear menu, choose **Install Plugin From File…**, and select the XPI.
 3. Restart Zotero if asked. **MarginCarry: transfer PDF annotations…** now appears in the **Tools** menu.
+
+The XPI works with Zotero 10.0.5 or a later 10.0.x release; other Zotero versions are not offered MarginCarry updates. To check the download, compare its SHA-256 with the `.sha256` file in the release. The checksum guards against a damaged download; the package is not signed.
+
+**Updates.** Zotero checks for plugin updates on its own, and you can ask for one with **Tools → Plugins**, the gear menu, **Check for Updates**. MarginCarry's update list names only published stable releases, each pinned to its own file and checksum, and an update keeps your transfer journal, because that lives in Zotero's data directory. If the automatic check offers nothing, download the newest XPI from the [releases page](https://github.com/0then0/margincarry/releases) and install it the same way; it replaces the old version. MarginCarry is not in an official Zotero plugin catalog, because Zotero does not have one; releases are announced on GitHub. How updates are published is described in [Releasing and updates](docs/releasing.md).
 
 The menu and the window follow Zotero's language. Other languages fall back to English, and the window has language buttons for switching at any time.
 
@@ -87,6 +91,7 @@ The plugin stores one file, `margincarry/transfers.json`, in Zotero's data direc
 - [Validation and known limits](docs/validation.md)
 - [Architecture](docs/architecture.md)
 - [Development guide](docs/development.md)
+- [Releasing and updates](docs/releasing.md)
 - [Related work](docs/related-work.md)
 - [Changelog](CHANGELOG.md)
 

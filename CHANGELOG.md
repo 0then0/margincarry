@@ -2,6 +2,13 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
+## Unreleased
+
+### Maintenance
+
+- Populated `updates.json` with the published v0.1.0, v0.1.1, and v0.2.0 releases, each pinned to its release asset with the SHA-256 of the published XPI and the compatibility range from its own manifest, so installed copies can find updates through Zotero's built-in check. The channel was empty before. The plugin itself is unchanged.
+- Added `scripts/update-manifest.mjs` to add and verify entries from published releases, an `update-manifest` workflow that proposes the entry as a pull request after a release, tests for the tooling, and the [Releasing and updates](docs/releasing.md) guide. The README now has one install and update path.
+
 ## [0.2.0] - 2026-10-31
 
 ### Added
