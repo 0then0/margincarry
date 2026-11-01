@@ -1,0 +1,65 @@
+name: update-manifest
+# Proposes the updates.json entry for a published stable release as a pull request.
+# Runs after the release workflow, or by hand for a tag (also to retry a failed run).
+on:
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published release tag, for example v0.2.0
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  # One run at a time, so two quick releases cannot overwrite each other's branch or file.
+  group: update-manifest
+  cancel-in-progress: false
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      TAG: ${{ inputs.tag }}
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check the tag
+        run: |
+          case "$TAG" in v[0-9]*.[0-9]*.[0-9]*) ;; *) echo "Not a release tag: $TAG"; exit 1 ;; esac
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - name: Add the entry (downloads and verifies the published XPI)
+        id: add
+        run: |
+          node scripts/update-manifest.mjs add "$TAG" | tee add.log
+          if git diff --quiet -- updates.json; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Verify every entry against its published asset
+        if: steps.add.outputs.changed == 'true'
+        run: node scripts/update-manifest.mjs verify
+      - name: Open a pull request
+        if: steps.add.outputs.changed == 'true'
+        run: |
+          branch="update-manifest/$TAG"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add updates.json
+          git commit -m "chore: add $TAG to the update manifest"
+          git push --force-with-lease origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "chore: add $TAG to the update manifest" \
+            --body "Adds the entry for $TAG, derived from the published XPI and its checksum by scripts/update-manifest.mjs. Review the diff, run the checks, then merge. Pull requests created with the workflow token do not start the check workflow; close and reopen this pull request to run it." \
+            || gh pr edit "$branch" --base main

@@ -45,3 +45,11 @@ jobs:
             "dist/margincarry-${version}.xpi.sha256" \
             --verify-tag --title "MarginCarry ${GITHUB_REF_NAME}" \
             --notes-file "docs/releases/${GITHUB_REF_NAME}.md"
+  update-manifest:
+    needs: publish
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: ./.github/workflows/update-manifest.yml
+    with:
+      tag: ${{ github.ref_name }}
