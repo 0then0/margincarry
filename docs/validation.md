@@ -8,7 +8,9 @@ This page states what has been verified, how, and what has not. It separates thr
 
 CI does not start Zotero. Nothing on this page was run against a personal library.
 
-## Current status
+## Recorded validation status
+
+The current published release is [v0.2.0](releases/v0.2.0.md). The v0.1.2 build named below was prepared but never published; its runtime code shipped in v0.2.0 with only the manifest version changed. These are historical checks of that build, not a new native validation of the v0.2.0 package. The older corpus and lifecycle results retain their own version limits.
 
 - **Automated tests, strict TypeScript, Biome, XPI packaging:** pass for v0.1.2 (`npm run check`).
 - **All seven interface languages in the real dialog:** checked for v0.1.2 on Zotero 10.0.7, macOS. No clipped text, overlap, or horizontal scrolling at 1180 and 900 px.
