@@ -59,6 +59,14 @@ Copies receive new annotation keys. Existing links in Zotero notes keep opening 
 
 ![A transferred highlight and underline in the Zotero reader](docs/images/reader.png)
 
+## Copy a note with links to the new PDF
+
+1. After transferring annotations, select one child note in your personal library and open **Tools → MarginCarry: copy note with links to the new PDF…**.
+2. Choose a completed transfer for the same item and click **Preview links**. Check the old and new page labels. Links without a confirmed match stay as they are.
+3. Click **Save a copy** to create a new child note under the same item, then **Show copied note** to find it. Click a highlight or underline in the copy and choose **Go to Page** to open the transferred annotation. The original note still opens the old annotation.
+
+The command updates embedded links for highlights and underlines from the selected transfer. It keeps the quoted text, your comments and formatting, and other links. Saving requires at least one confirmed match.
+
 ## Understanding the outcomes
 
 - **Unique candidate**: the quote was found once, or one occurrence matches the complete available context. Look at the preview before accepting.

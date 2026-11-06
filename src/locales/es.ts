@@ -3,6 +3,17 @@ import type { Message, UiKey } from './en.ts';
 export const ui: Record<UiKey, string> = {
   title: 'MarginCarry · transferencia de anotaciones PDF',
   menu: 'MarginCarry: transferir anotaciones PDF…',
+  noteCopyMenu: 'MarginCarry: copiar la nota con enlaces al PDF nuevo…',
+  noteCopyTitle: 'Copiar la nota con enlaces al PDF nuevo',
+  noteCopyOperation: 'Transferencia completada',
+  noteCopyPreview: 'Previsualizar los enlaces',
+  noteCopySave: 'Guardar una copia',
+  noteCopyOpen: 'Mostrar la copia de la nota',
+  noteCopyReview: 'Revise los enlaces y guarde la copia.',
+  noteCopyNoOperations:
+    'El elemento al que pertenece esta nota no tiene transferencias completadas.',
+  noteCopyNoPair: 'p. {page} · Sin correspondencia confirmada · {text}',
+  noteCopyCreated: 'Se guardó la copia de la nota.',
   subtitle: 'Sus anotaciones en una nueva versión del PDF. Revise cada posición antes de escribir.',
   language: 'Idioma',
   direction: 'Dirección de la transferencia',
@@ -99,6 +110,18 @@ export const ui: Record<UiKey, string> = {
 };
 
 export const messages: Record<Message, string> = {
+  'Choose one child note in your personal library.':
+    'Seleccione una nota hija en su biblioteca personal.',
+  'The selected transfer is no longer available for this note.':
+    'La transferencia seleccionada ya no está disponible para esta nota.',
+  'The note changed after the preview. Refresh the preview and try again.':
+    'La nota cambió después de la vista previa. Actualice la vista previa e inténtelo de nuevo.',
+  'The transfer links changed after the preview. Refresh the preview and try again.':
+    'Los enlaces de la transferencia cambiaron después de la vista previa. Actualícela e inténtelo de nuevo.',
+  'An embedded image in the source note is unavailable locally.':
+    'Una imagen incrustada en la nota original no está disponible localmente.',
+  'There are no confirmed links to copy.':
+    'No hay enlaces con correspondencia confirmada para copiar.',
   'Only native highlights and underlines are supported.':
     'Solo se admiten resaltados y subrayados nativos de Zotero.',
   'The source page could not be extracted.': 'No se pudo extraer la página de origen.',

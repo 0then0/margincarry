@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title data-l10n="noteCopyTitle">Copy note with links to the new PDF</title>
+  <link rel="stylesheet" href="transfer.css"/>
+</head>
+<body class="note-copy">
+<header>
+  <img src="icon.svg" alt=""/>
+  <div>
+    <h1 data-l10n="noteCopyTitle">Copy note with links to the new PDF</h1>
+    <p id="note-copy-source" hidden="hidden"></p>
+  </div>
+</header>
+<section class="direction">
+  <label><span data-l10n="noteCopyOperation">Completed transfer</span><select id="operation" disabled="disabled"></select></label>
+  <button id="preview" disabled="disabled" data-l10n="noteCopyPreview">Preview links</button>
+</section>
+<p id="status" role="status" aria-live="polite" data-l10n="preparing">Preparing…</p>
+<ul id="note-copy-links" data-l10n-aria-label="noteCopyPreview"></ul>
+<footer>
+  <button id="save" class="primary" disabled="disabled" data-l10n="noteCopySave">Save a copy</button>
+  <button id="open-note-copy" hidden="hidden" data-l10n="noteCopyOpen">Show copied note</button>
+</footer>
+</body>
+</html>

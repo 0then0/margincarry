@@ -3,6 +3,16 @@ import type { Message, UiKey } from './en.ts';
 export const ui: Record<UiKey, string> = {
   title: 'MarginCarry · transferência de anotações em PDF',
   menu: 'MarginCarry: transferir anotações em PDF…',
+  noteCopyMenu: 'MarginCarry: copiar nota com links para o novo PDF…',
+  noteCopyTitle: 'Copiar nota com links para o novo PDF',
+  noteCopyOperation: 'Transferência concluída',
+  noteCopyPreview: 'Prévia dos links',
+  noteCopySave: 'Salvar uma cópia',
+  noteCopyOpen: 'Mostrar a nota copiada',
+  noteCopyReview: 'Confira os links e salve a cópia.',
+  noteCopyNoOperations: 'O item ao qual esta nota pertence não tem transferências concluídas.',
+  noteCopyNoPair: 'p. {page} · Sem correspondência confirmada · {text}',
+  noteCopyCreated: 'A cópia da nota foi salva.',
   subtitle: 'Suas anotações em uma nova versão do PDF. Revise cada posição antes de gravar.',
   language: 'Idioma',
   direction: 'Direção da transferência',
@@ -99,6 +109,18 @@ export const ui: Record<UiKey, string> = {
 };
 
 export const messages: Record<Message, string> = {
+  'Choose one child note in your personal library.':
+    'Selecione uma nota filha na sua biblioteca pessoal.',
+  'The selected transfer is no longer available for this note.':
+    'A transferência selecionada não está mais disponível para esta nota.',
+  'The note changed after the preview. Refresh the preview and try again.':
+    'A nota mudou após a prévia. Atualize a prévia e tente novamente.',
+  'The transfer links changed after the preview. Refresh the preview and try again.':
+    'Os links da transferência mudaram após a prévia. Atualize a prévia e tente novamente.',
+  'An embedded image in the source note is unavailable locally.':
+    'Uma imagem incorporada à nota original não está disponível localmente.',
+  'There are no confirmed links to copy.':
+    'Não há links com correspondência confirmada para copiar.',
   'Only native highlights and underlines are supported.':
     'Somente destaques e sublinhados nativos do Zotero são compatíveis.',
   'The source page could not be extracted.': 'Não foi possível extrair a página de origem.',

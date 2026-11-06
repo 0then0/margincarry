@@ -3,6 +3,16 @@ import type { Message, UiKey } from './en.ts';
 export const ui: Record<UiKey, string> = {
   title: 'MarginCarry · PDF注釈の移行',
   menu: 'MarginCarry: PDF注釈を移行…',
+  noteCopyMenu: 'MarginCarry: 新しいPDFへのリンクでノートを複製…',
+  noteCopyTitle: '新しいPDFへのリンクでノートを複製',
+  noteCopyOperation: '完了した移行',
+  noteCopyPreview: 'リンクをプレビュー',
+  noteCopySave: 'コピーを保存',
+  noteCopyOpen: '複製したノートを表示',
+  noteCopyReview: 'リンクを確認してからコピーを保存してください。',
+  noteCopyNoOperations: 'このノートの親アイテムには完了した移行がありません。',
+  noteCopyNoPair: '{page}ページ · 対応する注釈を確認できません · {text}',
+  noteCopyCreated: 'ノートのコピーを保存しました。',
   subtitle: 'PDFの新しい版へ注釈を移します。書き込む前に、各位置を確認してください。',
   language: '言語',
   direction: '移行の方向',
@@ -97,6 +107,17 @@ export const ui: Record<UiKey, string> = {
 };
 
 export const messages: Record<Message, string> = {
+  'Choose one child note in your personal library.':
+    '個人ライブラリで子ノートを1件選択してください。',
+  'The selected transfer is no longer available for this note.':
+    '選択した移行はこのノートでは利用できなくなりました。',
+  'The note changed after the preview. Refresh the preview and try again.':
+    'プレビュー後にノートが変更されました。プレビューを更新してから再試行してください。',
+  'The transfer links changed after the preview. Refresh the preview and try again.':
+    'プレビュー後に移行先へのリンクが変更されました。プレビューを更新してから再試行してください。',
+  'An embedded image in the source note is unavailable locally.':
+    '元のノートに埋め込まれた画像をローカルで利用できません。',
+  'There are no confirmed links to copy.': '対応する注釈を確認できるリンクがありません。',
   'Only native highlights and underlines are supported.':
     'Zotero標準のハイライトと下線のみ対応しています。',
   'The source page could not be extracted.': '移行元のページを取得できませんでした。',

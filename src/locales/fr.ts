@@ -3,6 +3,16 @@ import type { Message, UiKey } from './en.ts';
 export const ui: Record<UiKey, string> = {
   title: 'MarginCarry · transfert d’annotations PDF',
   menu: 'MarginCarry : transférer des annotations PDF…',
+  noteCopyMenu: 'MarginCarry : copier la note avec des liens vers le nouveau PDF…',
+  noteCopyTitle: 'Copier la note avec des liens vers le nouveau PDF',
+  noteCopyOperation: 'Transfert terminé',
+  noteCopyPreview: 'Prévisualiser les liens',
+  noteCopySave: 'Enregistrer une copie',
+  noteCopyOpen: 'Afficher la note copiée',
+  noteCopyReview: 'Vérifiez les liens, puis enregistrez la copie.',
+  noteCopyNoOperations: 'Aucun transfert terminé pour le document auquel cette note est rattachée.',
+  noteCopyNoPair: 'p. {page} · Aucune correspondance confirmée · {text}',
+  noteCopyCreated: 'La copie de la note a été enregistrée.',
   subtitle:
     'Vos annotations sur une nouvelle version du PDF. Vérifiez chaque position avant d’écrire.',
   language: 'Langue',
@@ -103,6 +113,18 @@ export const ui: Record<UiKey, string> = {
 };
 
 export const messages: Record<Message, string> = {
+  'Choose one child note in your personal library.':
+    'Sélectionnez une seule note rattachée à un document de votre bibliothèque personnelle.',
+  'The selected transfer is no longer available for this note.':
+    'Le transfert sélectionné n’est plus disponible pour cette note.',
+  'The note changed after the preview. Refresh the preview and try again.':
+    'La note a changé depuis l’aperçu. Actualisez l’aperçu, puis réessayez.',
+  'The transfer links changed after the preview. Refresh the preview and try again.':
+    'Les liens du transfert ont changé depuis l’aperçu. Actualisez l’aperçu, puis réessayez.',
+  'An embedded image in the source note is unavailable locally.':
+    'Une image intégrée à la note d’origine est indisponible localement.',
+  'There are no confirmed links to copy.':
+    'Aucun lien à copier ne présente de correspondance confirmée.',
   'Only native highlights and underlines are supported.':
     'Seuls les surlignages et soulignements natifs de Zotero sont pris en charge.',
   'The source page could not be extracted.': 'La page source n’a pas pu être extraite.',

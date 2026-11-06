@@ -2,6 +2,16 @@
 export const ui = {
   title: 'MarginCarry · PDF annotation transfer',
   menu: 'MarginCarry: transfer PDF annotations…',
+  noteCopyMenu: 'MarginCarry: copy note with links to the new PDF…',
+  noteCopyTitle: 'Copy note with links to the new PDF',
+  noteCopyOperation: 'Completed transfer',
+  noteCopyPreview: 'Preview links',
+  noteCopySave: 'Save a copy',
+  noteCopyOpen: 'Show copied note',
+  noteCopyReview: 'Review the links below, then save the copy.',
+  noteCopyNoOperations: 'No completed transfers for this note’s parent item.',
+  noteCopyNoPair: 'p. {page} · No confirmed match · {text}',
+  noteCopyCreated: 'Saved the copied note.',
   subtitle: 'Your annotations on a new PDF revision. Review each position before writing.',
   language: 'Language',
   direction: 'Transfer direction',
@@ -98,6 +108,12 @@ export type UiKey = keyof typeof ui;
 
 /** Project-owned messages shown in the status line, previews and proposal reasons. */
 export const messages = [
+  'Choose one child note in your personal library.',
+  'The selected transfer is no longer available for this note.',
+  'The note changed after the preview. Refresh the preview and try again.',
+  'The transfer links changed after the preview. Refresh the preview and try again.',
+  'An embedded image in the source note is unavailable locally.',
+  'There are no confirmed links to copy.',
   'Only native highlights and underlines are supported.',
   'The source page could not be extracted.',
   'Empty source text.',

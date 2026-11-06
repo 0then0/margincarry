@@ -261,6 +261,29 @@ footer {
   padding: 2px 6px;
   font-size: 12px;
 }
+.note-copy {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.note-copy .direction select {
+  max-width: 65vw;
+}
+#note-copy-source {
+  overflow-wrap: anywhere;
+}
+#note-copy-links {
+  overflow: auto;
+  margin: 0;
+  padding: 12px 24px 12px 44px;
+  overflow-wrap: anywhere;
+}
+#note-copy-links li {
+  padding: 4px 0;
+}
+.note-copy footer {
+  margin-top: auto;
+}
 [hidden] {
   /* biome-ignore lint/complexity/noImportantStyles: HTML hidden must override preview grid display rules. */
   display: none !important;

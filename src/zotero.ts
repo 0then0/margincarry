@@ -10,6 +10,12 @@ import type {
   Store,
   TransferRecord,
 } from './model.ts';
+import {
+  type NoteCopyStore,
+  type NoteSnapshot,
+  parseNoteHTML,
+  type TransferPDFs,
+} from './note-copy.ts';
 
 export function fingerprintJSON(input: Record<string, any>, attachment = false): string {
   const data = { ...input };
@@ -23,7 +29,7 @@ export function fingerprintJSON(input: Record<string, any>, attachment = false):
 }
 
 /** The complete boundary to Zotero 10.0.5 and its bundled reader internals. */
-export class ZoteroAdapter implements Store {
+export class ZoteroAdapter implements Store, NoteCopyStore {
   private readonly readers = new Map<number, any>();
   private readonly loaded = new Map<number, { view: any; file: FileStamp }>();
   private pendingRemovals: { attachmentID: number; key: string }[] | null = null;
@@ -49,10 +55,13 @@ export class ZoteroAdapter implements Store {
       ? `${title} · ${filename}`
       : filename || title || item.key;
   }
-  selectedIDs(): number[] {
-    return Zotero.getMainWindow()
-      .ZoteroPane.getSelectedItems()
-      .map((item: any) => item.id);
+  selectedIDs(win = Zotero.getMainWindow()): number[] {
+    return win.ZoteroPane.getSelectedItems().map((item: any) => item.id);
+  }
+  async selectItem(id: number): Promise<void> {
+    const win = Zotero.getMainWindow();
+    await win.ZoteroPane.selectItem(id);
+    win.focus();
   }
   async choices(ids: number[]): Promise<{ id: number; title: string }[]> {
     let items = await Zotero.Items.getAsync(ids);
@@ -141,6 +150,163 @@ export class ZoteroAdapter implements Store {
     if (a.parentID !== b.parentID)
       throw new Error('Two attachments of the same bibliographic item are required.');
     return [a, b];
+  }
+  async readNote(id: number): Promise<NoteSnapshot> {
+    const note = (await Zotero.Items.getAsync(id)) || undefined;
+    const parent = note?.parentID
+      ? (await Zotero.Items.getAsync(note.parentID)) || undefined
+      : undefined;
+    if (
+      !note?.isNote() ||
+      note.deleted ||
+      note.libraryID !== Zotero.Libraries.userLibraryID ||
+      !note.isEditable() ||
+      !parent?.isRegularItem() ||
+      parent.deleted ||
+      parent.libraryID !== note.libraryID
+    )
+      throw new Error('Choose one child note in your personal library.');
+
+    const editorHTMLs: string[] = [];
+    for (const editor of Zotero.Notes._editorInstances) {
+      if (editor._item?.id !== id || editor._iframeWindow?.closed) continue;
+      // An open editor can hold changes that have not reached the item or database yet.
+      const window = editor._iframeWindow?.wrappedJSObject;
+      if (window?.getDataSync?.(true))
+        throw new Error('The note changed after the preview. Refresh the preview and try again.');
+      const html = window?.getDataSync?.(false)?.html;
+      if (typeof html === 'string') editorHTMLs.push(html);
+    }
+    return {
+      id,
+      key: note.key,
+      title: note.getNoteTitle(),
+      libraryID: note.libraryID,
+      parentID: parent.id,
+      html: note.getNote(),
+      editorHTMLs,
+    };
+  }
+  private noteItemURIs(item: any): string[] {
+    // A note created before syncing can still use this profile's local user URI.
+    return [Zotero.URI.getItemURI(item), `${Zotero.URI.getLocalUserURI()}/items/${item.key}`];
+  }
+  async transferPDFs(
+    note: NoteSnapshot,
+    record: TransferRecord,
+    verifyFiles: boolean,
+  ): Promise<TransferPDFs | null> {
+    if (![record.sourceID, record.targetID].every((id) => Number.isSafeInteger(id) && id > 0))
+      return null;
+    const items: any[] = await Zotero.Items.getAsync([
+      record.sourceID,
+      record.targetID,
+      note.parentID,
+    ]);
+    const source = items.find((item) => item.id === record.sourceID);
+    const target = items.find((item) => item.id === record.targetID);
+    const parent = items.find((item) => item.id === note.parentID);
+    if (
+      !source?.isPDFAttachment() ||
+      !target?.isPDFAttachment() ||
+      !parent?.isRegularItem() ||
+      parent.deleted ||
+      parent.libraryID !== note.libraryID ||
+      source.deleted ||
+      target.deleted ||
+      source.key !== record.sourceKey ||
+      target.key !== record.targetKey ||
+      source.libraryID !== note.libraryID ||
+      target.libraryID !== note.libraryID ||
+      source.parentID !== note.parentID ||
+      target.parentID !== note.parentID
+    )
+      return null;
+    if (verifyFiles) {
+      try {
+        const oldFile = await this.fileStamp(record.sourceID);
+        const newFile = await this.fileStamp(record.targetID);
+        if (oldFile.hash !== record.sourceFile?.hash || newFile.hash !== record.targetFile?.hash)
+          return null;
+      } catch {
+        return null;
+      }
+    }
+    return {
+      sourceTitle: this.label(source),
+      targetTitle: this.label(target),
+      sourceURIs: this.noteItemURIs(source),
+      targetURI: Zotero.URI.getItemURI(target),
+      parentURIs: this.noteItemURIs(parent),
+    };
+  }
+  async targetAnnotation(
+    record: TransferRecord,
+    key: string,
+  ): Promise<Pick<Annotation, 'key' | 'type' | 'position' | 'pageLabel'> | null> {
+    const item = (await Zotero.Items.getByLibraryAndKeyAsync(record.libraryID, key)) || undefined;
+    if (
+      !item?.isAnnotation() ||
+      item.deleted ||
+      item.libraryID !== record.libraryID ||
+      item.parentID !== record.targetID ||
+      item.annotationIsExternal
+    )
+      return null;
+    try {
+      return {
+        key: item.key,
+        type: item.annotationType,
+        position: JSON.parse(item.annotationPosition),
+        pageLabel: item.annotationPageLabel,
+      };
+    } catch {
+      return null;
+    }
+  }
+  async createNoteCopy(noteID: number, html: string): Promise<number> {
+    const note = Zotero.Items.get(noteID);
+    const template = parseNoteHTML(Zotero.getMainWindow().document, html);
+    const images = new Map<string, Element[]>();
+    for (const node of template.content.querySelectorAll('img[data-attachment-key]')) {
+      const key = node.getAttribute('data-attachment-key') ?? '';
+      const nodes = images.get(key) ?? [];
+      nodes.push(node);
+      images.set(key, nodes);
+    }
+    const attachments = [];
+    for (const [key, nodes] of images) {
+      const attachment = key
+        ? (await Zotero.Items.getByLibraryAndKeyAsync(note.libraryID, key)) || undefined
+        : undefined;
+      if (
+        !attachment?.isEmbeddedImageAttachment() ||
+        attachment.deleted ||
+        attachment.parentID !== noteID ||
+        !(await attachment.fileExists())
+      )
+        throw new Error('An embedded image in the source note is unavailable locally.');
+      attachments.push({ attachment, nodes });
+    }
+
+    const copy = note.clone();
+    copy.setNote(html);
+    await copy.save({ skipSelect: true });
+    for (const { attachment, nodes } of attachments) {
+      const image = await Zotero.Attachments.copyEmbeddedImage({ attachment, note: copy });
+      const path = Zotero.Attachments.getStorageDirectory(image).path;
+      Zotero.DB.addCurrentCallback('rollback', () =>
+        IOUtils.remove(path, { recursive: true, ignoreAbsent: true }).catch((error: unknown) =>
+          Zotero.logError(error),
+        ),
+      );
+      for (const node of nodes) node.setAttribute('data-attachment-key', image.key);
+    }
+    if (attachments.length) {
+      copy.setNote(template.innerHTML);
+      await copy.save({ skipDateModifiedUpdate: true, skipSelect: true });
+    }
+    return copy.id;
   }
   private async ready(promise: Promise<unknown>): Promise<void> {
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -393,10 +559,10 @@ export class ZoteroAdapter implements Store {
   mainWindows(): Window[] {
     return Zotero.getMainWindows();
   }
-  openWindow(url: string, argument: unknown): Window {
+  openWindow(url: string, argument: unknown, name = 'margincarry-transfer'): Window {
     return Zotero.getMainWindow().openDialog(
       url,
-      'margincarry-transfer',
+      name,
       'chrome,centerscreen,resizable,width=1180,height=820',
       argument,
     );

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { type Locale, Localization, localeNames, locales } from '../src/l10n.ts';
 import type { Selection, Snapshot } from '../src/model.ts';
+import { initNoteCopy } from '../src/note-copy-ui.ts';
 import type { TransferService } from '../src/transfer.ts';
 import { TransferWindow } from '../src/ui.ts';
 import type { ZoteroAdapter } from '../src/zotero.ts';
@@ -36,6 +37,85 @@ class Element {
     if (name === 'src') this.src = '';
   }
 }
+
+test('rebinding the note copy dialog discards ready and in-flight previews for earlier notes', async () => {
+  const nodes = new Map<string, Element>();
+  const el = (id: string) => {
+    let node = nodes.get(id);
+    if (!node) {
+      node = new Element();
+      nodes.set(id, node);
+    }
+    return node;
+  };
+  const document = {
+    documentElement: { lang: 'en' },
+    getElementById: el,
+    createElement: () => new Element(),
+    querySelectorAll: () => [],
+  };
+  const saved: number[] = [];
+  const { promise: held, resolve: release } = Promise.withResolvers<void>();
+  const { promise: started, resolve: enter } = Promise.withResolvers<void>();
+  const bind = initNoteCopy(
+    { document, closed: false } as unknown as Window,
+    { locale: () => 'en', log: () => {}, selectItem: async () => {} },
+    {
+      choices: async (id) => ({
+        noteTitle: `Note ${id}`,
+        operations: [
+          { id: 'transfer', date: '2026-11-07', sourceTitle: 'Old', targetTitle: 'New' },
+        ],
+      }),
+      preview: async (id, operationID) => {
+        if (id === 2) {
+          enter();
+          await held;
+        }
+        return {
+          note: { id, key: '', title: '', libraryID: 1, parentID: 1, html: '', editorHTMLs: [] },
+          operationID,
+          html: '',
+          rows: [{ text: `Quote ${id}`, oldPage: '1', newPage: '2' }],
+        };
+      },
+      save: async ({ note }) => saved.push(note.id),
+    },
+  );
+  const until = async (done: () => boolean) => {
+    for (let i = 0; i < 100 && !done(); i++) await new Promise((r) => setTimeout(r, 0));
+    assert.ok(done(), 'Note copy dialog did not finish');
+  };
+  const preview = () => {
+    el('operation').value = 'transfer';
+    el('preview').onclick!();
+  };
+  bind([1]);
+  await until(() => !el('preview').disabled);
+  preview();
+  await until(() => !el('save').disabled);
+  const saveFirst = el('save').onclick!;
+  bind([2]);
+  saveFirst();
+  assert.equal(el('save').disabled, true);
+  assert.deepEqual(el('note-copy-links').children, []);
+  await until(() => !el('preview').disabled);
+  preview();
+  await started;
+  bind([3]);
+  release();
+  await until(() => el('note-copy-source').textContent.includes('Note 3'));
+  assert.equal(el('save').disabled, true);
+  assert.deepEqual(el('note-copy-links').children, []);
+  assert.deepEqual(saved, []);
+  preview();
+  await until(() => !el('save').disabled);
+  assert.match(el('note-copy-links').children[0]!.textContent, /Quote 3/u);
+  el('save').onclick!();
+  await until(() => saved.length === 1);
+  assert.deepEqual(saved, [3]);
+});
+
 interface Scenario {
   old: string;
   new: string;

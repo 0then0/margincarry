@@ -3,6 +3,16 @@ import type { Message, UiKey } from './en.ts';
 export const ui: Record<UiKey, string> = {
   title: 'MarginCarry · PDF-Annotationen übertragen',
   menu: 'MarginCarry: PDF-Annotationen übertragen…',
+  noteCopyMenu: 'MarginCarry: Notiz mit Links zur neuen PDF kopieren…',
+  noteCopyTitle: 'Notiz mit Links zur neuen PDF kopieren',
+  noteCopyOperation: 'Abgeschlossene Übertragung',
+  noteCopyPreview: 'Linkvorschau anzeigen',
+  noteCopySave: 'Kopie speichern',
+  noteCopyOpen: 'Kopierte Notiz anzeigen',
+  noteCopyReview: 'Prüfen Sie die Links und speichern Sie dann die Kopie.',
+  noteCopyNoOperations: 'Für den Eintrag dieser Notiz gibt es keine abgeschlossenen Übertragungen.',
+  noteCopyNoPair: 'S. {page} · Keine bestätigte Zuordnung · {text}',
+  noteCopyCreated: 'Die Kopie der Notiz wurde gespeichert.',
   subtitle:
     'Ihre Annotationen auf einer neuen PDF-Fassung. Prüfen Sie jede Position, bevor etwas geschrieben wird.',
   language: 'Sprache',
@@ -103,6 +113,17 @@ export const ui: Record<UiKey, string> = {
 };
 
 export const messages: Record<Message, string> = {
+  'Choose one child note in your personal library.':
+    'Wählen Sie eine untergeordnete Notiz in Ihrer persönlichen Bibliothek aus.',
+  'The selected transfer is no longer available for this note.':
+    'Die gewählte Übertragung ist für diese Notiz nicht mehr verfügbar.',
+  'The note changed after the preview. Refresh the preview and try again.':
+    'Die Notiz hat sich seit der Vorschau geändert. Aktualisieren Sie die Vorschau und versuchen Sie es erneut.',
+  'The transfer links changed after the preview. Refresh the preview and try again.':
+    'Die Links der Übertragung haben sich seit der Vorschau geändert. Aktualisieren Sie die Vorschau und versuchen Sie es erneut.',
+  'An embedded image in the source note is unavailable locally.':
+    'Ein in die Quellnotiz eingebettetes Bild ist lokal nicht verfügbar.',
+  'There are no confirmed links to copy.': 'Es gibt keine Links mit bestätigter Zuordnung.',
   'Only native highlights and underlines are supported.':
     'Es werden nur Hervorhebungen und Unterstreichungen von Zotero unterstützt.',
   'The source page could not be extracted.': 'Die Quellseite konnte nicht gelesen werden.',

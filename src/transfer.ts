@@ -11,10 +11,14 @@ export class TransferService {
   }
 
   async journal(): Promise<TransferRecord[]> {
+    return this.withJournal(async (records) => records);
+  }
+
+  async withJournal<T>(work: (records: TransferRecord[]) => Promise<T>): Promise<T> {
     if (this.busy) throw new Error('A transfer operation is in progress.');
     this.busy = true;
     try {
-      return await this.recoverJournal();
+      return await work(await this.recoverJournal());
     } finally {
       this.busy = false;
     }

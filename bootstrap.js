@@ -17,7 +17,7 @@ function onMainWindowLoad({ window }) {
   MarginCarry?.install(window);
 }
 function onMainWindowUnload({ window }) {
-  window.document.getElementById('margincarry-menu')?.remove();
+  MarginCarry?.uninstallMenu(window);
 }
 function shutdown() {
   MarginCarry?.stop();

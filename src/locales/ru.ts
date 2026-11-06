@@ -3,6 +3,16 @@ import type { Message, UiKey } from './en.ts';
 export const ui: Record<UiKey, string> = {
   title: 'MarginCarry · перенос PDF-аннотаций',
   menu: 'MarginCarry: перенести PDF-аннотации…',
+  noteCopyMenu: 'MarginCarry: создать копию заметки со ссылками на новый PDF…',
+  noteCopyTitle: 'Создать копию заметки со ссылками на новый PDF',
+  noteCopyOperation: 'Завершённый перенос',
+  noteCopyPreview: 'Предпросмотр ссылок',
+  noteCopySave: 'Сохранить копию',
+  noteCopyOpen: 'Показать копию заметки',
+  noteCopyReview: 'Проверьте ссылки и сохраните копию.',
+  noteCopyNoOperations: 'Для элемента с этой заметкой нет завершённых переносов.',
+  noteCopyNoPair: 'стр. {page} · Нет подтверждённой пары · {text}',
+  noteCopyCreated: 'Копия заметки сохранена.',
   subtitle: 'Ваши аннотации на новой версии PDF. Проверьте каждое место перед записью.',
   language: 'Язык',
   direction: 'Направление переноса',
@@ -98,6 +108,17 @@ export const ui: Record<UiKey, string> = {
 };
 
 export const messages: Record<Message, string> = {
+  'Choose one child note in your personal library.':
+    'Выберите одну дочернюю заметку в личной библиотеке.',
+  'The selected transfer is no longer available for this note.':
+    'Выбранный перенос больше недоступен для этой заметки.',
+  'The note changed after the preview. Refresh the preview and try again.':
+    'Заметка изменилась после предпросмотра. Обновите предпросмотр и попробуйте снова.',
+  'The transfer links changed after the preview. Refresh the preview and try again.':
+    'Ссылки переноса изменились после предпросмотра. Обновите предпросмотр и попробуйте снова.',
+  'An embedded image in the source note is unavailable locally.':
+    'Одно из встроенных изображений исходной заметки недоступно локально.',
+  'There are no confirmed links to copy.': 'Для копирования нет ссылок с подтверждёнными парами.',
   'Only native highlights and underlines are supported.':
     'Поддерживаются только выделения и подчёркивания Zotero.',
   'The source page could not be extracted.': 'Не удалось извлечь страницу источника.',

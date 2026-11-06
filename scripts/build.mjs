@@ -21,7 +21,7 @@ await build({
 });
 for (const name of ['bootstrap.js', 'manifest.json', 'LICENSE'])
   await copyFile(name, `dist/package/${name}`);
-for (const name of ['transfer.xhtml', 'transfer.css'])
+for (const name of ['transfer.xhtml', 'transfer.css', 'note-copy.xhtml'])
   await copyFile(`content/${name}`, `dist/package/content/${name}`);
 await copyFile('assets/icon.svg', 'dist/package/content/icon.svg');
 const archive = `dist/margincarry-${pkg.version}.xpi`;
