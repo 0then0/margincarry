@@ -34,6 +34,17 @@
               "strict_max_version": "10.0.*"
             }
           }
+        },
+        {
+          "version": "0.3.0",
+          "update_link": "https://github.com/0then0/margincarry/releases/download/v0.3.0/margincarry-0.3.0.xpi",
+          "update_hash": "sha256:5993b17de7d0377c5f55005017799ca77dd868e8d5b952c4f39e50ada18ff305",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "10.0.5",
+              "strict_max_version": "10.0.*"
+            }
+          }
         }
       ]
     }
