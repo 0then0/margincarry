@@ -2,11 +2,20 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
-## Unreleased
+## [0.3.0] - 2026-11-07
+
+### Added
+
+- Copy a child note with links to highlights and underlines from a completed transfer. The preview shows the old and new pages and identifies links without a confirmed match. The copy keeps the quoted text, comments, formatting, and other links.
+- Before saving, MarginCarry checks that the note, transfer, and target annotations still match the preview. Switching notes clears the previous preview.
+
+### Validation
+
+- Checked note copying in an isolated Zotero 10.0.8 profile on macOS. After moving a highlight from page 1 to page 2, the original and reopened copy each opened their corresponding highlight. Also checked that switching notes in the same dialog clears the previous preview and saves a copy of the newly selected note.
 
 ### Maintenance
 
-- Populated `updates.json` with the published v0.1.0, v0.1.1, and v0.2.0 releases, each pinned to its release asset with the SHA-256 of the published XPI and the compatibility range from its own manifest, so installed copies can find updates through Zotero's built-in check. The channel was empty before. The plugin itself is unchanged.
+- Populated the previously empty `updates.json` with the published v0.1.0, v0.1.1, and v0.2.0 releases so installed copies can find updates through Zotero's built-in check. Each entry records the release asset, its SHA-256, and the package's Zotero compatibility range.
 - Added `scripts/update-manifest.mjs` to add and verify entries from published releases, an `update-manifest` workflow that proposes the entry as a pull request after a release, tests for the tooling, and the [Releasing and updates](docs/releasing.md) guide. The README now has one install and update path.
 
 ## [0.2.0] - 2026-10-31
@@ -77,6 +86,7 @@ See the [release notes](docs/releases/v0.1.1.md) and [native follow-up](docs/nat
 
 See the [release notes](docs/releases/v0.1.0.md). Later v0.1.0 native testing is documented separately in the validation reports.
 
+[0.3.0]: https://github.com/0then0/margincarry/releases/tag/v0.3.0
 [0.2.0]: https://github.com/0then0/margincarry/releases/tag/v0.2.0
 [0.1.1]: https://github.com/0then0/margincarry/releases/tag/v0.1.1
 [0.1.0]: https://github.com/0then0/margincarry/releases/tag/v0.1.0
