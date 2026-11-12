@@ -59,9 +59,9 @@ Two real extraction behaviors came out of this check. Chrome's text layer delive
 
 The generator is one tool, so the check does not speak for every PDF producer. LaTeX output, for example, can keep break hyphens and put accents in separate glyphs. The same cases also run as unit tests (`tests/languages.test.ts`) with synthetic pages, including decomposed accents, which real PDFs from other producers will contain.
 
-### Unreleased: selections across a page break, Zotero 10.0.9, macOS
+### v0.4.0 code: selections across a page break, Zotero 10.0.9, macOS
 
-This check ran the working tree after v0.3.0, built as an XPI with SHA-256 `9518d55e1b9fbe8eb15a6d9bd7e5fafda2d24ca909914df1155a996977cc078e`, in a new isolated profile. It is not a check of a published package. The method is [in the development guide](development.md#checking-selections-across-a-page-break).
+This check ran the code that became v0.4.0, before its version number changed, built as an XPI with SHA-256 `9518d55e1b9fbe8eb15a6d9bd7e5fafda2d24ca909914df1155a996977cc078e`, in a new isolated profile. It is not a check of the published v0.4.0 package, whose manifest version and therefore checksum differ. The method is [in the development guide](development.md#checking-selections-across-a-page-break).
 
 - A highlight was created in the reader by dragging the mouse from the last line of page 1 to the second line of page 2 of a fixture PDF. Zotero stored one annotation with one rectangle on the first page, two under `nextPageRects`, the page label of the first page, and the two parts of the text joined by one space.
 - The real dialog proposed one unique location in a revision with the page break one line later. Both source pages and both target pages were rendered with their highlighted lines and read on screen. After acceptance and confirmation, one highlight existed in the target with the quote, comment, color, and tags of the source and with rectangles equal to the independently computed ones on both pages. A recalculated plan refused a repeat.

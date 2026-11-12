@@ -2,7 +2,7 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
-## [Unreleased]
+## [0.4.0] - 2026-11-12
 
 ### Added
 
@@ -20,7 +20,7 @@ Notable changes to MarginCarry are recorded here. Released entries describe the 
 
 ### Validation and limits
 
-- Biome, strict TypeScript, the automated tests, and packaging pass. The full path was run in an isolated Zotero 10.0.9 profile on macOS with a mouse-created source annotation; see [Validation](docs/validation.md).
+- Biome, strict TypeScript, the automated tests, and packaging pass. The full path was run in an isolated Zotero 10.0.9 profile on macOS with a mouse-created source annotation, on builds made before the version number changed; see [Validation](docs/validation.md) and the [release notes](docs/releases/v0.4.0.md).
 - Page numbers and running heads that are part of the PDF's text usually prevent a transfer across a page break. The real revision corpus was not re-run.
 
 ## [0.3.0] - 2026-11-07
@@ -107,6 +107,7 @@ See the [release notes](docs/releases/v0.1.1.md) and [native follow-up](docs/nat
 
 See the [release notes](docs/releases/v0.1.0.md). Later v0.1.0 native testing is documented separately in the validation reports.
 
+[0.4.0]: https://github.com/0then0/margincarry/releases/tag/v0.4.0
 [0.3.0]: https://github.com/0then0/margincarry/releases/tag/v0.3.0
 [0.2.0]: https://github.com/0then0/margincarry/releases/tag/v0.2.0
 [0.1.1]: https://github.com/0then0/margincarry/releases/tag/v0.1.1
