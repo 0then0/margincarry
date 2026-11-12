@@ -358,3 +358,88 @@ test('a deliberately selected doubtful candidate is written as a copy and undone
   assert.equal((await service.undoLast()).count, 1);
   assert.equal(store.source.annotations[0]!.key, 'OLDKEY01');
 });
+
+test('a selection across a page break is one copy through apply, journal, repeat protection and undo', async () => {
+  const { store, plan, service, selected } = fixture();
+  // A record as v0.3.0 wrote it, for another pair of attachments, stays readable and untouched.
+  const earlier: TransferRecord = {
+    schema: 1,
+    id: 'earlier',
+    date: '2026-11-07T10:00:00.000Z',
+    sourceID: 7,
+    targetID: 8,
+    libraryID: 1,
+    sourceKey: 'PDFOLD07',
+    targetKey: 'PDFNEW08',
+    sourceFile: { path: 'a.pdf', hash: 'a', size: 1, modified: 1 },
+    targetFile: { path: 'b.pdf', hash: 'b', size: 1, modified: 1 },
+    status: 'committed',
+    copies: [],
+    created: [{ key: 'EXISTING', sourceKey: 'OTHER', fingerprint: 'existing fingerprint' }],
+    originals: [],
+  };
+  store.records = [structuredClone(earlier)];
+  const candidate = plan.proposals[0]!.candidates[0]!;
+  const position = {
+    pageIndex: 3,
+    rects: [[10, 20, 100, 30]],
+    nextPageRects: [[10, 700, 60, 712]],
+  } as const;
+  candidate.position = structuredClone(position) as unknown as typeof candidate.position;
+  candidate.nextPage = { pageLabel: 'v', start: 0, end: 4 };
+  candidate.text = 'new\ftext';
+  const record = await service.apply(plan, selected);
+  assert.equal(record.status, 'committed');
+  // One native annotation with both parts, the text as the reader writes it, and the first label.
+  assert.equal(store.copies.length, 1);
+  assert.deepEqual(store.copies[0]!.position, position);
+  assert.equal(store.copies[0]!.text, 'new text');
+  assert.equal(store.copies[0]!.pageLabel, 'iv');
+  assert.equal(store.copies[0]!.comment, 'do not alter');
+  assert.deepEqual(store.copies[0]!.tags, ['one', 'two']);
+  // The journal keeps schema 1; the position is stored whole and survives a reload.
+  const journal = await new TransferService(store).journal();
+  assert.deepEqual(journal[0], earlier);
+  assert.equal(journal[1]!.schema, 1);
+  assert.deepEqual(journal[1]!.copies[0]!.position, position);
+  assert.deepEqual(JSON.parse(JSON.stringify(journal)), journal);
+  const again = structuredClone(plan);
+  again.id = 'recalculated';
+  again.state = 'review';
+  await assert.rejects(new TransferService(store).apply(again, selected), /already transferred/);
+  assert.equal(store.copies.length, 1);
+  // Undo removes the one created annotation and nothing else.
+  assert.deepEqual(await service.undoLast(), { id: 'plan-1', count: 1 });
+  assert.equal(store.rows.get('NEWKEY1'), 'trashed');
+  assert.equal(store.rows.get('EXISTING'), 'existing fingerprint');
+  assert.deepEqual(
+    store.records.map((r) => r.status),
+    ['committed', 'undone'],
+  );
+});
+
+test('a failed write of a selection across a page break leaves no annotation and a failed record', async () => {
+  const { store, plan, service, selected } = fixture();
+  plan.proposals[0]!.candidates[0]!.position = {
+    pageIndex: 3,
+    rects: [[10, 20, 100, 30]],
+    nextPageRects: [[10, 700, 60, 712]],
+  };
+  store.failAt = 1;
+  await assert.rejects(service.apply(plan, selected), /write failed/);
+  assert.equal(store.copies.length, 0);
+  assert.deepEqual([...store.rows.keys()], ['EXISTING']);
+  assert.equal((await service.journal())[0]!.status, 'failed');
+  // A final journal failure after the commit is recovered instead of leaving the copy unrecorded.
+  const next = fixture();
+  next.plan.proposals[0]!.candidates[0]!.position = {
+    pageIndex: 3,
+    rects: [[10, 20, 100, 30]],
+    nextPageRects: [[10, 700, 60, 712]],
+  };
+  next.store.failWriteOn = 3;
+  await assert.rejects(next.service.apply(next.plan, next.selected), /Copies were committed/);
+  const recovered = await new TransferService(next.store).journal();
+  assert.equal(recovered[0]!.status, 'committed');
+  assert.equal(recovered[0]!.created.length, 1);
+});

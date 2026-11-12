@@ -94,6 +94,14 @@ export const ui: Record<UiKey, string> = {
   loading: 'Chargement du PDF…',
   previewFailed: 'Aperçu indisponible : {error}. Ouvrez l’emplacement dans le lecteur.',
   noPreview: 'Aucun emplacement vérifié à prévisualiser.',
+  sourcePages: 'Source · p. {page}',
+  targetPages: 'Cible · pages {page} (feuilles {sheet})',
+  candidatePages: 'P. {page} · {method}',
+  nextPage: 'Suite à la page {page}',
+  openSourceNext: 'Ouvrir la source à la page suivante',
+  openTargetNext: 'Ouvrir la cible à la page suivante',
+  sourceImageNext: 'Suite de la sélection source sur la page PDF suivante',
+  targetImageNext: 'Suite de la sélection proposée sur la page PDF suivante',
   applyConfirm:
     'Appliquer la sélection ({count}) à « {title} » ? Les annotations d’origine sont conservées. Les copies reçoivent de nouvelles clés.',
   writing: 'Vérification des modifications et écriture…',
@@ -128,11 +136,13 @@ export const messages: Record<Message, string> = {
   'Only native highlights and underlines are supported.':
     'Seuls les surlignages et soulignements natifs de Zotero sont pris en charge.',
   'The source page could not be extracted.': 'La page source n’a pas pu être extraite.',
+  'The second source page could not be extracted.':
+    'La deuxième page source n’a pas pu être extraite.',
   'Empty source text.': 'Le texte source est vide.',
   'The target PDF has no usable text layer. OCR is not supported.':
     'Le PDF cible n’a pas de couche de texte exploitable. La reconnaissance de texte (OCR) n’est pas prise en charge.',
-  'No exact or conservatively normalized quote on a single target page.':
-    'Aucune citation exacte ou normalisée de façon prudente sur une seule page cible.',
+  'No exact or conservatively normalized quote on one target page or across two adjacent target pages.':
+    'Aucune citation exacte ou normalisée de façon prudente sur une page cible ni à cheval sur deux pages cibles consécutives.',
   'One occurrence matches the complete available context; alternatives are retained.':
     'Une occurrence correspond à tout le contexte disponible ; les alternatives sont conservées.',
   'One text occurrence; verify the PDF position.':
@@ -157,8 +167,12 @@ export const messages: Record<Message, string> = {
   'No usable text geometry.': 'Aucune coordonnée de texte exploitable.',
   'Selection exceeds the native annotation position limit.':
     'La sélection dépasse la taille de position maximale d’une annotation Zotero.',
-  'Multi-page annotations are not supported.':
-    'Les annotations sur plusieurs pages ne sont pas prises en charge.',
+  'A page next to the page break has no selectable text.':
+    'Une page voisine du saut de page ne contient aucun texte sélectionnable.',
+  'A line-end hyphen next to the page break makes the text across the break ambiguous.':
+    'Un trait d’union en fin de ligne à côté du saut de page rend ambigu le texte de part et d’autre du saut.',
+  'The selection does not continue directly from the end of one page to the start of the next: other text, such as a header, footer or page number, lies between its two parts.':
+    'La sélection ne se poursuit pas directement de la fin d’une page au début de la suivante : un autre texte, par exemple un en-tête, un pied de page ou un numéro de page, se trouve entre ses deux parties.',
   'Invalid source rectangles.': 'Rectangles source non valides.',
   'Not every source rectangle maps to text.':
     'Tous les rectangles source ne correspondent pas à du texte.',

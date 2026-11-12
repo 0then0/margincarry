@@ -4,7 +4,7 @@ This page explains what MarginCarry decides for you, what it leaves to you, and 
 
 ## The workflow in one paragraph
 
-MarginCarry reads the text and the glyph positions of both PDFs through Zotero's own PDF reader. For each highlight or underline in the old PDF, it works out which text the selection covered, searches for exactly that text on every page of the new PDF, and turns each match back into a rectangle on the page. You compare the two locations visually, accept the ones you want, and confirm. Only then does it create new annotations.
+MarginCarry reads the text and the glyph positions of both PDFs through Zotero's own PDF reader. For each highlight or underline in the old PDF, it works out which text the selection covered, searches for exactly that text on every page of the new PDF and across every pair of adjacent pages, and turns each match back into rectangles on the page. You compare the two locations visually, accept the ones you want, and confirm. Only then does it create new annotations.
 
 ## What is matched
 
@@ -19,7 +19,24 @@ A match must also end on whole PDF glyphs. A ligature such as `fi` is one glyph,
 
 The old page number is not evidence. A paragraph that moved from page 3 to page 8 is found like any other.
 
-A quote must be found on a single page of the new PDF. A passage that now spans a page break is reported as not found.
+A quote must be found on a single page of the new PDF or across two adjacent pages, as described next.
+
+## Passages across a page break
+
+After a revision is typeset again, an unchanged paragraph can end up divided by a page break, or a divided paragraph can end up on one page. MarginCarry handles a selection on one page or on two adjacent pages, in the old PDF and in the new one: one page to two, two to one, and two to two. Longer selections are not supported.
+
+Zotero stores such a selection as one annotation with rectangles for the first page and separate rectangles for the next page, and joins the text of the two parts with one space. MarginCarry follows that model exactly:
+
+- **The page break is one space of the quote.** It is treated like a line break. No other space is added or removed, so `alpha beta` on one page matches `alpha` at the end of a page followed by `beta` at the start of the next, while `alphabeta` does not.
+- **The selection must be continuous.** Its first part has to reach the last text of its page and its second part has to begin with the first text of the next page, in the order in which the PDF stores the text. This is checked for the original annotation and for every candidate.
+- **Text between the two parts is not removed.** If the PDF's text has a header, footer, or page number between the end of the passage on one page and its continuation on the next, the passage is not treated as continuous. When the quote is found nowhere else, such a place is listed with that reason, without a position, and cannot be accepted. It is not listed next to a real occurrence, because ordinary lines of text can lie between two matching halves just as a footer can. A source annotation whose own rectangles cover a page number contains that number in its text, and it is matched like any other character.
+- **One exception follows the reader.** Zotero's reader marks some text outside a document's content area as isolated and leaves it out of a selection that crosses pages. MarginCarry skips only such marked text, only at the page edge, and only when it lies on other lines than the selected text. The reader makes these marks on some pages only, so page numbers usually count as text.
+- **A line-end hyphen at the break is ambiguous.** Within a page the reader joins a hyphenated word; across pages it separates the two parts. MarginCarry does not choose, and such a passage is not transferred.
+- **Each page keeps its own rectangles.** Coordinates of two pages are never merged, whole glyphs are required on both pages, and both parts together must fit Zotero's size limit for a position.
+
+Context and the word and number boundary check below apply to the outer ends of the whole passage: the text before its first part and after its last part. The page break inside it is not a boundary.
+
+The page label and the sort position of the new annotation come from its first page, as for an annotation that the reader creates.
 
 ## Several occurrences and context
 
@@ -59,7 +76,7 @@ Han, Hiragana, Katakana, Thai, Lao, Khmer, Myanmar, and Tibetan text is written 
 
 - A word added before or after an unchanged quote (`valid` becoming `not valid`), or a number changed elsewhere in the sentence.
 - Scientific notation, units, percentages, fractions, and numbers grouped with spaces.
-- Words split across lines or pages by hyphenation. If the PDF's text layer leaves the break hyphen out, which is common, the word matches like any other, and this was checked in German, Spanish, French, and Portuguese. If the text layer keeps the hyphen, as in the recorded `pa- / rameters` case, the hyphen belongs to the text and the rectangle can differ from an independent measurement.
+- Words split across lines by hyphenation. If the PDF's text layer leaves the break hyphen out, which is common, the word matches like any other, and this was checked in German, Spanish, French, and Portuguese. If the text layer keeps the hyphen, as in the recorded `pa- / rameters` case, the hyphen belongs to the text and the rectangle can differ from an independent measurement.
 - Inflection. In languages such as Russian or German, `кот` followed by an ending (`кота`) is a different word, so it is reported as doubtful by design.
 - Glued superscripts. A footnote marker attached directly to a word can make that word doubtful when the marker changes.
 
@@ -97,4 +114,4 @@ The journal blocks applying the same plan twice and copying a source annotation 
 
 ## What is not supported
 
-Annotation types other than highlights and underlines, selections spanning pages or made of separate pieces, rotated or diagonal individual glyphs, group libraries, other document formats, and library-wide processing. See the [README](../README.md#limitations).
+Annotation types other than highlights and underlines, selections longer than two adjacent pages or made of separate pieces, passages across a page break with other text between their parts, rotated or diagonal individual glyphs, group libraries, other document formats, and library-wide processing. See the [README](../README.md#limitations).

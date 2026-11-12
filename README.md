@@ -15,7 +15,7 @@ Nothing is written until you confirm. Your original annotations and PDF files ar
 ## Features
 
 - Transfers native highlights and underlines between two PDF attachments of the same Zotero item.
-- Shows the original and the proposed location on the actual PDF pages, and opens either in the Zotero reader.
+- Shows the original and the proposed location on the actual PDF pages, and opens either in the Zotero reader. A passage that runs over a page break is shown, opened, and transferred as one annotation on its two pages.
 - Matches text exactly: only Unicode normalization and whitespace differences are tolerated, so a changed number or a negated sentence is never moved silently.
 - Flags quotes that survive only inside a different word or number, such as `cat` in `concatenate` or `41.0` in `41.03`, and keeps them out of bulk selection.
 - Records every transfer in a local journal, blocks accidental repeats, and undoes a transfer in one step.
@@ -73,8 +73,8 @@ The command updates embedded links for highlights and underlines from the select
 - **Multiple candidates**: the quote occurs several times and the context does not decide. Nothing is preselected; choose the right occurrence. Changing your choice cancels the earlier acceptance. [Example](docs/images/ambiguous.png).
 - **Doubtful candidate**: the quote exists only as part of a longer word or number, or inside a different word than in the old PDF. It is listed with a warning, never recommended, and skipped by **Select unique proposals**. You can still select it by hand after checking the preview.
 - **Not found**: the quote no longer exists. If a number changed from `41.0` to `41.2`, the highlight is not moved onto the new number. [Example](docs/images/not-found.png).
-- **Unsupported**: another annotation type, a selection that spans pages or is not continuous, or text that does not agree with its position.
-- **Processing error**: the text was found but the PDF page data does not allow a reliable position, or extraction failed.
+- **Unsupported**: another annotation type, a selection that is not continuous (including one whose two parts at a page break have other text between them), or text that does not agree with its position.
+- **Processing error**: the text was found but the PDF page data does not allow a reliable position, or extraction failed. This includes a quote that crosses a page break in the new PDF with a header, footer, or page number between its two parts; the reason is shown and nothing is recommended.
 
 [How matching works](docs/how-it-works.md) describes the rules in detail, including word and number boundaries and what is deliberately not guessed.
 
@@ -86,7 +86,7 @@ The plugin stores one file, `margincarry/transfers.json`, in Zotero's data direc
 
 ## Limitations
 
-- Only native highlights and underlines that continue on one page are transferred. Ink, image, note, and multi-page annotations are not.
+- Only native highlights and underlines that continue on one page, or from the end of one page to the start of the next, are transferred. A passage across a page break is not transferred when a header, footer, or page number in the PDF's text lies between its two parts, or when a line-end hyphen sits at the break. Ink, image, and note annotations, and selections longer than two adjacent pages, are not transferred.
 - Only personal libraries, and only two attachments of one item. There is no group-library, EPUB, or library-wide support.
 - Matching is exact. There is no fuzzy matching, no translation, and no OCR. A rewritten sentence is reported as not found rather than guessed.
 - The plugin uses internal Zotero reader APIs, so a future Zotero release can require an update. The manifest accepts Zotero 10.0.x only.

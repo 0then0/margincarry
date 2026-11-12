@@ -91,6 +91,14 @@ export const ui: Record<UiKey, string> = {
   loading: 'Загрузка PDF…',
   previewFailed: 'Предпросмотр недоступен: {error}. Откройте место в просмотре Zotero.',
   noPreview: 'Нет проверенного места для предпросмотра.',
+  sourcePages: 'Источник · страницы {page}',
+  targetPages: 'Цель · страницы {page} (листы {sheet})',
+  candidatePages: 'Страницы {page} · {method}',
+  nextPage: 'Продолжение на странице {page}',
+  openSourceNext: 'Открыть источник на следующей странице',
+  openTargetNext: 'Открыть цель на следующей странице',
+  sourceImageNext: 'Продолжение исходного выделения на следующей странице PDF',
+  targetImageNext: 'Продолжение предлагаемого выделения на следующей странице PDF',
   applyConfirm:
     'Применить выбранное ({count}) к «{title}»? Исходные аннотации останутся. Копии получат новые ключи.',
   writing: 'Проверка изменений и запись…',
@@ -122,11 +130,12 @@ export const messages: Record<Message, string> = {
   'Only native highlights and underlines are supported.':
     'Поддерживаются только выделения и подчёркивания Zotero.',
   'The source page could not be extracted.': 'Не удалось извлечь страницу источника.',
+  'The second source page could not be extracted.': 'Не удалось извлечь вторую страницу источника.',
   'Empty source text.': 'Исходный текст пуст.',
   'The target PDF has no usable text layer. OCR is not supported.':
     'В целевом PDF нет пригодного текстового слоя. Распознавание текста (OCR) не поддерживается.',
-  'No exact or conservatively normalized quote on a single target page.':
-    'Точная или консервативно нормализованная цитата не найдена ни на одной странице цели.',
+  'No exact or conservatively normalized quote on one target page or across two adjacent target pages.':
+    'Точная или консервативно нормализованная цитата не найдена ни на одной странице цели, ни на двух соседних.',
   'One occurrence matches the complete available context; alternatives are retained.':
     'Одно вхождение совпадает со всем доступным контекстом; остальные варианты сохранены.',
   'One text occurrence; verify the PDF position.': 'Одно вхождение текста; проверьте место в PDF.',
@@ -150,7 +159,12 @@ export const messages: Record<Message, string> = {
   'No usable text geometry.': 'Нет пригодных координат текста.',
   'Selection exceeds the native annotation position limit.':
     'Выделение превышает допустимый размер позиции аннотации Zotero.',
-  'Multi-page annotations are not supported.': 'Многостраничные аннотации не поддерживаются.',
+  'A page next to the page break has no selectable text.':
+    'На странице рядом с разрывом нет текста, который можно выделить.',
+  'A line-end hyphen next to the page break makes the text across the break ambiguous.':
+    'Из-за знака переноса в конце строки рядом с разрывом страницы текст по обе стороны разрыва нельзя сопоставить однозначно.',
+  'The selection does not continue directly from the end of one page to the start of the next: other text, such as a header, footer or page number, lies between its two parts.':
+    'Выделение не продолжается непосредственно от конца одной страницы к началу следующей: между его частями есть другой текст, например колонтитул или номер страницы.',
   'Invalid source rectangles.': 'Некорректные прямоугольники источника.',
   'Not every source rectangle maps to text.':
     'Не каждому прямоугольнику источника соответствует текст.',

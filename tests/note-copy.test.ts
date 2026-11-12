@@ -304,3 +304,43 @@ test('the Zotero adapter handles false for a missing annotation or a note withou
   assert.equal(await adapter.targetAnnotation(fixture().record, targetKey), null);
   await assert.rejects(adapter.readNote(noteID), /Choose one child note in your personal library/u);
 });
+
+test('a link to an annotation across a page break carries its whole position and first page label', async () => {
+  const { service, preview, document, state, writes } = fixture();
+  const position: Position = {
+    pageIndex: 6,
+    rects: [[60, 50, 80, 70]],
+    nextPageRects: [
+      [60, 700, 300, 712],
+      [60, 686, 120, 698],
+    ],
+  };
+  state.annotation = { key: targetKey, type: 'underline', pageLabel: 'vii', position };
+  const review = await preview();
+  // Zotero labels such an annotation by the page where it starts; the link does the same.
+  assert.deepEqual(review.rows[0], { text: quoteText, oldPage: '1', newPage: 'vii' });
+  await service.save(review, document);
+  const data = JSON.parse(
+    decodeURIComponent(writes[0]!.html.match(/class="underline" data-annotation="([^"]+)"/u)![1]!),
+  );
+  assert.equal(data.annotationKey, targetKey);
+  assert.equal(data.attachmentURI, targetURI);
+  assert.deepEqual(data.position, position);
+  assert.equal(data.pageLabel, 'vii');
+  assert.equal(data.citationItem.locator, 'vii');
+});
+
+test('an annotation whose second-page rectangles are invalid is left unlinked', async () => {
+  for (const nextPageRects of [[[60, 700, 60, 712]], 'x', [[1, 2, 3]]]) {
+    const { preview, state } = fixture();
+    state.annotation = {
+      key: targetKey,
+      type: 'underline',
+      pageLabel: 'vii',
+      position: { pageIndex: 6, rects: [[60, 50, 80, 70]], nextPageRects } as unknown as Position,
+    };
+    const review = await preview();
+    assert.deepEqual(review.rows[0], { text: quoteText, oldPage: '1' });
+    assert.equal(review.html, originalHTML);
+  }
+});

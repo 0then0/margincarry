@@ -219,6 +219,9 @@ blockquote {
 .pdf-preview img:not([src]) {
   display: none;
 }
+.next-page {
+  margin-top: 12px;
+}
 .decision {
   display: flex;
   align-items: center;

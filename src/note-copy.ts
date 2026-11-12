@@ -72,19 +72,25 @@ function encode(value: Record<string, unknown>): string {
   return encodeURIComponent(JSON.stringify(value));
 }
 
+/**
+ * Number of the page where a text position starts. A selection that continues on the following
+ * page is located by its first page, as Zotero does for the annotation's own page label.
+ */
 function textPageNumber(value: unknown): string | undefined {
   const position = object(value);
   const pageIndex = position?.pageIndex;
   const rects = position?.rects;
   const nextPageRects = position?.nextPageRects;
+  const valid = (list: unknown[]) =>
+    list.every((rect) => Array.isArray(rect) && validRect(rect as Rect));
   if (
     typeof pageIndex === 'number' &&
     Number.isSafeInteger(pageIndex) &&
     pageIndex >= 0 &&
     Array.isArray(rects) &&
     rects.length > 0 &&
-    rects.every((rect) => Array.isArray(rect) && validRect(rect as Rect)) &&
-    (nextPageRects === undefined || (Array.isArray(nextPageRects) && nextPageRects.length === 0))
+    valid(rects) &&
+    (nextPageRects === undefined || (Array.isArray(nextPageRects) && valid(nextPageRects)))
   )
     return String(pageIndex + 1);
 }

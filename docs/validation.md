@@ -23,6 +23,7 @@ The current published release is [v0.2.0](releases/v0.2.0.md). The v0.1.2 build 
 `npm run check` runs Biome (formatting, imports, lint, warnings as errors), strict TypeScript, the `node:test` suite, and the XPI build. The tests cover:
 
 - matching: exact and normalized quotes, repeats and context, the candidate limit, grapheme and glyph boundaries, geometry, and the word and number boundary model with Latin, Cyrillic, Chinese, and Japanese examples;
+- selections across a page break: one page to two, two to one, and two to two, verification of both source parts, the page break as one space, ligatures and combining marks at the break, text between the parts, isolated glyphs, a line-end hyphen, a missing or partial second page, and the size limit for both parts;
 - transfer: transactional writes, rollback, the journal and its recovery, repeat protection, and conflict-aware Undo;
 - the dialog: cancellation, selection state, mass selection, manual choice of a doubtful candidate, and language switching with accepted proposals;
 - localization: key and placeholder parity in every language, that every project-owned message in the code is translated, and the language selection from Zotero's locale;
@@ -58,6 +59,22 @@ Two real extraction behaviors came out of this check. Chrome's text layer delive
 
 The generator is one tool, so the check does not speak for every PDF producer. LaTeX output, for example, can keep break hyphens and put accents in separate glyphs. The same cases also run as unit tests (`tests/languages.test.ts`) with synthetic pages, including decomposed accents, which real PDFs from other producers will contain.
 
+### Unreleased: selections across a page break, Zotero 10.0.9, macOS
+
+This check ran the working tree after v0.3.0, built as an XPI with SHA-256 `9518d55e1b9fbe8eb15a6d9bd7e5fafda2d24ca909914df1155a996977cc078e`, in a new isolated profile. It is not a check of a published package. The method is [in the development guide](development.md#checking-selections-across-a-page-break).
+
+- A highlight was created in the reader by dragging the mouse from the last line of page 1 to the second line of page 2 of a fixture PDF. Zotero stored one annotation with one rectangle on the first page, two under `nextPageRects`, the page label of the first page, and the two parts of the text joined by one space.
+- The real dialog proposed one unique location in a revision with the page break one line later. Both source pages and both target pages were rendered with their highlighted lines and read on screen. After acceptance and confirmation, one highlight existed in the target with the quote, comment, color, and tags of the source and with rectangles equal to the independently computed ones on both pages. A recalculated plan refused a repeat.
+- After closing and reopening the target, the reader loaded the same annotation and displayed it on both pages.
+- A note made from the source annotation was copied through the note dialog. The copied link named the target attachment, the created annotation, and its whole position with both parts, and opening it with the call the note editor makes opened the target at page 1 with that annotation.
+- **Undo last transfer** moved only the created annotation to the Trash.
+- Controls: the same source to a revision with the passage on one page, and a mouse-created underline on one page to the revision with a page break. Both created one annotation with the expected rectangles and were undone. Against a revision with page numbers, the dialog reported the text between the two parts, showed no position, and offered nothing to accept.
+- At 1180 and 900 px, the dialog with two page previews had no horizontal page scroll.
+
+After a later matcher correction and an icon change, the build with SHA-256 `5e062e39da62e683cce0b97a3be53a4efdf6b717c50e9895f7cdb5011b99c75a` repeated the page-number refusal and one transfer across a page break with repeat refusal and Undo, with the same results. Extraction of each two-page fixture, including the wait for the reader's processed page data, took about one second.
+
+Not covered: following the copied link by clicking it in the note editor, a restart of Zotero between apply and Undo, PDFs in which the reader marks headers or footers as isolated, other interface languages on screen, and any real paper. The 32-case corpus was not re-run.
+
 ## Real revision corpus
 
 Two genuine revision pairs were chosen independently of the matcher: [LoRA v1](https://arxiv.org/pdf/2106.09685v1) to [v2](https://arxiv.org/pdf/2106.09685v2) (20 to 26 pages) and [Attention v1](https://arxiv.org/pdf/1706.03762v1) to [v2](https://arxiv.org/pdf/1706.03762v2) (15 to 16 pages), with 16 source cases each. The URLs and SHA-256 values are in [`validation/corpus.json`](../validation/corpus.json), the PDFs are not stored in the repository, and a download is verified against its hash.
@@ -80,7 +97,7 @@ The v0.1.2 boundary check can only turn a recommendation into a doubtful candida
 
 ## Not verified
 
-Windows and Linux, Zotero versions other than 10.0.5 to 10.0.7, very large or encrypted PDFs, unusual fonts, difficult reading order, and group libraries. Text matches, including unique ones, still require a look at the preview.
+Windows and Linux, Zotero versions other than 10.0.5 to 10.0.7 (and 10.0.9 for the page-break check above), very large or encrypted PDFs, unusual fonts, difficult reading order, and group libraries. Text matches, including unique ones, still require a look at the preview.
 
 ## Evidence index
 

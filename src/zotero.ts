@@ -364,6 +364,12 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
     signal.throwIfAborted();
     const view = await this.view(id),
       document = view._iframeWindow.PDFViewerApplication.pdfDocument;
+    // The reader marks glyphs outside the content area as isolated only when its processed page
+    // data arrives, shortly after initialization. Wait for it, so that the flags do not depend on
+    // timing. Without the marker or within the limit, pages are read as they are.
+    const processed = view._findController?._firstPageCapability?.promise;
+    if (processed) await Promise.race([processed, Zotero.Promise.delay(10000)]);
+    signal.throwIfAborted();
     const labels = await document.getPageLabels2();
     const pages: Page[] = [];
     for (let index = 0; index < document.numPages; index++) {
@@ -506,6 +512,8 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
       throw new Error('Generated key already exists.');
     const view = await this.verifiedView(targetID);
     await view._ensureBasicPageData(copy.position.pageIndex);
+    if (copy.position.nextPageRects?.length)
+      await view._ensureBasicPageData(copy.position.pageIndex + 1);
     const meta = view.getAnnotationMeta(Cu.cloneInto(copy.position, view._iframeWindow));
     // saveFromJSON always calls saveTx in 10.0.5, which cannot nest in executeTransaction.
     // Use the native Item setters and save() inside our single outer transaction instead.

@@ -2,6 +2,7 @@ import { analyze } from './analysis.ts';
 import { Localization, localeNames, locales, type UiKey } from './l10n.ts';
 import { doubtful } from './matching.ts';
 import type { Candidate, Plan, Position, Proposal, Selection } from './model.ts';
+import { PAGE_BREAK } from './text.ts';
 import type { TransferService } from './transfer.ts';
 import type { ZoteroAdapter } from './zotero.ts';
 
@@ -39,6 +40,22 @@ export class TransferWindow {
     };
     const key = keys[type];
     return key ? this.t(key) : type;
+  }
+  /** The parts of a text position, one per page: a selection may continue on the following page. */
+  private parts(position: Position): Position[] {
+    const first = { pageIndex: position.pageIndex, rects: position.rects };
+    return position.nextPageRects?.length
+      ? [first, { pageIndex: position.pageIndex + 1, rects: position.nextPageRects }]
+      : [first];
+  }
+  private sourcePages(p: Proposal): string {
+    const first = p.source.pageLabel ?? p.source.position.pageIndex + 1;
+    return p.source.position.nextPageRects?.length
+      ? `${first}–${p.sourceNextPageLabel ?? p.source.position.pageIndex + 2}`
+      : String(first);
+  }
+  private candidatePages(c: Candidate): string {
+    return c.nextPage ? `${c.pageLabel}–${c.nextPage.pageLabel}` : c.pageLabel;
   }
   private el<T extends HTMLElement>(id: string): T {
     return this.win.document.getElementById(id) as T;
@@ -272,9 +289,9 @@ export class TransferWindow {
       if (!proposal || !c) continue;
       const line = this.win.document.createElement('li');
       line.textContent = this.t('reviewLine', {
-        old: proposal.source.pageLabel ?? proposal.source.position.pageIndex + 1,
-        new: c.pageLabel,
-        text: c.text.slice(0, 110),
+        old: this.sourcePages(proposal),
+        new: this.candidatePages(c),
+        text: c.text.replaceAll(PAGE_BREAK, ' ').slice(0, 110),
       });
       const remove = this.win.document.createElement('button');
       remove.className = 'remove';
@@ -309,9 +326,12 @@ export class TransferWindow {
       }),
     );
     this.text('source-context', `${p.sourcePrefix}【${p.source.text}】${p.sourceSuffix}`);
+    const sourceParts = this.parts(p.source.position);
     this.text(
       'source-page',
-      this.t('sourcePage', { page: p.source.pageLabel ?? p.source.position.pageIndex + 1 }),
+      this.t(sourceParts.length > 1 ? 'sourcePages' : 'sourcePage', {
+        page: this.sourcePages(p),
+      }),
     );
     this.text(
       'outcome',
@@ -334,7 +354,7 @@ export class TransferWindow {
     for (const [index, c] of p.candidates.entries()) {
       const option = this.win.document.createElement('option');
       option.value = c.id;
-      option.textContent = `${p.candidates.length > 1 ? this.t('variant', { index: index + 1 }) : ''}${this.t('candidate', { page: c.pageLabel, method: this.t(c.method) })}${c.contextMatches ? this.t('contextMatch') : ''}${doubtful(c) ? this.t('boundaryDiffers') : ''}${c.geometryError ? this.t('noGeometry') : ''}`;
+      option.textContent = `${p.candidates.length > 1 ? this.t('variant', { index: index + 1 }) : ''}${this.t(c.nextPage ? 'candidatePages' : 'candidate', { page: this.candidatePages(c), method: this.t(c.method) })}${c.contextMatches ? this.t('contextMatch') : ''}${doubtful(c) ? this.t('boundaryDiffers') : ''}${c.geometryError ? this.t('noGeometry') : ''}`;
       select.append(option);
     }
     select.value =
@@ -351,10 +371,17 @@ export class TransferWindow {
       if (this.plan)
         await this.adapter.navigate(this.plan.source.id, p.source.position, p.source.key);
     });
-    this.el('open-target').onclick = this.handle(async () => {
-      const c = this.chosen();
-      if (c?.position && this.plan) await this.adapter.navigate(this.plan.target.id, c.position);
+    const sourceNext = sourceParts[1];
+    this.el('open-source-next').hidden = !sourceNext;
+    this.el('open-source-next').onclick = this.handle(async () => {
+      if (this.plan && sourceNext) await this.adapter.navigate(this.plan.source.id, sourceNext);
     });
+    for (const [index, id] of ['open-target', 'open-target-next'].entries())
+      this.el(id).onclick = this.handle(async () => {
+        const position = this.chosen()?.position,
+          part = position && this.parts(position)[index];
+        if (part && this.plan) await this.adapter.navigate(this.plan.target.id, part);
+      });
     await this.previews();
   }
   private async previews(): Promise<void> {
@@ -366,17 +393,41 @@ export class TransferWindow {
     this.el<HTMLButtonElement>('accept').disabled =
       this.applying || !c?.position || plan.state !== 'review';
     this.el<HTMLButtonElement>('open-target').disabled = !c?.position;
+    this.el('open-target-next').hidden = !c?.nextPage;
+    this.el<HTMLButtonElement>('open-target-next').disabled = !c?.position;
     this.text(
       'target-page',
       c
-        ? this.t('targetPage', { page: c.pageLabel, sheet: c.pageIndex + 1 })
+        ? c.nextPage
+          ? this.t('targetPages', {
+              page: this.candidatePages(c),
+              sheet: `${c.pageIndex + 1}–${c.pageIndex + 2}`,
+            })
+          : this.t('targetPage', { page: c.pageLabel, sheet: c.pageIndex + 1 })
         : p.candidates.length
           ? this.t('chooseTarget')
           : this.t('noTarget'),
     );
-    this.text('target-context', c ? `${c.prefix}【${c.text}】${c.suffix}` : '');
+    this.text(
+      'target-context',
+      c ? `${c.prefix}【${c.text.replaceAll(PAGE_BREAK, '\n')}】${c.suffix}` : '',
+    );
     this.text('geometry', c?.geometryError ? this.l10n.message(c.geometryError) : '');
-    for (const side of ['source', 'target']) {
+    const sourceParts = this.parts(p.source.position),
+      targetParts = c?.position ? this.parts(c.position) : [];
+    // A selection crossing a page break shows both pages. A candidate without a verified position
+    // still shows that a second page is involved, with the reason instead of an image.
+    this.el('source-next').hidden = sourceParts.length < 2;
+    this.el('target-next').hidden = !c?.nextPage;
+    this.text(
+      'source-next-page',
+      this.t('nextPage', { page: p.sourceNextPageLabel ?? p.source.position.pageIndex + 2 }),
+    );
+    this.text(
+      'target-next-page',
+      c?.nextPage ? this.t('nextPage', { page: c.nextPage.pageLabel }) : '',
+    );
+    for (const side of ['source', 'source-next', 'target', 'target-next']) {
       this.el<HTMLImageElement>(`${side}-preview`).removeAttribute('src');
       this.text(`${side}-preview-status`, this.t('loading'));
     }
@@ -399,9 +450,17 @@ export class TransferWindow {
           );
       }
     };
-    const jobs = [render('source', plan.source.id, p.source.position)];
-    if (c?.position) jobs.push(render('target', plan.target.id, c.position));
-    else this.text('target-preview-status', this.t('noPreview'));
+    const jobs: Promise<void>[] = [];
+    for (const [side, id, parts] of [
+      ['source', plan.source.id, sourceParts],
+      ['target', plan.target.id, targetParts],
+    ] as const) {
+      for (const [index, suffix] of ['', '-next'].entries()) {
+        const part = parts[index];
+        if (part) jobs.push(render(side + suffix, id, part));
+        else this.text(`${side}${suffix}-preview-status`, this.t('noPreview'));
+      }
+    }
     await Promise.all(jobs);
   }
   private accept(): void {

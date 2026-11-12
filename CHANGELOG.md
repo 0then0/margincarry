@@ -2,6 +2,27 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
+## [Unreleased]
+
+### Added
+
+- Highlights and underlines whose text runs from the end of one page to the start of the next are transferred as one native annotation with separate rectangles on each page. One page to two adjacent pages, two to one, and two to two are supported; longer selections are not.
+- The review dialog shows both pages of the source and of a candidate, a page range instead of one page label, and a button to open each part in the reader.
+- Copying a note now relinks annotations whose position continues on the next page, with the whole position and the label of the first page.
+
+### Changed
+
+- A page break inside a passage counts as exactly one space, like a line break. The passage must be continuous in the PDF's text: a header, footer, or page number between its two parts, or a line-end hyphen at the break, is reported with its reason and never transferred.
+- Text that Zotero's reader marks as isolated is skipped at a page edge when it lies on other lines than the selection, as the reader does. Extraction waits briefly for those marks so that they do not depend on timing.
+- A source annotation with rectangles on a second page was **Unsupported**; it is now verified on both pages. The message "Multi-page annotations are not supported." is gone, and the not-found reason names one page or two adjacent pages.
+- The project icon was simplified: an old and a new page, one highlight on each, and one arrow between them.
+- `transfers.json` keeps schema 1. A position may now include `nextPageRects`; records written by earlier versions are read unchanged.
+
+### Validation and limits
+
+- Biome, strict TypeScript, the automated tests, and packaging pass. The full path was run in an isolated Zotero 10.0.9 profile on macOS with a mouse-created source annotation; see [Validation](docs/validation.md).
+- Page numbers and running heads that are part of the PDF's text usually prevent a transfer across a page break. The real revision corpus was not re-run.
+
 ## [0.3.0] - 2026-11-07
 
 ### Added

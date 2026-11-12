@@ -39,6 +39,41 @@ export function normalize(source: string): MappedText {
   return { text, starts, ends };
 }
 
+/**
+ * Stands for the page break inside the text of a selection that continues on the following page.
+ * It is whitespace, so it normalizes to the single space that Zotero's reader puts between the
+ * two parts of such a selection; no other space is added or removed at a page break.
+ */
+export const PAGE_BREAK = '\f';
+
+function bound(values: number[], accept: (value: number) => boolean): number {
+  let low = 0,
+    high = values.length;
+  while (low < high) {
+    const middle = (low + high) >> 1;
+    if (accept(values[middle] ?? 0)) low = middle + 1;
+    else high = middle;
+  }
+  return low;
+}
+/**
+ * Index in `mapped.text` where text that ends at the raw offset `at` ends, without trailing space.
+ * Null when `at` falls inside a grapheme, which cannot be cut.
+ */
+export function normalizedEnd(mapped: MappedText, at: number): number | null {
+  let n = bound(mapped.ends, (end) => end <= at);
+  if ((mapped.starts[n] ?? at) < at && mapped.text[n] !== ' ') return null;
+  while (n > 0 && mapped.text[n - 1] === ' ') n--;
+  return n;
+}
+/** Index in `mapped.text` where text that starts at the raw offset `at` starts, after any space. */
+export function normalizedStart(mapped: MappedText, at: number): number | null {
+  let n = bound(mapped.starts, (start) => start < at);
+  if (n > 0 && (mapped.ends[n - 1] ?? at) > at && mapped.text[n - 1] !== ' ') return null;
+  while (mapped.text[n] === ' ') n++;
+  return n;
+}
+
 export interface PageText {
   text: string;
   glyphAt: number[];

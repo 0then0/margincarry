@@ -91,6 +91,14 @@ export const ui: Record<UiKey, string> = {
   loading: 'Carregando PDF…',
   previewFailed: 'Pré-visualização indisponível: {error}. Abra o local no leitor.',
   noPreview: 'Não há local verificado para pré-visualizar.',
+  sourcePages: 'Origem · páginas {page}',
+  targetPages: 'Destino · páginas {page} (folhas {sheet})',
+  candidatePages: 'Páginas {page} · {method}',
+  nextPage: 'Continua na página {page}',
+  openSourceNext: 'Abrir origem na página seguinte',
+  openTargetNext: 'Abrir destino na página seguinte',
+  sourceImageNext: 'Continuação da seleção de origem na página seguinte do PDF',
+  targetImageNext: 'Continuação da seleção proposta na página seguinte do PDF',
   applyConfirm:
     'Aplicar a seleção ({count}) em “{title}”? As anotações originais são mantidas. As cópias recebem chaves novas.',
   writing: 'Verificando alterações e gravando…',
@@ -124,11 +132,13 @@ export const messages: Record<Message, string> = {
   'Only native highlights and underlines are supported.':
     'Somente destaques e sublinhados nativos do Zotero são compatíveis.',
   'The source page could not be extracted.': 'Não foi possível extrair a página de origem.',
+  'The second source page could not be extracted.':
+    'Não foi possível extrair a segunda página de origem.',
   'Empty source text.': 'O texto de origem está vazio.',
   'The target PDF has no usable text layer. OCR is not supported.':
     'O PDF de destino não tem uma camada de texto utilizável. O OCR não é compatível.',
-  'No exact or conservatively normalized quote on a single target page.':
-    'Nenhuma citação exata ou normalizada de forma conservadora em uma única página de destino.',
+  'No exact or conservatively normalized quote on one target page or across two adjacent target pages.':
+    'Nenhuma citação exata ou normalizada de forma conservadora em uma página de destino nem entre duas páginas de destino consecutivas.',
   'One occurrence matches the complete available context; alternatives are retained.':
     'Uma ocorrência coincide com todo o contexto disponível; as alternativas foram mantidas.',
   'One text occurrence; verify the PDF position.':
@@ -153,8 +163,12 @@ export const messages: Record<Message, string> = {
   'No usable text geometry.': 'Não há coordenadas de texto utilizáveis.',
   'Selection exceeds the native annotation position limit.':
     'A seleção excede o tamanho máximo de posição de uma anotação do Zotero.',
-  'Multi-page annotations are not supported.':
-    'Anotações que abrangem várias páginas não são compatíveis.',
+  'A page next to the page break has no selectable text.':
+    'Uma página ao lado da quebra de página não tem texto selecionável.',
+  'A line-end hyphen next to the page break makes the text across the break ambiguous.':
+    'Um hífen de fim de linha ao lado da quebra de página torna ambíguo o texto dos dois lados da quebra.',
+  'The selection does not continue directly from the end of one page to the start of the next: other text, such as a header, footer or page number, lies between its two parts.':
+    'A seleção não continua diretamente do fim de uma página para o início da seguinte: há outro texto entre suas duas partes, como um cabeçalho, um rodapé ou um número de página.',
   'Invalid source rectangles.': 'Retângulos de origem inválidos.',
   'Not every source rectangle maps to text.':
     'Nem todos os retângulos de origem correspondem a texto.',

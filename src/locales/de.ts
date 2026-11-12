@@ -93,6 +93,14 @@ export const ui: Record<UiKey, string> = {
   loading: 'PDF wird geladen…',
   previewFailed: 'Vorschau nicht verfügbar: {error}. Öffnen Sie die Stelle im Reader.',
   noPreview: 'Keine geprüfte Stelle für die Vorschau.',
+  sourcePages: 'Quelle · Seiten {page}',
+  targetPages: 'Ziel · Seiten {page} (Blätter {sheet})',
+  candidatePages: 'Seiten {page} · {method}',
+  nextPage: 'Fortsetzung auf Seite {page}',
+  openSourceNext: 'Quelle auf der nächsten Seite öffnen',
+  openTargetNext: 'Ziel auf der nächsten Seite öffnen',
+  sourceImageNext: 'Fortsetzung der Quellmarkierung auf der nächsten PDF-Seite',
+  targetImageNext: 'Fortsetzung der vorgeschlagenen Markierung auf der nächsten PDF-Seite',
   applyConfirm:
     'Auswahl ({count}) auf „{title}“ anwenden? Die ursprünglichen Annotationen bleiben erhalten. Kopien erhalten neue Schlüssel.',
   writing: 'Änderungen werden geprüft und geschrieben…',
@@ -127,11 +135,13 @@ export const messages: Record<Message, string> = {
   'Only native highlights and underlines are supported.':
     'Es werden nur Hervorhebungen und Unterstreichungen von Zotero unterstützt.',
   'The source page could not be extracted.': 'Die Quellseite konnte nicht gelesen werden.',
+  'The second source page could not be extracted.':
+    'Die zweite Quellseite konnte nicht gelesen werden.',
   'Empty source text.': 'Der Quelltext ist leer.',
   'The target PDF has no usable text layer. OCR is not supported.':
     'Das Ziel-PDF hat keine nutzbare Textebene. Texterkennung (OCR) wird nicht unterstützt.',
-  'No exact or conservatively normalized quote on a single target page.':
-    'Auf keiner einzelnen Zielseite gibt es ein exaktes oder vorsichtig normalisiertes Zitat.',
+  'No exact or conservatively normalized quote on one target page or across two adjacent target pages.':
+    'Weder auf einer Zielseite noch über zwei aufeinanderfolgende Zielseiten gibt es ein exaktes oder vorsichtig normalisiertes Zitat.',
   'One occurrence matches the complete available context; alternatives are retained.':
     'Ein Treffer stimmt mit dem gesamten verfügbaren Kontext überein; Alternativen bleiben erhalten.',
   'One text occurrence; verify the PDF position.':
@@ -157,8 +167,12 @@ export const messages: Record<Message, string> = {
   'No usable text geometry.': 'Keine verwertbaren Textkoordinaten.',
   'Selection exceeds the native annotation position limit.':
     'Die Auswahl überschreitet die zulässige Positionsgröße einer Zotero-Annotation.',
-  'Multi-page annotations are not supported.':
-    'Seitenübergreifende Annotationen werden nicht unterstützt.',
+  'A page next to the page break has no selectable text.':
+    'Eine Seite neben dem Seitenumbruch enthält keinen markierbaren Text.',
+  'A line-end hyphen next to the page break makes the text across the break ambiguous.':
+    'Ein Trennstrich am Zeilenende neben dem Seitenumbruch macht den Text über den Umbruch hinweg mehrdeutig.',
+  'The selection does not continue directly from the end of one page to the start of the next: other text, such as a header, footer or page number, lies between its two parts.':
+    'Die Markierung setzt sich nicht unmittelbar vom Ende einer Seite zum Anfang der nächsten fort: Zwischen ihren beiden Teilen steht anderer Text, etwa eine Kopfzeile, Fußzeile oder Seitenzahl.',
   'Invalid source rectangles.': 'Ungültige Quellrechtecke.',
   'Not every source rectangle maps to text.': 'Nicht jedes Quellrechteck entspricht Text.',
   'Empty source range.': 'Der Quellbereich ist leer.',

@@ -133,10 +133,7 @@ test('a partial ligature must not silently highlight a whole glyph', () => {
   p.chars[0]!.c = 'fi';
   assert.throws(() => rangePosition(p, 0, 1), /complete PDF glyphs/);
 });
-test('multi-page and discontinuous highlights are explicitly unsupported', () => {
-  const s = needleSource();
-  s.position.nextPageRects = [[10, 700, 20, 710]];
-  assert.equal(propose(s, page('needle'), [page('needle')]).status, 'unsupported');
+test('discontinuous highlights are explicitly unsupported', () => {
   const p = page('aa gap bb');
   const d = source('aa bb', [
     [10, 700, 24, 710],

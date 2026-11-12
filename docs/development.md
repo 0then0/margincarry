@@ -123,6 +123,31 @@ node scripts/host-request.mjs scripts/host/check-languages.js
 
 `check-languages.js` imports each pair, creates the source highlights from the plugin's glyph rectangles, runs the analysis, and returns every case whose status differs from the expectation. It writes the complete results to `<report root>/languages.json`. When you change matching rules, update the expectations in the generator and the table in `tests/languages.test.ts` together.
 
+## Checking selections across a page break
+
+`scripts/make-cross-page-fixture.py` writes four revisions of one paragraph to `.local/cross-page-fixture/` with only the standard library: the marked passage on one page, the page break after its first line, the break after its second line, and a variant with page numbers. The text is Courier 12, so `expected.json` holds rectangles that follow from the layout alone. With the isolated host running and the XPI installed:
+
+```sh
+python3 scripts/make-cross-page-fixture.py
+node scripts/host-request.mjs scripts/host/install.js
+node scripts/host-request.mjs scripts/host/load.js
+node scripts/host-request.mjs scripts/host/cross-page.js seed
+node scripts/host-request.mjs scripts/host/cross-page.js reader:split-a
+```
+
+`reader:<revision>` opens a revision at a zoom that shows both pages and returns window-local points for the start and end of the passage. Drag between them with the mouse in the reader and pick a color, so that the source is an annotation the reader itself created across the page break. Then run, one request at a time:
+
+```sh
+node scripts/host-request.mjs scripts/host/cross-page.js decorate
+node scripts/host-request.mjs scripts/host/cross-page.js analyze:split-a:split-b
+node scripts/host-request.mjs scripts/host/cross-page.js apply:split-a:split-b
+node scripts/host-request.mjs scripts/host/cross-page.js reopen:split-b
+node scripts/host-request.mjs scripts/host/cross-page.js note:split-a:split-b
+node scripts/host-request.mjs scripts/host/cross-page.js undo
+```
+
+`analyze` drives the real dialog to the displayed proposal and leaves it open; read both page previews of each side before `apply`. `apply` accepts and confirms in that dialog, compares the created annotation with `expected.json`, its text with the quote, and its type, comment, color, and tags with the source, and checks that a recalculated plan refuses a repeat. `reopen` closes and reopens the target and reads the annotation back from the reader. `note` creates a note from the source annotation with Zotero's own function, copies it through the real note dialog, and opens the copied link with the call the note editor makes. `undo` uses the dialog's button and checks that only the created copy went to the Trash. Repeat `analyze`, `apply`, and `undo` for `split-a:single` and, after a mouse selection in `single`, for `single:split-b`; `analyze:single:footer` must report the text between the two parts and offer nothing to accept. Results are appended to `<report root>/cross-page.json`.
+
 ## Independent oracle and geometry fixtures
 
 Regenerating the oracle requires pdfplumber 0.11.9 and its dependencies. Scoring frozen gold requires only Python's standard library. Original fixture PDF generation uses ReportLab 4.4.9 and pypdf 6.10.0; they are not plugin dependencies. Use an existing suitable environment rather than installing them automatically into a user's environment.

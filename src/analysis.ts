@@ -50,7 +50,14 @@ export async function analyze(
     signal.throwIfAborted();
     progress(`Annotations: ${proposals.length + 1}/${source.annotations.length}`);
     proposals.push(
-      propose(annotation, oldPages[annotation.position.pageIndex], newPages, 200, prepared),
+      propose(
+        annotation,
+        oldPages[annotation.position.pageIndex],
+        newPages,
+        200,
+        prepared,
+        oldPages[annotation.position.pageIndex + 1],
+      ),
     );
     await adapter.yield();
   }

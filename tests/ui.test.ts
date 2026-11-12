@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { type Locale, Localization, localeNames, locales } from '../src/l10n.ts';
-import type { Selection, Snapshot } from '../src/model.ts';
+import type { Position, Selection, Snapshot } from '../src/model.ts';
 import { initNoteCopy } from '../src/note-copy-ui.ts';
 import type { TransferService } from '../src/transfer.ts';
 import { TransferWindow } from '../src/ui.ts';
@@ -117,9 +117,14 @@ test('rebinding the note copy dialog discards ready and in-flight previews for e
 });
 
 interface Scenario {
-  old: string;
-  new: string;
+  /** Text of the page, or of each consecutive page. */
+  old: string | string[];
+  new: string | string[];
   quotes: string[];
+  /** Source positions, when a quote is not simply found on the first old page. */
+  positions?: Position[];
+  /** Index of a new page that the host returned only partly. */
+  partial?: number;
 }
 // One 7-unit glyph per UTF-16 unit; the default scenario is a single 'needle' glyph.
 function glyphs(text: string) {
@@ -151,10 +156,18 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
   };
   const win = { document, addEventListener() {}, focus() {}, confirm: () => true };
   const glyph = { c: 'needle', rect: [10, 700, 52, 710], inlineRect: [10, 700, 52, 710] };
-  const pageOf = (chars: object[]) => ({ index: 0, label: '1', viewBox: [0, 0, 612, 792], chars });
-  const page = pageOf([glyph]);
-  const oldPage = scenario ? pageOf(glyphs(scenario.old)) : page;
-  const newPage = scenario ? pageOf(glyphs(scenario.new)) : page;
+  const pageOf = (chars: object[], index = 0) => ({
+    index,
+    label: String(index + 1),
+    viewBox: [0, 0, 612, 792],
+    chars,
+  });
+  const pagesOf = (text?: string | string[]) =>
+    text === undefined ? [pageOf([glyph])] : [text].flat().map((t, i) => pageOf(glyphs(t), i));
+  const oldPages = pagesOf(scenario?.old);
+  const newPages = pagesOf(scenario?.new);
+  if (scenario?.partial !== undefined)
+    Object.assign(newPages[scenario.partial]!, { partial: true });
   const source = {
     id: 1,
     key: 'OLD',
@@ -164,7 +177,7 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
     itemFingerprint: 'old',
     file: { path: 'old.pdf', hash: 'a', size: 1, modified: 1 },
     annotations: (scenario?.quotes ?? ['needle']).map((quote, i) => {
-      const at = scenario ? scenario.old.indexOf(quote) : 0;
+      const at = scenario ? [scenario.old].flat()[0]!.indexOf(quote) : 0;
       return {
         key: `ANN${i}`,
         type: 'highlight',
@@ -172,7 +185,7 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
         comment: '',
         color: '#ffd400',
         tags: [],
-        position: {
+        position: scenario?.positions?.[i] ?? {
           pageIndex: 0,
           rects: [scenario ? [10 + 7 * at, 700, 10 + 7 * (at + quote.length), 710] : glyph.rect],
         },
@@ -198,16 +211,24 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
     ],
     controller: () => new AbortController(),
     pair: async () => [source, target],
-    pages: async (id: number) => [id === 1 ? oldPage : newPage],
+    pages: async (id: number) => (id === 1 ? oldPages : newPages),
     snapshot: async (id: number) => (id === 1 ? source : target),
     yield: async () => {},
     log() {},
-    preview: async () => {
+    preview: async (id: number, position: Position) => {
       entered();
       await held;
-      return 'data:image/png;base64,fixture';
+      if (failing.page === position.pageIndex) throw new Error('render failed');
+      previews.push([id, position]);
+      return `data:image/png;base64,fixture${id}-${position.pageIndex}`;
+    },
+    navigate: async (id: number, position: Position, key?: string) => {
+      navigations.push([id, position, key]);
     },
   } as unknown as ZoteroAdapter;
+  const previews: [number, Position][] = [];
+  const navigations: [number, Position, string | undefined][] = [];
+  const failing: { page: number | null } = { page: null };
   const applied: Selection[][] = [];
   const ui = new TransferWindow(win as unknown as Window, adapter, {
     journal: async () => [],
@@ -223,7 +244,7 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
     for (let i = 0; i < 100 && !done(); i++) await new Promise((r) => setTimeout(r, 0));
     assert.ok(done(), 'UI did not finish');
   };
-  return { el, document, started, release, until, applied };
+  return { el, document, started, release, until, applied, previews, navigations, failing };
 }
 
 test('cancel while first previews load leaves no applicable plan or stale image', async () => {
@@ -374,3 +395,144 @@ for (const locale of locales) {
     ]);
   });
 }
+
+const breakRect = (from: number, to: number) => [10 + 7 * from, 700, 10 + 7 * to, 710];
+for (const locale of locales) {
+  test(`a proposal across a page break shows, opens and applies both pages (${locale})`, async () => {
+    const { el, release, until, applied, previews, navigations } = await fixture(locale, {
+      old: 'intro alpha beta outro',
+      new: ['intro alpha', 'beta outro'],
+      quotes: ['alpha beta'],
+    });
+    const l = new Localization(locale);
+    release();
+    el('analyze').onclick!();
+    await until(() => el('cancel').disabled);
+    assert.equal(el('target-page').textContent, l.t('targetPages', { page: '1–2', sheet: '1–2' }));
+    assert.equal(
+      el('candidates').children[0]!.textContent,
+      l.t('candidatePages', { page: '1–2', method: l.t('exact') }),
+    );
+    assert.equal(el('source-page').textContent, l.t('sourcePage', { page: 1 }));
+    assert.equal(el('target-next-page').textContent, l.t('nextPage', { page: '2' }));
+    // One image per affected page; the one-page source has no second image or button.
+    assert.equal(el('source-next').hidden, true);
+    assert.equal(el('open-source-next').hidden, true);
+    assert.equal(el('target-next').hidden, false);
+    assert.equal(el('open-target-next').hidden, false);
+    assert.equal(el('target-preview').src, 'data:image/png;base64,fixture2-0');
+    assert.equal(el('target-next-preview').src, 'data:image/png;base64,fixture2-1');
+    assert.equal(el('target-next-preview-status').textContent, '');
+    assert.deepEqual(
+      previews.filter(([id]) => id === 2).map(([, position]) => position),
+      [
+        { pageIndex: 0, rects: [breakRect(6, 11)] },
+        { pageIndex: 1, rects: [breakRect(0, 4)] },
+      ],
+    );
+    el('open-target').onclick!();
+    el('open-target-next').onclick!();
+    await until(() => navigations.length === 2);
+    assert.deepEqual(navigations, [
+      [2, { pageIndex: 0, rects: [breakRect(6, 11)] }, undefined],
+      [2, { pageIndex: 1, rects: [breakRect(0, 4)] }, undefined],
+    ]);
+    // Nothing is written by the analysis: the candidate still needs Accept and a confirmed Apply.
+    assert.equal(el('selected-count').textContent, l.t('selected', { count: 0 }));
+    assert.equal(el('apply').disabled, true);
+    el('accept').onclick!();
+    assert.equal(
+      el('review').children[0]!.textContent,
+      l.t('reviewLine', { old: '1', new: '1–2', text: 'alpha beta' }),
+    );
+    el('apply').onclick!();
+    await until(() => applied.length === 1);
+    assert.deepEqual(applied[0], [{ sourceKey: 'ANN0', candidateID: '0:6:11+0:4' }]);
+  });
+}
+
+test('a source across a page break shows and opens both of its pages', async () => {
+  const position = { pageIndex: 0, rects: [breakRect(6, 11)], nextPageRects: [breakRect(0, 4)] };
+  const { el, release, until, previews, navigations } = await fixture('en', {
+    old: ['intro alpha', 'beta outro'],
+    new: 'intro alpha beta outro',
+    quotes: ['alpha beta'],
+    positions: [position as Position],
+  });
+  release();
+  el('analyze').onclick!();
+  await until(() => el('cancel').disabled);
+  assert.match(el('outcome').textContent, /^Unique candidate/);
+  assert.equal(el('source-page').textContent, 'Source · pages 1–2');
+  assert.equal(el('source-next-page').textContent, 'Continues on page 2');
+  assert.equal(el('target-page').textContent, 'Target · page 1 (sheet 1)');
+  assert.equal(el('source-next').hidden, false);
+  assert.equal(el('target-next').hidden, true);
+  assert.equal(el('open-target-next').hidden, true);
+  assert.equal(el('source-next-preview').src, 'data:image/png;base64,fixture1-1');
+  assert.deepEqual(
+    previews.filter(([id]) => id === 1).map(([, part]) => part),
+    [
+      { pageIndex: 0, rects: position.rects },
+      { pageIndex: 1, rects: position.nextPageRects },
+    ],
+  );
+  el('open-source').onclick!();
+  el('open-source-next').onclick!();
+  await until(() => navigations.length === 2);
+  // The first part opens the annotation itself; the second its rectangles on the next page.
+  assert.deepEqual(navigations, [
+    [1, position, 'ANN0'],
+    [1, { pageIndex: 1, rects: position.nextPageRects }, undefined],
+  ]);
+  el('accept').onclick!();
+  assert.equal(el('review').children[0]!.textContent, 'p. 1–2 → 1 · alpha beta');
+});
+
+test('a failed preview of the second page is reported next to it', async () => {
+  const { el, release, until, failing } = await fixture('en', {
+    old: 'intro alpha beta outro',
+    new: ['intro alpha', 'beta outro'],
+    quotes: ['alpha beta'],
+  });
+  failing.page = 1;
+  release();
+  el('analyze').onclick!();
+  await until(() => el('cancel').disabled);
+  assert.equal(el('target-preview').src, 'data:image/png;base64,fixture2-0');
+  assert.equal(el('target-preview-status').textContent, '');
+  assert.equal(el('target-next').hidden, false);
+  assert.equal(el('target-next-preview').src, '');
+  assert.match(
+    el('target-next-preview-status').textContent,
+    /^Preview unavailable: .*render failed/,
+  );
+});
+
+test('a candidate whose second page was only partly extracted cannot be accepted or mass-selected', async () => {
+  const { el, release, until } = await fixture('en', {
+    old: 'intro alpha beta outro',
+    new: ['intro alpha', 'beta outro'],
+    quotes: ['alpha beta'],
+    partial: 1,
+  });
+  release();
+  el('analyze').onclick!();
+  await until(() => el('cancel').disabled);
+  assert.match(el('outcome').textContent, /^Processing error/);
+  // It is still shown as a two-page occurrence, with the reason instead of an image.
+  assert.equal(el('target-page').textContent, 'Target · pages 1–2 (sheets 1–2)');
+  assert.match(el('candidates').children[0]!.textContent, /no reliable geometry/);
+  assert.equal(el('geometry').textContent, 'The host returned partial page data.');
+  assert.equal(el('target-next').hidden, false);
+  for (const id of ['target-preview', 'target-next-preview']) {
+    assert.equal(el(id).src, '');
+    assert.equal(el(`${id}-status`).textContent, 'No verified location to preview.');
+  }
+  assert.equal(el('accept').disabled, true);
+  assert.equal(el('open-target').disabled, true);
+  assert.equal(el('open-target-next').disabled, true);
+  el('accept-unique').onclick!();
+  assert.equal(el('selected-count').textContent, 'Selected to write: 0');
+  assert.equal(el('apply').disabled, true);
+});

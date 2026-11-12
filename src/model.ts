@@ -1,4 +1,5 @@
 export type Rect = [number, number, number, number];
+/** Zotero's native text position: `nextPageRects` continues the selection on page `pageIndex + 1`. */
 export interface Position {
   pageIndex: number;
   rects: Rect[];
@@ -58,6 +59,11 @@ export interface Candidate {
   pageLabel: string;
   start: number;
   end: number;
+  /**
+   * Set when the quote runs to the end of this page and continues from the start of the following
+   * one. `start` and `end` above then delimit the first part; these offsets delimit the second.
+   */
+  nextPage?: { pageLabel: string; start: number; end: number };
   text: string;
   prefix: string;
   suffix: string;
@@ -82,6 +88,8 @@ export interface Proposal {
   candidates: Candidate[];
   sourcePrefix: string;
   sourceSuffix: string;
+  /** Label of the page that holds the second part of a source selection crossing a page break. */
+  sourceNextPageLabel?: string;
   truncated: boolean;
   recommendedID: string | null;
 }

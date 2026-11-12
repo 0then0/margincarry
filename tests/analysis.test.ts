@@ -74,3 +74,60 @@ test('PDF change during analysis invalidates every proposal', async () => {
     /changed during analysis/,
   );
 });
+test('analysis reads the following source page for a selection that crosses a page break', async () => {
+  // One 7-unit glyph per character: 'alpha' ends source page 1 and 'beta' starts page 2.
+  const glyphs = (text: string) =>
+    Array.from(text, (c, i) => {
+      const rect = [10 + 7 * i, 700, 17 + 7 * i, 710];
+      return { c, rect, inlineRect: [...rect] };
+    });
+  const pageOf = (text: string, index: number) => ({
+    index,
+    label: `p${index + 1}`,
+    viewBox: [0, 0, 612, 792],
+    chars: glyphs(text),
+  });
+  const source = {
+    ...snapshot,
+    annotations: [
+      {
+        key: 'ANNOT01',
+        type: 'highlight',
+        text: 'alpha beta',
+        comment: '',
+        color: '#ffd400',
+        tags: [],
+        position: {
+          pageIndex: 0,
+          rects: [[52, 700, 87, 710]],
+          nextPageRects: [[10, 700, 38, 710]],
+        },
+        external: false,
+        fingerprint: 'original',
+      },
+    ],
+  };
+  const target = { ...snapshot, id: 2 };
+  let extracted = 0;
+  const adapter = {
+    pair: async () => [source, target],
+    pages: async (id: number) => {
+      extracted++;
+      return id === 1
+        ? [pageOf('intro alpha', 0), pageOf('beta outro', 1)]
+        : [pageOf('intro alpha beta outro', 0)];
+    },
+    snapshot: async (id: number) => (id === 1 ? source : target),
+    yield: async () => {},
+  } as unknown as ZoteroAdapter;
+  const plan = await analyze(adapter, 1, 2, new AbortController().signal, () => {});
+  const proposal = plan.proposals[0]!;
+  assert.equal(proposal.status, 'unique candidate');
+  assert.equal(proposal.sourceNextPageLabel, 'p2');
+  assert.deepEqual(proposal.candidates[0]!.position, {
+    pageIndex: 0,
+    rects: [[52, 700, 122, 710]],
+  });
+  // Each document is extracted once, however many annotations and page pairs are compared.
+  assert.equal(extracted, 2);
+});

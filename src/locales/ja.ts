@@ -89,6 +89,14 @@ export const ui: Record<UiKey, string> = {
   loading: 'PDFを読み込み中…',
   previewFailed: 'プレビューを表示できません: {error}。リーダーでこの位置を開いてください。',
   noPreview: 'プレビューできる検証済みの位置がありません。',
+  sourcePages: '移行元 · {page}ページ',
+  targetPages: '移行先 · {page}ページ（ファイル内 {sheet}ページ目）',
+  candidatePages: '{page}ページ（2ページにまたがる）· {method}',
+  nextPage: '{page}ページに続く',
+  openSourceNext: 'リーダーで移行元の次のページを開く',
+  openTargetNext: 'リーダーで移行先の次のページを開く',
+  sourceImageNext: '次のPDFページに続く移行元の選択範囲',
+  targetImageNext: '次のPDFページに続く候補の選択範囲',
   applyConfirm:
     '選択した{count}件を「{title}」に適用しますか？ 元の注釈は残ります。コピーには新しいキーが付きます。',
   writing: '変更を確認して書き込み中…',
@@ -121,11 +129,12 @@ export const messages: Record<Message, string> = {
   'Only native highlights and underlines are supported.':
     'Zotero標準のハイライトと下線のみ対応しています。',
   'The source page could not be extracted.': '移行元のページを取得できませんでした。',
+  'The second source page could not be extracted.': '移行元の2ページ目を取得できませんでした。',
   'Empty source text.': '移行元のテキストが空です。',
   'The target PDF has no usable text layer. OCR is not supported.':
     '移行先のPDFには利用できるテキストレイヤーがありません。OCRには対応していません。',
-  'No exact or conservatively normalized quote on a single target page.':
-    '移行先の1ページ内に、完全一致または控えめな正規化で一致する引用が見つかりません。',
+  'No exact or conservatively normalized quote on one target page or across two adjacent target pages.':
+    '移行先の1ページ内にも、連続する2ページにまたがる形でも、完全一致または控えめな正規化で一致する引用が見つかりません。',
   'One occurrence matches the complete available context; alternatives are retained.':
     '1件が、利用できる前後の文脈すべてと一致しました。ほかの候補も残してあります。',
   'One text occurrence; verify the PDF position.':
@@ -150,7 +159,12 @@ export const messages: Record<Message, string> = {
   'No usable text geometry.': '利用できるテキストの座標がありません。',
   'Selection exceeds the native annotation position limit.':
     '選択範囲が、Zotero注釈の位置情報のサイズ上限を超えています。',
-  'Multi-page annotations are not supported.': '複数ページにまたがる注釈には対応していません。',
+  'A page next to the page break has no selectable text.':
+    '改ページに隣接するページに選択できるテキストがありません。',
+  'A line-end hyphen next to the page break makes the text across the break ambiguous.':
+    '改ページの隣に行末のハイフンがあるため、改ページをまたぐテキストを一意に対応づけられません。',
+  'The selection does not continue directly from the end of one page to the start of the next: other text, such as a header, footer or page number, lies between its two parts.':
+    '選択範囲がページの末尾から次のページの先頭へ直接続いていません。2つの部分の間に、ヘッダー、フッター、ページ番号などの別のテキストがあります。',
   'Invalid source rectangles.': '移行元の矩形が不正です。',
   'Not every source rectangle maps to text.': 'テキストに対応しない移行元の矩形があります。',
   'Empty source range.': '移行元の範囲が空です。',
