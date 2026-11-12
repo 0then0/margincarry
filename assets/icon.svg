@@ -7,27 +7,23 @@
   aria-label="MarginCarry: a highlighted passage carried between PDF revisions"
 >
 <rect x="4" y="4" width="120" height="120" rx="24" fill="#e9f2f0" />
-<g stroke="#355b60" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-<path d="M23 29h28l11 11v52H23z" fill="#fff" /><path d="M51 29v12h11" fill="none" />
-<path d="M70 36h26l11 11v52H70z" fill="#fff" /><path d="M96 36v12h11" fill="none" />
+<g stroke-width="4" stroke-linejoin="round">
+<path d="M12 32h26l12 12v48H12z" fill="#fff" stroke="#8fa8aa" />
+<path d="M38 32v12h12" fill="none" stroke="#8fa8aa" />
+<path d="M78 36h26l12 12v48H78z" fill="#fff" stroke="#355b60" />
+<path d="M104 36v12h12" fill="none" stroke="#355b60" />
+</g>
+<g fill="none" stroke-width="4" stroke-linecap="round">
+<path d="M21 46h10M21 76h20M21 86h12" stroke="#c3d1d2" />
+<path d="M87 49h10M87 77h20M87 87h12" stroke="#aabdbf" />
+</g>
+<rect x="19" y="57" width="24" height="11" rx="2.500" fill="#f3dc8a" />
+<rect x="85" y="57" width="24" height="11" rx="2.500" fill="#f0c33c" />
 <path
-      d="M31 48h22M31 74h19M31 82h16M78 56h20M78 84h20M78 92h16"
-      stroke="#92a8aa"
-      stroke-width="2"
-    />
-</g><rect x="29" y="56" width="27" height="11" rx="2" fill="#f0cc55" /><rect
-    x="76"
-    y="65"
-    width="26"
-    height="11"
-    rx="2"
-    fill="#f0cc55"
-  />
-<path
-    d="M49 62c17-20 19 14 35 8m-5-6 6 6-7 5"
+    d="M56 62.500h15.500m-6.500-6.500 6.500 6.500-6.500 6.500"
     fill="none"
     stroke="#176e68"
-    stroke-width="4"
+    stroke-width="4.500"
     stroke-linecap="round"
     stroke-linejoin="round"
   />
