@@ -2,7 +2,7 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
-## [Unreleased]
+## [0.5.0] - 2026-11-18
 
 ### Added
 
@@ -114,6 +114,7 @@ See the [release notes](docs/releases/v0.1.1.md) and [native follow-up](docs/nat
 
 See the [release notes](docs/releases/v0.1.0.md). Later v0.1.0 native testing is documented separately in the validation reports.
 
+[0.5.0]: https://github.com/0then0/margincarry/releases/tag/v0.5.0
 [0.4.0]: https://github.com/0then0/margincarry/releases/tag/v0.4.0
 [0.3.0]: https://github.com/0then0/margincarry/releases/tag/v0.3.0
 [0.2.0]: https://github.com/0then0/margincarry/releases/tag/v0.2.0
