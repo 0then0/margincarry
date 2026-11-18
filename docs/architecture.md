@@ -8,6 +8,7 @@ MarginCarry is a bootstrap Zotero plugin written in TypeScript. It has no runtim
 - `src/index.ts` exposes the plugin API to the bootstrap, adds the menu item, and opens the single transfer window.
 - `src/zotero.ts` is the only module that talks to Zotero. It reads attachments and annotations, loads PDFs into Zotero's reader, extracts page text and glyph rectangles, renders previews, creates and trashes annotations, and stores the journal. Everything else is host independent and unit tested against fakes.
 - `src/text.ts` holds page-text assembly, the NFC and whitespace normalization with UTF-16 offset maps, and the word and number boundary model.
+- `src/hyphenation.ts` identifies hyphen glyphs at reader-confirmed breaks and checks the neighboring fragments and their geometry.
 - `src/geometry.ts` maps a source selection's rectangles back to text, and a text range back to line rectangles, checking whole-glyph alignment, the page crop box, line and column order, and annotation size limits. A selection that continues on the following page is handled as two parts with separate rectangles (`rects` and `nextPageRects`); the first part must end at the page's last selectable glyph and the second must start at the next page's first.
 - `src/matching.ts` turns one source annotation into a proposal: it finds occurrences, compares context and boundaries, and sets the status and the recommended candidate.
 - `src/analysis.ts` runs matching for every annotation, with progress and cancellation, and verifies afterward that nothing changed during analysis.
@@ -22,15 +23,17 @@ Normalization permits only Unicode NFC composition and whitespace folding, and k
 
 Search accounts for exact and normalized occurrences together, up to 200 valid candidates per annotation, with an explicit truncation flag. Geometry always comes from the actual glyph rectangles that Zotero's PDF worker reports; the plugin never estimates a glyph width.
 
+Word-break hypotheses share the same limit. Each records the glyph index, the UTF-16 offset in the reader's page stream, the original hyphen, and the reading used for search. The source is verified against its stored rectangles. On the target, rectangles must select the matched text again and cover the relevant hyphen glyphs. The original target text remains available for the native annotation.
+
 Each candidate carries a boundary verdict for each of its two ends: `kept`, `unverifiable`, `expanded`, or `changed` (see [the boundary model](how-it-works.md#the-boundary-model)). A candidate whose verdict is `expanded` or `changed` on either end is doubtful. The proposal status is derived from all candidates:
 
 - `not found` when there are none.
-- `doubtful candidate` when every candidate is doubtful.
+- `doubtful candidate` when every candidate is doubtful and there is no choice between word-break locations.
 - `unique candidate` when there is exactly one candidate, or exactly one candidate matches the complete context, and that candidate is not doubtful.
-- `multiple candidates` otherwise, and always when the list was truncated.
+- `multiple candidates` otherwise, including a truncated list or several locations with at least one word-break hypothesis.
 - `processing error` when text was found but no candidate has reliable geometry.
 
-Only a `unique candidate` with verified geometry has a recommended ID. The dialog's mass selection takes exactly those. Doubtful and ambiguous proposals preselect nothing.
+Only a `unique candidate` with verified geometry has a recommended ID. The dialog's mass selection takes exactly those. Doubtful and ambiguous proposals preselect nothing. A word-break candidate needs a manual acceptance recorded by the dialog and checked again at the write boundary.
 
 ## Transfer
 

@@ -53,6 +53,29 @@ export interface Snapshot {
   annotations: Annotation[];
 }
 export type EdgeVerdict = 'kept' | 'unverifiable' | 'expanded' | 'changed';
+/**
+ * A hyphen at the end of a line or page that a candidate reads differently from the PDF as printed:
+ * `removed` joins the two fragments of the word, `kept` keeps the hyphen in the word. Either can be
+ * wrong, because the same printed hyphen can divide a word or belong to it.
+ */
+export interface HyphenJoin {
+  /** The PDF that holds the hyphen: the source (old) or the target (new) revision. */
+  side: 'source' | 'target';
+  pageIndex: number;
+  pageLabel: string;
+  /** Set when the word continues at the start of the following page. */
+  nextPageLabel?: string;
+  pageBreak: boolean;
+  /** The hyphen as the text layer stores it, for example '-', '‐' or the soft hyphen U+00AD. */
+  mark: string;
+  /** Offset of the hyphen in the reader's text of its page; a dash that the reader drops has no width. */
+  offset: number;
+  /** Index of the original hyphen glyph, including glyphs missing from the reader's text. */
+  glyphIndex: number;
+  reading: 'removed' | 'kept';
+  /** The divided word as printed, before and after the break. */
+  fragment: { before: string; after: string };
+}
 export interface Candidate {
   id: string;
   pageIndex: number;
@@ -71,6 +94,13 @@ export interface Candidate {
   contextMatches: boolean;
   /** Whether each end of the quote keeps the word or number boundary of the source selection. */
   boundary: { left: EdgeVerdict; right: EdgeVerdict };
+  /**
+   * Set when the quote matches only because a hyphen at a line or page end was read differently in
+   * the source or the target than printed. Such a candidate is never recommended.
+   */
+  hyphenation?: HyphenJoin[];
+  /** Literal target quote for review, including line-end hyphens suppressed by the reader. */
+  printedText?: string;
   position: Position | null;
   geometryError: string | null;
 }
@@ -88,6 +118,8 @@ export interface Proposal {
   candidates: Candidate[];
   sourcePrefix: string;
   sourceSuffix: string;
+  /** Literal source quote for review when a candidate reads a hyphen differently. */
+  sourcePrintedText?: string;
   /** Label of the page that holds the second part of a source selection crossing a page break. */
   sourceNextPageLabel?: string;
   truncated: boolean;
@@ -103,6 +135,7 @@ export interface Plan {
 export interface Selection {
   sourceKey: string;
   candidateID: string;
+  manuallyConfirmed?: true;
 }
 export interface Copy {
   key: string;

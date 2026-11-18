@@ -79,6 +79,12 @@ export const ui: Record<UiKey, string> = {
   candidate: '{page}ページ · {method}',
   exact: '完全一致',
   normalized: '正規化して一致',
+  hyphenation: '単語が分割された可能性',
+  hyphenLineBreak: '{page}ページ · 改行 · {before}{mark} ↵ {after} · {reading}',
+  hyphenPageBreak: '{page}ページ · 改ページ · {before}{mark} ↵ {after} · {reading}',
+  softHyphen: '［ソフトハイフン U+00AD］',
+  hyphenRemoved: '照合時にハイフンを除外',
+  hyphenKept: '照合時にハイフンを保持',
   contextMatch: ' · 前後の文脈が一致',
   outcome: '{status}：{reason}',
   boundaryDiffers: ' · 語または数値の区切りが異なる',
@@ -141,6 +147,10 @@ export const messages: Record<Message, string> = {
     'テキストが1か所で見つかりました。PDF上の位置を確認してください。',
   'One text occurrence; word boundaries cannot be checked for this script. Verify the PDF position.':
     'テキストが1か所で見つかりました。この文字体系では語の区切りを確認できません。PDF上の位置を確認してください。',
+  'The line-end hyphen may belong to the word. Compare both PDFs and confirm the location manually.':
+    '行末のハイフンは単語の一部かもしれません。両方のPDFを比較し、位置を手動で確定してください。',
+  'Choose and accept the word-break candidate before applying.':
+    '適用する前に、単語の分割を含む候補を選択して確定してください。',
   'The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually.':
     '引用は、語または数値の区切りが移行元の選択範囲と異なる場所にしかありません。移行は推奨されません。PDFを確認してから、手動で選んでください。',
   'Several occurrences require a human choice.': '正しい候補を手動で選んでください。',
@@ -170,7 +180,6 @@ export const messages: Record<Message, string> = {
   'Empty source range.': '移行元の範囲が空です。',
   'Discontinuous source annotation.': '移行元の注釈が連続していません。',
   'Missing source text offsets.': '移行元テキストの位置情報がありません。',
-  'Missing normalized text offsets.': '正規化したテキストの位置情報がありません。',
   'Source text and source geometry disagree; the complete selection cannot be verified.':
     '移行元のテキストと座標が一致しないため、選択範囲全体を検証できません。',
   'Documents or annotations changed during analysis. Run analysis again.':

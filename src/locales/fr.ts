@@ -84,6 +84,12 @@ export const ui: Record<UiKey, string> = {
   candidate: 'Page {page} · {method}',
   exact: 'exacte',
   normalized: 'normalisée',
+  hyphenation: 'coupure de mot possible',
+  hyphenLineBreak: 'Page {page} · saut de ligne · {before}{mark} ↵ {after} · {reading}',
+  hyphenPageBreak: 'Pages {page} · saut de page · {before}{mark} ↵ {after} · {reading}',
+  softHyphen: '[trait d’union conditionnel U+00AD]',
+  hyphenRemoved: 'trait d’union ignoré dans la recherche',
+  hyphenKept: 'trait d’union conservé dans la recherche',
   contextMatch: ' · le contexte correspond',
   outcome: '{status} : {reason}',
   boundaryDiffers: ' · la limite du mot ou du nombre diffère',
@@ -149,6 +155,10 @@ export const messages: Record<Message, string> = {
     'Une occurrence du texte ; vérifiez la position dans le PDF.',
   'One text occurrence; word boundaries cannot be checked for this script. Verify the PDF position.':
     'Une occurrence du texte ; les limites de mots ne peuvent pas être vérifiées pour cette écriture. Vérifiez la position dans le PDF.',
+  'The line-end hyphen may belong to the word. Compare both PDFs and confirm the location manually.':
+    'Le trait d’union en fin de ligne peut faire partie du mot. Comparez les deux PDF et confirmez l’emplacement manuellement.',
+  'Choose and accept the word-break candidate before applying.':
+    'Choisissez et acceptez la proposition avec coupure de mot avant de l’appliquer.',
   'The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually.':
     'La citation n’apparaît que là où la limite du mot ou du nombre diffère de la sélection source ; aucun transfert n’est recommandé. Vérifiez le PDF avant d’en choisir un manuellement.',
   'Several occurrences require a human choice.': 'Choisissez manuellement l’occurrence voulue.',
@@ -179,7 +189,6 @@ export const messages: Record<Message, string> = {
   'Empty source range.': 'La plage source est vide.',
   'Discontinuous source annotation.': 'L’annotation source est discontinue.',
   'Missing source text offsets.': 'Les positions du texte source sont manquantes.',
-  'Missing normalized text offsets.': 'Les positions du texte normalisé sont manquantes.',
   'Source text and source geometry disagree; the complete selection cannot be verified.':
     'Le texte source et ses coordonnées ne concordent pas ; la sélection complète ne peut pas être vérifiée.',
   'Documents or annotations changed during analysis. Run analysis again.':

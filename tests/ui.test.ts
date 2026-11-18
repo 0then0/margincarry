@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { type Locale, Localization, localeNames, locales } from '../src/l10n.ts';
-import type { Position, Selection, Snapshot } from '../src/model.ts';
+import type { Glyph, Position, Rect, Selection, Snapshot } from '../src/model.ts';
 import { initNoteCopy } from '../src/note-copy-ui.ts';
 import type { TransferService } from '../src/transfer.ts';
 import { TransferWindow } from '../src/ui.ts';
@@ -126,12 +126,24 @@ interface Scenario {
   /** Index of a new page that the host returned only partly. */
   partial?: number;
 }
-// One 7-unit glyph per UTF-16 unit; the default scenario is a single 'needle' glyph.
+// Each test glyph has a 7-unit box; the default scenario is a single 'needle' glyph.
 function glyphs(text: string) {
-  return Array.from(text, (c, i) => {
-    const rect = [10 + 7 * i, 700, 17 + 7 * i, 710];
-    return { c, rect, inlineRect: [...rect] };
-  });
+  const chars: Glyph[] = [];
+  let x = 10,
+    y = 700;
+  for (const c of text) {
+    if (c === '\n') {
+      const previous = chars.at(-1);
+      if (previous) previous.lineBreakAfter = true;
+      x = 10;
+      y -= 20;
+      continue;
+    }
+    const rect: Rect = [x, y, x + 7, y + 10];
+    chars.push({ c, rect, inlineRect: [...rect] });
+    x += 7;
+  }
+  return chars;
 }
 async function fixture(locale: Locale = 'en', scenario?: Scenario) {
   const nodes = new Map<string, Element>();
@@ -397,6 +409,59 @@ for (const locale of locales) {
 }
 
 const breakRect = (from: number, to: number) => [10 + 7 * from, 700, 10 + 7 * to, 710];
+
+test('batch apply skips an ambiguous word break even after its location is previewed', async () => {
+  const { el, release, until, applied, navigations } = await fixture('en', {
+    old: 'intro international',
+    new: ['intro inter\u00ad\n', 'national conclusion', 'inter\u00ad\nnational'],
+    quotes: ['intro', 'international'],
+  });
+  release();
+  el('analyze').onclick!();
+  await until(() => el('cancel').disabled);
+  el('accept-unique').onclick!();
+  assert.equal(el('selected-count').textContent, 'Selected to write: 1');
+  el('list').children[1]!.onclick!();
+  await until(() => el('outcome').textContent.startsWith('Multiple candidates'));
+  assert.equal(el('candidates').value, '');
+  assert.equal(el('accept').disabled, true);
+  const choice = el('candidates').children.find((option) => option.value.includes('+'))!;
+  el('candidates').value = choice.value;
+  el('candidates').onchange!();
+  await until(() => !el('accept').disabled);
+  assert.match(el('source-context').textContent, /【international】/);
+  assert.match(el('target-context').textContent, /【inter\u00ad\nnational】/);
+  assert.match(el('target-hyphens').textContent, /Pages 1–2.*soft hyphen U\+00AD/);
+  el('open-target-next').onclick!();
+  await until(() => navigations.length === 1);
+  assert.deepEqual(navigations[0]?.[1], { pageIndex: 1, rects: [breakRect(0, 8)] });
+  el('apply').onclick!();
+  await until(() => applied.length === 1);
+  assert.deepEqual(applied[0], [{ sourceKey: 'ANN0', candidateID: '0:0:5' }]);
+});
+
+test('accepting a specific word break supplies manual confirmation to apply', async () => {
+  const { el, release, until, applied } = await fixture('en', {
+    old: 'international',
+    new: 'inter-\nnational',
+    quotes: ['international'],
+  });
+  release();
+  el('analyze').onclick!();
+  await until(() => el('cancel').disabled);
+  assert.equal(el('candidates').value, '');
+  const option = el('candidates').children[1]!;
+  el('candidates').value = option.value;
+  el('candidates').onchange!();
+  await until(() => !el('accept').disabled);
+  el('accept').onclick!();
+  el('apply').onclick!();
+  await until(() => applied.length === 1);
+  assert.deepEqual(applied[0], [
+    { sourceKey: 'ANN0', candidateID: option.value, manuallyConfirmed: true },
+  ]);
+});
+
 for (const locale of locales) {
   test(`a proposal across a page break shows, opens and applies both pages (${locale})`, async () => {
     const { el, release, until, applied, previews, navigations } = await fixture(locale, {

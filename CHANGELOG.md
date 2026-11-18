@@ -2,6 +2,13 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
+## [Unreleased]
+
+### Added
+
+- Finds possible word breaks at the end of a line or across two adjacent pages in either PDF revision. The review shows both excerpts and the original hyphen, including soft hyphens. Each such candidate requires a specific location and explicit acceptance.
+- Builds the target position from the PDF glyphs and checks that the rectangles select them again, including any hyphen omitted from the reader's text.
+
 ## [0.4.0] - 2026-11-12
 
 ### Added

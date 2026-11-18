@@ -83,6 +83,12 @@ export const ui: Record<UiKey, string> = {
   candidate: 'Seite {page} · {method}',
   exact: 'exakt',
   normalized: 'normalisiert',
+  hyphenation: 'mögliche Worttrennung',
+  hyphenLineBreak: 'Seite {page} · Zeilenumbruch · {before}{mark} ↵ {after} · {reading}',
+  hyphenPageBreak: 'Seiten {page} · Seitenumbruch · {before}{mark} ↵ {after} · {reading}',
+  softHyphen: '[bedingter Trennstrich U+00AD]',
+  hyphenRemoved: 'Trennstrich bei der Suche ignoriert',
+  hyphenKept: 'Trennstrich bei der Suche beibehalten',
   contextMatch: ' · Kontext stimmt überein',
   outcome: '{status}: {reason}',
   boundaryDiffers: ' · Wort- oder Zahlgrenze weicht ab',
@@ -148,6 +154,10 @@ export const messages: Record<Message, string> = {
     'Ein Texttreffer; prüfen Sie die Position im PDF.',
   'One text occurrence; word boundaries cannot be checked for this script. Verify the PDF position.':
     'Ein Texttreffer; Wortgrenzen lassen sich in dieser Schrift nicht prüfen. Prüfen Sie die Position im PDF.',
+  'The line-end hyphen may belong to the word. Compare both PDFs and confirm the location manually.':
+    'Der Strich am Zeilenende kann zum Wort gehören. Vergleichen Sie beide PDFs und bestätigen Sie die Stelle manuell.',
+  'Choose and accept the word-break candidate before applying.':
+    'Wählen und bestätigen Sie den Vorschlag mit Worttrennung, bevor Sie ihn anwenden.',
   'The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually.':
     'Das Zitat kommt nur dort vor, wo die Wort- oder Zahlgrenze von der Quellmarkierung abweicht; es wird keine Übertragung empfohlen. Prüfen Sie das PDF, bevor Sie manuell eine Stelle wählen.',
   'Several occurrences require a human choice.':
@@ -178,7 +188,6 @@ export const messages: Record<Message, string> = {
   'Empty source range.': 'Der Quellbereich ist leer.',
   'Discontinuous source annotation.': 'Die Quell-Annotation ist nicht zusammenhängend.',
   'Missing source text offsets.': 'Die Positionen des Quelltexts fehlen.',
-  'Missing normalized text offsets.': 'Die Positionen des normalisierten Texts fehlen.',
   'Source text and source geometry disagree; the complete selection cannot be verified.':
     'Quelltext und Quellkoordinaten stimmen nicht überein; die vollständige Auswahl lässt sich nicht prüfen.',
   'Documents or annotations changed during analysis. Run analysis again.':

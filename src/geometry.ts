@@ -3,6 +3,7 @@ import { normalize, PAGE_BREAK, pageText } from './text.ts';
 
 export const GAP_ERROR =
   'The selection does not continue directly from the end of one page to the start of the next: other text, such as a header, footer or page number, lies between its two parts.';
+export const REVERSE_ERROR = 'The target rectangles do not select the matched text again.';
 
 export function validRect(rect: Rect): boolean {
   return rect.length === 4 && rect.every(Number.isFinite) && rect[2] > rect[0] && rect[3] > rect[1];
@@ -12,15 +13,22 @@ function containsCenter(rect: Rect, glyph: Rect): boolean {
     y = (glyph[1] + glyph[3]) / 2;
   return x >= rect[0] - 0.1 && x <= rect[2] + 0.1 && y >= rect[1] - 0.1 && y <= rect[3] + 0.1;
 }
-/** One rectangle per line for the glyphs `first`..`last` of a page, in the host's glyph order. */
-function lineRects(page: Page, first: number, last: number): Rect[] {
+export function coversGlyph(rects: Rect[], glyph: Page['chars'][number] | undefined): boolean {
+  return !!glyph && rects.some((rect) => containsCenter(rect, glyph.rect));
+}
+/**
+ * One rectangle per line for the glyphs `first`..`last` of a page, in the host's glyph order. A
+ * glyph that the reader ignores (a dash at a line end) only closes its line, unless `include`
+ * names it: then it is part of the selection, as a hyphen that divides a selected word is.
+ */
+function lineRects(page: Page, first: number, last: number, include?: ReadonlySet<number>): Rect[] {
   if (page.partial) throw new Error('The host returned partial page data.');
   const rects: Rect[] = [];
   let line: Rect | null = null;
   for (let i = first; i <= last; i++) {
     const g = page.chars[i];
     if (!g) throw new Error('Missing PDF glyph in selected range.');
-    if (g.ignorable) {
+    if (g.ignorable && !include?.has(i)) {
       if (line && (g.lineBreakAfter || g.paragraphBreakAfter)) {
         rects.push(line);
         line = null;
@@ -62,7 +70,12 @@ function limited(position: Position): Position {
     throw new Error('Selection exceeds the native annotation position limit.');
   return position;
 }
-export function rangePosition(page: Page, start: number, end: number): Position {
+export function rangePosition(
+  page: Page,
+  start: number,
+  end: number,
+  include?: ReadonlySet<number>,
+): Position {
   if (page.partial) throw new Error('The host returned partial page data.');
   const stream = pageText(page);
   const first = stream.glyphAt[start],
@@ -77,7 +90,7 @@ export function rangePosition(page: Page, start: number, end: number): Position 
   ) {
     throw new Error('The range does not align with complete PDF glyphs.');
   }
-  return limited({ pageIndex: page.index, rects: lineRects(page, first, last) });
+  return limited({ pageIndex: page.index, rects: lineRects(page, first, last, include) });
 }
 
 /**
@@ -91,12 +104,13 @@ export function bodyGlyphs(page: Page): { first: number; last: number } | null {
   while (last >= 0 && page.chars[last]?.isolated) last--;
   return first < 0 ? null : { first, last };
 }
-function edgeGlyph(page: Page, side: 'first' | 'last'): number {
+function edgeGlyph(page: Page, side: 'first' | 'last', include?: ReadonlySet<number>): number {
   const body = bodyGlyphs(page);
   if (!body) throw new Error('A page next to the page break has no selectable text.');
   // The reader joins a hyphenated word within a page, but separates the two parts of a selection
-  // at a page break; which of the two readings applies here cannot be decided from the text.
-  if (page.chars[body[side]]?.ignorable)
+  // at a page break; which of the two readings applies here cannot be decided from the text. Only
+  // a caller that has confirmed the divided word and chosen a reading names the hyphen.
+  if (page.chars[body[side]]?.ignorable && !include?.has(body[side]))
     throw new Error(
       'A line-end hyphen next to the page break makes the text across the break ambiguous.',
     );
@@ -114,12 +128,19 @@ function offLines(page: Page, from: number, to: number, rects: Rect[]): void {
  * Position of a selection that runs from the offset `start` to the end of `first` and from the
  * start of `next`, the following page, to the offset `end`. Each page keeps its own rectangles.
  */
-export function crossPagePosition(first: Page, start: number, next: Page, end: number): Position {
+export function crossPagePosition(
+  first: Page,
+  start: number,
+  next: Page,
+  end: number,
+  include?: ReadonlySet<number>,
+  nextInclude?: ReadonlySet<number>,
+): Position {
   if (first.partial || next.partial) throw new Error('The host returned partial page data.');
   if (next.index !== first.index + 1) throw new Error('No usable text geometry.');
   const a = pageText(first),
     b = pageText(next);
-  const lastA = edgeGlyph(first, 'last'),
+  const lastA = edgeGlyph(first, 'last', include),
     firstB = edgeGlyph(next, 'first');
   const from = a.glyphAt[start],
     to = b.glyphAt[end - 1];
@@ -134,8 +155,8 @@ export function crossPagePosition(first: Page, start: number, next: Page, end: n
   ) {
     throw new Error('The range does not align with complete PDF glyphs.');
   }
-  const rects = lineRects(first, from, lastA),
-    nextPageRects = lineRects(next, firstB, to);
+  const rects = lineRects(first, from, lastA, include),
+    nextPageRects = lineRects(next, firstB, to, nextInclude);
   offLines(first, lastA + 1, first.chars.length - 1, rects);
   offLines(next, 0, firstB - 1, nextPageRects);
   return limited({ pageIndex: first.index, rects, nextPageRects });
@@ -166,6 +187,29 @@ function coveredGlyphs(page: Page, rects: Rect[]): { first: number; last: number
   return { first, last };
 }
 
+/** Text offsets of the glyphs under rectangles: the reverse of a position on one page. */
+export function selectedRange(
+  page: Page,
+  rects: Rect[],
+  required?: ReadonlySet<number>,
+): { start: number; end: number } {
+  const stream = pageText(page),
+    part = coveredGlyphs(page, rects);
+  if (required) {
+    // Ignored glyphs have no text offsets. Check their coverage separately, including dashes that
+    // the rectangles might accidentally pick up outside the matched text.
+    for (const [index, glyph] of page.chars.entries()) {
+      const expected = required.has(index);
+      if ((expected || glyph.ignorable) && coversGlyph(rects, glyph) !== expected)
+        throw new Error(REVERSE_ERROR);
+    }
+  }
+  const start = stream.glyphStarts[part.first],
+    end = stream.glyphEnds[part.last];
+  if (start === undefined || end === undefined) throw new Error('Missing source text offsets.');
+  return { start, end };
+}
+
 export interface SourceRange {
   start: number;
   end: number;
@@ -174,13 +218,16 @@ export interface SourceRange {
 }
 /**
  * Text range of a source annotation, verified against its rectangles and its quote. `next` is the
- * page after `page`; it is required when the position has rectangles on that page.
+ * page after `page`; it is required when the position has rectangles on that page. `hyphen` is a
+ * confirmed hyphen that ends `page` and divides a word continued on `next`: the selection may then
+ * end at it instead of being refused as ambiguous.
  */
 export function sourceRange(
   page: Page,
   position: Position,
   quote: string,
   next?: Page,
+  hyphen?: number,
 ): SourceRange {
   const stream = pageText(page),
     part = coveredGlyphs(page, position.rects);
@@ -203,9 +250,17 @@ export function sourceRange(
   if (nextStart === undefined || nextEnd === undefined)
     throw new Error('Missing source text offsets.');
   // A real selection across a page break reaches the end of one page and the start of the next.
-  if (part.last !== edgeGlyph(page, 'last') || nextPart.first !== edgeGlyph(next, 'first'))
+  // An ignored hyphen has no text offset, so the text ends at the glyph before it.
+  const include = hyphen === undefined ? undefined : new Set([hyphen]);
+  const lastA = edgeGlyph(page, 'last', include);
+  if (
+    part.last !== (page.chars[lastA]?.ignorable ? lastA - 1 : lastA) ||
+    nextPart.first !== edgeGlyph(next, 'first')
+  )
     throw new Error(GAP_ERROR);
-  crossPagePosition(page, start, next, nextEnd);
+  if (hyphen !== undefined && !coversGlyph(position.rects, page.chars[hyphen]))
+    throw new Error(disagree);
+  crossPagePosition(page, start, next, nextEnd, include);
   const text =
     stream.text.slice(start, end) + PAGE_BREAK + nextStream.text.slice(nextStart, nextEnd);
   if (normalize(text).text !== normalize(quote).text) throw new Error(disagree);

@@ -418,34 +418,267 @@ test('a page number that the selection itself covers is part of the quote', () =
   }
 });
 
-test('a line-end hyphen at the page break is ambiguous and never transferred', () => {
-  const hyphenated = () => {
-    const p = page('intro al-');
-    Object.assign(p.chars.at(-1)!, { ignorable: true, lineBreakAfter: true });
-    return p;
-  };
-  const target = propose(source('intro al pha', [at(0, 12)]), page('intro al pha'), [
-    hyphenated(),
-    page('pha beta', 1),
+function splitWord(firstIndex = 0, mark = '-') {
+  const first = page(`intro inter${mark}`, firstIndex);
+  Object.assign(first.chars.at(-1)!, {
+    ignorable: mark === '-',
+    lineBreakAfter: true,
+    paragraphBreakAfter: true,
+  });
+  return [first, page('national conclusion', firstIndex + 1)] as const;
+}
+
+test('a word divided across pages is manual in both directions and uses both pages of glyphs', () => {
+  const [first, second] = splitWord(4);
+  const r = propose(source('international', [at(6, 19)]), page('intro international conclusion'), [
+    first,
+    second,
   ]);
-  assert.equal(target.status, 'processing error');
-  assert.match(target.candidates[0]!.geometryError ?? '', /line-end hyphen/);
-  const origin = propose(
-    source('al pha', [at(6, 8)], [at(0, 3)]),
-    hyphenated(),
-    [page('al pha')],
+  assert.equal(r.status, 'doubtful candidate');
+  assert.equal(r.recommendedID, null);
+  const c = r.candidates[0]!;
+  assert.equal(c.text, 'inter\fnational');
+  assert.equal(c.printedText, 'inter-\fnational');
+  assert.deepEqual(c.position, { pageIndex: 4, rects: [at(6, 12)], nextPageRects: [at(0, 8)] });
+  assert.deepEqual(c.hyphenation, [
+    {
+      side: 'target',
+      pageIndex: 4,
+      pageLabel: '5',
+      nextPageLabel: '6',
+      pageBreak: true,
+      mark: '-',
+      offset: 11,
+      glyphIndex: 11,
+      reading: 'removed',
+      fragment: { before: 'inter', after: 'national' },
+    },
+  ]);
+
+  const [old, oldNext] = splitWord();
+  const reverse = propose(
+    source('inter national', [at(6, 12)], [at(0, 8)]),
+    old,
+    [page('intro international conclusion')],
     200,
     undefined,
-    page('pha beta', 1),
+    oldNext,
   );
-  assert.equal(origin.status, 'unsupported');
-  assert.match(origin.reason, /line-end hyphen/);
-  // The hyphenated word is not silently joined either.
-  const joined = propose(source('alpha', [at(0, 5)]), page('alpha'), [
-    hyphenated(),
-    page('pha beta', 1),
+  assert.equal(reverse.status, 'doubtful candidate');
+  assert.equal(reverse.recommendedID, null);
+  assert.equal(reverse.sourcePrintedText, 'inter-\fnational');
+  assert.equal(reverse.candidates[0]?.hyphenation?.[0]?.side, 'source');
+  assert.deepEqual(reverse.candidates[0]?.position, { pageIndex: 0, rects: [at(6, 19)] });
+
+  const wrong = propose(
+    source('inter national', [at(6, 11)], [at(0, 8)]),
+    old,
+    [page('international')],
+    200,
+    undefined,
+    oldNext,
+  );
+  assert.equal(wrong.status, 'unsupported');
+  assert.equal(wrong.candidates.length, 0);
+});
+
+test('a hyphen at the page edge does not join across headers, footers or disjoint columns', () => {
+  const original = page('international');
+  const s = source('international', [at(0, 13)]);
+  const [first, following] = splitWord();
+  const footer = isolateLastLine(page('intro inter-\n12'));
+  footer.chars[11]!.ignorable = true;
+  for (const target of [
+    [footer, following],
+    [first, isolateFirstLine(page('Header\nnational conclusion', 1))],
+    [first, page('              national conclusion', 1)],
+    [first, page('national conclusion', 2)],
+    [first, { ...following, partial: true }],
+  ])
+    assert.deepEqual(propose(s, original, target).candidates, []);
+});
+
+test('detached running text at actual page edges cannot confirm a divided word', () => {
+  const first = page('body line\ninter-');
+  const second = page('national\nbody line', 1);
+  Object.assign(first.chars.at(-1)!, {
+    ignorable: true,
+    lineBreakAfter: true,
+    paragraphBreakAfter: true,
+  });
+  const move = (g: Glyph, bottom: number) => {
+    g.rect = [g.rect[0], bottom, g.rect[2], bottom + 10];
+    g.inlineRect = [...g.rect];
+  };
+  const footer = structuredClone(first);
+  footer.chars[8]!.paragraphBreakAfter = true;
+  for (const g of footer.chars.slice(9)) move(g, 30);
+  const header = structuredClone(second);
+  header.chars[7]!.paragraphBreakAfter = true;
+  for (const g of header.chars.slice(0, 8)) move(g, 750);
+  const whole = page('international');
+  const s = source('international', [at(0, 13)]);
+
+  assert.equal(propose(s, whole, [first, second]).status, 'doubtful candidate');
+  assert.deepEqual(propose(s, whole, [footer, second]).candidates, []);
+  assert.deepEqual(propose(s, whole, [first, header]).candidates, []);
+  const fromFooter = source('inter national', [[10, 30, 52, 40]], [at(0, 8)]);
+  const reverse = propose(fromFooter, footer, [whole], 200, undefined, second);
+  assert.equal(reverse.status, 'unsupported');
+});
+
+test('soft hyphen at a page break is preserved in extracted text and shown as a hypothesis', () => {
+  const [first, second] = splitWord(0, '\u00ad');
+  const r = propose(source('international', [at(0, 13)]), page('international'), [first, second]);
+  assert.equal(r.recommendedID, null);
+  assert.equal(r.candidates[0]?.hyphenation?.[0]?.mark, '\u00ad');
+  assert.equal(r.candidates[0]?.text, 'inter\u00ad\fnational');
+  assert.deepEqual(r.candidates[0]?.position, {
+    pageIndex: 0,
+    rects: [at(6, 12)],
+    nextPageRects: [at(0, 8)],
+  });
+});
+
+test('an internal word break can fall on either page of a longer selection', () => {
+  const whole = page('intro international');
+  const first = propose(
+    source('international conclusion', [at(0, 24)]),
+    page('international conclusion'),
+    [page('inter\u00ad\nnational'), page('conclusion', 1)],
+  );
+  assert.equal(first.recommendedID, null);
+  assert.deepEqual(first.candidates[0]?.position, {
+    pageIndex: 0,
+    rects: [at(0, 6), at(0, 8, 1)],
+    nextPageRects: [at(0, 10)],
+  });
+  const next = propose(source('intro international', [at(0, 19)]), whole, [
+    page('intro'),
+    page('inter\u00ad\nnational', 1),
   ]);
-  assert.equal(joined.status, 'not found');
+  assert.equal(next.recommendedID, null);
+  assert.deepEqual(next.candidates[0]?.position, {
+    pageIndex: 0,
+    rects: [at(0, 5)],
+    nextPageRects: [at(0, 6), at(0, 8, 1)],
+  });
+  assert.equal(next.candidates[0]?.hyphenation?.[0]?.pageIndex, 1);
+  assert.equal(next.candidates[0]?.text, 'intro\finter\u00ad\nnational');
+});
+
+test('word division within a page records the omitted glyph and preserves the native text', () => {
+  for (const [mark, ignorable, quote] of [
+    ['-', true, 'international'],
+    ['-', false, 'inter- national'],
+    ['\u00ad', false, 'inter\u00ad national'],
+  ] as const) {
+    const whole = page('intro international conclusion');
+    const divided = page(`intro inter${mark}\nnational conclusion`);
+    divided.chars[11]!.ignorable = ignorable;
+    const matched = propose(source('international', [at(6, 19)]), whole, [divided], 1);
+    assert.equal(matched.status, 'doubtful candidate');
+    assert.equal(matched.truncated, false);
+    assert.equal(matched.recommendedID, null);
+    const c = matched.candidates[0]!;
+    assert.equal(c.printedText, `inter${mark}\nnational`);
+    assert.equal(c.text.replace(/\s+/g, ' '), quote);
+    assert.equal(c.hyphenation?.[0]?.mark, mark);
+    assert.equal(c.hyphenation?.[0]?.offset, 11);
+    assert.deepEqual(c.position?.rects, [at(6, 12), at(0, 8, 1)]);
+
+    const reverse = propose(source(quote, [at(6, 12), at(0, 8, 1)]), divided, [whole]);
+    assert.equal(reverse.status, 'doubtful candidate');
+    assert.equal(reverse.recommendedID, null);
+    assert.equal(reverse.candidates[0]?.hyphenation?.[0]?.side, 'source');
+    assert.deepEqual(reverse.candidates[0]?.position?.rects, [at(6, 19)]);
+  }
+});
+
+test('a visible line-end hyphen can be retained or removed only after review', () => {
+  const divided = page('well-\nknown');
+  divided.chars[4]!.ignorable = true;
+  const p = page('well-known');
+  assert.equal(propose(source('well-known', [at(0, 10)]), p, [p]).status, 'unique candidate');
+  assert.equal(
+    propose(source('wellknown', [at(0, 9)]), page('wellknown'), [p]).status,
+    'not found',
+  );
+  const kept = propose(source('well-known', [at(0, 10)]), p, [divided]);
+  assert.equal(kept.recommendedID, null);
+  assert.equal(kept.candidates[0]?.hyphenation?.[0]?.reading, 'kept');
+  const removed = propose(source('wellknown', [at(0, 9)]), page('wellknown'), [divided]);
+  assert.equal(removed.recommendedID, null);
+  assert.equal(removed.candidates[0]?.hyphenation?.[0]?.reading, 'removed');
+});
+
+test('a change in reader treatment of the same printed break still requires review', () => {
+  const old = page('inter-\nnational');
+  const next = page('inter-\nnational');
+  next.chars[5]!.ignorable = true;
+  const s = source('inter- national', [at(0, 6), at(0, 8, 1)]);
+  assert.equal(propose(s, old, [old]).status, 'unique candidate');
+  const proposal = propose(s, old, [next]);
+  assert.equal(proposal.status, 'doubtful candidate');
+  assert.equal(proposal.recommendedID, null);
+  assert.deepEqual(
+    proposal.candidates[0]?.hyphenation?.map((join) => join.side),
+    ['source', 'target'],
+  );
+});
+
+test('hyphen hypotheses require explicit choice among repeats, even with exact context', () => {
+  const whole = page('the previous sentence says international agreement');
+  const broken = (index: number) => page('inter-\nnational agreement', index);
+  const s = source('international', [at(27, 40)]);
+  for (const other of [whole, broken(0)]) {
+    const r = propose(s, whole, [other, broken(2)]);
+    assert.equal(r.status, 'multiple candidates');
+    assert.equal(r.recommendedID, null);
+    assert.equal(r.candidates.length, 2);
+    assert.equal(propose(s, whole, [other, broken(2)], 1).truncated, true);
+  }
+});
+
+test('implicit joins with missing evidence or mismatched glyph geometry are excluded', () => {
+  const whole = page('international');
+  const s = source('international', [at(0, 13)]);
+  const broken = () => {
+    const p = page('inter-\nnational');
+    p.chars[5]!.ignorable = true;
+    return p;
+  };
+  const withoutBreak = broken();
+  delete withoutBreak.chars[5]!.lineBreakAfter;
+  const paragraph = broken();
+  paragraph.chars[5]!.paragraphBreakAfter = true;
+  const column = broken();
+  for (const g of column.chars.slice(6)) {
+    g.rect = [g.rect[0] + 80, 700, g.rect[2] + 80, 710];
+    g.inlineRect = [...g.rect];
+  }
+  const badMark = broken();
+  badMark.chars[5]!.rect = [200, 700, 207, 710];
+  const overlapping = page('inter-\nnational X');
+  overlapping.chars[5]!.ignorable = true;
+  overlapping.chars.at(-1)!.rect = at(3, 4, 1);
+  for (const p of [withoutBreak, paragraph, column, badMark, overlapping, page('inter national')])
+    assert.deepEqual(propose(s, whole, [p]).candidates, []);
+  const badSource = source('international', [at(0, 5), at(0, 8, 1)]);
+  assert.deepEqual(propose(badSource, broken(), [whole]).candidates, []);
+});
+
+test('reverse geometry rejects an unrelated ignored glyph covered by a word-break proposal', () => {
+  const target = page('inter-\nnational\n—');
+  target.chars[5]!.ignorable = true;
+  const dash = target.chars.at(-1)!;
+  dash.ignorable = true;
+  dash.lineBreakAfter = true;
+  dash.rect = at(3, 4, 1);
+  dash.inlineRect = [...dash.rect];
+  const quote = 'international';
+  const r = propose(source(quote, [at(0, 13)]), page(quote), [target]);
+  assert.deepEqual(r.candidates, []);
 });
 
 test('occurrences on one page and across pages share ambiguity, context and the limit', () => {

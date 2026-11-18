@@ -179,22 +179,7 @@ export function compareEdge(source: Edge, target: Edge): EdgeVerdict {
     : 'changed';
 }
 
-export function occurrences(
-  haystack: string,
-  needle: string,
-  limit: number,
-  accept: (offset: number) => boolean = () => true,
-): { spans: number[]; truncated: boolean } {
-  if (!needle) return { spans: [], truncated: false };
-  const spans: number[] = [];
-  let from = 0;
-  while (from <= haystack.length - needle.length) {
-    const at = haystack.indexOf(needle, from);
-    if (at < 0) break;
-    from = at + 1;
-    if (!accept(at)) continue;
-    if (spans.length === limit) return { spans, truncated: true };
-    spans.push(at);
-  }
-  return { spans, truncated: false };
+export function* occurrences(haystack: string, needle: string): Iterable<number> {
+  if (!needle) return;
+  for (let at = haystack.indexOf(needle); at >= 0; at = haystack.indexOf(needle, at + 1)) yield at;
 }

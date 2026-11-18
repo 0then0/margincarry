@@ -204,6 +204,11 @@ blockquote {
   max-height: 100px;
   overflow: auto;
 }
+.hyphens {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
 .pdf-preview {
   background: #dce3e7;
   border: 1px solid var(--line);

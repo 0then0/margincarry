@@ -195,6 +195,31 @@ test('journal blocks reapplication after restart or recalculation', async () => 
   await assert.rejects(new TransferService(store).apply(again, selected), /already transferred/);
   assert.equal(store.copies.length, 1);
 });
+test('a word-break proposal requires explicit confirmation at the write boundary', async () => {
+  const { service, store, plan, selected } = fixture();
+  plan.proposals[0]!.candidates[0]!.hyphenation = [
+    {
+      side: 'target',
+      pageIndex: 3,
+      pageLabel: 'iv',
+      pageBreak: false,
+      mark: '-',
+      offset: 4,
+      glyphIndex: 4,
+      reading: 'removed',
+      fragment: { before: 'some', after: 'word' },
+    },
+  ];
+  await assert.rejects(service.apply(plan, selected), /Choose and accept the word-break candidate/);
+  assert.equal(store.records.length, 0);
+  assert.equal(store.copies.length, 0);
+  const record = await service.apply(plan, [{ ...selected[0]!, manuallyConfirmed: true }]);
+  assert.equal(record.status, 'committed');
+  assert.equal(record.created.length, 1);
+  assert.equal((await service.undoLast()).count, 1);
+  assert.ok(store.rows.has('EXISTING'));
+});
+
 test('one source cannot silently combine multiple quote occurrences', async () => {
   const { service, plan, selected } = fixture();
   await assert.rejects(service.apply(plan, [...selected, ...selected]), /multiple occurrences/);

@@ -16,6 +16,7 @@ Nothing is written until you confirm. Your original annotations and PDF files ar
 
 - Transfers native highlights and underlines between two PDF attachments of the same Zotero item.
 - Shows the original and the proposed location on the actual PDF pages, and opens either in the Zotero reader. A passage that runs over a page break is shown, opened, and transferred as one annotation on its two pages.
+- Shows possible word breaks introduced or removed during layout changes. Review the indicated hyphen and choose the exact location before accepting.
 - Matches text exactly: only Unicode normalization and whitespace differences are tolerated, so a changed number or a negated sentence is never moved silently.
 - Flags quotes that survive only inside a different word or number, such as `cat` in `concatenate` or `41.0` in `41.03`, and keeps them out of bulk selection.
 - Records every transfer in a local journal, blocks accidental repeats, and undoes a transfer in one step.
@@ -86,7 +87,7 @@ The plugin stores one file, `margincarry/transfers.json`, in Zotero's data direc
 
 ## Limitations
 
-- Only native highlights and underlines that continue on one page, or from the end of one page to the start of the next, are transferred. A passage across a page break is not transferred when a header, footer, or page number in the PDF's text lies between its two parts, or when a line-end hyphen sits at the break. Ink, image, and note annotations, and selections longer than two adjacent pages, are not transferred.
+- Only native highlights and underlines on one page or on two adjacent pages are transferred. A header, footer, or page number between parts can prevent transfer. Word breaks at page edges require continuous reader order and manual confirmation. Ink, image, and note annotations, and selections longer than two adjacent pages, are outside this workflow.
 - Only personal libraries, and only two attachments of one item. There is no group-library, EPUB, or library-wide support.
 - Matching is exact. There is no fuzzy matching, no translation, and no OCR. A rewritten sentence is reported as not found rather than guessed.
 - The plugin uses internal Zotero reader APIs, so a future Zotero release can require an update. The manifest accepts Zotero 10.0.x only.

@@ -75,6 +75,12 @@ After a later matcher correction and an icon change, the build with SHA-256 `5e0
 
 Not covered: following the copied link by clicking it in the note editor, a restart of Zotero between apply and Undo, PDFs in which the reader marks headers or footers as isolated, other interface languages on screen, and any real paper. The 32-case corpus was not re-run.
 
+### Unreleased word-break review, Zotero 10.0.9, macOS
+
+A mouse-created highlight on `significantly fewer` on page 4 of [LoRA v1](https://arxiv.org/pdf/2106.09685v1) produced a manual candidate on page 5 of [LoRA v2](https://arxiv.org/pdf/2106.09685v2). **Select unique proposals** left the selection empty. After choosing the location and applying, the reopened reader showed the highlight on exactly `signifi-` and `cantly fewer`. Undo moved the target annotation to the Trash and the original highlight remained. The native run covered a line break inside one page. Automated tests also cover breaks between adjacent pages, the reverse direction, and soft hyphens.
+
+The 32-case corpus run found a correct proposal for all 23 positive cases and produced zero wrong recommendations. Four alternative locations in `lora-15` still differ from the reference geometry by more than two PDF points, as in the recorded baseline.
+
 ## Real revision corpus
 
 Two genuine revision pairs were chosen independently of the matcher: [LoRA v1](https://arxiv.org/pdf/2106.09685v1) to [v2](https://arxiv.org/pdf/2106.09685v2) (20 to 26 pages) and [Attention v1](https://arxiv.org/pdf/1706.03762v1) to [v2](https://arxiv.org/pdf/1706.03762v2) (15 to 16 pages), with 16 source cases each. The URLs and SHA-256 values are in [`validation/corpus.json`](../validation/corpus.json), the PDFs are not stored in the repository, and a download is verified against its hash.

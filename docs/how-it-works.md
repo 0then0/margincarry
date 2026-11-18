@@ -4,16 +4,16 @@ This page explains what MarginCarry decides for you, what it leaves to you, and 
 
 ## The workflow in one paragraph
 
-MarginCarry reads the text and the glyph positions of both PDFs through Zotero's own PDF reader. For each highlight or underline in the old PDF, it works out which text the selection covered, searches for exactly that text on every page of the new PDF and across every pair of adjacent pages, and turns each match back into rectangles on the page. You compare the two locations visually, accept the ones you want, and confirm. Only then does it create new annotations.
+MarginCarry reads the text and glyph positions of both PDFs through Zotero's PDF reader. For each highlight or underline in the old PDF, it verifies the selected text, searches across single pages and pairs of adjacent pages, and turns each match back into rectangles. You compare the locations, accept the ones you want, and confirm. Only then does it create new annotations.
 
 ## What is matched
 
-Matching is deliberately literal. Only two differences between the old quote and the new text are ignored:
+Ordinary matching ignores two differences between the old quote and the new text.
 
 - Unicode composition. `é` written as one character matches `e` followed by a combining accent.
 - Whitespace. Line breaks, repeated spaces, and tabs all count as one space, so a passage that was re-flowed onto different lines still matches.
 
-Everything else is significant: upper and lower case, accents, punctuation, hyphens and dashes, and numbers. `41.0` does not match `41.2`, `TRUE` does not match `true`, and `not valid` does not match `valid`. There is no fuzzy matching, no case folding, no spelling correction, no translation, and no OCR.
+Case, accents, punctuation and numbers are significant. `41.0` does not match `41.2`, `TRUE` does not match `true`, and `not valid` does not match `valid`. Line-end hyphens can also produce candidates for manual review as described below.
 
 A match must also end on whole PDF glyphs. A ligature such as `fi` is one glyph, so a quote that would end in the middle of it is rejected rather than highlighted as if it had matched. The same applies to a match that would silently pick up an extra combining mark or an emoji joiner.
 
@@ -31,12 +31,19 @@ Zotero stores such a selection as one annotation with rectangles for the first p
 - **The selection must be continuous.** Its first part has to reach the last text of its page and its second part has to begin with the first text of the next page, in the order in which the PDF stores the text. This is checked for the original annotation and for every candidate.
 - **Text between the two parts is not removed.** If the PDF's text has a header, footer, or page number between the end of the passage on one page and its continuation on the next, the passage is not treated as continuous. When the quote is found nowhere else, such a place is listed with that reason, without a position, and cannot be accepted. It is not listed next to a real occurrence, because ordinary lines of text can lie between two matching halves just as a footer can. A source annotation whose own rectangles cover a page number contains that number in its text, and it is matched like any other character.
 - **One exception follows the reader.** Zotero's reader marks some text outside a document's content area as isolated and leaves it out of a selection that crosses pages. MarginCarry skips only such marked text, only at the page edge, and only when it lies on other lines than the selected text. The reader makes these marks on some pages only, so page numbers usually count as text.
-- **A line-end hyphen at the break is ambiguous.** Within a page the reader joins a hyphenated word; across pages it separates the two parts. MarginCarry does not choose, and such a passage is not transferred.
 - **Each page keeps its own rectangles.** Coordinates of two pages are never merged, whole glyphs are required on both pages, and both parts together must fit Zotero's size limit for a position.
 
 Context and the word and number boundary check below apply to the outer ends of the whole passage: the text before its first part and after its last part. The page break inside it is not a boundary.
 
 The page label and the sort position of the new annotation come from its first page, as for an annotation that the reader creates.
+
+## Words split at a line or page end
+
+A word such as `international` can be printed as `inter-` at the end of one line and `national` at the start of the next. MarginCarry can find that variation in either revision. It needs a hyphen glyph at a line break identified by the reader, adjacent letter fragments, and compatible line geometry. At a page break the hyphen and continuation must lie at the text edges of adjacent pages without intervening text. Nearby lines, when present, must also support the reading order at those edges. A hyphen in the middle of a line or a space between words retains its ordinary meaning.
+
+Zotero can omit a visible line-end hyphen from its text even when the hyphen belongs to a compound. The review shows the original mark and both fragments, identifies a soft hyphen (U+00AD), and indicates whether matching kept or ignored the mark. Choose a specific location, check both PDF previews, and accept it before applying. The batch selector skips these proposals, and multiple locations require a choice even when one matches the surrounding context.
+
+The target rectangles cover the original glyphs, including the hyphen, and are checked by extracting the selection from the rectangles again. The saved text follows Zotero's text extraction for that target range. The search tests alternatives for up to three marked breaks in a source selection and one explicit change to the extracted target text per location.
 
 ## Several occurrences and context
 
@@ -76,7 +83,6 @@ Han, Hiragana, Katakana, Thai, Lao, Khmer, Myanmar, and Tibetan text is written 
 
 - A word added before or after an unchanged quote (`valid` becoming `not valid`), or a number changed elsewhere in the sentence.
 - Scientific notation, units, percentages, fractions, and numbers grouped with spaces.
-- Words split across lines by hyphenation. If the PDF's text layer leaves the break hyphen out, which is common, the word matches like any other, and this was checked in German, Spanish, French, and Portuguese. If the text layer keeps the hyphen, as in the recorded `pa- / rameters` case, the hyphen belongs to the text and the rectangle can differ from an independent measurement.
 - Inflection. In languages such as Russian or German, `кот` followed by an ending (`кота`) is a different word, so it is reported as doubtful by design.
 - Glued superscripts. A footnote marker attached directly to a word can make that word doubtful when the marker changes.
 

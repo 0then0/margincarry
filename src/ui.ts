@@ -1,7 +1,8 @@
 import { analyze } from './analysis.ts';
+import { SOFT_HYPHEN } from './hyphenation.ts';
 import { Localization, localeNames, locales, type UiKey } from './l10n.ts';
-import { doubtful } from './matching.ts';
-import type { Candidate, Plan, Position, Proposal, Selection } from './model.ts';
+import { boundaryDiffers, doubtful } from './matching.ts';
+import type { Candidate, HyphenJoin, Plan, Position, Proposal, Selection } from './model.ts';
 import { PAGE_BREAK } from './text.ts';
 import type { TransferService } from './transfer.ts';
 import type { ZoteroAdapter } from './zotero.ts';
@@ -9,7 +10,7 @@ import type { ZoteroAdapter } from './zotero.ts';
 export class TransferWindow {
   private plan: Plan | null = null;
   private controller: AbortController | null = null;
-  private readonly accepted = new Map<string, string>();
+  private readonly accepted = new Map<string, Selection>();
   private readonly skipped = new Set<string>();
   private activeIndex = 0;
   private previewVersion = 0;
@@ -56,6 +57,15 @@ export class TransferWindow {
   }
   private candidatePages(c: Candidate): string {
     return c.nextPage ? `${c.pageLabel}–${c.nextPage.pageLabel}` : c.pageLabel;
+  }
+  private hyphen(j: HyphenJoin): string {
+    return this.t(j.pageBreak ? 'hyphenPageBreak' : 'hyphenLineBreak', {
+      page: j.pageBreak ? `${j.pageLabel}–${j.nextPageLabel}` : j.pageLabel,
+      before: j.fragment.before,
+      mark: j.mark === SOFT_HYPHEN ? this.t('softHyphen') : j.mark,
+      after: j.fragment.after,
+      reading: this.t(j.reading === 'removed' ? 'hyphenRemoved' : 'hyphenKept'),
+    });
   }
   private el<T extends HTMLElement>(id: string): T {
     return this.win.document.getElementById(id) as T;
@@ -136,8 +146,9 @@ export class TransferWindow {
     };
     this.el('accept-unique').onclick = () => {
       for (const p of this.plan?.proposals ?? []) {
-        if (p.recommendedID && p.status === 'unique candidate' && !this.skipped.has(p.source.key))
-          this.accepted.set(p.source.key, p.recommendedID);
+        const c = p.candidates.find((c) => c.id === p.recommendedID);
+        if (c && !doubtful(c) && p.status === 'unique candidate' && !this.skipped.has(p.source.key))
+          this.accepted.set(p.source.key, { sourceKey: p.source.key, candidateID: c.id });
       }
       this.renderList();
       this.reviewSet();
@@ -283,9 +294,9 @@ export class TransferWindow {
   private reviewSet(): void {
     const review = this.el('review');
     review.replaceChildren();
-    for (const [key, id] of this.accepted) {
+    for (const [key, { candidateID }] of this.accepted) {
       const proposal = this.plan?.proposals.find((p) => p.source.key === key),
-        c = proposal?.candidates.find((x) => x.id === id);
+        c = proposal?.candidates.find((x) => x.id === candidateID);
       if (!proposal || !c) continue;
       const line = this.win.document.createElement('li');
       line.textContent = this.t('reviewLine', {
@@ -325,7 +336,6 @@ export class TransferWindow {
         tags: p.source.tags.join(', ') || this.t('noTags'),
       }),
     );
-    this.text('source-context', `${p.sourcePrefix}【${p.source.text}】${p.sourceSuffix}`);
     const sourceParts = this.parts(p.source.position);
     this.text(
       'source-page',
@@ -354,11 +364,11 @@ export class TransferWindow {
     for (const [index, c] of p.candidates.entries()) {
       const option = this.win.document.createElement('option');
       option.value = c.id;
-      option.textContent = `${p.candidates.length > 1 ? this.t('variant', { index: index + 1 }) : ''}${this.t(c.nextPage ? 'candidatePages' : 'candidate', { page: this.candidatePages(c), method: this.t(c.method) })}${c.contextMatches ? this.t('contextMatch') : ''}${doubtful(c) ? this.t('boundaryDiffers') : ''}${c.geometryError ? this.t('noGeometry') : ''}`;
+      option.textContent = `${p.candidates.length > 1 ? this.t('variant', { index: index + 1 }) : ''}${this.t(c.nextPage ? 'candidatePages' : 'candidate', { page: this.candidatePages(c), method: this.t(c.hyphenation ? 'hyphenation' : c.method) })}${c.contextMatches ? this.t('contextMatch') : ''}${boundaryDiffers(c) ? this.t('boundaryDiffers') : ''}${c.geometryError ? this.t('noGeometry') : ''}`;
       select.append(option);
     }
     select.value =
-      this.accepted.get(p.source.key) ??
+      this.accepted.get(p.source.key)?.candidateID ??
       p.recommendedID ??
       (mustChoose ? '' : (p.candidates[0]?.id ?? ''));
     select.onchange = this.handle(async () => {
@@ -409,9 +419,20 @@ export class TransferWindow {
           : this.t('noTarget'),
     );
     this.text(
-      'target-context',
-      c ? `${c.prefix}【${c.text.replaceAll(PAGE_BREAK, '\n')}】${c.suffix}` : '',
+      'source-context',
+      `${p.sourcePrefix}【${(p.sourcePrintedText ?? p.source.text).replaceAll(PAGE_BREAK, '\n')}】${p.sourceSuffix}`,
     );
+    this.text(
+      'target-context',
+      c
+        ? `${c.prefix}【${(c.printedText ?? c.text).replaceAll(PAGE_BREAK, '\n')}】${c.suffix}`
+        : '',
+    );
+    for (const side of ['source', 'target'] as const) {
+      const details = c?.hyphenation?.filter((j) => j.side === side) ?? [];
+      this.text(`${side}-hyphens`, details.map((j) => this.hyphen(j)).join('\n'));
+      this.el(`${side}-hyphens`).hidden = !details.length;
+    }
     this.text('geometry', c?.geometryError ? this.l10n.message(c.geometryError) : '');
     const sourceParts = this.parts(p.source.position),
       targetParts = c?.position ? this.parts(c.position) : [];
@@ -468,7 +489,11 @@ export class TransferWindow {
       c = this.chosen();
     if (this.applying || this.controller || !p || !c?.position || this.plan?.state !== 'review')
       return;
-    this.accepted.set(p.source.key, c.id);
+    this.accepted.set(p.source.key, {
+      sourceKey: p.source.key,
+      candidateID: c.id,
+      ...(c.hyphenation ? { manuallyConfirmed: true } : {}),
+    });
     this.skipped.delete(p.source.key);
     this.renderList();
     this.next();
@@ -482,10 +507,7 @@ export class TransferWindow {
   }
   private async apply(): Promise<void> {
     if (!this.plan || this.applying || this.controller || !this.accepted.size) return;
-    const selections: Selection[] = [...this.accepted].map(([sourceKey, candidateID]) => ({
-      sourceKey,
-      candidateID,
-    }));
+    const selections = [...this.accepted.values()];
     if (
       !this.win.confirm(
         this.t('applyConfirm', { count: selections.length, title: this.plan.target.title }),

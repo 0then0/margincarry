@@ -81,6 +81,12 @@ export const ui: Record<UiKey, string> = {
   candidate: 'Страница {page} · {method}',
   exact: 'точное совпадение',
   normalized: 'нормализованное совпадение',
+  hyphenation: 'возможный перенос слова',
+  hyphenLineBreak: 'Страница {page} · перенос строки · {before}{mark} ↵ {after} · {reading}',
+  hyphenPageBreak: 'Страницы {page} · разрыв страницы · {before}{mark} ↵ {after} · {reading}',
+  softHyphen: '[мягкий дефис U+00AD]',
+  hyphenRemoved: 'дефис пропущен при поиске',
+  hyphenKept: 'дефис сохранён при поиске',
   contextMatch: ' · контекст совпадает',
   outcome: '{status}: {reason}',
   boundaryDiffers: ' · граница слова или числа отличается',
@@ -141,6 +147,10 @@ export const messages: Record<Message, string> = {
   'One text occurrence; verify the PDF position.': 'Одно вхождение текста; проверьте место в PDF.',
   'One text occurrence; word boundaries cannot be checked for this script. Verify the PDF position.':
     'Одно вхождение текста; для этой письменности границы слов проверить нельзя. Проверьте место в PDF.',
+  'The line-end hyphen may belong to the word. Compare both PDFs and confirm the location manually.':
+    'Дефис на конце строки может быть частью слова. Сравните оба PDF и подтвердите место вручную.',
+  'Choose and accept the word-break candidate before applying.':
+    'Выберите и подтвердите кандидат с переносом слова перед применением.',
   'The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually.':
     'Цитата встречается только там, где граница слова или числа отличается от исходного выделения; перенос не рекомендуется. Проверьте PDF, прежде чем выбирать вручную.',
   'Several occurrences require a human choice.': 'Выберите нужное вхождение вручную.',
@@ -171,7 +181,6 @@ export const messages: Record<Message, string> = {
   'Empty source range.': 'Исходный диапазон пуст.',
   'Discontinuous source annotation.': 'Исходная аннотация состоит из разрозненных частей.',
   'Missing source text offsets.': 'Нет смещений исходного текста.',
-  'Missing normalized text offsets.': 'Нет смещений нормализованного текста.',
   'Source text and source geometry disagree; the complete selection cannot be verified.':
     'Текст и координаты источника не совпадают; выделение целиком проверить нельзя.',
   'Documents or annotations changed during analysis. Run analysis again.':

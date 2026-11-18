@@ -87,6 +87,8 @@ export class TransferService {
           !['highlight', 'underline'].includes(proposal.source.type)
         )
           throw new Error('Selected proposal has no verified geometry.');
+        if (candidate.hyphenation?.length && selection.manuallyConfirmed !== true)
+          throw new Error('Choose and accept the word-break candidate before applying.');
         return {
           key: this.store.newKey(),
           sourceKey: proposal.source.key,

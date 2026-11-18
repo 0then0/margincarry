@@ -82,6 +82,12 @@ export const ui: Record<UiKey, string> = {
   candidate: 'Página {page} · {method}',
   exact: 'exacta',
   normalized: 'normalizada',
+  hyphenation: 'posible división de palabra',
+  hyphenLineBreak: 'Página {page} · salto de línea · {before}{mark} ↵ {after} · {reading}',
+  hyphenPageBreak: 'Páginas {page} · salto de página · {before}{mark} ↵ {after} · {reading}',
+  softHyphen: '[guion discrecional U+00AD]',
+  hyphenRemoved: 'guion omitido en la búsqueda',
+  hyphenKept: 'guion conservado en la búsqueda',
   contextMatch: ' · el contexto coincide',
   outcome: '{status}: {reason}',
   boundaryDiffers: ' · el límite de palabra o número difiere',
@@ -146,6 +152,10 @@ export const messages: Record<Message, string> = {
     'Una coincidencia de texto; verifique la posición en el PDF.',
   'One text occurrence; word boundaries cannot be checked for this script. Verify the PDF position.':
     'Una coincidencia de texto; en esta escritura no se pueden comprobar los límites de palabra. Verifique la posición en el PDF.',
+  'The line-end hyphen may belong to the word. Compare both PDFs and confirm the location manually.':
+    'El guion al final de la línea puede formar parte de la palabra. Compara ambos PDF y confirma la ubicación manualmente.',
+  'Choose and accept the word-break candidate before applying.':
+    'Elige y acepta la propuesta con división de palabra antes de aplicarla.',
   'The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually.':
     'La cita solo aparece donde el límite de palabra o número difiere de la selección de origen; no se recomienda ninguna transferencia. Revise el PDF antes de elegir una manualmente.',
   'Several occurrences require a human choice.': 'Elija manualmente la coincidencia correcta.',
@@ -176,7 +186,6 @@ export const messages: Record<Message, string> = {
   'Empty source range.': 'El intervalo de origen está vacío.',
   'Discontinuous source annotation.': 'La anotación de origen es discontinua.',
   'Missing source text offsets.': 'Faltan los desplazamientos del texto de origen.',
-  'Missing normalized text offsets.': 'Faltan los desplazamientos del texto normalizado.',
   'Source text and source geometry disagree; the complete selection cannot be verified.':
     'El texto y las coordenadas de origen no coinciden; no se puede verificar la selección completa.',
   'Documents or annotations changed during analysis. Run analysis again.':

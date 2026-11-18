@@ -81,6 +81,12 @@ export const ui: Record<UiKey, string> = {
   candidate: 'Página {page} · {method}',
   exact: 'exata',
   normalized: 'normalizada',
+  hyphenation: 'possível divisão de palavra',
+  hyphenLineBreak: 'Página {page} · quebra de linha · {before}{mark} ↵ {after} · {reading}',
+  hyphenPageBreak: 'Páginas {page} · quebra de página · {before}{mark} ↵ {after} · {reading}',
+  softHyphen: '[hífen condicional U+00AD]',
+  hyphenRemoved: 'hífen ignorado na busca',
+  hyphenKept: 'hífen mantido na busca',
   contextMatch: ' · o contexto coincide',
   outcome: '{status}: {reason}',
   boundaryDiffers: ' · o limite da palavra ou do número é diferente',
@@ -145,6 +151,10 @@ export const messages: Record<Message, string> = {
     'Uma ocorrência do texto; verifique a posição no PDF.',
   'One text occurrence; word boundaries cannot be checked for this script. Verify the PDF position.':
     'Uma ocorrência do texto; os limites de palavra não podem ser verificados nesta escrita. Verifique a posição no PDF.',
+  'The line-end hyphen may belong to the word. Compare both PDFs and confirm the location manually.':
+    'O hífen no fim da linha pode fazer parte da palavra. Compare os dois PDFs e confirme o local manualmente.',
+  'Choose and accept the word-break candidate before applying.':
+    'Escolha e aceite a proposta com divisão de palavra antes de aplicá-la.',
   'The quote occurs only where the word or number boundary differs from the source selection; no transfer is recommended. Check the PDF before choosing one manually.':
     'A citação só aparece onde o limite da palavra ou do número difere da seleção de origem; nenhuma transferência é recomendada. Confira o PDF antes de escolher uma manualmente.',
   'Several occurrences require a human choice.': 'Escolha manualmente a ocorrência correta.',
@@ -175,7 +185,6 @@ export const messages: Record<Message, string> = {
   'Empty source range.': 'O intervalo de origem está vazio.',
   'Discontinuous source annotation.': 'A anotação de origem é descontínua.',
   'Missing source text offsets.': 'Faltam as posições do texto de origem.',
-  'Missing normalized text offsets.': 'Faltam as posições do texto normalizado.',
   'Source text and source geometry disagree; the complete selection cannot be verified.':
     'O texto e as coordenadas de origem não coincidem; não é possível verificar a seleção completa.',
   'Documents or annotations changed during analysis. Run analysis again.':
