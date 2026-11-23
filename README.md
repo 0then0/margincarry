@@ -14,7 +14,7 @@ Nothing is written until you confirm. Your original annotations and PDF files ar
 
 ## Features
 
-- Transfers native highlights and underlines between two PDF attachments of the same Zotero item.
+- Transfers native highlights and underlines between two PDFs in your personal Zotero library, including a preprint and published article saved as separate items.
 - Shows the original and the proposed location on the actual PDF pages, and opens either in the Zotero reader. A passage that runs over a page break is shown, opened, and transferred as one annotation on its two pages.
 - Shows possible word breaks introduced or removed during layout changes. Review the indicated hyphen and choose the exact location before accepting.
 - Matches text exactly: only Unicode normalization and whitespace differences are tolerated, so a changed number or a negated sentence is never moved silently.
@@ -26,7 +26,7 @@ Nothing is written until you confirm. Your original annotations and PDF files ar
 ## Requirements
 
 - Zotero **10.0.5 or a later 10.0.x release** on desktop.
-- Two PDF attachments of the same bibliographic item in your personal library, both available locally.
+- Two locally available PDF attachments of bibliographic items in the same writable personal library.
 - A text layer in the new PDF. Scanned PDFs without text are reported as such; there is no OCR.
 
 MarginCarry has been tested on macOS only. Windows and Linux have not been verified. See [Validation](docs/validation.md) for exactly what has been checked.
@@ -47,13 +47,13 @@ The menu and the window follow Zotero's language. Other languages fall back to E
 
 ## Transfer annotations
 
-1. Add the new PDF revision to the same item as the old one, then select both attachments (or the item).
-2. Open **Tools → MarginCarry: transfer PDF annotations…**. Check **Old PDF** and **New PDF**; the swap button reverses the direction.
+1. Select both PDF attachments in Zotero. If both belong to one item, you can also select that item.
+2. Open **Tools → MarginCarry: transfer PDF annotations…**. Check the item title and file name under **Old PDF** and **New PDF**. If both are the same, MarginCarry shows each item's type and attachment key. Use the swap button to reverse the direction.
 3. Click **Find proposals**. Every annotation of the old PDF gets an outcome. You can cancel at any time before writing.
 4. Select an annotation in the list and compare the two previews, the quoted text, and the surrounding context. Use the reader buttons to look at either location in context.
 5. Click **Accept proposal** to add it to the set, or **Skip**. When a quote has several possible locations you must choose one yourself.
 6. **Select unique proposals** accepts every proposal that has exactly one well-founded location. Review the set it builds before you continue.
-7. Check the list under **Selected to write**, click **Apply selected**, and confirm. MarginCarry creates new annotations in the new PDF.
+7. Check the list under **Selected to write**, click **Apply selected**, and confirm. For PDFs attached to different items, the confirmation names the source and target items and files. MarginCarry creates copies only in the target PDF and keeps both records, their attachments, and the source annotations in place. If either PDF was moved to another item after analysis, check the pair and run analysis again.
 8. **Undo last transfer** moves only that transfer's copies to the Zotero Trash. The copies also disappear from an open reader. [Screenshot after Undo](docs/images/undo.png).
 
 Copies receive new annotation keys. Existing links in Zotero notes keep opening the original annotations.
@@ -66,7 +66,7 @@ Copies receive new annotation keys. Existing links in Zotero notes keep opening 
 2. Choose a completed transfer for the same item and click **Preview links**. Check the old and new page labels. Links without a confirmed match stay as they are.
 3. Click **Save a copy** to create a new child note under the same item, then **Show copied note** to find it. Click a highlight or underline in the copy and choose **Go to Page** to open the transferred annotation. The original note still opens the old annotation.
 
-The command updates embedded links for highlights and underlines from the selected transfer. It keeps the quoted text, your comments and formatting, and other links. Saving requires at least one confirmed match.
+The command updates embedded links for highlights and underlines from the selected transfer. It keeps the quoted text, your comments and formatting, and other links. Saving requires at least one confirmed match. Note copying is available for transfers within the note's own item.
 
 ## Understanding the outcomes
 
@@ -88,7 +88,7 @@ The plugin stores one file, `margincarry/transfers.json`, in Zotero's data direc
 ## Limitations
 
 - Only native highlights and underlines on one page or on two adjacent pages are transferred. A header, footer, or page number between parts can prevent transfer. Word breaks at page edges require continuous reader order and manual confirmation. Ink, image, and note annotations, and selections longer than two adjacent pages, are outside this workflow.
-- Only personal libraries, and only two attachments of one item. There is no group-library, EPUB, or library-wide support.
+- Transfers cover two selected local PDFs within one personal library. Group libraries, transfers between libraries, and automatic version discovery are outside this workflow.
 - Matching is exact. There is no fuzzy matching, no translation, and no OCR. A rewritten sentence is reported as not found rather than guessed.
 - The plugin uses internal Zotero reader APIs, so a future Zotero release can require an update. The manifest accepts Zotero 10.0.x only.
 - Very large pages may not preview; open the location in the reader instead.

@@ -19,8 +19,11 @@ function fixture() {
     id: 1,
     key: 'PDFOLD01',
     parentID: 9,
+    parentTitle: 'Paper',
+    parentType: 'Journal Article',
     libraryID: 1,
     title: 'old',
+    filename: 'old.pdf',
     itemFingerprint: 'old item',
     file: { path: 'old.pdf', hash: 'old hash', size: 10, modified: 1 },
     annotations: [annotation],
@@ -30,6 +33,7 @@ function fixture() {
     id: 2,
     key: 'PDFNEW01',
     title: 'new',
+    filename: 'new.pdf',
     itemFingerprint: 'new item',
     annotations: [],
   };
@@ -195,6 +199,78 @@ test('journal blocks reapplication after restart or recalculation', async () => 
   await assert.rejects(new TransferService(store).apply(again, selected), /already transferred/);
   assert.equal(store.copies.length, 1);
 });
+test('a transfer between items blocks repeats by attachment and source keys, then undoes only its copy', async () => {
+  const { service, store, plan, selected } = fixture();
+  store.target.parentID = plan.target.parentID = 10;
+  store.target.parentTitle = plan.target.parentTitle = 'Published paper';
+  const create = store.create.bind(store);
+  store.create = async (id, copy) => {
+    assert.equal(id, plan.target.id);
+    return create(id, copy);
+  };
+  const original = structuredClone(store.source);
+  const record = await service.apply(plan, selected);
+  assert.equal(record.betweenItems, true);
+  assert.equal(record.sourceKey, plan.source.key);
+  assert.equal(record.targetKey, plan.target.key);
+  assert.equal(record.created[0]!.sourceKey, selected[0]!.sourceKey);
+
+  // A new analysis after moving the target back to the source item sees the same attachment pair.
+  store.target.parentID = store.source.parentID;
+  store.target.parentTitle = store.source.parentTitle;
+  const again: Plan = { ...plan, id: 'reanalyzed', target: store.target, state: 'review' };
+  const restarted = new TransferService(store);
+  await assert.rejects(restarted.apply(again, selected), /already transferred/);
+  assert.equal(store.copies.length, 1);
+  assert.equal(store.records.length, 1);
+  assert.deepEqual(await restarted.undoLast(), { id: plan.id, count: 1 });
+  assert.equal(store.rows.get(record.created[0]!.key), 'trashed');
+  assert.equal(store.rows.get('EXISTING'), 'existing fingerprint');
+  assert.deepEqual(store.source, original);
+  assert.equal(store.target.parentID, original.parentID);
+});
+
+test('reparenting invalidates a reviewed pair even if the selected annotation was already copied', async () => {
+  const { service, store, plan, selected } = fixture();
+  store.target.parentID = plan.target.parentID = 10;
+  await service.apply(plan, selected);
+  const review: Plan = { ...structuredClone(plan), id: 'reanalyzed', state: 'review' };
+  const writes = store.writeCount;
+  store.target.parentID = 11;
+
+  await assert.rejects(service.apply(review, selected), /Check the pair and run analysis again/);
+  assert.equal(review.state, 'failed');
+  assert.equal(store.copies.length, 1);
+  assert.equal(store.writeCount, writes);
+});
+
+test('an attachment that becomes unavailable after preview invalidates the plan without writing', async () => {
+  const { service, store, plan, selected } = fixture();
+  store.target.parentID = plan.target.parentID = 10;
+  const snapshot = store.snapshot.bind(store);
+  store.snapshot = async (id) => {
+    if (id === plan.target.id)
+      throw new Error('Choose local PDFs attached to items in your writable personal library.');
+    return snapshot(id);
+  };
+
+  await assert.rejects(service.apply(plan, selected), /Choose local PDFs attached to items/u);
+  assert.equal(plan.state, 'failed');
+  assert.equal(store.copies.length, 0);
+  assert.equal(store.writeCount, 0);
+});
+
+for (const side of ['source', 'target'] as const) {
+  test(`moving the ${side} PDF after preview invalidates the plan before any write`, async () => {
+    const { service, store, plan, selected } = fixture();
+    store.target.parentID = plan.target.parentID = 10;
+    store[side].parentID = 11;
+    await assert.rejects(service.apply(plan, selected), /Check the pair and run analysis again/);
+    assert.equal(plan.state, 'failed');
+    assert.equal(store.copies.length, 0);
+    assert.equal(store.writeCount, 0);
+  });
+}
 test('a word-break proposal requires explicit confirmation at the write boundary', async () => {
   const { service, store, plan, selected } = fixture();
   plan.proposals[0]!.candidates[0]!.hyphenation = [

@@ -42,12 +42,17 @@ export interface FileStamp {
   size: number;
   modified: number;
 }
-export interface Snapshot {
+export interface AttachmentChoice {
   id: number;
   key: string;
   parentID: number;
-  libraryID: number;
+  parentTitle: string;
+  parentType: string;
   title: string;
+  filename: string;
+}
+export interface Snapshot extends AttachmentChoice {
+  libraryID: number;
   itemFingerprint: string;
   file: FileStamp;
   annotations: Annotation[];
@@ -162,6 +167,8 @@ export interface TransferRecord {
   libraryID: number;
   sourceKey: string;
   targetKey: string;
+  /** Transfers between items cannot be used to copy notes, even if a PDF is moved later. */
+  betweenItems?: true;
   sourceFile: FileStamp;
   targetFile: FileStamp;
   status: 'prepared' | 'committed' | 'failed' | 'undo-prepared' | 'undone';

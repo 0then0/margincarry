@@ -10,7 +10,8 @@ export const ui: Record<UiKey, string> = {
   noteCopySave: 'Enregistrer une copie',
   noteCopyOpen: 'Afficher la note copiée',
   noteCopyReview: 'Vérifiez les liens, puis enregistrez la copie.',
-  noteCopyNoOperations: 'Aucun transfert terminé pour le document auquel cette note est rattachée.',
+  noteCopyNoOperations:
+    'Pour copier la note, un transfert doit avoir été effectué entre deux PDF rattachés au document de cette note.',
   noteCopyNoPair: 'p. {page} · Aucune correspondance confirmée · {text}',
   noteCopyCreated: 'La copie de la note a été enregistrée.',
   subtitle:
@@ -48,7 +49,7 @@ export const ui: Record<UiKey, string> = {
   ready:
     'Choisissez le sens du transfert et lancez l’analyse. Aucune annotation n’est écrite automatiquement.',
   choosePair:
-    'Fermez cette fenêtre et sélectionnez deux pièces jointes PDF d’un même document, ou le document bibliographique.',
+    'Fermez cette fenêtre et sélectionnez deux pièces jointes PDF de votre bibliothèque personnelle ou un document comportant plusieurs PDF.',
   uniqueSelected: 'Propositions uniques sélectionnées. Vérifiez la sélection avant de l’appliquer.',
   undoConfirm:
     'Annuler le dernier transfert ? Seules ses copies seront placées dans la corbeille. Si une copie a été modifiée, l’annulation s’arrête avec un conflit.',
@@ -110,6 +111,10 @@ export const ui: Record<UiKey, string> = {
   targetImageNext: 'Suite de la sélection proposée sur la page PDF suivante',
   applyConfirm:
     'Appliquer la sélection ({count}) à « {title} » ? Les annotations d’origine sont conservées. Les copies reçoivent de nouvelles clés.',
+  applyConfirmBetweenItems:
+    'Copier la sélection ({count}) dans un autre document Zotero ?\n\nPDF source\n{source}\n\nPDF cible\n{target}',
+  crossItemNoteCopy:
+    'Pour copier des notes, les deux PDF doivent être rattachés au même document Zotero.',
   writing: 'Vérification des modifications et écriture…',
   created:
     'Annotations Zotero créées : {count}. Le transfert est enregistré dans le journal local.',
@@ -208,19 +213,19 @@ export const messages: Record<Message, string> = {
     'La proposition sélectionnée n’a pas de coordonnées vérifiées.',
   'PDF or annotations changed since analysis. Recalculate the plan.':
     'Le PDF ou les annotations ont changé depuis l’analyse. Relancez l’analyse.',
+  'A PDF moved to another Zotero item. Check the pair and run analysis again.':
+    'Un PDF a été déplacé vers un autre document Zotero. Vérifiez les deux PDF et relancez l’analyse.',
   'Documents or annotations changed during application. The operation was rolled back.':
     'Des documents ou des annotations ont changé pendant l’écriture. L’opération a été annulée.',
   'Copies were committed, but the final journal update failed. Reopen MarginCarry to recover the journal; do not reapply.':
     'Les copies ont été enregistrées, mais la dernière mise à jour du journal a échoué. Rouvrez MarginCarry pour récupérer le journal et n’appliquez pas le plan une seconde fois.',
   'No completed transfer to undo.': 'Aucun transfert terminé à annuler.',
-  'Choose local PDF attachments of one item in your personal library.':
-    'Choisissez des pièces jointes PDF locales d’un même document de votre bibliothèque personnelle.',
+  'Choose local PDFs attached to items in your writable personal library.':
+    'Choisissez des PDF locaux rattachés à des documents dans votre bibliothèque personnelle accessible en écriture.',
   'The PDF is not locally available. Download it first.':
     'Le PDF n’est pas disponible localement. Téléchargez-le d’abord.',
   'The source and target must be different attachments.':
     'La source et la cible doivent être des pièces jointes différentes.',
-  'Two attachments of the same bibliographic item are required.':
-    'Deux pièces jointes du même document bibliographique sont nécessaires.',
   'PDF reader initialization timed out. Open the PDF and retry.':
     'Le démarrage du lecteur PDF a expiré. Ouvrez le PDF et réessayez.',
   'Zotero could not open the PDF reader.': 'Zotero n’a pas pu ouvrir le lecteur PDF.',

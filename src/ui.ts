@@ -2,7 +2,15 @@ import { analyze } from './analysis.ts';
 import { SOFT_HYPHEN } from './hyphenation.ts';
 import { Localization, localeNames, locales, type UiKey } from './l10n.ts';
 import { boundaryDiffers, doubtful } from './matching.ts';
-import type { Candidate, HyphenJoin, Plan, Position, Proposal, Selection } from './model.ts';
+import type {
+  AttachmentChoice,
+  Candidate,
+  HyphenJoin,
+  Plan,
+  Position,
+  Proposal,
+  Selection,
+} from './model.ts';
 import { PAGE_BREAK } from './text.ts';
 import type { TransferService } from './transfer.ts';
 import type { ZoteroAdapter } from './zotero.ts';
@@ -16,6 +24,7 @@ export class TransferWindow {
   private previewVersion = 0;
   private applying = false;
   private closed = false;
+  private choices: AttachmentChoice[] = [];
   private readonly l10n: Localization;
   private readonly win: Window;
   private readonly adapter: ZoteroAdapter;
@@ -111,17 +120,22 @@ export class TransferWindow {
           this.text('apply-result', this.t('applied', { count: this.accepted.size }));
       });
     }
-    const choices = await this.adapter.choices(ids);
+    this.choices = await this.adapter.choices(ids);
     for (const id of ['old', 'new']) {
       const select = this.el<HTMLSelectElement>(id);
-      for (const choice of choices) {
+      for (const choice of this.choices) {
         const option = this.win.document.createElement('option');
         option.value = String(choice.id);
-        option.textContent = choice.title;
+        option.textContent = this.choices.some(
+          (other) => other.id !== choice.id && other.title === choice.title,
+        )
+          ? this.pdfLabel(choice, this.choices)
+          : choice.title;
         select.append(option);
       }
     }
-    if (choices.length > 1) this.el<HTMLSelectElement>('new').selectedIndex = 1;
+    if (this.choices.length > 1) this.el<HTMLSelectElement>('new').selectedIndex = 1;
+    this.renderDirection();
     this.el('analyze').onclick = this.handle(() => this.runAnalysis());
     this.el('cancel').onclick = () => {
       this.controller?.abort();
@@ -173,7 +187,29 @@ export class TransferWindow {
       this.previewVersion++;
     });
     await this.service.journal();
-    this.status(choices.length >= 2 ? this.t('ready') : this.t('choosePair'));
+    this.status(this.choices.length >= 2 ? this.t('ready') : this.t('choosePair'));
+  }
+  private pdfLabel(pdf: AttachmentChoice, choices: readonly AttachmentChoice[]): string {
+    const sameName = choices.some(
+      (other) =>
+        other.id !== pdf.id &&
+        other.parentTitle === pdf.parentTitle &&
+        other.filename === pdf.filename,
+    );
+    return sameName
+      ? `${pdf.parentTitle} (${pdf.parentType}) · ${pdf.filename} [${pdf.key}]`
+      : `${pdf.parentTitle} · ${pdf.filename}`;
+  }
+  private renderDirection(): void {
+    const choices = this.plan ? [this.plan.source, this.plan.target] : this.choices;
+    const [source, target] = ['old', 'new'].map((id) => {
+      const selectedID = Number(this.el<HTMLSelectElement>(id).value);
+      return choices.find((choice) => choice.id === selectedID);
+    });
+    this.text('old-pdf', source ? this.pdfLabel(source, choices) : '');
+    this.text('new-pdf', target ? this.pdfLabel(target, choices) : '');
+    this.el('cross-item-note-copy').hidden =
+      !source || !target || source.parentID === target.parentID;
   }
   private languageState(): void {
     for (const locale of locales)
@@ -210,6 +246,7 @@ export class TransferWindow {
   }
   private clearPlan(): void {
     this.plan = null;
+    this.renderDirection();
     this.accepted.clear();
     this.skipped.clear();
     this.previewVersion++;
@@ -238,6 +275,7 @@ export class TransferWindow {
         (value) => this.status(value),
       );
       if (this.closed) return;
+      this.renderDirection();
       this.activeIndex = 0;
       this.renderList();
       await this.show();
@@ -506,14 +544,20 @@ export class TransferWindow {
     }
   }
   private async apply(): Promise<void> {
-    if (!this.plan || this.applying || this.controller || !this.accepted.size) return;
-    const selections = [...this.accepted.values()];
-    if (
-      !this.win.confirm(
-        this.t('applyConfirm', { count: selections.length, title: this.plan.target.title }),
-      )
-    )
+    if (this.plan?.state !== 'review' || this.applying || this.controller || !this.accepted.size)
       return;
+    const selections = [...this.accepted.values()];
+    const { source, target } = this.plan;
+    const pair = [source, target];
+    const prompt =
+      source.parentID === target.parentID
+        ? this.t('applyConfirm', { count: selections.length, title: target.title })
+        : this.t('applyConfirmBetweenItems', {
+            count: selections.length,
+            source: this.pdfLabel(source, pair),
+            target: this.pdfLabel(target, pair),
+          });
+    if (!this.win.confirm(prompt)) return;
     this.lock(true);
     this.status(this.t('writing'));
     try {

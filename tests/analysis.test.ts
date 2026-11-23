@@ -2,18 +2,143 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { analyze } from '../src/analysis.ts';
 import type { Snapshot } from '../src/model.ts';
-import type { ZoteroAdapter } from '../src/zotero.ts';
+import { ZoteroAdapter } from '../src/zotero.ts';
 
 const snapshot: Snapshot = {
   id: 1,
   key: 'SOURCE',
   parentID: 3,
+  parentTitle: 'Paper',
+  parentType: 'Journal Article',
   libraryID: 1,
   title: 'fixture',
+  filename: 'a.pdf',
   itemFingerprint: 'a',
   file: { path: 'a.pdf', hash: 'a', size: 1, modified: 1 },
   annotations: [],
 };
+
+test('the Zotero adapter opens explicitly selected PDFs from two personal items and rejects a different library', async (t) => {
+  const parent = (id: number, libraryID: number, title: string, attachments: number[] = []) => ({
+    id,
+    itemTypeID: id,
+    libraryID,
+    getDisplayTitle: () => title,
+    isRegularItem: () => true,
+    getAttachments: () => attachments,
+  });
+  const pdf = (id: number, libraryID: number, parentID: number, filename: string) => ({
+    id,
+    key: `PDF${id}`,
+    libraryID,
+    parentID,
+    attachmentFilename: filename,
+    isPDFAttachment: () => true,
+    getFilePathAsync: async () => `/profile/${filename}`,
+    getField: () => 'PDF',
+    getAnnotations: () => [],
+    isAttachment: () => true,
+    toJSON: () => ({ title: filename }),
+  });
+  const published = parent(12, 1, 'Published paper');
+  const publishedPDF = pdf(2, 1, 12, 'published.pdf');
+  const items = new Map(
+    [
+      parent(11, 1, 'Preprint', [1, 4]),
+      published,
+      parent(13, 2, 'Group paper'),
+      pdf(1, 1, 11, 'preprint.pdf'),
+      publishedPDF,
+      pdf(3, 2, 13, 'group.pdf'),
+      pdf(4, 1, 11, 'revised-preprint.pdf'),
+    ].map((item) => [item.id, item]),
+  );
+  Object.assign(globalThis, {
+    PathUtils: { join: (...parts: string[]) => parts.join('/') },
+    IOUtils: {
+      stat: async () => ({ size: 1, lastModified: 1 }),
+      read: async () => new Uint8Array([1]),
+    },
+    Zotero: {
+      DataDirectory: { dir: '/profile' },
+      Libraries: { userLibraryID: 1, get: () => ({ editable: true }) },
+      ItemTypes: {
+        getLocalizedString: (type: number) => (type === 11 ? 'Preprint' : 'Conference Paper'),
+      },
+      Items: {
+        getAsync: async (id: number | number[]) => {
+          if (!id) throw new Error('No arguments provided');
+          return Array.isArray(id)
+            ? id.map((key) => items.get(key)).filter(Boolean)
+            : (items.get(id) ?? false);
+        },
+      },
+    },
+  });
+  t.after(() => {
+    for (const name of ['Zotero', 'PathUtils', 'IOUtils']) Reflect.deleteProperty(globalThis, name);
+  });
+  const adapter = new ZoteroAdapter();
+  assert.deepEqual(await adapter.choices([1, 2]), [
+    {
+      id: 1,
+      key: 'PDF1',
+      parentID: 11,
+      parentTitle: 'Preprint',
+      parentType: 'Preprint',
+      title: 'preprint.pdf',
+      filename: 'preprint.pdf',
+    },
+    {
+      id: 2,
+      key: 'PDF2',
+      parentID: 12,
+      parentTitle: 'Published paper',
+      parentType: 'Conference Paper',
+      title: 'published.pdf',
+      filename: 'published.pdf',
+    },
+  ]);
+  const [source, target] = await adapter.pair(1, 2);
+  assert.equal(source.parentID, 11);
+  assert.equal(target.parentID, 12);
+  assert.deepEqual(
+    (await adapter.choices([11])).map(({ id }) => id),
+    [1, 4],
+  );
+  assert.deepEqual(
+    (await adapter.pair(1, 4)).map(({ parentID }) => parentID),
+    [11, 11],
+  );
+  assert.deepEqual(
+    (await adapter.choices([1, 3])).map(({ id }) => id),
+    [1],
+  );
+  await assert.rejects(adapter.pair(1, 3), /writable personal library/u);
+
+  await t.test('rejects a missing parent reported as false by Zotero', async () => {
+    items.delete(published.id);
+    try {
+      assert.deepEqual(
+        (await adapter.choices([1, 2])).map(({ id }) => id),
+        [1],
+      );
+      await assert.rejects(adapter.snapshot(2), /writable personal library/u);
+    } finally {
+      items.set(published.id, published);
+    }
+  });
+
+  await t.test('rejects detachment while checking the local file', async () => {
+    const getFilePath = publishedPDF.getFilePathAsync;
+    publishedPDF.getFilePathAsync = async () => {
+      publishedPDF.parentID = 0;
+      return getFilePath();
+    };
+    await assert.rejects(adapter.snapshot(2), /writable personal library/u);
+  });
+});
+
 test('analysis cancellation never produces an applicable plan', async () => {
   const controller = new AbortController();
   const adapter = {

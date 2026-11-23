@@ -10,7 +10,8 @@ export const ui: Record<UiKey, string> = {
   noteCopySave: 'Salvar uma cópia',
   noteCopyOpen: 'Mostrar a nota copiada',
   noteCopyReview: 'Confira os links e salve a cópia.',
-  noteCopyNoOperations: 'O item ao qual esta nota pertence não tem transferências concluídas.',
+  noteCopyNoOperations:
+    'Para copiar a nota, é preciso concluir uma transferência entre dois PDFs anexados ao item ao qual ela pertence.',
   noteCopyNoPair: 'p. {page} · Sem correspondência confirmada · {text}',
   noteCopyCreated: 'A cópia da nota foi salva.',
   subtitle: 'Suas anotações em uma nova versão do PDF. Revise cada posição antes de gravar.',
@@ -47,7 +48,7 @@ export const ui: Record<UiKey, string> = {
   ready:
     'Escolha a direção da transferência e inicie a análise. Nenhuma anotação é gravada automaticamente.',
   choosePair:
-    'Feche esta janela e selecione dois anexos em PDF do mesmo item, ou o item bibliográfico.',
+    'Feche esta janela e selecione dois anexos em PDF na sua biblioteca pessoal ou um item com vários PDFs.',
   uniqueSelected: 'Propostas únicas selecionadas. Revise o conjunto antes de aplicar.',
   undoConfirm:
     'Desfazer a última transferência? Somente as cópias dela irão para a Lixeira. Se alguma cópia tiver sido editada, ocorrerá um conflito e nada será desfeito.',
@@ -107,6 +108,9 @@ export const ui: Record<UiKey, string> = {
   targetImageNext: 'Continuação da seleção proposta na página seguinte do PDF',
   applyConfirm:
     'Aplicar a seleção ({count}) em “{title}”? As anotações originais são mantidas. As cópias recebem chaves novas.',
+  applyConfirmBetweenItems:
+    'Copiar a seleção ({count}) para outro item do Zotero?\n\nPDF de origem\n{source}\n\nPDF de destino\n{target}',
+  crossItemNoteCopy: 'Para copiar notas, os dois PDFs devem pertencer ao mesmo item do Zotero.',
   writing: 'Verificando alterações e gravando…',
   created: 'Anotações do Zotero criadas: {count}. A transferência foi salva no registro local.',
   applied: 'Transferidas: {count}. Abra o PDF novo ou desfaça a última transferência.',
@@ -204,19 +208,19 @@ export const messages: Record<Message, string> = {
     'A proposta selecionada não tem coordenadas verificadas.',
   'PDF or annotations changed since analysis. Recalculate the plan.':
     'O PDF ou as anotações mudaram depois da análise. Execute a análise novamente.',
+  'A PDF moved to another Zotero item. Check the pair and run analysis again.':
+    'Um dos PDFs foi movido para outro item do Zotero. Confira os dois PDFs e execute a análise novamente.',
   'Documents or annotations changed during application. The operation was rolled back.':
     'Documentos ou anotações mudaram durante a gravação. A operação foi revertida.',
   'Copies were committed, but the final journal update failed. Reopen MarginCarry to recover the journal; do not reapply.':
     'As cópias foram gravadas, mas a última atualização do registro falhou. Reabra o MarginCarry para recuperar o registro e não aplique o plano novamente.',
   'No completed transfer to undo.': 'Não há nenhuma transferência concluída para desfazer.',
-  'Choose local PDF attachments of one item in your personal library.':
-    'Escolha anexos em PDF locais de um mesmo item da sua biblioteca pessoal.',
+  'Choose local PDFs attached to items in your writable personal library.':
+    'Escolha PDFs locais anexados a itens da sua biblioteca pessoal com permissão de escrita.',
   'The PDF is not locally available. Download it first.':
     'O PDF não está disponível localmente. Baixe-o primeiro.',
   'The source and target must be different attachments.':
     'A origem e o destino devem ser anexos diferentes.',
-  'Two attachments of the same bibliographic item are required.':
-    'São necessários dois anexos do mesmo item bibliográfico.',
   'PDF reader initialization timed out. Open the PDF and retry.':
     'A inicialização do leitor de PDF excedeu o tempo limite. Abra o PDF e tente novamente.',
   'Zotero could not open the PDF reader.': 'O Zotero não conseguiu abrir o leitor de PDF.',

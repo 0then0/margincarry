@@ -61,6 +61,54 @@ export class TransferService {
     return records;
   }
 
+  private async validateReviewedPair(plan: Plan): Promise<void> {
+    try {
+      const source = await this.store.snapshot(plan.source.id);
+      const target = await this.store.snapshot(plan.target.id);
+      if (source.parentID !== plan.source.parentID || target.parentID !== plan.target.parentID)
+        throw new Error(
+          'A PDF moved to another Zotero item. Check the pair and run analysis again.',
+        );
+      if (!snapshotEqual(source, plan.source) || !snapshotEqual(target, plan.target))
+        throw new Error('PDF or annotations changed since analysis. Recalculate the plan.');
+    } catch (error) {
+      plan.state = 'failed';
+      throw error;
+    }
+  }
+
+  private async rejectRepeats(
+    records: TransferRecord[],
+    plan: Plan,
+    selectedKeys: Set<string>,
+  ): Promise<void> {
+    for (const record of records.filter(
+      (r) =>
+        r.status === 'committed' &&
+        r.libraryID === plan.target.libraryID &&
+        r.sourceID === plan.source.id &&
+        r.sourceKey === plan.source.key &&
+        r.targetID === plan.target.id &&
+        r.targetKey === plan.target.key &&
+        r.targetFile.hash === plan.target.file.hash,
+    )) {
+      for (const original of record.originals) {
+        const current = plan.source.annotations.find((a) => a.key === original.key);
+        const copy = record.created.find((c) => c.sourceKey === original.key);
+        if (
+          current?.fingerprint === original.fingerprint &&
+          selectedKeys.has(original.key) &&
+          copy &&
+          (await this.store.fingerprint(record.libraryID, copy.key)) !== null
+        ) {
+          throw new Error(
+            `Source annotation ${original.key} was already transferred. Undo that operation before copying it again.`,
+          );
+        }
+      }
+    }
+  }
+
   async apply(plan: Plan, selections: Selection[]): Promise<TransferRecord> {
     if (this.busy || plan.state !== 'review')
       throw new Error(
@@ -101,28 +149,6 @@ export class TransferService {
           pageLabel: candidate.pageLabel,
         };
       });
-      for (const record of records.filter(
-        (r) =>
-          r.status === 'committed' &&
-          r.sourceID === plan.source.id &&
-          r.targetID === plan.target.id &&
-          r.targetFile.hash === plan.target.file.hash,
-      )) {
-        for (const original of record.originals) {
-          const current = plan.source.annotations.find((a) => a.key === original.key);
-          const copy = record.created.find((c) => c.sourceKey === original.key);
-          if (
-            current?.fingerprint === original.fingerprint &&
-            seen.has(original.key) &&
-            copy &&
-            (await this.store.fingerprint(record.libraryID, copy.key)) !== null
-          ) {
-            throw new Error(
-              `Source annotation ${original.key} was already transferred. Undo that operation before copying it again.`,
-            );
-          }
-        }
-      }
       const record: TransferRecord = {
         schema: 1,
         id: plan.id,
@@ -132,6 +158,7 @@ export class TransferService {
         libraryID: plan.target.libraryID,
         sourceKey: plan.source.key,
         targetKey: plan.target.key,
+        ...(plan.source.parentID !== plan.target.parentID ? { betweenItems: true } : {}),
         sourceFile: plan.source.file,
         targetFile: plan.target.file,
         status: 'prepared',
@@ -140,12 +167,10 @@ export class TransferService {
         originals: plan.source.annotations.filter((a) => seen.has(a.key)),
       };
       // Local write-ahead journal joins the file and Zotero transaction across crashes.
-      records.push(record);
       await this.store.transaction(async () => {
-        const sourceNow = await this.store.snapshot(plan.source.id),
-          targetNow = await this.store.snapshot(plan.target.id);
-        if (!snapshotEqual(sourceNow, plan.source) || !snapshotEqual(targetNow, plan.target))
-          throw new Error('PDF or annotations changed since analysis. Recalculate the plan.');
+        await this.validateReviewedPair(plan);
+        await this.rejectRepeats(records, plan, seen);
+        records.push(record);
         await this.store.writeJournal(records);
         prepared = true;
         for (const copy of copies)
@@ -172,7 +197,7 @@ export class TransferService {
       }
       return record;
     } catch (e) {
-      if (plan.state !== 'applied') plan.state = prepared ? 'failed' : 'review';
+      if (plan.state === 'applying') plan.state = prepared ? 'failed' : 'review';
       throw e;
     } finally {
       this.busy = false;

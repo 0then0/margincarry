@@ -9,7 +9,8 @@ export const ui = {
   noteCopySave: 'Save a copy',
   noteCopyOpen: 'Show copied note',
   noteCopyReview: 'Review the links below, then save the copy.',
-  noteCopyNoOperations: 'No completed transfers for this note’s parent item.',
+  noteCopyNoOperations:
+    'Note copying requires a completed transfer between two PDFs attached to this note’s parent item.',
   noteCopyNoPair: 'p. {page} · No confirmed match · {text}',
   noteCopyCreated: 'Saved the copied note.',
   subtitle: 'Your annotations on a new PDF revision. Review each position before writing.',
@@ -45,7 +46,7 @@ export const ui = {
   ready:
     'Choose the transfer direction and start analysis. No annotations are written automatically.',
   choosePair:
-    'Close this window and select two PDF attachments of one item, or the bibliographic item.',
+    'Close this window and select two PDF attachments in your personal library, or one item with multiple PDFs.',
   uniqueSelected: 'Unique proposals selected. Review the set before applying.',
   undoConfirm:
     'Undo the last transfer? Only its copies will move to Trash. Edited copies cause an undo conflict.',
@@ -105,6 +106,9 @@ export const ui = {
   targetImageNext: 'Proposed selection continued on the next PDF page',
   applyConfirm:
     'Apply {count} selected transfers to “{title}”? Original annotations remain available. New copies receive new links.',
+  applyConfirmBetweenItems:
+    'Copy the selection ({count}) to a different Zotero item?\n\nSource PDF\n{source}\n\nTarget PDF\n{target}',
+  crossItemNoteCopy: 'Copying notes requires both PDFs to belong to the same Zotero item.',
   writing: 'Checking changes and writing…',
   created: 'Created {count} native annotations. Transfer saved in the local journal.',
   applied: 'Transferred: {count}. Open the new PDF or undo the last transfer.',
@@ -169,13 +173,13 @@ export const messages = [
   'One source annotation cannot select multiple occurrences.',
   'Selected proposal has no verified geometry.',
   'PDF or annotations changed since analysis. Recalculate the plan.',
+  'A PDF moved to another Zotero item. Check the pair and run analysis again.',
   'Documents or annotations changed during application. The operation was rolled back.',
   'Copies were committed, but the final journal update failed. Reopen MarginCarry to recover the journal; do not reapply.',
   'No completed transfer to undo.',
-  'Choose local PDF attachments of one item in your personal library.',
+  'Choose local PDFs attached to items in your writable personal library.',
   'The PDF is not locally available. Download it first.',
   'The source and target must be different attachments.',
-  'Two attachments of the same bibliographic item are required.',
   'PDF reader initialization timed out. Open the PDF and retry.',
   'Zotero could not open the PDF reader.',
   'This Zotero reader does not expose the verified PDF adapter API.',

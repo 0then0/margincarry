@@ -11,10 +11,10 @@
   <div><h1>MarginCarry</h1><p data-l10n="subtitle">Your annotations on a new PDF revision. Review each position before writing.</p></div>
   <fieldset class="language"><legend data-l10n="language">Language</legend><div id="language-options"></div></fieldset>
 </header>
-<section class="direction" aria-label="Transfer direction" data-l10n-aria-label="direction">
-  <label><span data-l10n="old">Old PDF</span><select id="old"></select></label>
+<section class="direction transfer-direction" aria-label="Transfer direction" data-l10n-aria-label="direction">
+  <div class="pdf-choice"><label><span data-l10n="old">Old PDF</span><select id="old" aria-describedby="old-pdf"></select></label><p id="old-pdf" class="pdf-label"></p></div>
   <button id="swap" title="Swap direction" data-l10n-title="swap">⇄</button>
-  <label><span data-l10n="new">New PDF</span><select id="new"></select></label>
+  <div class="pdf-choice"><label><span data-l10n="new">New PDF</span><select id="new" aria-describedby="new-pdf"></select></label><p id="new-pdf" class="pdf-label"></p></div>
   <button id="analyze" class="primary" data-l10n="analyze">Find proposals</button>
   <button id="cancel" disabled="disabled" data-l10n="cancel">Cancel analysis</button>
 </section>
@@ -40,5 +40,6 @@
   <div class="review-header"><h2 id="selected-count">Selected to write: 0</h2><button id="apply" class="primary" disabled="disabled" data-l10n="apply">Apply selected</button><button id="undo" data-l10n="undo">Undo last transfer</button></div>
   <ul id="review" aria-label="Specific selected transfers" data-l10n-aria-label="review"></ul><p id="apply-result"></p><button id="open-result" hidden="hidden" data-l10n="openResult">Open created annotation</button>
   <p class="muted" data-l10n="links">Copies receive new IDs. Existing note links continue to open the original annotations.</p>
+  <p id="cross-item-note-copy" class="muted" hidden="hidden" data-l10n="crossItemNoteCopy">Copying notes requires both PDFs to belong to the same Zotero item.</p>
 </footer>
 </body></html>

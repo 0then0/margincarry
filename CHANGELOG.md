@@ -2,6 +2,17 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
+## Unreleased
+
+### Added
+
+- Transfer highlights and underlines between two selected local PDFs attached to different items in one writable personal library. The review shows both item titles and file names, and the final confirmation names the source and target.
+- Moving either PDF to another item after preview requires a new analysis. Repeat protection and Undo use the attachment and annotation identities recorded in the existing journal format. Note copying is available for transfers within the note's item.
+
+### Fixed
+
+- Opening the transfer command again brings the current review window forward without reloading it.
+
 ## [0.5.0] - 2026-11-18
 
 ### Added

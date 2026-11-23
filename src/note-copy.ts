@@ -174,6 +174,7 @@ export class NoteCopyService {
     return records.filter(
       (record) =>
         record.status === 'committed' &&
+        !record.betweenItems &&
         record.libraryID === note.libraryID &&
         record.sourceID !== record.targetID &&
         record.created.length > 0 &&

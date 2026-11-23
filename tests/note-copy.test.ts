@@ -239,6 +239,21 @@ test('an undone transfer cannot save a note from an earlier preview', async () =
   assert.deepEqual(writes, []);
 });
 
+test('a note can use a legacy transfer within its item but never a transfer recorded between items', async () => {
+  const { service, preview, record, writes } = fixture();
+  assert.equal(record.betweenItems, undefined);
+  assert.deepEqual(
+    (await service.choices(noteID)).operations.map(({ id }) => id),
+    [record.id],
+  );
+  assert.ok((await preview()).rows.some(({ newPage }) => newPage !== undefined));
+  // The store still resolves the attachments, as it would if they now share the note's parent.
+  record.betweenItems = true;
+  assert.deepEqual((await service.choices(noteID)).operations, []);
+  await assert.rejects(preview(), /transfer is no longer available/u);
+  assert.deepEqual(writes, []);
+});
+
 test('a deleted target invalidates the preview and is left unlinked in a refreshed preview', async () => {
   const { service, preview, document, state, writes } = fixture();
   const review = await preview();

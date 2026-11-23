@@ -10,7 +10,8 @@ export const ui: Record<UiKey, string> = {
   noteCopySave: 'コピーを保存',
   noteCopyOpen: '複製したノートを表示',
   noteCopyReview: 'リンクを確認してからコピーを保存してください。',
-  noteCopyNoOperations: 'このノートの親アイテムには完了した移行がありません。',
+  noteCopyNoOperations:
+    'ノートをコピーするには、このノートと同じアイテムに添付された2つのPDF間で注釈の移行を完了している必要があります。',
   noteCopyNoPair: '{page}ページ · 対応する注釈を確認できません · {text}',
   noteCopyCreated: 'ノートのコピーを保存しました。',
   subtitle: 'PDFの新しい版へ注釈を移します。書き込む前に、各位置を確認してください。',
@@ -45,7 +46,7 @@ export const ui: Record<UiKey, string> = {
   cancelled: '解析をキャンセルしました。何も書き込まれていません。',
   ready: '移行の方向を選んで解析を開始してください。注釈が自動的に書き込まれることはありません。',
   choosePair:
-    'このウィンドウを閉じて、同じアイテムのPDF添付ファイルを2つ、または文献アイテムを選択してください。',
+    'このウィンドウを閉じて、個人ライブラリからPDF添付ファイルを2つ、またはPDFが複数ある文献アイテムを1つ選択してください。',
   uniqueSelected: '一意の候補を選択しました。適用する前に内容を確認してください。',
   undoConfirm:
     '直前の移行を元に戻しますか？ その移行で作成されたコピーだけがゴミ箱に移動します。コピーが編集されている場合は、競合として中止されます。',
@@ -105,6 +106,10 @@ export const ui: Record<UiKey, string> = {
   targetImageNext: '次のPDFページに続く候補の選択範囲',
   applyConfirm:
     '選択した{count}件を「{title}」に適用しますか？ 元の注釈は残ります。コピーには新しいキーが付きます。',
+  applyConfirmBetweenItems:
+    '選択した注釈{count}件を、別のZoteroアイテムにコピーしますか？\n\nコピー元のPDF\n{source}\n\nコピー先のPDF\n{target}',
+  crossItemNoteCopy:
+    'ノートをコピーするには、2つのPDFが同じZoteroアイテムに添付されている必要があります。',
   writing: '変更を確認して書き込み中…',
   created: 'Zotero注釈を{count}件作成しました。移行内容はローカル履歴に保存されました。',
   applied: '移行しました: {count}件。新しいPDFを開くか、直前の移行を元に戻せます。',
@@ -198,19 +203,19 @@ export const messages: Record<Message, string> = {
   'Selected proposal has no verified geometry.': '選択した候補には検証済みの座標がありません。',
   'PDF or annotations changed since analysis. Recalculate the plan.':
     '解析後にPDFまたは注釈が変更されました。もう一度解析してください。',
+  'A PDF moved to another Zotero item. Check the pair and run analysis again.':
+    'PDFが別のZoteroアイテムに移動されました。2つのPDFを確認して、もう一度解析してください。',
   'Documents or annotations changed during application. The operation was rolled back.':
     '書き込み中に文書または注釈が変更されました。処理は取り消され、変更は元に戻されました。',
   'Copies were committed, but the final journal update failed. Reopen MarginCarry to recover the journal; do not reapply.':
     'コピーは保存されましたが、最後の履歴の更新に失敗しました。MarginCarryを開き直して履歴を復旧してください。プランを再適用しないでください。',
   'No completed transfer to undo.': '元に戻せる完了済みの移行がありません。',
-  'Choose local PDF attachments of one item in your personal library.':
-    '個人ライブラリにある同じアイテムのローカルPDF添付ファイルを選択してください。',
+  'Choose local PDFs attached to items in your writable personal library.':
+    '書き込み可能な個人ライブラリのアイテムから、ローカルに保存されたPDF添付ファイルを選択してください。',
   'The PDF is not locally available. Download it first.':
     'PDFがローカルにありません。先にダウンロードしてください。',
   'The source and target must be different attachments.':
     '移行元と移行先には別々の添付ファイルを指定してください。',
-  'Two attachments of the same bibliographic item are required.':
-    '同じ文献アイテムの添付ファイルが2つ必要です。',
   'PDF reader initialization timed out. Open the PDF and retry.':
     'PDFリーダーの初期化がタイムアウトしました。PDFを開いてやり直してください。',
   'Zotero could not open the PDF reader.': 'ZoteroがPDFリーダーを開けませんでした。',

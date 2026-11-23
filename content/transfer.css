@@ -118,6 +118,23 @@ label {
   min-width: 220px;
   max-width: 350px;
 }
+.transfer-direction {
+  align-items: center;
+}
+.pdf-choice {
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 350px;
+}
+.pdf-label {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.pdf-label:empty {
+  display: none;
+}
 #status {
   margin: 0;
   padding: 12px 24px;

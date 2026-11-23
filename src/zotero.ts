@@ -1,6 +1,7 @@
 import { type Locale, selectLocale } from './l10n.ts';
 import type {
   Annotation,
+  AttachmentChoice,
   Copy,
   Created,
   FileStamp,
@@ -63,29 +64,51 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
     await win.ZoteroPane.selectItem(id);
     win.focus();
   }
-  async choices(ids: number[]): Promise<{ id: number; title: string }[]> {
+  private isPersonalPDF(item: any): boolean {
+    return (
+      !!item &&
+      !item.deleted &&
+      item.isPDFAttachment() &&
+      item.libraryID === Zotero.Libraries.userLibraryID &&
+      !!item.parentID &&
+      Zotero.Libraries.get(item.libraryID)?.editable === true
+    );
+  }
+  private async attachmentParent(item: any): Promise<any> {
+    const parentID = item.parentID;
+    if (!parentID) return null;
+    const parent = (await Zotero.Items.getAsync(parentID)) || null;
+    return parent?.isRegularItem() && !parent.deleted && parent.libraryID === item.libraryID
+      ? parent
+      : null;
+  }
+  private attachmentChoice(item: any, parent: any): AttachmentChoice {
+    return {
+      id: item.id,
+      key: item.key,
+      parentID: parent.id,
+      parentTitle: parent.getDisplayTitle() || parent.key,
+      parentType: Zotero.ItemTypes.getLocalizedString(parent.itemTypeID),
+      title: this.label(item),
+      filename: item.attachmentFilename || item.key,
+    };
+  }
+  async choices(ids: number[]): Promise<AttachmentChoice[]> {
     let items = await Zotero.Items.getAsync(ids);
     if (items.length === 1 && items[0].isRegularItem())
       items = await Zotero.Items.getAsync(items[0].getAttachments());
-    return items
-      .filter(
-        (i: any) =>
-          i.isPDFAttachment() && !i.deleted && i.libraryID === Zotero.Libraries.userLibraryID,
-      )
-      .map((i: any) => ({ id: i.id, title: this.label(i) }));
+    const choices = [];
+    for (const item of items) {
+      if (!this.isPersonalPDF(item)) continue;
+      const parent = await this.attachmentParent(item);
+      if (parent) choices.push(this.attachmentChoice(item, parent));
+    }
+    return choices;
   }
   private async attachment(id: number): Promise<any> {
     const item = await Zotero.Items.getAsync(id);
-    if (
-      !item ||
-      item.deleted ||
-      !item.isPDFAttachment() ||
-      item.libraryID !== Zotero.Libraries.userLibraryID ||
-      !item.parentID ||
-      !Zotero.Libraries.get(item.libraryID).editable
-    ) {
-      throw new Error('Choose local PDF attachments of one item in your personal library.');
-    }
+    if (!this.isPersonalPDF(item))
+      throw new Error('Choose local PDFs attached to items in your writable personal library.');
     if (!(await item.getFilePathAsync()))
       throw new Error('The PDF is not locally available. Download it first.');
     return item;
@@ -114,6 +137,9 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
   }
   async snapshot(id: number): Promise<Snapshot> {
     const item = await this.attachment(id);
+    const parent = await this.attachmentParent(item);
+    if (!parent)
+      throw new Error('Choose local PDFs attached to items in your writable personal library.');
     const file = await this.fileStamp(id);
     const annotations: Annotation[] = (
       await Zotero.Items.getAsync(item.getAnnotations(false, true))
@@ -122,11 +148,8 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
       .map((a: any) => this.annotation(a));
     annotations.sort((a, b) => a.key.localeCompare(b.key));
     return {
-      id,
-      key: item.key,
+      ...this.attachmentChoice(item, parent),
       libraryID: item.libraryID,
-      parentID: item.parentID,
-      title: this.label(item),
       itemFingerprint: this.canonical(item),
       file,
       annotations,
@@ -145,11 +168,7 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
   }
   async pair(oldID: number, newID: number): Promise<[Snapshot, Snapshot]> {
     if (oldID === newID) throw new Error('The source and target must be different attachments.');
-    const a = await this.snapshot(oldID),
-      b = await this.snapshot(newID);
-    if (a.parentID !== b.parentID)
-      throw new Error('Two attachments of the same bibliographic item are required.');
-    return [a, b];
+    return [await this.snapshot(oldID), await this.snapshot(newID)];
   }
   async readNote(id: number): Promise<NoteSnapshot> {
     const note = (await Zotero.Items.getAsync(id)) || undefined;

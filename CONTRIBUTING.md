@@ -1,6 +1,6 @@
 # Contributing to MarginCarry
 
-MarginCarry transfers native PDF highlights and underlines between two revisions of the same Zotero item. Read the [README](README.md) for supported behavior and current limits, [How MarginCarry works](docs/how-it-works.md) for the matching rules, and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+MarginCarry transfers native PDF highlights and underlines between two PDF attachments in a personal Zotero library. Read the [README](README.md) for supported behavior and current limits, [How MarginCarry works](docs/how-it-works.md) for the matching rules, and follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Reports and proposals
 

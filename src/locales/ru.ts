@@ -10,7 +10,8 @@ export const ui: Record<UiKey, string> = {
   noteCopySave: 'Сохранить копию',
   noteCopyOpen: 'Показать копию заметки',
   noteCopyReview: 'Проверьте ссылки и сохраните копию.',
-  noteCopyNoOperations: 'Для элемента с этой заметкой нет завершённых переносов.',
+  noteCopyNoOperations:
+    'Для копирования заметки нужен завершённый перенос между двумя PDF той же записи, к которой прикреплена заметка.',
   noteCopyNoPair: 'стр. {page} · Нет подтверждённой пары · {text}',
   noteCopyCreated: 'Копия заметки сохранена.',
   subtitle: 'Ваши аннотации на новой версии PDF. Проверьте каждое место перед записью.',
@@ -47,7 +48,7 @@ export const ui: Record<UiKey, string> = {
   ready:
     'Выберите направление переноса и запустите анализ. Аннотации никогда не записываются автоматически.',
   choosePair:
-    'Закройте окно и выберите два PDF-вложения одной записи либо саму библиографическую запись.',
+    'Закройте окно и выберите два PDF-вложения в личной библиотеке или одну запись с несколькими PDF.',
   uniqueSelected: 'Однозначные предложения выбраны. Проверьте набор перед применением.',
   undoConfirm:
     'Отменить последний перенос? В корзину попадут только созданные им копии. Если копию изменили, отмена остановится из-за конфликта.',
@@ -107,6 +108,9 @@ export const ui: Record<UiKey, string> = {
   targetImageNext: 'Продолжение предлагаемого выделения на следующей странице PDF',
   applyConfirm:
     'Применить выбранное ({count}) к «{title}»? Исходные аннотации останутся. Копии получат новые ключи.',
+  applyConfirmBetweenItems:
+    'Скопировать выбранные аннотации ({count}) в другую запись Zotero?\n\nИсходный PDF\n{source}\n\nЦелевой PDF\n{target}',
+  crossItemNoteCopy: 'Для копирования заметок оба PDF должны быть вложениями одной записи Zotero.',
   writing: 'Проверка изменений и запись…',
   created: 'Создано аннотаций Zotero: {count}. Перенос сохранён в локальном журнале.',
   applied: 'Перенесено: {count}. Откройте новый PDF или отмените последний перенос.',
@@ -200,19 +204,19 @@ export const messages: Record<Message, string> = {
     'У выбранного предложения нет проверенных координат.',
   'PDF or annotations changed since analysis. Recalculate the plan.':
     'PDF или аннотации изменились после анализа. Повторите анализ.',
+  'A PDF moved to another Zotero item. Check the pair and run analysis again.':
+    'Один из PDF перемещён в другую запись Zotero. Проверьте пару и повторите анализ.',
   'Documents or annotations changed during application. The operation was rolled back.':
     'Документы или аннотации изменились во время записи. Операция отменена, изменения откачены.',
   'Copies were committed, but the final journal update failed. Reopen MarginCarry to recover the journal; do not reapply.':
     'Копии записаны, но последнее обновление журнала не удалось. Откройте MarginCarry снова, чтобы восстановить журнал, и не применяйте план повторно.',
   'No completed transfer to undo.': 'Нет завершённого переноса, который можно отменить.',
-  'Choose local PDF attachments of one item in your personal library.':
-    'Выберите локальные PDF-вложения одной записи из личной библиотеки.',
+  'Choose local PDFs attached to items in your writable personal library.':
+    'Выберите локальные PDF-вложения записей в личной библиотеке с правом записи.',
   'The PDF is not locally available. Download it first.':
     'PDF недоступен локально. Сначала скачайте его.',
   'The source and target must be different attachments.':
     'Источник и цель должны быть разными вложениями.',
-  'Two attachments of the same bibliographic item are required.':
-    'Нужны два вложения одной библиографической записи.',
   'PDF reader initialization timed out. Open the PDF and retry.':
     'Истекло время запуска просмотра PDF. Откройте PDF и повторите попытку.',
   'Zotero could not open the PDF reader.': 'Zotero не смог открыть просмотр PDF.',

@@ -38,6 +38,43 @@ class Element {
   }
 }
 
+test('reopening the transfer command reuses the window after its initial blank document unloads', async (t) => {
+  let opened = 0;
+  let focused = 0;
+  const dialog = Object.assign(new EventTarget(), {
+    closed: false,
+    close() {},
+    focus() {
+      focused++;
+    },
+  });
+  Object.assign(globalThis, {
+    PathUtils: { join: (...parts: string[]) => parts.join('/') },
+    Zotero: {
+      DataDirectory: { dir: '/profile' },
+      getMainWindows: () => [],
+      getMainWindow: () => ({
+        openDialog: () => {
+          opened++;
+          return dialog;
+        },
+      }),
+    },
+  });
+  const { open, stop } = await import('../src/index.ts');
+  t.after(() => {
+    stop();
+    Reflect.deleteProperty(globalThis, 'PathUtils');
+    Reflect.deleteProperty(globalThis, 'Zotero');
+  });
+
+  await open([1, 2]);
+  dialog.dispatchEvent(new Event('unload'));
+  await open([1, 2]);
+  assert.equal(opened, 1);
+  assert.equal(focused, 1);
+});
+
 test('rebinding the note copy dialog discards ready and in-flight previews for earlier notes', async () => {
   const nodes = new Map<string, Element>();
   const el = (id: string) => {
@@ -125,6 +162,8 @@ interface Scenario {
   positions?: Position[];
   /** Index of a new page that the host returned only partly. */
   partial?: number;
+  betweenItems?: boolean;
+  sameNames?: boolean;
 }
 // Each test glyph has a 7-unit box; the default scenario is a single 'needle' glyph.
 function glyphs(text: string) {
@@ -166,7 +205,17 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
     querySelectorAll: (selector: string) =>
       selector === '[data-l10n]' ? [subtitle] : selector === '[data-l10n-alt]' ? [sourceImage] : [],
   };
-  const win = { document, addEventListener() {}, focus() {}, confirm: () => true };
+  const confirmations: string[] = [];
+  const confirmation = { accepted: true };
+  const win = {
+    document,
+    addEventListener() {},
+    focus() {},
+    confirm: (message: string) => {
+      confirmations.push(message);
+      return confirmation.accepted;
+    },
+  };
   const glyph = { c: 'needle', rect: [10, 700, 52, 710], inlineRect: [10, 700, 52, 710] };
   const pageOf = (chars: object[], index = 0) => ({
     index,
@@ -184,8 +233,11 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
     id: 1,
     key: 'OLD',
     parentID: 3,
+    parentTitle: 'Preprint',
+    parentType: 'Preprint',
     libraryID: 1,
     title: 'old',
+    filename: 'old.pdf',
     itemFingerprint: 'old',
     file: { path: 'old.pdf', hash: 'a', size: 1, modified: 1 },
     annotations: (scenario?.quotes ?? ['needle']).map((quote, i) => {
@@ -206,7 +258,21 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
       };
     }),
   } as Snapshot;
-  const target = { ...source, id: 2, key: 'NEW', title: 'new', annotations: [] };
+  const target = {
+    ...source,
+    id: 2,
+    key: 'NEW',
+    title: 'new',
+    filename: 'new.pdf',
+    annotations: [],
+    ...(scenario?.betweenItems
+      ? { parentID: 4, parentTitle: 'Published paper', parentType: 'Conference Paper' }
+      : {}),
+  };
+  if (scenario?.sameNames) {
+    source.parentTitle = target.parentTitle = 'Shared paper title';
+    source.title = target.title = source.filename = target.filename = 'paper.pdf';
+  }
   let release: () => void = () => {};
   let entered: () => void = () => {};
   const held = new Promise<void>((r) => {
@@ -217,10 +283,7 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
   });
   const adapter = {
     locale: () => locale,
-    choices: async () => [
-      { id: 1, title: 'old' },
-      { id: 2, title: 'new' },
-    ],
+    choices: async () => [source, target],
     controller: () => new AbortController(),
     pair: async () => [source, target],
     pages: async (id: number) => (id === 1 ? oldPages : newPages),
@@ -252,11 +315,24 @@ async function fixture(locale: Locale = 'en', scenario?: Scenario) {
   await ui.init([1, 2]);
   el('old').value = '1';
   el('new').value = '2';
+  el('new').onchange!();
   const until = async (done: () => boolean) => {
     for (let i = 0; i < 100 && !done(); i++) await new Promise((r) => setTimeout(r, 0));
     assert.ok(done(), 'UI did not finish');
   };
-  return { el, document, started, release, until, applied, previews, navigations, failing };
+  return {
+    el,
+    document,
+    started,
+    release,
+    until,
+    applied,
+    previews,
+    navigations,
+    failing,
+    confirmation,
+    confirmations,
+  };
 }
 
 test('cancel while first previews load leaves no applicable plan or stale image', async () => {
@@ -410,12 +486,50 @@ for (const locale of locales) {
 
 const breakRect = (from: number, to: number) => [10 + 7 * from, 700, 10 + 7 * to, 710];
 
-test('batch apply skips an ambiguous word break even after its location is previewed', async () => {
-  const { el, release, until, applied, navigations } = await fixture('en', {
-    old: 'intro international',
-    new: ['intro inter\u00ad\n', 'national conclusion', 'inter\u00ad\nnational'],
-    quotes: ['intro', 'international'],
+test('the choices and confirmation distinguish identically named PDFs from different items', async () => {
+  const { el, release, until, confirmation, confirmations } = await fixture('en', {
+    old: 'intro needle',
+    new: 'intro needle',
+    quotes: ['needle'],
+    betweenItems: true,
+    sameNames: true,
   });
+  const source = 'Shared paper title (Preprint) · paper.pdf [OLD]';
+  const target = 'Shared paper title (Conference Paper) · paper.pdf [NEW]';
+  assert.deepEqual(
+    el('old').children.map((option) => option.textContent),
+    [source, target],
+  );
+  assert.equal(el('old-pdf').textContent, source);
+  assert.equal(el('new-pdf').textContent, target);
+
+  confirmation.accepted = false;
+  release();
+  el('analyze').onclick!();
+  await until(() => el('cancel').disabled);
+  el('accept-unique').onclick!();
+  el('apply').onclick!();
+  await until(() => confirmations.length === 1);
+  assert.ok(confirmations[0]!.includes(`Source PDF\n${source}\n\nTarget PDF\n${target}`));
+});
+
+test('batch apply skips an ambiguous word break even after its location is previewed', async () => {
+  const { el, release, until, applied, navigations, confirmation, confirmations } = await fixture(
+    'en',
+    {
+      old: 'intro international',
+      new: ['intro inter\u00ad\n', 'national conclusion', 'inter\u00ad\nnational'],
+      quotes: ['intro', 'international'],
+      betweenItems: true,
+    },
+  );
+  assert.equal(el('old-pdf').textContent, 'Preprint · old.pdf');
+  assert.equal(el('new-pdf').textContent, 'Published paper · new.pdf');
+  assert.equal(el('cross-item-note-copy').hidden, false);
+  el('swap').onclick!();
+  assert.equal(el('old-pdf').textContent, 'Published paper · new.pdf');
+  assert.equal(el('new-pdf').textContent, 'Preprint · old.pdf');
+  el('swap').onclick!();
   release();
   el('analyze').onclick!();
   await until(() => el('cancel').disabled);
@@ -435,6 +549,15 @@ test('batch apply skips an ambiguous word break even after its location is previ
   el('open-target-next').onclick!();
   await until(() => navigations.length === 1);
   assert.deepEqual(navigations[0]?.[1], { pageIndex: 1, rects: [breakRect(0, 8)] });
+  confirmation.accepted = false;
+  el('apply').onclick!();
+  await until(() => confirmations.length === 1);
+  assert.match(
+    confirmations[0]!,
+    /Source PDF\nPreprint · old\.pdf\n\nTarget PDF\nPublished paper · new\.pdf/u,
+  );
+  assert.deepEqual(applied, []);
+  confirmation.accepted = true;
   el('apply').onclick!();
   await until(() => applied.length === 1);
   assert.deepEqual(applied[0], [{ sourceKey: 'ANN0', candidateID: '0:0:5' }]);

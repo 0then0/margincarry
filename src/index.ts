@@ -79,6 +79,8 @@ export async function open(ids = adapter.selectedIDs()): Promise<void> {
   win.addEventListener(
     'load',
     () => {
+      // Gecko unloads the initial blank document before the review dialog loads.
+      win.addEventListener('unload', () => windows.delete(win), { once: true });
       const ui = new TransferWindow(win, adapter, service);
       void ui.init(ids).catch((e) => {
         const status = win.document.getElementById('status');
@@ -88,7 +90,6 @@ export async function open(ids = adapter.selectedIDs()): Promise<void> {
     },
     { once: true },
   );
-  win.addEventListener('unload', () => windows.delete(win), { once: true });
 }
 export function start(rootURI: string): void {
   root = rootURI;

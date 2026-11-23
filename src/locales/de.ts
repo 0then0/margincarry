@@ -10,7 +10,8 @@ export const ui: Record<UiKey, string> = {
   noteCopySave: 'Kopie speichern',
   noteCopyOpen: 'Kopierte Notiz anzeigen',
   noteCopyReview: 'Prüfen Sie die Links und speichern Sie dann die Kopie.',
-  noteCopyNoOperations: 'Für den Eintrag dieser Notiz gibt es keine abgeschlossenen Übertragungen.',
+  noteCopyNoOperations:
+    'Zum Kopieren der Notiz ist eine abgeschlossene Übertragung zwischen zwei PDFs desselben Eintrags erforderlich, zu dem die Notiz gehört.',
   noteCopyNoPair: 'S. {page} · Keine bestätigte Zuordnung · {text}',
   noteCopyCreated: 'Die Kopie der Notiz wurde gespeichert.',
   subtitle:
@@ -48,7 +49,7 @@ export const ui: Record<UiKey, string> = {
   ready:
     'Wählen Sie die Übertragungsrichtung und starten Sie die Analyse. Annotationen werden nie automatisch geschrieben.',
   choosePair:
-    'Schließen Sie dieses Fenster und wählen Sie zwei PDF-Anhänge eines Eintrags oder den bibliografischen Eintrag selbst aus.',
+    'Schließen Sie dieses Fenster und wählen Sie zwei PDF-Anhänge in Ihrer persönlichen Bibliothek oder einen Eintrag mit mehreren PDFs aus.',
   uniqueSelected: 'Eindeutige Vorschläge ausgewählt. Prüfen Sie die Auswahl vor dem Anwenden.',
   undoConfirm:
     'Letzte Übertragung rückgängig machen? Nur ihre Kopien kommen in den Papierkorb. Wurde eine Kopie bearbeitet, bricht das Rückgängigmachen mit einem Konflikt ab.',
@@ -109,6 +110,10 @@ export const ui: Record<UiKey, string> = {
   targetImageNext: 'Fortsetzung der vorgeschlagenen Markierung auf der nächsten PDF-Seite',
   applyConfirm:
     'Auswahl ({count}) auf „{title}“ anwenden? Die ursprünglichen Annotationen bleiben erhalten. Kopien erhalten neue Schlüssel.',
+  applyConfirmBetweenItems:
+    'Auswahl ({count}) in einen anderen Zotero-Eintrag kopieren?\n\nQuell-PDF\n{source}\n\nZiel-PDF\n{target}',
+  crossItemNoteCopy:
+    'Zum Kopieren von Notizen müssen beide PDFs zum selben Zotero-Eintrag gehören.',
   writing: 'Änderungen werden geprüft und geschrieben…',
   created:
     'Zotero-Annotationen erstellt: {count}. Die Übertragung wurde im lokalen Protokoll gespeichert.',
@@ -207,20 +212,20 @@ export const messages: Record<Message, string> = {
     'Der gewählte Vorschlag hat keine geprüften Koordinaten.',
   'PDF or annotations changed since analysis. Recalculate the plan.':
     'PDF oder Annotationen haben sich seit der Analyse geändert. Analysieren Sie erneut.',
+  'A PDF moved to another Zotero item. Check the pair and run analysis again.':
+    'Eines der PDFs wurde in einen anderen Zotero-Eintrag verschoben. Prüfen Sie das Paar und starten Sie die Analyse erneut.',
   'Documents or annotations changed during application. The operation was rolled back.':
     'Dokumente oder Annotationen haben sich während des Schreibens geändert. Der Vorgang wurde zurückgerollt.',
   'Copies were committed, but the final journal update failed. Reopen MarginCarry to recover the journal; do not reapply.':
     'Die Kopien wurden gespeichert, aber die letzte Aktualisierung des Protokolls ist fehlgeschlagen. Öffnen Sie MarginCarry erneut, um das Protokoll wiederherzustellen, und wenden Sie den Plan nicht noch einmal an.',
   'No completed transfer to undo.':
     'Es gibt keine abgeschlossene Übertragung zum Rückgängigmachen.',
-  'Choose local PDF attachments of one item in your personal library.':
-    'Wählen Sie lokale PDF-Anhänge eines Eintrags aus Ihrer persönlichen Bibliothek.',
+  'Choose local PDFs attached to items in your writable personal library.':
+    'Wählen Sie lokale PDF-Anhänge von Einträgen in Ihrer persönlichen Bibliothek mit Schreibzugriff.',
   'The PDF is not locally available. Download it first.':
     'Das PDF ist lokal nicht verfügbar. Laden Sie es zuerst herunter.',
   'The source and target must be different attachments.':
     'Quelle und Ziel müssen verschiedene Anhänge sein.',
-  'Two attachments of the same bibliographic item are required.':
-    'Es werden zwei Anhänge desselben bibliografischen Eintrags benötigt.',
   'PDF reader initialization timed out. Open the PDF and retry.':
     'Zeitüberschreitung beim Start des PDF-Readers. Öffnen Sie das PDF und versuchen Sie es erneut.',
   'Zotero could not open the PDF reader.': 'Zotero konnte den PDF-Reader nicht öffnen.',
