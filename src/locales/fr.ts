@@ -11,8 +11,15 @@ export const ui: Record<UiKey, string> = {
   noteCopyOpen: 'Afficher la note copiée',
   noteCopyReview: 'Vérifiez les liens, puis enregistrez la copie.',
   noteCopyNoOperations:
-    'Pour copier la note, un transfert doit avoir été effectué entre deux PDF rattachés au document de cette note.',
-  noteCopyNoPair: 'p. {page} · Aucune correspondance confirmée · {text}',
+    'Aucun transfert terminé ne part d’un PDF rattaché au document de cette note.',
+  noteCopySourcePDF: 'PDF source : {pdf}',
+  noteCopyTargetPDF: 'PDF cible : {pdf}',
+  noteCopyDestination: 'La copie de la note sera rattachée au document {item}.',
+  noteCopySourceCitations:
+    'Les citations de {item} continuent de renvoyer à ce document et conservent leurs pages d’origine.',
+  noteCopySameItemCitations:
+    'Les citations correspondantes de {item} reprennent les pages du PDF cible.',
+  noteCopyNoPair: 'p. {page} · Aucune correspondance confirmée, lien d’origine conservé · {text}',
   noteCopyCreated: 'La copie de la note a été enregistrée.',
   subtitle:
     'Vos annotations sur une nouvelle version du PDF. Vérifiez chaque position avant d’écrire.',
@@ -114,7 +121,7 @@ export const ui: Record<UiKey, string> = {
   applyConfirmBetweenItems:
     'Copier la sélection ({count}) dans un autre document Zotero ?\n\nPDF source\n{source}\n\nPDF cible\n{target}',
   crossItemNoteCopy:
-    'Pour copier des notes, les deux PDF doivent être rattachés au même document Zotero.',
+    'Après le transfert des annotations, sélectionnez une note rattachée au document source et utilisez la commande de copie de note de MarginCarry dans le menu Outils.',
   writing: 'Vérification des modifications et écriture…',
   created:
     'Annotations Zotero créées : {count}. Le transfert est enregistré dans le journal local.',

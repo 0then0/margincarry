@@ -1,5 +1,5 @@
 import { validRect } from './geometry.ts';
-import type { Annotation, Rect, TransferRecord } from './model.ts';
+import type { Annotation, AttachmentChoice, Rect, TransferRecord } from './model.ts';
 import type { TransferService } from './transfer.ts';
 
 export interface NoteSnapshot {
@@ -12,15 +12,21 @@ export interface NoteSnapshot {
   editorHTMLs: string[];
 }
 
+export type NoteCopyPDF = AttachmentChoice & { parentKey: string };
+
 export interface TransferPDFs {
-  sourceTitle: string;
-  targetTitle: string;
+  source: NoteCopyPDF;
+  target: NoteCopyPDF;
   sourceURIs: string[];
   targetURI: string;
   parentURIs: string[];
+  fingerprints: string[];
 }
 
-type TargetAnnotation = Pick<Annotation, 'key' | 'type' | 'position' | 'pageLabel'>;
+export type TargetAnnotation = Pick<
+  Annotation,
+  'key' | 'type' | 'position' | 'pageLabel' | 'fingerprint'
+>;
 
 export function parseNoteHTML(document: Document, html: string): HTMLTemplateElement {
   // A template parses HTML without loading note resources or activating any of its elements.
@@ -38,13 +44,14 @@ export interface NoteCopyStore {
   ): Promise<TransferPDFs | null>;
   targetAnnotation(record: TransferRecord, key: string): Promise<TargetAnnotation | null>;
   transaction<T>(work: () => Promise<T>): Promise<T>;
-  createNoteCopy(noteID: number, html: string): Promise<number>;
+  createNoteCopy(noteID: number, parentID: number, html: string): Promise<number>;
 }
 
 interface PreviewRow {
   text: string;
   oldPage?: string;
   newPage?: string;
+  image?: true;
 }
 
 export interface NoteCopyPreview {
@@ -52,6 +59,8 @@ export interface NoteCopyPreview {
   html: string;
   note: NoteSnapshot;
   operationID: string;
+  pdfs: TransferPDFs;
+  annotationFingerprints: string[];
 }
 
 function object(value: unknown): Record<string, unknown> | undefined {
@@ -174,7 +183,6 @@ export class NoteCopyService {
     return records.filter(
       (record) =>
         record.status === 'committed' &&
-        !record.betweenItems &&
         record.libraryID === note.libraryID &&
         record.sourceID !== record.targetID &&
         record.created.length > 0 &&
@@ -184,7 +192,7 @@ export class NoteCopyService {
 
   async choices(noteID: number): Promise<{
     noteTitle: string;
-    operations: { id: string; date: string; sourceTitle: string; targetTitle: string }[];
+    operations: { id: string; date: string; source: NoteCopyPDF; target: NoteCopyPDF }[];
   }> {
     return this.transfers.withJournal(async (records) => {
       const note = await this.store.readNote(noteID);
@@ -195,8 +203,8 @@ export class NoteCopyService {
           choices.push({
             id: record.id,
             date: record.date,
-            sourceTitle: pdfs.sourceTitle,
-            targetTitle: pdfs.targetTitle,
+            source: pdfs.source,
+            target: pdfs.target,
           });
       }
       return { noteTitle: note.title, operations: choices };
@@ -216,20 +224,27 @@ export class NoteCopyService {
 
     const template = parseNoteHTML(document, note.html);
     const rows: PreviewRow[] = [];
-    for (const span of template.content.querySelectorAll(
-      'span.highlight[data-annotation], span.underline[data-annotation]',
+    const annotationFingerprints: string[] = [];
+    const sameItem = pdfs.source.parentID === pdfs.target.parentID;
+    const textLinks = 'span.highlight[data-annotation], span.underline[data-annotation]';
+    for (const link of template.content.querySelectorAll(
+      sameItem ? textLinks : '[data-annotation]',
     )) {
-      const row: PreviewRow = { text: span.textContent ?? '' };
+      const row: PreviewRow =
+        link.localName === 'img'
+          ? { text: link.getAttribute('alt') ?? '', image: true }
+          : { text: link.textContent ?? '' };
       rows.push(row);
-      const data = decode(span.getAttribute('data-annotation'));
+      const data = decode(link.getAttribute('data-annotation'));
       if (!data) continue;
       const oldNumber = textPageNumber(data.position);
       const oldPage =
         typeof data.pageLabel === 'string' && data.pageLabel ? data.pageLabel : oldNumber;
       if (oldPage !== undefined) row.oldPage = oldPage;
-      const highlight = span.classList.contains('highlight');
-      const underline = span.classList.contains('underline');
+      const highlight = link.classList.contains('highlight');
+      const underline = link.classList.contains('underline');
       if (
+        link.localName !== 'span' ||
         highlight === underline ||
         data.uri !== undefined ||
         !oldNumber ||
@@ -252,17 +267,18 @@ export class NoteCopyService {
       const number = textPageNumber(target.position);
       if (!number) continue;
       const newPage = target.pageLabel || number;
-      updateCitation(span, data, pdfs.parentURIs, oldPage, newPage);
+      if (sameItem) updateCitation(link, data, pdfs.parentURIs, oldPage, newPage);
       Object.assign(data, {
         attachmentURI: pdfs.targetURI,
         annotationKey: target.key,
         position: target.position,
         pageLabel: newPage,
       });
-      span.setAttribute('data-annotation', encode(data));
+      link.setAttribute('data-annotation', encode(data));
       row.newPage = newPage;
+      annotationFingerprints.push(target.fingerprint);
     }
-    return { rows, html: template.innerHTML, note, operationID };
+    return { rows, html: template.innerHTML, note, operationID, pdfs, annotationFingerprints };
   }
 
   async preview(noteID: number, operationID: string, document: Document): Promise<NoteCopyPreview> {
@@ -291,13 +307,20 @@ export class NoteCopyService {
         );
         if (
           current.html !== preview.html ||
-          JSON.stringify(current.rows) !== JSON.stringify(preview.rows)
+          JSON.stringify(current.rows) !== JSON.stringify(preview.rows) ||
+          JSON.stringify(current.pdfs) !== JSON.stringify(preview.pdfs) ||
+          JSON.stringify(current.annotationFingerprints) !==
+            JSON.stringify(preview.annotationFingerprints)
         )
           throw new Error(
             'The transfer links changed after the preview. Refresh the preview and try again.',
           );
         await checkNote();
-        const id = await this.store.createNoteCopy(current.note.id, current.html);
+        const id = await this.store.createNoteCopy(
+          current.note.id,
+          current.pdfs.target.parentID,
+          current.html,
+        );
         await checkNote();
         return id;
       }),

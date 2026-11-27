@@ -11,8 +11,15 @@ export const ui: Record<UiKey, string> = {
   noteCopyOpen: 'Kopierte Notiz anzeigen',
   noteCopyReview: 'Prüfen Sie die Links und speichern Sie dann die Kopie.',
   noteCopyNoOperations:
-    'Zum Kopieren der Notiz ist eine abgeschlossene Übertragung zwischen zwei PDFs desselben Eintrags erforderlich, zu dem die Notiz gehört.',
-  noteCopyNoPair: 'S. {page} · Keine bestätigte Zuordnung · {text}',
+    'Es gibt keine abgeschlossene Übertragung von einem PDF, das am Eintrag dieser Notiz hängt.',
+  noteCopySourcePDF: 'Ausgangs-PDF: {pdf}',
+  noteCopyTargetPDF: 'Ziel-PDF: {pdf}',
+  noteCopyDestination: 'Die Kopie der Notiz wird unter {item} gespeichert.',
+  noteCopySourceCitations:
+    'Zitate zu {item} verweisen weiterhin auf diesen Eintrag und behalten ihre ursprünglichen Seitenangaben.',
+  noteCopySameItemCitations:
+    'Passende Zitate zu {item} übernehmen die Seitenangaben aus dem Ziel-PDF.',
+  noteCopyNoPair: 'S. {page} · Keine bestätigte Zuordnung, ursprünglicher Link bleibt · {text}',
   noteCopyCreated: 'Die Kopie der Notiz wurde gespeichert.',
   subtitle:
     'Ihre Annotationen auf einer neuen PDF-Fassung. Prüfen Sie jede Position, bevor etwas geschrieben wird.',
@@ -113,7 +120,7 @@ export const ui: Record<UiKey, string> = {
   applyConfirmBetweenItems:
     'Auswahl ({count}) in einen anderen Zotero-Eintrag kopieren?\n\nQuell-PDF\n{source}\n\nZiel-PDF\n{target}',
   crossItemNoteCopy:
-    'Zum Kopieren von Notizen müssen beide PDFs zum selben Zotero-Eintrag gehören.',
+    'Wählen Sie nach der Übertragung eine Notiz des Ausgangseintrags und verwenden Sie im Menü Werkzeuge den Befehl von MarginCarry zum Kopieren von Notizen.',
   writing: 'Änderungen werden geprüft und geschrieben…',
   created:
     'Zotero-Annotationen erstellt: {count}. Die Übertragung wurde im lokalen Protokoll gespeichert.',

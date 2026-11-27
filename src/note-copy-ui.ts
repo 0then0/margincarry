@@ -1,6 +1,29 @@
 import { Localization } from './l10n.ts';
-import type { NoteCopyPreview, NoteCopyService } from './note-copy.ts';
+import type { NoteCopyPDF, NoteCopyPreview, NoteCopyService, TransferPDFs } from './note-copy.ts';
 import type { ZoteroAdapter } from './zotero.ts';
+
+function itemLabel(pdf: NoteCopyPDF, other: NoteCopyPDF): string {
+  const label = `${pdf.parentTitle} (${pdf.parentType})`;
+  return pdf.parentID !== other.parentID &&
+    pdf.parentTitle === other.parentTitle &&
+    pdf.parentType === other.parentType
+    ? `${label} [${pdf.parentKey}]`
+    : label;
+}
+
+function pdfLabel(pdf: NoteCopyPDF, other: NoteCopyPDF): string {
+  const label = `${itemLabel(pdf, other)} · ${pdf.title}`;
+  return pdf.parentID === other.parentID && pdf.title === other.title
+    ? `${label} [${pdf.key}]`
+    : label;
+}
+
+function transferLabel(
+  date: string,
+  { source, target }: Pick<TransferPDFs, 'source' | 'target'>,
+): string {
+  return `${date} · ${pdfLabel(source, target)} → ${pdfLabel(target, source)}`;
+}
 
 export function initNoteCopy(
   win: Window,
@@ -14,6 +37,7 @@ export function initNoteCopy(
   const previewButton = doc.getElementById('preview') as HTMLButtonElement;
   const save = doc.getElementById('save') as HTMLButtonElement;
   const open = doc.getElementById('open-note-copy') as HTMLButtonElement;
+  const details = doc.getElementById('note-copy-details') as HTMLElement;
   const links = doc.getElementById('note-copy-links') as HTMLUListElement;
   const status = doc.getElementById('status') as HTMLElement;
   const source = doc.getElementById('note-copy-source') as HTMLElement;
@@ -25,6 +49,8 @@ export function initNoteCopy(
   const clearPreview = () => {
     preview = null;
     save.disabled = true;
+    details.replaceChildren();
+    details.hidden = true;
     links.replaceChildren();
   };
   let selection = 0;
@@ -76,11 +102,34 @@ export function initNoteCopy(
       try {
         const result = await service.preview(noteID, operation.value, doc);
         if (!active()) return;
+        const option = operation.selectedOptions[0];
+        if (option?.dataset.date)
+          option.textContent = transferLabel(option.dataset.date, result.pdfs);
+        const { source, target } = result.pdfs;
+        for (const text of [
+          l10n.t('noteCopySourcePDF', { pdf: pdfLabel(source, target) }),
+          l10n.t('noteCopyTargetPDF', { pdf: pdfLabel(target, source) }),
+          l10n.t('noteCopyDestination', { item: itemLabel(target, source) }),
+          l10n.t(
+            source.parentID === target.parentID
+              ? 'noteCopySameItemCitations'
+              : 'noteCopySourceCitations',
+            { item: itemLabel(source, target) },
+          ),
+        ]) {
+          const line = doc.createElement('p');
+          line.textContent = text;
+          details.append(line);
+        }
+        details.hidden = false;
         for (const row of result.rows) {
           const li = doc.createElement('li');
           li.textContent =
             row.newPage === undefined
-              ? l10n.t('noteCopyNoPair', { page: row.oldPage ?? '?', text: row.text })
+              ? l10n.t('noteCopyNoPair', {
+                  page: row.oldPage ?? '?',
+                  text: row.image && !row.text ? l10n.t('typeImage') : row.text,
+                })
               : l10n.t('reviewLine', { old: row.oldPage ?? '?', new: row.newPage, text: row.text });
           links.append(li);
         }
@@ -125,8 +174,8 @@ export function initNoteCopy(
       for (const choice of operations) {
         const option = doc.createElement('option');
         option.value = choice.id;
-        const date = new Date(choice.date).toLocaleString(l10n.locale);
-        option.textContent = `${date} · ${choice.sourceTitle} → ${choice.targetTitle}`;
+        option.dataset.date = new Date(choice.date).toLocaleString(l10n.locale);
+        option.textContent = transferLabel(option.dataset.date, choice);
         operation.append(option);
       }
       setPreviewEnabled(operations.length > 0);

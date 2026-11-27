@@ -297,6 +297,13 @@ footer {
 #note-copy-source {
   overflow-wrap: anywhere;
 }
+#note-copy-details {
+  padding: 0 24px;
+  overflow-wrap: anywhere;
+}
+#note-copy-details p {
+  margin: 6px 0;
+}
 #note-copy-links {
   overflow: auto;
   margin: 0;

@@ -15,6 +15,7 @@ import {
   type NoteCopyStore,
   type NoteSnapshot,
   parseNoteHTML,
+  type TargetAnnotation,
   type TransferPDFs,
 } from './note-copy.ts';
 
@@ -217,28 +218,15 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
   ): Promise<TransferPDFs | null> {
     if (![record.sourceID, record.targetID].every((id) => Number.isSafeInteger(id) && id > 0))
       return null;
-    const items: any[] = await Zotero.Items.getAsync([
-      record.sourceID,
-      record.targetID,
-      note.parentID,
-    ]);
+    const items: any[] = await Zotero.Items.getAsync([record.sourceID, record.targetID]);
     const source = items.find((item) => item.id === record.sourceID);
     const target = items.find((item) => item.id === record.targetID);
-    const parent = items.find((item) => item.id === note.parentID);
     if (
-      !source?.isPDFAttachment() ||
-      !target?.isPDFAttachment() ||
-      !parent?.isRegularItem() ||
-      parent.deleted ||
-      parent.libraryID !== note.libraryID ||
-      source.deleted ||
-      target.deleted ||
+      !source ||
+      !target ||
       source.key !== record.sourceKey ||
       target.key !== record.targetKey ||
-      source.libraryID !== note.libraryID ||
-      target.libraryID !== note.libraryID ||
-      source.parentID !== note.parentID ||
-      target.parentID !== note.parentID
+      source.parentID !== note.parentID
     )
       return null;
     if (verifyFiles) {
@@ -251,18 +239,35 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
         return null;
       }
     }
+    const sourceParent = await this.attachmentParent(source);
+    const targetParent = await this.attachmentParent(target);
+    if (
+      !this.isPersonalPDF(source) ||
+      !this.isPersonalPDF(target) ||
+      source.libraryID !== note.libraryID ||
+      target.libraryID !== note.libraryID ||
+      !sourceParent ||
+      !targetParent ||
+      sourceParent.deleted ||
+      targetParent.deleted ||
+      sourceParent.id !== note.parentID ||
+      source.parentID !== sourceParent.id ||
+      target.parentID !== targetParent.id ||
+      Boolean(record.betweenItems) !== (sourceParent.id !== targetParent.id)
+    )
+      return null;
     return {
-      sourceTitle: this.label(source),
-      targetTitle: this.label(target),
+      source: { ...this.attachmentChoice(source, sourceParent), parentKey: sourceParent.key },
+      target: { ...this.attachmentChoice(target, targetParent), parentKey: targetParent.key },
       sourceURIs: this.noteItemURIs(source),
       targetURI: Zotero.URI.getItemURI(target),
-      parentURIs: this.noteItemURIs(parent),
+      parentURIs: this.noteItemURIs(sourceParent),
+      fingerprints: [sourceParent, targetParent, source, target].map((item) =>
+        this.canonical(item),
+      ),
     };
   }
-  async targetAnnotation(
-    record: TransferRecord,
-    key: string,
-  ): Promise<Pick<Annotation, 'key' | 'type' | 'position' | 'pageLabel'> | null> {
+  async targetAnnotation(record: TransferRecord, key: string): Promise<TargetAnnotation | null> {
     const item = (await Zotero.Items.getByLibraryAndKeyAsync(record.libraryID, key)) || undefined;
     if (
       !item?.isAnnotation() ||
@@ -278,12 +283,13 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
         type: item.annotationType,
         position: JSON.parse(item.annotationPosition),
         pageLabel: item.annotationPageLabel,
+        fingerprint: this.canonical(item),
       };
     } catch {
       return null;
     }
   }
-  async createNoteCopy(noteID: number, html: string): Promise<number> {
+  async createNoteCopy(noteID: number, parentID: number, html: string): Promise<number> {
     const note = Zotero.Items.get(noteID);
     const template = parseNoteHTML(Zotero.getMainWindow().document, html);
     const images = new Map<string, Element[]>();
@@ -309,6 +315,7 @@ export class ZoteroAdapter implements Store, NoteCopyStore {
     }
 
     const copy = note.clone();
+    copy.parentID = parentID;
     copy.setNote(html);
     await copy.save({ skipSelect: true });
     for (const { attachment, nodes } of attachments) {

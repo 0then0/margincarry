@@ -10,8 +10,13 @@ export const ui = {
   noteCopyOpen: 'Show copied note',
   noteCopyReview: 'Review the links below, then save the copy.',
   noteCopyNoOperations:
-    'Note copying requires a completed transfer between two PDFs attached to this note’s parent item.',
-  noteCopyNoPair: 'p. {page} · No confirmed match · {text}',
+    'No completed transfer starts from a PDF attached to this note’s parent item.',
+  noteCopySourcePDF: 'Source PDF: {pdf}',
+  noteCopyTargetPDF: 'Target PDF: {pdf}',
+  noteCopyDestination: 'The copied note will appear under {item}.',
+  noteCopySourceCitations: 'Citations to {item} stay with that item and keep their original pages.',
+  noteCopySameItemCitations: 'Matching citations to {item} use the target page labels.',
+  noteCopyNoPair: 'p. {page} · No confirmed match, original link kept · {text}',
   noteCopyCreated: 'Saved the copied note.',
   subtitle: 'Your annotations on a new PDF revision. Review each position before writing.',
   language: 'Language',
@@ -108,7 +113,8 @@ export const ui = {
     'Apply {count} selected transfers to “{title}”? Original annotations remain available. New copies receive new links.',
   applyConfirmBetweenItems:
     'Copy the selection ({count}) to a different Zotero item?\n\nSource PDF\n{source}\n\nTarget PDF\n{target}',
-  crossItemNoteCopy: 'Copying notes requires both PDFs to belong to the same Zotero item.',
+  crossItemNoteCopy:
+    'After transferring annotations, select a child note of the source item and use the MarginCarry note copy command in Tools.',
   writing: 'Checking changes and writing…',
   created: 'Created {count} native annotations. Transfer saved in the local journal.',
   applied: 'Transferred: {count}. Open the new PDF or undo the last transfer.',

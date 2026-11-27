@@ -20,6 +20,9 @@ class Element {
   attributes = new Map<string, string>();
   onclick: (() => void) | null = null;
   onchange: (() => void) | null = null;
+  get selectedOptions() {
+    return this.children.filter((child) => child.value === this.value);
+  }
   append(...children: Element[]) {
     this.children.push(...children);
   }
@@ -92,6 +95,27 @@ test('rebinding the note copy dialog discards ready and in-flight previews for e
     querySelectorAll: () => [],
   };
   const saved: number[] = [];
+  const source = {
+    id: 11,
+    key: 'OLD',
+    parentID: 1,
+    parentKey: 'SOURCE',
+    parentTitle: 'Earlier Version',
+    parentType: 'Preprint',
+    title: 'old.pdf',
+    filename: 'old.pdf',
+  };
+  const target = {
+    id: 12,
+    key: 'NEW',
+    parentID: 2,
+    parentKey: 'TARGET',
+    parentTitle: 'Final Version',
+    parentType: 'Journal Article',
+    title: 'new.pdf',
+    filename: 'new.pdf',
+  };
+  let currentTarget = target;
   const { promise: held, resolve: release } = Promise.withResolvers<void>();
   const { promise: started, resolve: enter } = Promise.withResolvers<void>();
   const bind = initNoteCopy(
@@ -100,9 +124,7 @@ test('rebinding the note copy dialog discards ready and in-flight previews for e
     {
       choices: async (id) => ({
         noteTitle: `Note ${id}`,
-        operations: [
-          { id: 'transfer', date: '2026-11-07', sourceTitle: 'Old', targetTitle: 'New' },
-        ],
+        operations: [{ id: 'transfer', date: '2026-11-07', source, target }],
       }),
       preview: async (id, operationID) => {
         if (id === 2) {
@@ -113,7 +135,20 @@ test('rebinding the note copy dialog discards ready and in-flight previews for e
           note: { id, key: '', title: '', libraryID: 1, parentID: 1, html: '', editorHTMLs: [] },
           operationID,
           html: '',
-          rows: [{ text: `Quote ${id}`, oldPage: '1', newPage: '2' }],
+          rows: [
+            { text: `Quote ${id}`, oldPage: '1', newPage: '2' },
+            { text: 'Unpaired', oldPage: '7' },
+            { text: '', oldPage: '8', image: true },
+          ],
+          pdfs: {
+            source,
+            target: currentTarget,
+            sourceURIs: [],
+            parentURIs: [],
+            targetURI: '',
+            fingerprints: [],
+          },
+          annotationFingerprints: [],
         };
       },
       save: async ({ note }) => saved.push(note.id),
@@ -136,6 +171,7 @@ test('rebinding the note copy dialog discards ready and in-flight previews for e
   saveFirst();
   assert.equal(el('save').disabled, true);
   assert.deepEqual(el('note-copy-links').children, []);
+  assert.equal(el('note-copy-details').hidden, true);
   await until(() => !el('preview').disabled);
   preview();
   await started;
@@ -144,10 +180,30 @@ test('rebinding the note copy dialog discards ready and in-flight previews for e
   await until(() => el('note-copy-source').textContent.includes('Note 3'));
   assert.equal(el('save').disabled, true);
   assert.deepEqual(el('note-copy-links').children, []);
+  assert.equal(el('note-copy-details').hidden, true);
   assert.deepEqual(saved, []);
+  assert.match(el('operation').children[0]!.textContent, /Final Version \(Journal Article\)/u);
+  currentTarget = { ...target, parentID: 3, parentKey: 'MOVED', parentTitle: 'Updated Version' };
   preview();
   await until(() => !el('save').disabled);
-  assert.match(el('note-copy-links').children[0]!.textContent, /Quote 3/u);
+  assert.match(el('operation').children[0]!.textContent, /Updated Version \(Journal Article\)/u);
+  assert.deepEqual(
+    el('note-copy-links').children.map(({ textContent }) => textContent),
+    [
+      'p. 1 → 2 · Quote 3',
+      'p. 7 · No confirmed match, original link kept · Unpaired',
+      'p. 8 · No confirmed match, original link kept · image',
+    ],
+  );
+  assert.deepEqual(
+    el('note-copy-details').children.map(({ textContent }) => textContent),
+    [
+      'Source PDF: Earlier Version (Preprint) · old.pdf',
+      'Target PDF: Updated Version (Journal Article) · new.pdf',
+      'The copied note will appear under Updated Version (Journal Article).',
+      'Citations to Earlier Version (Preprint) stay with that item and keep their original pages.',
+    ],
+  );
   el('save').onclick!();
   await until(() => saved.length === 1);
   assert.deepEqual(saved, [3]);

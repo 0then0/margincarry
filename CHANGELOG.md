@@ -2,6 +2,12 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
+## [Unreleased]
+
+### Added
+
+- Copy one child note to the item holding a completed transfer's target PDF. The preview shows both items and PDFs, the note's destination, and which links can be updated. Across items, annotation links open the target PDF and citations retain the source item and page number.
+
 ## [0.6.0] - 2026-11-23
 
 ### Added

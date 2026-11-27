@@ -11,8 +11,15 @@ export const ui: Record<UiKey, string> = {
   noteCopyOpen: 'Mostrar a nota copiada',
   noteCopyReview: 'Confira os links e salve a cópia.',
   noteCopyNoOperations:
-    'Para copiar a nota, é preciso concluir uma transferência entre dois PDFs anexados ao item ao qual ela pertence.',
-  noteCopyNoPair: 'p. {page} · Sem correspondência confirmada · {text}',
+    'Nenhuma transferência concluída parte de um PDF anexado ao item desta nota.',
+  noteCopySourcePDF: 'PDF de origem: {pdf}',
+  noteCopyTargetPDF: 'PDF de destino: {pdf}',
+  noteCopyDestination: 'A cópia da nota será salva no item {item}.',
+  noteCopySourceCitations:
+    'As citações de {item} continuam apontando para esse item e mantêm as páginas originais.',
+  noteCopySameItemCitations:
+    'As citações correspondentes de {item} usam as páginas do PDF de destino.',
+  noteCopyNoPair: 'p. {page} · Sem correspondência confirmada, link original mantido · {text}',
   noteCopyCreated: 'A cópia da nota foi salva.',
   subtitle: 'Suas anotações em uma nova versão do PDF. Revise cada posição antes de gravar.',
   language: 'Idioma',
@@ -110,7 +117,8 @@ export const ui: Record<UiKey, string> = {
     'Aplicar a seleção ({count}) em “{title}”? As anotações originais são mantidas. As cópias recebem chaves novas.',
   applyConfirmBetweenItems:
     'Copiar a seleção ({count}) para outro item do Zotero?\n\nPDF de origem\n{source}\n\nPDF de destino\n{target}',
-  crossItemNoteCopy: 'Para copiar notas, os dois PDFs devem pertencer ao mesmo item do Zotero.',
+  crossItemNoteCopy:
+    'Após transferir as anotações, selecione uma nota filha do item de origem e use o comando do MarginCarry para copiar notas no menu Ferramentas.',
   writing: 'Verificando alterações e gravando…',
   created: 'Anotações do Zotero criadas: {count}. A transferência foi salva no registro local.',
   applied: 'Transferidas: {count}. Abra o PDF novo ou desfaça a última transferência.',

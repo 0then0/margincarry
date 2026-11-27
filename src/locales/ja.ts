@@ -11,8 +11,14 @@ export const ui: Record<UiKey, string> = {
   noteCopyOpen: '複製したノートを表示',
   noteCopyReview: 'リンクを確認してからコピーを保存してください。',
   noteCopyNoOperations:
-    'ノートをコピーするには、このノートと同じアイテムに添付された2つのPDF間で注釈の移行を完了している必要があります。',
-  noteCopyNoPair: '{page}ページ · 対応する注釈を確認できません · {text}',
+    'このノートの親アイテムに添付されたPDFを移行元とする、完了済みの移行がありません。',
+  noteCopySourcePDF: '移行元のPDF：{pdf}',
+  noteCopyTargetPDF: '移行先のPDF：{pdf}',
+  noteCopyDestination: 'ノートのコピーは{item}の下に保存されます。',
+  noteCopySourceCitations: '引用先は引き続き{item}で、元のページ番号が保持されます。',
+  noteCopySameItemCitations:
+    '{item}への引用のうち該当するものは、移行先のPDFのページ番号に更新されます。',
+  noteCopyNoPair: '{page}ページ · 対応する注釈を確認できないため、元のリンクを保持 · {text}',
   noteCopyCreated: 'ノートのコピーを保存しました。',
   subtitle: 'PDFの新しい版へ注釈を移します。書き込む前に、各位置を確認してください。',
   language: '言語',
@@ -109,7 +115,7 @@ export const ui: Record<UiKey, string> = {
   applyConfirmBetweenItems:
     '選択した注釈{count}件を、別のZoteroアイテムにコピーしますか？\n\nコピー元のPDF\n{source}\n\nコピー先のPDF\n{target}',
   crossItemNoteCopy:
-    'ノートをコピーするには、2つのPDFが同じZoteroアイテムに添付されている必要があります。',
+    '注釈を移行した後、移行元アイテムの子ノートを選び、「ツール」メニューからMarginCarryのノートコピーコマンドを実行します。',
   writing: '変更を確認して書き込み中…',
   created: 'Zotero注釈を{count}件作成しました。移行内容はローカル履歴に保存されました。',
   applied: '移行しました: {count}件。新しいPDFを開くか、直前の移行を元に戻せます。',

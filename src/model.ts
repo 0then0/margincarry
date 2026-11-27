@@ -167,7 +167,7 @@ export interface TransferRecord {
   libraryID: number;
   sourceKey: string;
   targetKey: string;
-  /** Transfers between items cannot be used to copy notes, even if a PDF is moved later. */
+  /** The PDFs belonged to different items at the time of transfer. */
   betweenItems?: true;
   sourceFile: FileStamp;
   targetFile: FileStamp;
