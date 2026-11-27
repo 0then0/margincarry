@@ -33,7 +33,7 @@ MarginCarry has been tested on macOS only. Windows and Linux have not been verif
 
 ## Install and update
 
-1. Download `margincarry-0.6.0.xpi` and its SHA-256 file from the [latest release](https://github.com/0then0/margincarry/releases/latest), or build it yourself (see [Development](docs/development.md)).
+1. Download `margincarry-0.7.0.xpi` and its SHA-256 file from the [latest release](https://github.com/0then0/margincarry/releases/latest), or build it yourself (see [Development](docs/development.md)).
 2. In Zotero, open **Tools → Plugins**, click the gear menu, choose **Install Plugin From File…**, and select the XPI.
 3. Restart Zotero if asked. **MarginCarry: transfer PDF annotations…** now appears in the **Tools** menu.
 
@@ -66,7 +66,7 @@ Copies receive new annotation keys. Existing links in Zotero notes keep opening 
 2. Choose a completed transfer and click **Preview links**. Review both items and PDFs, the page labels, and the note's destination. Links without a confirmed match keep their original destinations. Saving requires at least one confirmed match and a current preview.
 3. Click **Save a copy** to create a child note under the item holding the target PDF. Use **Show copied note** to find it. The original note stays under the source item.
 
-In the copy, **Show on Page** (**Go to Page** in Zotero 10.0.9) on a relinked highlight or underline opens it in the target PDF. For a transfer between items, **Show Item** on the citation opens the source item, and the citation keeps its original page number. Within the same item, matching citations use the target page label. The quoted text, comments, formatting, and other links are preserved. Copying notes between different items is available in development builds. [Zotero's note editor documentation](https://www.zotero.org/support/pdf_reader#working_with_annotations_in_notes).
+In the copy, **Show on Page** (**Go to Page** in Zotero 10.0.9) on a relinked highlight or underline opens it in the target PDF. For a transfer between items, **Show Item** on the citation opens the source item, and the citation keeps its original page number. Within the same item, matching citations use the target page label. The quoted text, comments, formatting, and other links are preserved. [Zotero's note editor documentation](https://www.zotero.org/support/pdf_reader#working_with_annotations_in_notes).
 
 **Undo last transfer** sends the transferred annotation to Trash and retains the copied note. In Zotero 10.0.9 the note's link still opens the target page using its saved position. The citation still opens the source item.
 

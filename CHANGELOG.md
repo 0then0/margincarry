@@ -2,7 +2,7 @@
 
 Notable changes to MarginCarry are recorded here. Released entries describe the corresponding published artifact; later documentation changes do not create a new release.
 
-## [Unreleased]
+## [0.7.0] - 2026-11-27
 
 ### Added
 
